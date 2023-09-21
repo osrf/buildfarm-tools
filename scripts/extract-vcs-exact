@@ -1,0 +1,43 @@
+#!/usr/bin/gawk -f
+
+function usage() {
+  print("Extract the vcs --exact output from a build log to create a repos file.")
+  exit 0
+}
+
+BEGIN {
+  ORS="\n"
+  in_vcs_exact=0
+  for (i = 0; i < ARGC; i++) {
+    if (ARGV[i] == "--help" || ARGV[i] == "-h") {
+      usage()
+    }
+  }
+}
+
+/^# BEGIN SUBSECTION: vcs export --exact/ {
+  in_vcs_exact=1
+  next
+}
+
+# Consume (venv) printout
+in_vcs_exact == 1 && /^\(venv\)/ {
+  next
+}
+
+# Consume command print line `==> vcs export --exact "src"`
+in_vcs_exact == 1 && /==>/ {
+  next
+}
+
+in_vcs_exact == 1 && /# END SUBSECTION/ {
+  exit(0)
+}
+
+in_vcs_exact == 1 && /^$/ {
+  exit(0)
+}
+
+in_vcs_exact == 1 {
+  print $0
+}

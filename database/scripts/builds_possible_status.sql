@@ -1,0 +1,2 @@
+SELECT DISTINCT status
+FROM build_status

@@ -1,0 +1,55 @@
+#!/usr/bin/gawk -f
+
+function usage() {
+  print("extract-package-output: Extract package output from a build log using colcon markers")
+  print("USAGE: extract-package-output OPERATION PACKAGE [BUILD_LOG_FILE]")
+  print("\tOPERATION: Either 'build' or 'test'")
+  print("\tPACKAGE: The target package name")
+  print("\tBUILD_LOG_FILE: Path to the target build log. Defaults to stdin")
+  exit(0)
+}
+
+BEGIN {
+  ORS="\n"
+  for (i = 0; i < ARGC; i++) {
+    if (ARGV[i] == "-h" || ARGV[i] == "--help") {
+      usage()
+    }
+  }
+  operation = ARGV[1]
+  if (operation != "build" && operation != "test") {
+    print operation " is not a valid operation." > "/dev/stderr"
+    print "\t One of `build` or `test`" > "/dev/stderr"
+    exit 1
+  }
+  package = ARGV[2]
+  if (package == "") {
+    print "No package supplied. Please provide a package name" > "/dev/stderr"
+    exit 1
+  }
+  delete ARGV[2]
+  ARGC--
+  delete ARGV[1]
+  ARGC--
+
+  section_pattern = "BEGIN SUBSECTION: " operation
+  start_pattern = "Starting >>> " package
+  finish_pattern = "(Finished|Failed) +<<< " package
+}
+
+$0 ~ section_pattern {
+  in_section = 1
+}
+
+in_section && $0 ~ start_pattern {
+  start = 1
+}
+
+start {
+  print $0
+}
+
+start && $0 ~ finish_pattern {
+  exit 0
+}
+
