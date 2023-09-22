@@ -2,7 +2,7 @@
 
 Welcome to the Buildfarm Tools Repository!
 
-The buildfarmer team is the one in charge of mainatining ROS and Gazebo [buildfarms](#buildfarm-links) build results. You can look at our dashboards to inspect the status of all jobs:
+The buildfarmer team is the one in charge of maintaining ROS and Gazebo [buildfarms](#buildfarm-links) build results. You can look at our dashboards to inspect the status of all jobs:
 * [ROS2  Dashboard](./ROS2.md)
 * [Gazebo Dashboard](./Gazebo.md)
 * [Gazebo Classic Dashboard](./GazeboClassic.md)
@@ -11,7 +11,7 @@ The buildfarmer team is the one in charge of mainatining ROS and Gazebo [buildfa
 This repo contains all the tools to get information from the ROS and Gazebo buildfarms.
 
 > **Note**
-> If you're interested in what tols do we have available and how to use them, check the [Tools usage](#tools-usage) section
+> If you're interested in what tools we have available and how to use them, check the [Tools usage](#tools-usage) section
 
 ## Getting Started
 
@@ -35,7 +35,7 @@ To set up the project locally, please follow the instructions below:
 
 ## Tools usage
 
-If you are a ROS or Gazebo developer intersted in getting information about errors you're getting in CI; or if you want to gather statistics of test and errors in ROS or Gazebo, you can check the following plays:
+If you are a ROS or Gazebo developer interested in getting information about errors you're getting in CI; or if you want to gather statistics of tests and errors in ROS or Gazebo, you can check the following plays:
 
 * [Is an error a known issue or a flaky problem?](./playbook/is-an-error-a-known-issue-or-a-flaky-problem.md)
 * [Check historical data of a test regression](./playbook/check-historical-data-of-a-test-regression.md)
@@ -43,7 +43,7 @@ If you are a ROS or Gazebo developer intersted in getting information about erro
 
 Remember that the buildfarmer database is open to anyone who wants to inspect it (binary file: [buildfarmer.db](./database/buildfarmer.db)). You can use [SQLite Browser](https://sqlitebrowser.org/) to run personalized queries and filters
 
-If you are a buildfarmer team member, or you are interested in learning how do we triage buildfarm issues and use these tools, you can check our workflow in the [Buildfarmer Playbook](./playbook/buildfarmer/README.md):
+If you are a buildfarmer team member, or you are interested in learning how we triage buildfarm issues and use these tools, you can check our workflow in the [Buildfarmer Playbook](./playbook/buildfarmer/README.md):
 * [Buildfarmer Scripted day](./playbook/buildfarmer/scripted_buildfarm_day.md)
 * [Buildfarmer tools docs](./playbook/buildfarmer/buildfarmer_triage_tools.md)
 
