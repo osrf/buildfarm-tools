@@ -1,12 +1,2 @@
 __pycache__/
-.vscode/
-unknown_build_regressions/
-infra/reports/report-venv/
-
-lib/
-scripts/*.py
-common.py
-databaseFetcher.py
-gazebo_non_nightly_jobs.py
-make_gazebo.py
 
