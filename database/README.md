@@ -1,6 +1,6 @@
 # Buildfarmer Database
 
-This databese contains most of the information we use to triage buildfarm issues such as:
+This database contains most of the information we use to triage buildfarm issues such as:
 * Job and build information
 * Test regressions and errors
 * Known issues
