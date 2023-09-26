@@ -42,9 +42,11 @@ If you are a ROS or Gazebo developer interested in getting information about err
 * [Check historical data of a test regression](./playbook/check-historical-data-of-a-test-regression.md)
 * [Look for build regression statistics](./playbook/look-for-build-regression-statistics.md)
 
-Remember that the buildfarmer database is open to anyone who wants to inspect it (binary file: [buildfarmer.db](./database/buildfarmer.db)). You can use [SQLite Browser](https://sqlitebrowser.org/) to run personalized queries and filters
+Remember that the buildfarmer database is open to anyone who wants to inspect it (binary file: [buildfarmer.db](./database/buildfarmer.db)).
+You can use [SQLite Browser](https://sqlitebrowser.org/) to run personalized queries and filters.
 
-If you are a buildfarmer team member, or you are interested in learning how we triage buildfarm issues and use these tools, you can check our workflow in the [Buildfarmer Playbook](./playbook/buildfarmer/README.md):
+If you are a buildfarmer team member, or you are interested in learning how we triage buildfarm issues and use these tools,
+you can check our workflow in the [Buildfarmer Playbook](./playbook/buildfarmer/README.md):
 * [Buildfarmer Scripted day](./playbook/buildfarmer/scripted_buildfarm_day.md)
 * [Buildfarmer tools docs](./playbook/buildfarmer/buildfarmer_triage_tools.md)
 
