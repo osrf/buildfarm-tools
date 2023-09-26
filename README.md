@@ -2,7 +2,8 @@
 
 Welcome to the Buildfarm Tools Repository!
 
-The buildfarmer team is in charge of maintaining ROS and Gazebo [buildfarms](#buildfarm-links) build results. You can look at the dashboards to inspect the status of all jobs:
+The buildfarmer team is in charge of maintaining build results on the ROS and Gazebo [buildfarms](#buildfarm-links).
+You can look at the dashboards to inspect the status of all tracked jobs:
 * [ROS2  Dashboard](./ROS2.md)
 * [Gazebo Dashboard](./Gazebo.md)
 * [Gazebo Classic Dashboard](./GazeboClassic.md)
@@ -17,7 +18,7 @@ This repo contains all the tools to get information from the ROS and Gazebo buil
 
 To set up the project locally, please follow the instructions below:
 
-1. Fork the repository and clone it to your local machine.
+1. Clone the repository to your local machine.
     ```bash
     git clone https://github.com/osrf/buildfarm-tools.git
     ```
@@ -49,15 +50,13 @@ If you are a buildfarmer team member, or you are interested in learning how we t
 
 ## Contributing
 
-Check the [contributing.md](./contributing.md) to get started!
+Check the [CONTRIBUTING.md](./CONTRIBUTING.md) to get started!
 
 ## Useful links
 
 #### Buildfarm links:
 
-<ul>
-<li><a href="https://build.ros.org/">build.ros.org</a></li>
-<li><a href="https://build.ros2.org/">build.ros2.org</a></li>
-<li><a href="https://build.osrfoundation.org/">build.osrfoundation.org</a></li>
-<li><a href="https://ci.ros2.org/">ci.ros2.org</a></li>
-</ul>
+* [build.ros.org](https://build.ros.org/)
+* [build.ros2.org](https://build.ros2.org/)
+* [build.osrfoundation.org](https://build.osrfoundation.org/)
+* [ci.ros2.org](https://ci.ros2.org/)
