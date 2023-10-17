@@ -27,7 +27,7 @@ Then, you may follow the next guide to see how can you investigate a build regre
 
 When you have finished getting information about the test regressions, you should report the ones that are not known issues. You may do that by creating an issue on the failing package repository.
 
-We handle build regressions more carefully. You can inform in Slack channels and revert PRs in case that's needed.
+We handle build regressions more carefully. You can inform to development teams and revert PRs in case that's needed.
 
 ## 3. Check test regressions in the buildfarm
 

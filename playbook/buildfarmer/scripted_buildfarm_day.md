@@ -25,7 +25,7 @@ Check the following links and verify that each responds correctly (not showing a
 * https://build.osrfoundation.org/
 * https://ci.ros2.org/
 
-If any of the links above are not working you should check [Jenkins server restart](../infra/jenkins_server_restart.md) and report to the infra team in `#infra-core-developers` Slack channel
+If any of the links above are not working you should check with the OSRF infrastructure team to restart the Jenkins Server.
 
 ## 3. Check the buildfarm agents
 
@@ -93,8 +93,8 @@ For each failing job (red badge):
    * If you find a possible change that broke the build, you may need to look for the GitHub repository of the package to check if a bug is already reported or report it. If you don't find any change, you may proceed to the next step.
 6. Ask ROS and Gazebo teams. Refer to ROS2 technical lead (Chris Lalancette) and Gazebo technical lead (Addisu Taddese) for more information.
    * If you don't find any suitable cause, you may need to ask the ROS and Gazebo teams if they know about the issue adding all the information you have gathered so far.
-     * For ROS, you can ask in `ros-core-developers` Slack channel or Chris Lalancette (clalancette) in GitHub.
-     * For Gazebo, you can ask in `gazebo-core-developers` Slack channel or Addisu Taddese (azeey) in GitHub.
+     * For ROS, you can ask Chris Lalancette (clalancette) in GitHub.
+     * For Gazebo, you can ask Addisu Taddese (azeey) in GitHub.
  
 > Taken from [Build regressions investigation](./build_regressions_investigation.md#investigation-steps)
 
@@ -129,8 +129,8 @@ For each failing job (red badge):
 5. Report the test regressions
    * When you have finished getting information about the test regressions, you should report the new ones. You may do that by creating an issue on the failing package repository.
    * If you are not sure about the reason for the failure, you should ask ROS and Gazebo teams if they know about the issue.
-     * For ROS, you can ask in `ros-core-developers` Slack channel or Chris Lalancette (clalancette) in GitHub.
-     * For Gazebo, you can ask in `gazebo-core-developers` Slack channel or Addisu Taddese (azeey) in GitHub.
+     * For ROS, you can ask Chris Lalancette (clalancette) in GitHub.
+     * For Gazebo, you can ask Addisu Taddese (azeey) in GitHub.
 
 > Taken from [Looking for regressions](./looking_for_regressions.md#3-check-test-regressions-in-the-buildfarm) and [Test regressions investigation](./test_regressions_investigation.md#investigation-steps)
 
