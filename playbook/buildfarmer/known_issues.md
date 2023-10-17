@@ -49,6 +49,16 @@ To untrack a known issue, you may follow the steps below:
 2. Set the issue status to `CLOSED` in the buildfarmer database using [`issue_close.sql`](./buildfarmer_triage_tools.md#issue_closesql).
   * This script will set the issue status to `CLOSED` in the database (e.g., `./sql_run.sh issue_close.sql "https://github.com/my/issue/123"`).
 
+# Refresh Known Issues in the Database
+
+All the known issues are added manually to the database. They are kept open until someone closes them manually. To keep the database updated, we need to refresh the known issues periodically.
+
+To refresh the known issues, you may follow the steps below:
+1. Run [`./refresh_known_open_issues.sh`](./buildfarmer_triage_tools.md#refresh_known_open_issuessh)
+   * This script will check if the issue is still open in GitHub and update the database accordingly.
+2. Run [`./close_old_known_issues.sh`](./buildfarmer_triage_tools.md#close_old_known_issuessh)
+   * This script will close the issues that haven't happened in the last 30 days.
+
 # Check statistics of current known issues
 
 If you want to check the statistics the known issues happening in the buildfarm (such as how many times is a regression happening and in which jobs), you may be interested in using [`statistical_check.rb`](./buildfarmer_triage_tools.md#statistical_checkrb) script.
