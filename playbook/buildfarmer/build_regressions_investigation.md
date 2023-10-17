@@ -99,4 +99,4 @@ There could be two reasons for it:
   * [comparebuildrepos.rb](./buildfarmer_triage_tools.md#comparebuildreposrb)
   * [comparepip.py](./buildfarmer_triage_tools.md#comparepippy)
 
-[Back :arrow_backward: ](index.md)
+[Back :arrow_backward: ](../index.md)

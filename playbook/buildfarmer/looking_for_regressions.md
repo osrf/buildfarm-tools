@@ -56,4 +56,4 @@ After you checked all the build regressions, you should continue by checking tes
   * [databaseFetcher.py](./buildfarmer_triage_tools.md#databasefetcherpy)
   * [errors_check_last_build](./buildfarmer_triage_tools.md#errors_check_last_buildsql)
 
-[Back :arrow_backward: ](index.md)
+[Back :arrow_backward: ](../index.md)

@@ -97,4 +97,4 @@ Report the warnings to the respective repository if necessary.
 
 When everything is reported, you should add each report/issue to [Buildfarm Payload Board](https://github.com/orgs/osrf/projects/23/views/1).
 
-[Back :arrow_backward: ](index.md)
+[Back :arrow_backward: ](../index.md)

@@ -71,4 +71,4 @@ When a test fails because of a timeout or segfault, the best approach is to comp
   * [errors_get_first_time.sql](./buildfarmer_triage_tools.md#errors_get_first_timesql)
   * [calculate_flakiness_jobs.sql](./buildfarmer_triage_tools.md#calculate_flakiness_jobssql)
 
-[Back :arrow_backward: ](index.md)
+[Back :arrow_backward: ](../index.md)

@@ -146,4 +146,4 @@ When everything is reported, you should add each report/issue to [Buildfarm Payl
 
 You can check how to report issues here: [Reporting Problems](./reporting_problems.md)
 
-[Back :arrow_backward: ](index.md)
+[Back :arrow_backward: ](../index.md)

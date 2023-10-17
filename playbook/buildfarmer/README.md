@@ -25,4 +25,4 @@ To acomplish the above tasks, the buildfarmer has a set of tools and resources t
 
 After checking that the buildfarm is up and running, and that there are enough machines, the buildfarmer should check for regressions:  [Looking for regressions](./looking_for_regressions.md).
 
-[Back :arrow_backward: ](index.md)
+[Back :arrow_backward: ](../index.md)
