@@ -5,9 +5,6 @@ We utilize our custom tools within the buildfarm to facilitate our workflow. The
 * [scripts/ci-log](../../scripts/ci-log): Sometimes the log of a build is too heavy to be rendered in a web browser. This script provides a way to download the log of a build.
 * [scripts/extract-vcs-exact](../../scripts/extract-vcs-exact): Extract the vcs --exact output from a build log to create a repos file. It is useful for knowing the exact list of repositories that were used in a build.
 * [scripts/extract-package-output](../../scripts/extract-package-output): Extract package output from a build log using colcon markers. Useful for getting the console output of a specific package in a build.
-* [scripts/generate_job_graph.py](../../scripts/generate_job_graph.py):  Analyzes job processing times from multiple files, organizes the data, and  visualizes it using a line plot. Useful when daily reports are taking a lot of time and you may want to check a visual representation of the processing times of a job.
-* [scripts/generate_daily_time_graph.py](../../scripts/generate_daily_time_graph.py): Analyzes daily report processing time and job count for all reports in the buildfarm. Useful when daily reports are taking a lot of time and you may want to check the trend of the processing time.
-* [scripts/get_recent_build_regression_reasons.py](../../scripts/get_recent_build_regression_reasons.py): Shows the reasons for the most recent build regressions in the last _n_ days. Useful for checking build regressions that happened in the last days.
 
 Check the [scripts usage](#scripts-usage) section for more information on how to use these scripts.
 
@@ -26,7 +23,7 @@ Check the [testdb usage](#testdb-usage) section for more information on how to u
 
 The buildfarmer repository stores a local database with information from test regressions, jobs, known issues, etc. The database scripts provide a way to check more information based on the data stored in the database. These scripts are located in the [database/scripts](../../database/scripts/) folder.
 
-*Important note*: Currently, the database is updated manually using [databaseFetcher.py](../../database/databaseFetcher.py), so the database scripts will only provide consistent results if the database is up to date. To update the database, install the dependencies using `python3 -m pip install -r requirements.txt` in the root folder and then `python3 databaseFetcher.py` or `./databaseFetcher.py`
+*Important note*: Currently, the database is updated daily, so the database scripts will only provide consistent results if the database is up to date.
 
 * [check_buildfarm.rb](../../database/scripts/check_buildfarm.rb): This script checks the status of the buildfarm and shows potential new issues that need to be reported, as well as other useful information for each job.
 * [statistical_check.rb](../../database/scripts/statistical_check.rb): This script shows the list of all open, closed and new issues and the test regressions associated with them, as well as how many times they happened in the last X days.
@@ -44,6 +41,8 @@ The buildfarmer repository stores a local database with information from test re
 * [is_known_issue.sql](../../database/scripts/is_known_issue.sql): This script returns the known issue that matches the test regression. It is useful to check if a test regression is already known.
 * [issue_save_new.sh](../../database/scripts/issue_save_new.sh): This script saves a new known issue in the database.
 * [issue_close.sql](../../database/scripts/issue_close.sql): This script closes a known issue in the database.
+* [refresh_known_open_issues.sh](../../database/scripts/refresh_known_open_issues.sh): This script updates the list of known open issues based on issue status in github. It requires [Github CLI](https://cli.github.com/) to be installed and configured.
+* [close_old_known_issues.sh](../../database/scripts/close_old_known_issues.sh): This script closes issues that haven't happened in the last 30 days.
 
 Check the [database scripts usage](#database-scripts-usage) section for more information on how to use these scripts.
 
@@ -79,41 +78,6 @@ cat <log-file> | extract-package-output build <package-name>
 ```
 
 > Will show the output of the build of the specified package.
-
-### generate_job_graph.py
-
-```bash
-./generate_job_graph.py [--last|-l]
-```
-
-> Will show a graph of how much time did it took to fetch each job data in all daily reports. The numbers on X axis are the job numbers (0 is the first job, 1 is the second, etc). The numbers on Y axis are the time in seconds.
-
-
-### generate_daily_time_graph.py
-
-```bash
-./generate_daily_time_graph.py
-```
-
-> Will show two graphs. The first one shows the time it took to run each daily report. The second one shows how many jobs were tracked in each daily report. Script  will also print the number assigned to each daily report.
-
-### get_recent_build_regressions_reasons.py
-
-Get recent build regression reasons
-
-positional arguments:
-  num_days    Number of days to look back
-
-options:
-  -h, --help  show this help message and exit
-  --save, -s  Save unknown build logs to unknown_build_regressions folder
-
-
-```bash
-./get_recent_build_regression_reasons.py [--save] 15
-```
-
-> Will show the list of build regressions that happened in the last 15 days. If the `--save` option is used, it will save the build logs of the unknown build regressions in the _unknown_build_regressions_ folder.
 
 ## Testdb usage
 
@@ -188,17 +152,6 @@ Remember to set the *domain and job variables* before running this script ([how 
 * `"error"` is the string to grep.
 
 ## Database scripts usage
-
-
-### databaseFetcher.py
-
-```bash
-./databaseFetcher.py
-```
-
-> Will update the database with the latest information from the buildfarm.
-
-It takes between 20 and 30 minutes to run.
 
 ### refresh_known_open_issues.sh
 
