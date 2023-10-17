@@ -11,7 +11,7 @@ There are 2 ways to identify failing tests:
   * When using database tools, you should use [`check_buildfarm.rb`](./buildfarmer_triage_tools.md#check_buildfarmrb) script to get a list of potential issues sorted by the number of fails. With this list, you can prioritize the tests that are failing more often and check if they are known issues.
 
 > **Note**
-> In the daily workflow, we skip some jobs that are not Tier 1 priority (check [priorities document](../../docs/priorities.md#priorities)).
+> In the daily workflow, we skip some jobs that are not Tier 1 priority (check [REP2000 support tiers](https://github.com/ros-infrastructure/rep/blob/master/rep-2000.rst#support-tiers) for each distribution)
 >
 > The jobs we normally skip are: fastrtps-dynamic, performance, repeated and connext jobs.
 >

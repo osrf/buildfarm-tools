@@ -33,9 +33,7 @@ We handle build regressions more carefully. You can inform in Slack channels and
 
 After you checked all the build regressions, you should continue by checking test regressions. As there are a lot of them throughout the buildfarm, here are some steps to make the first look easier using [buildfarmer database tools](./buildfarmer_triage_tools.md#database-scripts):
 
-1. Fetch the new data from the buildfarm database 
-  * Use `git pull` to get the latest version of the buildfarmer repository.
-    * [`databaseFetcher.py`](./buildfarmer_triage_tools.md#databasefetcherpy) is a script that downloads all the data from test regressions into the buildfarmer database. Currently is a private script that runs every day using github actions.
+1. Fetch the latest version of the buildfarmer database using `git pull`
 2. Check test regressions by last build using [`check_buildfarm.rb`](./buildfarmer_triage_tools.md#check_buildfarmrb)
   * This script will list all the new possible issues of the last build of each job in the buildfarm (grouped by). Also, you will be able to see if the test regression is reported as a known issue or not, and in which jobs is the test failing.
 3. Check each test regression statistics and failing reason. You can check [**Test regressions investigation**](./test_regressions_investigation.md) to get more information on how to do it.
