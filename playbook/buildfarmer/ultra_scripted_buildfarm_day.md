@@ -20,27 +20,21 @@ Compare the following document [machines.md nodes list](../../machines.md#nodes-
 
 ### 3. Pull changes from buildfarm repository and refresh known issues
 
+Pull changes:
+
 ```bash
-cd ~/buildfarmer
+cd ~/buildfarm-tools
 git pull
 ```
 
-To refresh known issues:
+Refresh known issues:
 
 ```bash
-cd ~/buildfarmer/database/scripts
+cd ~/buildfarm-tools/database/scripts
 ./refresh_known_open_issues.sh
 ./close_old_known_issues.sh
 ```
 
-If any change was made to the buildfarmer database, push the changes:
-
-```bash
-cd ~/buildfarmer/
-git add buildfarmer.db
-git commit -sm "Update buildfarmer database"
-git push
-```
 
 ### 4. Check build failures
 
@@ -66,7 +60,7 @@ You can check for yellow builds in buildfarm dashboards:
 * [Colcon](https://github.com/osrf/buildfarmer/blob/main/Colcon.md)
 
 ```bash
-cd ~/buildfarm/database/scripts
+cd ~/buildfarm-tools/database/scripts
 ./check_buildfarm.rb -e "performance rep connext fastrtps-dynamic" # Exclude flaky jobs
 ```
 
@@ -75,7 +69,7 @@ For each test regression check the log output in Jenkins, find the root cause, a
 For gathering information about the test regressions:
 
 ```bash
-cd ~/buildfarm/database/scripts
+cd ~/buildfarm-tools/database/scripts
 ./sql_run.sh errors_get_first_time.sql [error_name] # Check the first 25 appearances of the test regression
 ./sql_run.sh errors_get_last_ones.sql [error_name] # Check the last 25 appearances of the test regression
 ./sql_run.sh calculate_flakiness_jobs.sql [error_name] [time_range] # Check the ratio of the test regression per job in the given time range
@@ -83,7 +77,25 @@ cd ~/buildfarm/database/scripts
 
 See [Check test regressions](./scripted_buildfarm_day.md#5-check-test-regressions-on-buildfarm-dashboards) for more information.
 
-### 6. Check for remaining warnings
+
+## 6. Add known issues to the buildfarmer database
+
+For each issue you opened:
+```bash
+./issue_save_new.sh "<test-name>" "<package-name>" "<job-name>" "<github-issue-url>"
+```
+
+> Details in [Scripted buildfarm day: Add known issues](./scripted_buildfarm_day.md#6-add-known-issues-to-the-buildfarmer-database) and [Known issues: Add known issues](./known_issues.md#add-a-known-issue-test-failures)
+
+If any change was made to the buildfarmer database, push the changes:
+
+```bash
+cd ~/buildfarm-tools/
+git add database/buildfarmer.db
+git commit -sm "<commit-msg>" # Normally: "Update buildfarmer database" or "Refresh known issues"
+git push
+```
+### 7. Check for remaining warnings
 
 Check unstable build for warnings in buildfarm dashboards:
 * [ROS2](https://github.com/osrf/buildfarmer/blob/main/ROS2.md)
@@ -93,7 +105,7 @@ Check unstable build for warnings in buildfarm dashboards:
 
 Report the warnings to the respective repository if necessary.
 
-### 7. Report issues in Board
+### 8. Report issues in Board
 
 When everything is reported, you should add each report/issue to [Buildfarm Payload Board](https://github.com/orgs/osrf/projects/23/views/1).
 

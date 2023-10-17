@@ -4,15 +4,15 @@ This document describes the process for being a buildfarmer for a day.
 
 ## 1. Tool setup
 
-1. Pull the latest version of the buildfarm repository (this repo)
+1. Pull the latest version of the buildfarm-tools repository (this repo)
     ```
     git checkout main
     git pull origin main
     ```
-2. Update Known issues information.
+2. Update Known issues information so you work with the latest information:
 
     ```bash
-    cd ~/buildfarmer/database/scripts
+    cd ~/buildfarm-tools/database/scripts
     ./refresh_known_open_issues.sh
     ./close_old_known_issues.sh
     ```
@@ -134,13 +134,27 @@ For each failing job (red badge):
 
 > Taken from [Looking for regressions](./looking_for_regressions.md#3-check-test-regressions-in-the-buildfarm) and [Test regressions investigation](./test_regressions_investigation.md#investigation-steps)
 
-## 6. Check warnings in remaining builds
+## 6. Add known issues to the buildfarmer database
+
+After you have opened issues in ROS and Gazebo repositories, you should add the issues to the buildfarmer database. This way, we can track the status of the issues and the buildfarm status.
+
+To add issues to the buildfarmer database, you should follow these steps:
+
+1. Identify the failing test name and package name
+     * In a practical way, package name is all the text before the first period in the test name. (e.g., For test "aaaa.bbbb.ccc" package name is "aaaa")
+2. Identify the job name where the test is failing
+3. Add the known issue with the following command
+     ```bash
+     ./issue_save_new.sh "<test-name>" "<package-name>" "<job-name>" "<github-issue-url>"
+     ```
+
+## 7. Check warnings in remaining builds
 
 Some jobs are unstable because of test regressions. Currently we don't track those in `buildfarmer.db` so the process to check the warnings is manual. You should check unstable builds manually in the buildfarm dashboards.
 
 To report and investigate warnings, you can follow the same steps as test regressions.
 
-## 7. Final steps
+## 8. Final steps
 
 When everything is reported, you should add each report/issue to [Buildfarm Payload Board](https://github.com/orgs/osrf/projects/23/views/1) (see [board explanation](./reporting_problems.md#board-explanation)). This way, we can track all the issues happening in the buildfarm in a human readable way
 

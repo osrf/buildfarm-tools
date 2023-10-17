@@ -21,6 +21,8 @@ Items 3 and 4 are covered in [Looking for regressions](./looking_for_regressions
 
 To acomplish the above tasks, the buildfarmer has a set of tools and resources to work with. For more information refer to [Buildfarmer triage tools](./buildfarmer_triage_tools.md).
 
+Check the [buildfarmer scripted day](./scripted_buildfarm_day.md) to get the big picture of the buildfarmer role.
+
 After checking that the buildfarm is up and running, and that there are enough machines, the buildfarmer should check for regressions:  [Looking for regressions](./looking_for_regressions.md).
 
 [Back :arrow_backward: ](../index.md)

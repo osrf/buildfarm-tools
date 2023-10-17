@@ -35,6 +35,7 @@ When you find a test regression that is not fixed yet, you may create a known is
   * This script will create a known issue in the database, linking it to the issue you created in the package repository.
   * You need to run this script for each job that is failing. 
     * E.g., if the error is happening in `gz-sim7`,`ign-gazebo6`, and `ign-gazebo3` jobs, you need to run the script three times, changing the job argument between each run.
+  * Usage: `./issue_save_new.sh "<test-name>" "<package-name>" "<job-name>" "<github-issue-url>"`
 
 After that, the error will be considered a known issue, and it will not appear in the list that [`errors_check_last_build.sql`](./buildfarmer_triage_tools.md#errors_check_last_buildsql) returns.
 
