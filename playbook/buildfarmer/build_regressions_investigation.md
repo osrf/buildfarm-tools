@@ -6,6 +6,7 @@ When investigating a build regression it's important to identify the root cause 
 
 Some build regressions are already known, so it's important to check if the issue is already reported in GitHub. If it's not, then the buildfarmer should report it.
 
+This document will guide you through the steps to investigate a build regression.
 
 ## Investigation steps
 
@@ -51,7 +52,7 @@ Normally, you will follow the next steps:
     ```
 
     </details>
-  * If you find a possible change that broke the build, you may need to look for the GitHub repository of the package to check if a bug is already reported or report it. If you don't find any change, you may proceed to the next step.
+  * If you find a candidate change that possibly broke the build, you may need to look for the GitHub repository of the package to check if a bug is already reported or report it. If you don't find any change, you may proceed to the next step.
 6. Ask ROS and Gazebo teams. Refer to ROS2 technical lead (Chris Lalancette) and Gazebo technical lead (Addisu Taddese) for more information.
   * If you don't find any suitable cause, you may need to ask the ROS and Gazebo teams if they know about the issue adding all the information you have gathered so far.
   * For ROS, you can ask Chris Lalancette (clalancette) in GitHub.

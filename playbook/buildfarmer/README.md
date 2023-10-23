@@ -16,8 +16,10 @@ For items 1 and 2 refer to the [priorities document](../../docs/priorities.md#pr
 Items 3 and 4 are covered in [Looking for regressions](./looking_for_regressions.md).
 
 > **Note**
-> We prioritize regressions based on [REP2000 support tiers](https://github.com/ros-infrastructure/rep/blob/master/rep-2000.rst#support-tiers) for each distribution
+> For ROS, we prioritize regressions based on [REP2000 support tiers](https://github.com/ros-infrastructure/rep/blob/master/rep-2000.rst#support-tiers) for each distribution
 > E.g., we will check regressions in linux builds before checking regressions in RHEL builds.
+> 
+> In the case of Gazebo, all packages and distributions are the same priority.
 
 To acomplish the above tasks, the buildfarmer has a set of tools and resources to work with. For more information refer to [Buildfarmer triage tools](./buildfarmer_triage_tools.md).
 
@@ -40,4 +42,4 @@ A test regression is a test that previously was working correctly and has now st
 
 #### Flaky test
 
-A flaky test is a test that fails sometimes and passes sometimes.
+A flaky test is a test that fails inconsistently, sometimes passing and other times failing.
