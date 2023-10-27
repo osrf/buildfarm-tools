@@ -56,17 +56,17 @@
 ## ign-citadel
 | | Linux (Jenkins) | Windows (Jenkins) | macOS (Jenkins) | Linux (actions) |
 |-|-|-|-|-|
-| [ign-common3][ign-common3-repo] | [![Build Status][ign-common3-focal-badge]][ign-common3-focal] | [![Build Status][ign-common3-windows7-badge]][ign-common3-windows7] | [![Build Status][ign-common3-homebrew-badge]][ign-common3-homebrew] | [![Build Status][ign-common3-focal-actions-badge]][ign-common3-focal-actions] | [![Build Status][ign-common3-nightly-badge]][ign-common3-nightly] |
-| [ign-fuel-tools4][ign-fuel-tools4-repo] | [![Build Status][ign-fuel-tools4-focal-badge]][ign-fuel-tools4-focal] | [![Build Status][ign-fuel-tools4-windows7-badge]][ign-fuel-tools4-windows7] | [![Build Status][ign-fuel-tools4-homebrew-badge]][ign-fuel-tools4-homebrew] | [![Build Status][ign-fuel-tools4-focal-actions-badge]][ign-fuel-tools4-focal-actions] | [![Build Status][ign-fuel-tools4-nightly-badge]][ign-fuel-tools4-nightly] |
-| [ign-gazebo3][ign-gazebo3-repo] | [![Build Status][ign-gazebo3-focal-badge]][ign-gazebo3-focal] | [![Build Status][ign-gazebo3-windows7-badge]][ign-gazebo3-windows7] | [![Build Status][ign-gazebo3-homebrew-badge]][ign-gazebo3-homebrew] | [![Build Status][ign-gazebo3-focal-actions-badge]][ign-gazebo3-focal-actions] | [![Build Status][ign-gazebo3-nightly-badge]][ign-gazebo3-nightly] |
-| [ign-gui3][ign-gui3-repo] | [![Build Status][ign-gui3-focal-badge]][ign-gui3-focal] | [![Build Status][ign-gui3-windows7-badge]][ign-gui3-windows7] | [![Build Status][ign-gui3-homebrew-badge]][ign-gui3-homebrew] | [![Build Status][ign-gui3-focal-actions-badge]][ign-gui3-focal-actions] | [![Build Status][ign-gui3-nightly-badge]][ign-gui3-nightly] |
-| [ign-launch2][ign-launch2-repo] | [![Build Status][ign-launch2-focal-badge]][ign-launch2-focal] | [![Build Status][ign-launch2-windows7-badge]][ign-launch2-windows7] | [![Build Status][ign-launch2-homebrew-badge]][ign-launch2-homebrew] | [![Build Status][ign-launch2-focal-actions-badge]][ign-launch2-focal-actions] | [![Build Status][ign-launch2-nightly-badge]][ign-launch2-nightly] |
-| [ign-msgs5][ign-msgs5-repo] | [![Build Status][ign-msgs5-focal-badge]][ign-msgs5-focal] | [![Build Status][ign-msgs5-windows7-badge]][ign-msgs5-windows7] | [![Build Status][ign-msgs5-homebrew-badge]][ign-msgs5-homebrew] | [![Build Status][ign-msgs5-focal-actions-badge]][ign-msgs5-focal-actions] | [![Build Status][ign-msgs5-nightly-badge]][ign-msgs5-nightly] |
-| [ign-physics2][ign-physics2-repo] | [![Build Status][ign-physics2-focal-badge]][ign-physics2-focal] | [![Build Status][ign-physics2-windows7-badge]][ign-physics2-windows7] | [![Build Status][ign-physics2-homebrew-badge]][ign-physics2-homebrew] | [![Build Status][ign-physics2-focal-actions-badge]][ign-physics2-focal-actions] | [![Build Status][ign-physics2-nightly-badge]][ign-physics2-nightly] |
-| [ign-rendering3][ign-rendering3-repo] | [![Build Status][ign-rendering3-focal-badge]][ign-rendering3-focal] | [![Build Status][ign-rendering3-windows7-badge]][ign-rendering3-windows7] | [![Build Status][ign-rendering3-homebrew-badge]][ign-rendering3-homebrew] | [![Build Status][ign-rendering3-focal-actions-badge]][ign-rendering3-focal-actions] | [![Build Status][ign-rendering3-nightly-badge]][ign-rendering3-nightly] |
-| [ign-sensors3][ign-sensors3-repo] | [![Build Status][ign-sensors3-focal-badge]][ign-sensors3-focal] | [![Build Status][ign-sensors3-windows7-badge]][ign-sensors3-windows7] | [![Build Status][ign-sensors3-homebrew-badge]][ign-sensors3-homebrew] | [![Build Status][ign-sensors3-focal-actions-badge]][ign-sensors3-focal-actions] | [![Build Status][ign-sensors3-nightly-badge]][ign-sensors3-nightly] |
-| [ign-transport8][ign-transport8-repo] | [![Build Status][ign-transport8-focal-badge]][ign-transport8-focal] | [![Build Status][ign-transport8-windows7-badge]][ign-transport8-windows7] | [![Build Status][ign-transport8-homebrew-badge]][ign-transport8-homebrew] | [![Build Status][ign-transport8-focal-actions-badge]][ign-transport8-focal-actions] | [![Build Status][ign-transport8-nightly-badge]][ign-transport8-nightly] |
-| [sdformat9][sdformat9-repo] | [![Build Status][sdformat9-focal-badge]][sdformat9-focal] | [![Build Status][sdformat9-windows7-badge]][sdformat9-windows7] | [![Build Status][sdformat9-homebrew-badge]][sdformat9-homebrew] | [![Build Status][sdformat9-focal-actions-badge]][sdformat9-focal-actions] | [![Build Status][sdformat9-nightly-badge]][sdformat9-nightly] |
+| [ign-common3][ign-common3-repo] | [![Build Status][ign-common3-bionic-badge]][ign-common3-bionic] | [![Build Status][ign-common3-windows7-badge]][ign-common3-windows7] | [![Build Status][ign-common3-homebrew-badge]][ign-common3-homebrew] | [![Build Status][ign-common3-focal-actions-badge]][ign-common3-focal-actions] | [![Build Status][ign-common3-nightly-badge]][ign-common3-nightly] |
+| [ign-fuel-tools4][ign-fuel-tools4-repo] | [![Build Status][ign-fuel-tools4-bionic-badge]][ign-fuel-tools4-bionic] | [![Build Status][ign-fuel-tools4-windows7-badge]][ign-fuel-tools4-windows7] | [![Build Status][ign-fuel-tools4-homebrew-badge]][ign-fuel-tools4-homebrew] | [![Build Status][ign-fuel-tools4-focal-actions-badge]][ign-fuel-tools4-focal-actions] | [![Build Status][ign-fuel-tools4-nightly-badge]][ign-fuel-tools4-nightly] |
+| [ign-gazebo3][ign-gazebo3-repo] | [![Build Status][ign-gazebo3-bionic-badge]][ign-gazebo3-bionic] | [![Build Status][ign-gazebo3-windows7-badge]][ign-gazebo3-windows7] | [![Build Status][ign-gazebo3-homebrew-badge]][ign-gazebo3-homebrew] | [![Build Status][ign-gazebo3-focal-actions-badge]][ign-gazebo3-focal-actions] | [![Build Status][ign-gazebo3-nightly-badge]][ign-gazebo3-nightly] |
+| [ign-gui3][ign-gui3-repo] | [![Build Status][ign-gui3-bionic-badge]][ign-gui3-bionic] | [![Build Status][ign-gui3-windows7-badge]][ign-gui3-windows7] | [![Build Status][ign-gui3-homebrew-badge]][ign-gui3-homebrew] | [![Build Status][ign-gui3-focal-actions-badge]][ign-gui3-focal-actions] | [![Build Status][ign-gui3-nightly-badge]][ign-gui3-nightly] |
+| [ign-launch2][ign-launch2-repo] | [![Build Status][ign-launch2-bionic-badge]][ign-launch2-bionic] | [![Build Status][ign-launch2-windows7-badge]][ign-launch2-windows7] | [![Build Status][ign-launch2-homebrew-badge]][ign-launch2-homebrew] | [![Build Status][ign-launch2-focal-actions-badge]][ign-launch2-focal-actions] | [![Build Status][ign-launch2-nightly-badge]][ign-launch2-nightly] |
+| [ign-msgs5][ign-msgs5-repo] | [![Build Status][ign-msgs5-bionic-badge]][ign-msgs5-bionic] | [![Build Status][ign-msgs5-windows7-badge]][ign-msgs5-windows7] | [![Build Status][ign-msgs5-homebrew-badge]][ign-msgs5-homebrew] | [![Build Status][ign-msgs5-focal-actions-badge]][ign-msgs5-focal-actions] | [![Build Status][ign-msgs5-nightly-badge]][ign-msgs5-nightly] |
+| [ign-physics2][ign-physics2-repo] | [![Build Status][ign-physics2-bionic-badge]][ign-physics2-bionic] | [![Build Status][ign-physics2-windows7-badge]][ign-physics2-windows7] | [![Build Status][ign-physics2-homebrew-badge]][ign-physics2-homebrew] | [![Build Status][ign-physics2-focal-actions-badge]][ign-physics2-focal-actions] | [![Build Status][ign-physics2-nightly-badge]][ign-physics2-nightly] |
+| [ign-rendering3][ign-rendering3-repo] | [![Build Status][ign-rendering3-bionic-badge]][ign-rendering3-bionic] | [![Build Status][ign-rendering3-windows7-badge]][ign-rendering3-windows7] | [![Build Status][ign-rendering3-homebrew-badge]][ign-rendering3-homebrew] | [![Build Status][ign-rendering3-focal-actions-badge]][ign-rendering3-focal-actions] | [![Build Status][ign-rendering3-nightly-badge]][ign-rendering3-nightly] |
+| [ign-sensors3][ign-sensors3-repo] | [![Build Status][ign-sensors3-bionic-badge]][ign-sensors3-bionic] | [![Build Status][ign-sensors3-windows7-badge]][ign-sensors3-windows7] | [![Build Status][ign-sensors3-homebrew-badge]][ign-sensors3-homebrew] | [![Build Status][ign-sensors3-focal-actions-badge]][ign-sensors3-focal-actions] | [![Build Status][ign-sensors3-nightly-badge]][ign-sensors3-nightly] |
+| [ign-transport8][ign-transport8-repo] | [![Build Status][ign-transport8-bionic-badge]][ign-transport8-bionic] | [![Build Status][ign-transport8-windows7-badge]][ign-transport8-windows7] | [![Build Status][ign-transport8-homebrew-badge]][ign-transport8-homebrew] | [![Build Status][ign-transport8-focal-actions-badge]][ign-transport8-focal-actions] | [![Build Status][ign-transport8-nightly-badge]][ign-transport8-nightly] |
+| [sdformat9][sdformat9-repo] | [![Build Status][sdformat9-bionic-badge]][sdformat9-bionic] | [![Build Status][sdformat9-windows7-badge]][sdformat9-windows7] | [![Build Status][sdformat9-homebrew-badge]][sdformat9-homebrew] | [![Build Status][sdformat9-focal-actions-badge]][sdformat9-focal-actions] | [![Build Status][sdformat9-nightly-badge]][sdformat9-nightly] |
 
 [gz-cmake3-repo]: https://github.com/gazebosim/gz-cmake/tree/gz-cmake3
 [gz-cmake3-jammy]: https://build.osrfoundation.org/job/gz_cmake-ci-gz-cmake3-jammy-amd64
@@ -245,8 +245,8 @@
 [sdformat14-nightly]: https://build.osrfoundation.org/job/sdformat14-debbuilder
 [sdformat14-nightly-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat14-debbuilder
 [gz-fuel-tools8-repo]: https://github.com/gazebosim/gz-fuel-tools/tree/gz-fuel-tools8
-[gz-fuel-tools8-focal]: https://build.osrfoundation.org/job/ignition_fuel-tools-ci-gz-fuel-tools8-focal-amd64
-[gz-fuel-tools8-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_fuel-tools-ci-gz-fuel-tools8-focal-amd64
+[gz-fuel-tools8-focal]: https://build.osrfoundation.org/job/gz_fuel_tools-ci-gz-fuel-tools8-focal-amd64
+[gz-fuel-tools8-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_fuel_tools-ci-gz-fuel-tools8-focal-amd64
 [gz-fuel-tools8-windows7]: https://build.osrfoundation.org/job/ign_fuel-tools-gz-8-win
 [gz-fuel-tools8-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_fuel-tools-gz-8-win
 [gz-fuel-tools8-homebrew]: https://build.osrfoundation.org/job/ignition_fuel-tools-ci-gz-fuel-tools8-homebrew-amd64
@@ -254,8 +254,8 @@
 [gz-fuel-tools8-focal-actions]: https://github.com/gazebosim/gz-fuel-tools/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Agz-fuel-tools8+event%3Apush
 [gz-fuel-tools8-focal-actions-badge]: https://github.com/gazebosim/gz-fuel-tools/workflows/Ubuntu%20CI/badge.svg?branch=gz-fuel-tools8&event=push
 [gz-sim7-repo]: https://github.com/gazebosim/gz-sim/tree/gz-sim7
-[gz-sim7-focal]: https://build.osrfoundation.org/job/ignition_gazebo-ci-gz-sim7-focal-amd64
-[gz-sim7-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_gazebo-ci-gz-sim7-focal-amd64
+[gz-sim7-focal]: https://build.osrfoundation.org/job/gz_sim-ci-gz-sim7-focal-amd64
+[gz-sim7-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sim-ci-gz-sim7-focal-amd64
 [gz-sim7-windows7]: https://build.osrfoundation.org/job/ign_gazebo-gz-7-win
 [gz-sim7-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_gazebo-gz-7-win
 [gz-sim7-homebrew]: https://build.osrfoundation.org/job/ignition_gazebo-ci-gz-sim7-homebrew-amd64
@@ -263,8 +263,8 @@
 [gz-sim7-focal-actions]: https://github.com/gazebosim/gz-sim/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Agz-sim7+event%3Apush
 [gz-sim7-focal-actions-badge]: https://github.com/gazebosim/gz-sim/workflows/Ubuntu%20CI/badge.svg?branch=gz-sim7&event=push
 [gz-gui7-repo]: https://github.com/gazebosim/gz-gui/tree/gz-gui7
-[gz-gui7-focal]: https://build.osrfoundation.org/job/ignition_gui-ci-gz-gui7-focal-amd64
-[gz-gui7-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_gui-ci-gz-gui7-focal-amd64
+[gz-gui7-focal]: https://build.osrfoundation.org/job/gz_gui-ci-gz-gui7-focal-amd64
+[gz-gui7-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_gui-ci-gz-gui7-focal-amd64
 [gz-gui7-windows7]: https://build.osrfoundation.org/job/ign_gui-gz-7-win
 [gz-gui7-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_gui-gz-7-win
 [gz-gui7-homebrew]: https://build.osrfoundation.org/job/ignition_gui-ci-gz-gui7-homebrew-amd64
@@ -272,8 +272,8 @@
 [gz-gui7-focal-actions]: https://github.com/gazebosim/gz-gui/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Agz-gui7+event%3Apush
 [gz-gui7-focal-actions-badge]: https://github.com/gazebosim/gz-gui/workflows/Ubuntu%20CI/badge.svg?branch=gz-gui7&event=push
 [gz-launch6-repo]: https://github.com/gazebosim/gz-launch/tree/gz-launch6
-[gz-launch6-focal]: https://build.osrfoundation.org/job/ignition_launch-ci-gz-launch6-focal-amd64
-[gz-launch6-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_launch-ci-gz-launch6-focal-amd64
+[gz-launch6-focal]: https://build.osrfoundation.org/job/gz_launch-ci-gz-launch6-focal-amd64
+[gz-launch6-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_launch-ci-gz-launch6-focal-amd64
 [gz-launch6-windows7]: https://build.osrfoundation.org/job/ign_launch-gz-6-win
 [gz-launch6-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_launch-gz-6-win
 [gz-launch6-homebrew]: https://build.osrfoundation.org/job/ignition_launch-ci-gz-launch6-homebrew-amd64
@@ -281,8 +281,8 @@
 [gz-launch6-focal-actions]: https://github.com/gazebosim/gz-launch/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Agz-launch6+event%3Apush
 [gz-launch6-focal-actions-badge]: https://github.com/gazebosim/gz-launch/workflows/Ubuntu%20CI/badge.svg?branch=gz-launch6&event=push
 [gz-msgs9-repo]: https://github.com/gazebosim/gz-msgs/tree/gz-msgs9
-[gz-msgs9-focal]: https://build.osrfoundation.org/job/ignition_msgs-ci-gz-msgs9-focal-amd64
-[gz-msgs9-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_msgs-ci-gz-msgs9-focal-amd64
+[gz-msgs9-focal]: https://build.osrfoundation.org/job/gz_msgs-ci-gz-msgs9-focal-amd64
+[gz-msgs9-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_msgs-ci-gz-msgs9-focal-amd64
 [gz-msgs9-windows7]: https://build.osrfoundation.org/job/ign_msgs-gz-9-win
 [gz-msgs9-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_msgs-gz-9-win
 [gz-msgs9-homebrew]: https://build.osrfoundation.org/job/ignition_msgs-ci-gz-msgs9-homebrew-amd64
@@ -290,8 +290,8 @@
 [gz-msgs9-focal-actions]: https://github.com/gazebosim/gz-msgs/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Agz-msgs9+event%3Apush
 [gz-msgs9-focal-actions-badge]: https://github.com/gazebosim/gz-msgs/workflows/Ubuntu%20CI/badge.svg?branch=gz-msgs9&event=push
 [gz-physics6-repo]: https://github.com/gazebosim/gz-physics/tree/gz-physics6
-[gz-physics6-focal]: https://build.osrfoundation.org/job/ignition_physics-ci-gz-physics6-focal-amd64
-[gz-physics6-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_physics-ci-gz-physics6-focal-amd64
+[gz-physics6-focal]: https://build.osrfoundation.org/job/gz_physics-ci-gz-physics6-focal-amd64
+[gz-physics6-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_physics-ci-gz-physics6-focal-amd64
 [gz-physics6-windows7]: https://build.osrfoundation.org/job/ign_physics-gz-6-win
 [gz-physics6-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_physics-gz-6-win
 [gz-physics6-homebrew]: https://build.osrfoundation.org/job/ignition_physics-ci-gz-physics6-homebrew-amd64
@@ -299,8 +299,8 @@
 [gz-physics6-focal-actions]: https://github.com/gazebosim/gz-physics/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Agz-physics6+event%3Apush
 [gz-physics6-focal-actions-badge]: https://github.com/gazebosim/gz-physics/workflows/Ubuntu%20CI/badge.svg?branch=gz-physics6&event=push
 [gz-rendering7-repo]: https://github.com/gazebosim/gz-rendering/tree/gz-rendering7
-[gz-rendering7-focal]: https://build.osrfoundation.org/job/ignition_rendering-ci-gz-rendering7-focal-amd64
-[gz-rendering7-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_rendering-ci-gz-rendering7-focal-amd64
+[gz-rendering7-focal]: https://build.osrfoundation.org/job/gz_rendering-ci-gz-rendering7-focal-amd64
+[gz-rendering7-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_rendering-ci-gz-rendering7-focal-amd64
 [gz-rendering7-windows7]: https://build.osrfoundation.org/job/ign_rendering-gz-7-win
 [gz-rendering7-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_rendering-gz-7-win
 [gz-rendering7-homebrew]: https://build.osrfoundation.org/job/ignition_rendering-ci-gz-rendering7-homebrew-amd64
@@ -308,8 +308,8 @@
 [gz-rendering7-focal-actions]: https://github.com/gazebosim/gz-rendering/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Agz-rendering7+event%3Apush
 [gz-rendering7-focal-actions-badge]: https://github.com/gazebosim/gz-rendering/workflows/Ubuntu%20CI/badge.svg?branch=gz-rendering7&event=push
 [gz-sensors7-repo]: https://github.com/gazebosim/gz-sensors/tree/gz-sensors7
-[gz-sensors7-focal]: https://build.osrfoundation.org/job/ignition_sensors-ci-gz-sensors7-focal-amd64
-[gz-sensors7-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_sensors-ci-gz-sensors7-focal-amd64
+[gz-sensors7-focal]: https://build.osrfoundation.org/job/gz_sensors-ci-gz-sensors7-focal-amd64
+[gz-sensors7-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sensors-ci-gz-sensors7-focal-amd64
 [gz-sensors7-windows7]: https://build.osrfoundation.org/job/ign_sensors-gz-7-win
 [gz-sensors7-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_sensors-gz-7-win
 [gz-sensors7-homebrew]: https://build.osrfoundation.org/job/ignition_sensors-ci-gz-sensors7-homebrew-amd64
@@ -317,8 +317,8 @@
 [gz-sensors7-focal-actions]: https://github.com/gazebosim/gz-sensors/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Agz-sensors7+event%3Apush
 [gz-sensors7-focal-actions-badge]: https://github.com/gazebosim/gz-sensors/workflows/Ubuntu%20CI/badge.svg?branch=gz-sensors7&event=push
 [gz-transport12-repo]: https://github.com/gazebosim/gz-transport/tree/gz-transport12
-[gz-transport12-focal]: https://build.osrfoundation.org/job/ignition_transport-ci-gz-transport12-focal-amd64
-[gz-transport12-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_transport-ci-gz-transport12-focal-amd64
+[gz-transport12-focal]: https://build.osrfoundation.org/job/gz_transport-ci-gz-transport12-focal-amd64
+[gz-transport12-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_transport-ci-gz-transport12-focal-amd64
 [gz-transport12-windows7]: https://build.osrfoundation.org/job/ign_transport-gz-12-win
 [gz-transport12-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_transport-gz-12-win
 [gz-transport12-homebrew]: https://build.osrfoundation.org/job/ignition_transport-ci-gz-transport12-homebrew-amd64
@@ -326,8 +326,8 @@
 [gz-transport12-focal-actions]: https://github.com/gazebosim/gz-transport/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Agz-transport12+event%3Apush
 [gz-transport12-focal-actions-badge]: https://github.com/gazebosim/gz-transport/workflows/Ubuntu%20CI/badge.svg?branch=gz-transport12&event=push
 [sdformat13-repo]: https://github.com/gazebosim/sdformat/tree/sdf13
-[sdformat13-focal]: https://build.osrfoundation.org/job/sdformat-ci-sdformat13-focal-amd64
-[sdformat13-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat-ci-sdformat13-focal-amd64
+[sdformat13-focal]: https://build.osrfoundation.org/job/sdformat-ci-sdf13-focal-amd64
+[sdformat13-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat-ci-sdf13-focal-amd64
 [sdformat13-windows7]: https://build.osrfoundation.org/job/sdformat-sdf-13-win
 [sdformat13-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat-sdf-13-win
 [sdformat13-homebrew]: https://build.osrfoundation.org/job/sdformat-ci-sdformat13-homebrew-amd64
@@ -338,8 +338,8 @@
 [ros-gzgarden-humble-jammy]: https://build.osrfoundation.org/job/ros_gzgarden_bridge-install-pkg_humble-ci-jammy-amd64/
 [ros-gzgarden-humble-jammy-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ros_gzgarden_bridge-install-pkg_humble-ci-jammy-amd64
 [ign-cmake2-repo]: https://github.com/gazebosim/gz-cmake/tree/ign-cmake2
-[ign-cmake2-focal]: https://build.osrfoundation.org/job/ignition_cmake-ci-ign-cmake2-focal-amd64
-[ign-cmake2-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_cmake-ci-ign-cmake2-focal-amd64
+[ign-cmake2-focal]: https://build.osrfoundation.org/job/gz_cmake-ci-ign-cmake2-focal-amd64
+[ign-cmake2-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_cmake-ci-ign-cmake2-focal-amd64
 [ign-cmake2-windows7]: https://build.osrfoundation.org/job/ign_cmake-ign-2-win
 [ign-cmake2-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_cmake-ign-2-win
 [ign-cmake2-homebrew]: https://build.osrfoundation.org/job/ignition_cmake-ci-ign-cmake2-homebrew-amd64
@@ -347,8 +347,8 @@
 [ign-cmake2-focal-actions]: https://github.com/gazebosim/gz-cmake/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Aign-cmake2+event%3Apush
 [ign-cmake2-focal-actions-badge]: https://github.com/gazebosim/gz-cmake/workflows/Ubuntu%20CI/badge.svg?branch=ign-cmake2&event=push
 [ign-common4-repo]: https://github.com/gazebosim/gz-common/tree/ign-common4
-[ign-common4-focal]: https://build.osrfoundation.org/job/ignition_common-ci-ign-common4-focal-amd64
-[ign-common4-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_common-ci-ign-common4-focal-amd64
+[ign-common4-focal]: https://build.osrfoundation.org/job/gz_common-ci-ign-common4-focal-amd64
+[ign-common4-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_common-ci-ign-common4-focal-amd64
 [ign-common4-windows7]: https://build.osrfoundation.org/job/ign_common-ign-4-win
 [ign-common4-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_common-ign-4-win
 [ign-common4-homebrew]: https://build.osrfoundation.org/job/ignition_common-ci-ign-common4-homebrew-amd64
@@ -356,8 +356,8 @@
 [ign-common4-focal-actions]: https://github.com/gazebosim/gz-common/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Aign-common4+event%3Apush
 [ign-common4-focal-actions-badge]: https://github.com/gazebosim/gz-common/workflows/Ubuntu%20CI/badge.svg?branch=ign-common4&event=push
 [ign-fuel-tools7-repo]: https://github.com/gazebosim/gz-fuel-tools/tree/ign-fuel-tools7
-[ign-fuel-tools7-focal]: https://build.osrfoundation.org/job/ignition_fuel-tools-ci-ign-fuel-tools7-focal-amd64
-[ign-fuel-tools7-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_fuel-tools-ci-ign-fuel-tools7-focal-amd64
+[ign-fuel-tools7-focal]: https://build.osrfoundation.org/job/gz_fuel_tools-ci-ign-fuel-tools7-focal-amd64
+[ign-fuel-tools7-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_fuel_tools-ci-ign-fuel-tools7-focal-amd64
 [ign-fuel-tools7-windows7]: https://build.osrfoundation.org/job/ign_fuel-tools-ign-7-win
 [ign-fuel-tools7-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_fuel-tools-ign-7-win
 [ign-fuel-tools7-homebrew]: https://build.osrfoundation.org/job/ignition_fuel-tools-ci-ign-fuel-tools7-homebrew-amd64
@@ -365,8 +365,8 @@
 [ign-fuel-tools7-focal-actions]: https://github.com/gazebosim/gz-fuel-tools/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Aign-fuel-tools7+event%3Apush
 [ign-fuel-tools7-focal-actions-badge]: https://github.com/gazebosim/gz-fuel-tools/workflows/Ubuntu%20CI/badge.svg?branch=ign-fuel-tools7&event=push
 [ign-gazebo6-repo]: https://github.com/gazebosim/gz-sim/tree/ign-gazebo6
-[ign-gazebo6-focal]: https://build.osrfoundation.org/job/ignition_gazebo-ci-ign-gazebo6-focal-amd64
-[ign-gazebo6-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_gazebo-ci-ign-gazebo6-focal-amd64
+[ign-gazebo6-focal]: https://build.osrfoundation.org/job/gz_sim-ci-ign-gazebo6-focal-amd64
+[ign-gazebo6-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sim-ci-ign-gazebo6-focal-amd64
 [ign-gazebo6-windows7]: https://build.osrfoundation.org/job/ign_gazebo-ign-6-win
 [ign-gazebo6-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_gazebo-ign-6-win
 [ign-gazebo6-homebrew]: https://build.osrfoundation.org/job/ignition_gazebo-ci-ign-gazebo6-homebrew-amd64
@@ -374,8 +374,8 @@
 [ign-gazebo6-focal-actions]: https://github.com/gazebosim/gz-sim/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Aign-gazebo6+event%3Apush
 [ign-gazebo6-focal-actions-badge]: https://github.com/gazebosim/gz-sim/workflows/Ubuntu%20CI/badge.svg?branch=ign-gazebo6&event=push
 [ign-gui6-repo]: https://github.com/gazebosim/gz-gui/tree/ign-gui6
-[ign-gui6-focal]: https://build.osrfoundation.org/job/ignition_gui-ci-ign-gui6-focal-amd64
-[ign-gui6-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_gui-ci-ign-gui6-focal-amd64
+[ign-gui6-focal]: https://build.osrfoundation.org/job/gz_gui-ci-ign-gui6-focal-amd64
+[ign-gui6-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_gui-ci-ign-gui6-focal-amd64
 [ign-gui6-windows7]: https://build.osrfoundation.org/job/ign_gui-ign-6-win
 [ign-gui6-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_gui-ign-6-win
 [ign-gui6-homebrew]: https://build.osrfoundation.org/job/ignition_gui-ci-ign-gui6-homebrew-amd64
@@ -383,8 +383,8 @@
 [ign-gui6-focal-actions]: https://github.com/gazebosim/gz-gui/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Aign-gui6+event%3Apush
 [ign-gui6-focal-actions-badge]: https://github.com/gazebosim/gz-gui/workflows/Ubuntu%20CI/badge.svg?branch=ign-gui6&event=push
 [ign-launch5-repo]: https://github.com/gazebosim/gz-launch/tree/ign-launch5
-[ign-launch5-focal]: https://build.osrfoundation.org/job/ignition_launch-ci-ign-launch5-focal-amd64
-[ign-launch5-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_launch-ci-ign-launch5-focal-amd64
+[ign-launch5-focal]: https://build.osrfoundation.org/job/gz_launch-ci-ign-launch5-focal-amd64
+[ign-launch5-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_launch-ci-ign-launch5-focal-amd64
 [ign-launch5-windows7]: https://build.osrfoundation.org/job/ign_launch-ign-5-win
 [ign-launch5-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_launch-ign-5-win
 [ign-launch5-homebrew]: https://build.osrfoundation.org/job/ignition_launch-ci-ign-launch5-homebrew-amd64
@@ -392,8 +392,8 @@
 [ign-launch5-focal-actions]: https://github.com/gazebosim/gz-launch/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Aign-launch5+event%3Apush
 [ign-launch5-focal-actions-badge]: https://github.com/gazebosim/gz-launch/workflows/Ubuntu%20CI/badge.svg?branch=ign-launch5&event=push
 [ign-math6-repo]: https://github.com/gazebosim/gz-math/tree/ign-math6
-[ign-math6-focal]: https://build.osrfoundation.org/job/ignition_math-ci-ign-math6-focal-amd64
-[ign-math6-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_math-ci-ign-math6-focal-amd64
+[ign-math6-focal]: https://build.osrfoundation.org/job/gz_math-ci-ign-math6-focal-amd64
+[ign-math6-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_math-ci-ign-math6-focal-amd64
 [ign-math6-windows7]: https://build.osrfoundation.org/job/ign_math-ign-6-win
 [ign-math6-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_math-ign-6-win
 [ign-math6-homebrew]: https://build.osrfoundation.org/job/ignition_math-ci-ign-math6-homebrew-amd64
@@ -401,8 +401,8 @@
 [ign-math6-focal-actions]: https://github.com/gazebosim/gz-math/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Aign-math6+event%3Apush
 [ign-math6-focal-actions-badge]: https://github.com/gazebosim/gz-math/workflows/Ubuntu%20CI/badge.svg?branch=ign-math6&event=push
 [ign-msgs8-repo]: https://github.com/gazebosim/gz-msgs/tree/ign-msgs8
-[ign-msgs8-focal]: https://build.osrfoundation.org/job/ignition_msgs-ci-ign-msgs8-focal-amd64
-[ign-msgs8-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_msgs-ci-ign-msgs8-focal-amd64
+[ign-msgs8-focal]: https://build.osrfoundation.org/job/gz_msgs-ci-ign-msgs8-focal-amd64
+[ign-msgs8-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_msgs-ci-ign-msgs8-focal-amd64
 [ign-msgs8-windows7]: https://build.osrfoundation.org/job/ign_msgs-ign-8-win
 [ign-msgs8-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_msgs-ign-8-win
 [ign-msgs8-homebrew]: https://build.osrfoundation.org/job/ignition_msgs-ci-ign-msgs8-homebrew-amd64
@@ -410,8 +410,8 @@
 [ign-msgs8-focal-actions]: https://github.com/gazebosim/gz-msgs/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Aign-msgs8+event%3Apush
 [ign-msgs8-focal-actions-badge]: https://github.com/gazebosim/gz-msgs/workflows/Ubuntu%20CI/badge.svg?branch=ign-msgs8&event=push
 [ign-physics5-repo]: https://github.com/gazebosim/gz-physics/tree/ign-physics5
-[ign-physics5-focal]: https://build.osrfoundation.org/job/ignition_physics-ci-ign-physics5-focal-amd64
-[ign-physics5-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_physics-ci-ign-physics5-focal-amd64
+[ign-physics5-focal]: https://build.osrfoundation.org/job/gz_physics-ci-ign-physics5-focal-amd64
+[ign-physics5-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_physics-ci-ign-physics5-focal-amd64
 [ign-physics5-windows7]: https://build.osrfoundation.org/job/ign_physics-ign-5-win
 [ign-physics5-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_physics-ign-5-win
 [ign-physics5-homebrew]: https://build.osrfoundation.org/job/ignition_physics-ci-ign-physics5-homebrew-amd64
@@ -419,8 +419,8 @@
 [ign-physics5-focal-actions]: https://github.com/gazebosim/gz-physics/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Aign-physics5+event%3Apush
 [ign-physics5-focal-actions-badge]: https://github.com/gazebosim/gz-physics/workflows/Ubuntu%20CI/badge.svg?branch=ign-physics5&event=push
 [ign-plugin1-repo]: https://github.com/gazebosim/gz-plugin/tree/ign-plugin1
-[ign-plugin1-focal]: https://build.osrfoundation.org/job/ignition_plugin-ci-ign-plugin1-focal-amd64
-[ign-plugin1-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_plugin-ci-ign-plugin1-focal-amd64
+[ign-plugin1-focal]: https://build.osrfoundation.org/job/gz_plugin-ci-ign-plugin1-focal-amd64
+[ign-plugin1-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_plugin-ci-ign-plugin1-focal-amd64
 [ign-plugin1-windows7]: https://build.osrfoundation.org/job/ign_plugin-ign-1-win
 [ign-plugin1-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_plugin-ign-1-win
 [ign-plugin1-homebrew]: https://build.osrfoundation.org/job/ignition_plugin-ci-ign-plugin1-homebrew-amd64
@@ -428,8 +428,8 @@
 [ign-plugin1-focal-actions]: https://github.com/gazebosim/gz-plugin/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Aign-plugin1+event%3Apush
 [ign-plugin1-focal-actions-badge]: https://github.com/gazebosim/gz-plugin/workflows/Ubuntu%20CI/badge.svg?branch=ign-plugin1&event=push
 [ign-rendering6-repo]: https://github.com/gazebosim/gz-rendering/tree/ign-rendering6
-[ign-rendering6-focal]: https://build.osrfoundation.org/job/ignition_rendering-ci-ign-rendering6-focal-amd64
-[ign-rendering6-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_rendering-ci-ign-rendering6-focal-amd64
+[ign-rendering6-focal]: https://build.osrfoundation.org/job/gz_rendering-ci-ign-rendering6-focal-amd64
+[ign-rendering6-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_rendering-ci-ign-rendering6-focal-amd64
 [ign-rendering6-windows7]: https://build.osrfoundation.org/job/ign_rendering-ign-6-win
 [ign-rendering6-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_rendering-ign-6-win
 [ign-rendering6-homebrew]: https://build.osrfoundation.org/job/ignition_rendering-ci-ign-rendering6-homebrew-amd64
@@ -437,8 +437,8 @@
 [ign-rendering6-focal-actions]: https://github.com/gazebosim/gz-rendering/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Aign-rendering6+event%3Apush
 [ign-rendering6-focal-actions-badge]: https://github.com/gazebosim/gz-rendering/workflows/Ubuntu%20CI/badge.svg?branch=ign-rendering6&event=push
 [ign-sensors6-repo]: https://github.com/gazebosim/gz-sensors/tree/ign-sensors6
-[ign-sensors6-focal]: https://build.osrfoundation.org/job/ignition_sensors-ci-ign-sensors6-focal-amd64
-[ign-sensors6-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_sensors-ci-ign-sensors6-focal-amd64
+[ign-sensors6-focal]: https://build.osrfoundation.org/job/gz_sensors-ci-ign-sensors6-focal-amd64
+[ign-sensors6-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sensors-ci-ign-sensors6-focal-amd64
 [ign-sensors6-windows7]: https://build.osrfoundation.org/job/ign_sensors-ign-6-win
 [ign-sensors6-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_sensors-ign-6-win
 [ign-sensors6-homebrew]: https://build.osrfoundation.org/job/ignition_sensors-ci-ign-sensors6-homebrew-amd64
@@ -446,8 +446,8 @@
 [ign-sensors6-focal-actions]: https://github.com/gazebosim/gz-sensors/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Aign-sensors6+event%3Apush
 [ign-sensors6-focal-actions-badge]: https://github.com/gazebosim/gz-sensors/workflows/Ubuntu%20CI/badge.svg?branch=ign-sensors6&event=push
 [ign-tools1-repo]: https://github.com/gazebosim/gz-tools/tree/ign-tools1
-[ign-tools1-focal]: https://build.osrfoundation.org/job/ignition_tools-ci-ign-tools1-focal-amd64
-[ign-tools1-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_tools-ci-ign-tools1-focal-amd64
+[ign-tools1-focal]: https://build.osrfoundation.org/job/gz_tools-ci-ign-tools1-focal-amd64
+[ign-tools1-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_tools-ci-ign-tools1-focal-amd64
 [ign-tools1-windows7]: https://build.osrfoundation.org/job/ign_tools-ign-1-win
 [ign-tools1-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_tools-ign-1-win
 [ign-tools1-homebrew]: https://build.osrfoundation.org/job/ignition_tools-ci-ign-tools1-homebrew-amd64
@@ -455,8 +455,8 @@
 [ign-tools1-focal-actions]: https://github.com/gazebosim/gz-tools/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Aign-tools1+event%3Apush
 [ign-tools1-focal-actions-badge]: https://github.com/gazebosim/gz-tools/workflows/Ubuntu%20CI/badge.svg?branch=ign-tools1&event=push
 [ign-transport11-repo]: https://github.com/gazebosim/gz-transport/tree/ign-transport11
-[ign-transport11-focal]: https://build.osrfoundation.org/job/ignition_transport-ci-ign-transport11-focal-amd64
-[ign-transport11-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_transport-ci-ign-transport11-focal-amd64
+[ign-transport11-focal]: https://build.osrfoundation.org/job/gz_transport-ci-ign-transport11-focal-amd64
+[ign-transport11-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_transport-ci-ign-transport11-focal-amd64
 [ign-transport11-windows7]: https://build.osrfoundation.org/job/ign_transport-ign-11-win
 [ign-transport11-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_transport-ign-11-win
 [ign-transport11-homebrew]: https://build.osrfoundation.org/job/ignition_transport-ci-ign-transport11-homebrew-amd64
@@ -464,8 +464,8 @@
 [ign-transport11-focal-actions]: https://github.com/gazebosim/gz-transport/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Aign-transport11+event%3Apush
 [ign-transport11-focal-actions-badge]: https://github.com/gazebosim/gz-transport/workflows/Ubuntu%20CI/badge.svg?branch=ign-transport11&event=push
 [ign-utils1-repo]: https://github.com/gazebosim/gz-utils/tree/ign-utils1
-[ign-utils1-focal]: https://build.osrfoundation.org/job/ignition_utils-ci-ign-utils1-focal-amd64
-[ign-utils1-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_utils-ci-ign-utils1-focal-amd64
+[ign-utils1-focal]: https://build.osrfoundation.org/job/gz_utils-ci-ign-utils1-focal-amd64
+[ign-utils1-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_utils-ci-ign-utils1-focal-amd64
 [ign-utils1-windows7]: https://build.osrfoundation.org/job/ign_utils-ign-1-win
 [ign-utils1-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_utils-ign-1-win
 [ign-utils1-homebrew]: https://build.osrfoundation.org/job/ignition_utils-ci-ign-utils1-homebrew-amd64
@@ -473,8 +473,8 @@
 [ign-utils1-focal-actions]: https://github.com/gazebosim/gz-utils/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Aign-utils1+event%3Apush
 [ign-utils1-focal-actions-badge]: https://github.com/gazebosim/gz-utils/workflows/Ubuntu%20CI/badge.svg?branch=ign-utils1&event=push
 [sdformat12-repo]: https://github.com/gazebosim/sdformat/tree/sdf12
-[sdformat12-focal]: https://build.osrfoundation.org/job/sdformat-ci-sdformat12-focal-amd64
-[sdformat12-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat-ci-sdformat12-focal-amd64
+[sdformat12-focal]: https://build.osrfoundation.org/job/sdformat-ci-sdf12-focal-amd64
+[sdformat12-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat-ci-sdf12-focal-amd64
 [sdformat12-windows7]: https://build.osrfoundation.org/job/sdformat-sdf-12-win
 [sdformat12-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat-sdf-12-win
 [sdformat12-homebrew]: https://build.osrfoundation.org/job/sdformat-ci-sdformat12-homebrew-amd64
@@ -482,8 +482,8 @@
 [sdformat12-focal-actions]: https://github.com/osrf/sdformat/actions?query=workflow%3A%22Ubuntu%22+branch%3Asdf12+event%3Apush
 [sdformat12-focal-actions-badge]: https://github.com/osrf/sdformat/workflows/Ubuntu/badge.svg?branch=sdf12&event=push
 [ign-common3-repo]: https://github.com/gazebosim/gz-common/tree/ign-common3
-[ign-common3-focal]: https://build.osrfoundation.org/job/ignition_common-ci-ign-common3-focal-amd64
-[ign-common3-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_common-ci-ign-common3-focal-amd64
+[ign-common3-bionic]: https://build.osrfoundation.org/job/ign_common-ci-ign-common3-bionic-amd64
+[ign-common3-bionic-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_common-ci-ign-common3-bionic-amd64
 [ign-common3-windows7]: https://build.osrfoundation.org/job/ign_common-ign-3-win
 [ign-common3-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_common-ign-3-win
 [ign-common3-homebrew]: https://build.osrfoundation.org/job/ignition_common-ci-ign-common3-homebrew-amd64
@@ -491,8 +491,8 @@
 [ign-common3-focal-actions]: https://github.com/gazebosim/gz-common/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Aign-common3+event%3Apush
 [ign-common3-focal-actions-badge]: https://github.com/gazebosim/gz-common/workflows/Ubuntu%20CI/badge.svg?branch=ign-common3&event=push
 [ign-fuel-tools4-repo]: https://github.com/gazebosim/gz-fuel-tools/tree/ign-fuel-tools4
-[ign-fuel-tools4-focal]: https://build.osrfoundation.org/job/ignition_fuel-tools-ci-ign-fuel-tools4-focal-amd64
-[ign-fuel-tools4-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_fuel-tools-ci-ign-fuel-tools4-focal-amd64
+[ign-fuel-tools4-bionic]: https://build.osrfoundation.org/job/ign_fuel_tools-ci-ign-fuel-tools4-bionic-amd64
+[ign-fuel-tools4-bionic-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_fuel_tools-ci-ign-fuel-tools4-bionic-amd64
 [ign-fuel-tools4-windows7]: https://build.osrfoundation.org/job/ign_fuel-tools-ign-4-win
 [ign-fuel-tools4-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_fuel-tools-ign-4-win
 [ign-fuel-tools4-homebrew]: https://build.osrfoundation.org/job/ignition_fuel-tools-ci-ign-fuel-tools4-homebrew-amd64
@@ -500,8 +500,8 @@
 [ign-fuel-tools4-focal-actions]: https://github.com/gazebosim/gz-fuel-tools/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Aign-fuel-tools4+event%3Apush
 [ign-fuel-tools4-focal-actions-badge]: https://github.com/gazebosim/gz-fuel-tools/workflows/Ubuntu%20CI/badge.svg?branch=ign-fuel-tools4&event=push
 [ign-gazebo3-repo]: https://github.com/gazebosim/gz-sim/tree/ign-gazebo3
-[ign-gazebo3-focal]: https://build.osrfoundation.org/job/ignition_gazebo-ci-ign-gazebo3-focal-amd64
-[ign-gazebo3-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_gazebo-ci-ign-gazebo3-focal-amd64
+[ign-gazebo3-bionic]: https://build.osrfoundation.org/job/ign_gazebo-ci-ign-gazebo3-bionic-amd64
+[ign-gazebo3-bionic-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_gazebo-ci-ign-gazebo3-bionic-amd64
 [ign-gazebo3-windows7]: https://build.osrfoundation.org/job/ign_gazebo-ign-3-win
 [ign-gazebo3-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_gazebo-ign-3-win
 [ign-gazebo3-homebrew]: https://build.osrfoundation.org/job/ignition_gazebo-ci-ign-gazebo3-homebrew-amd64
@@ -509,8 +509,8 @@
 [ign-gazebo3-focal-actions]: https://github.com/gazebosim/gz-sim/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Aign-gazebo3+event%3Apush
 [ign-gazebo3-focal-actions-badge]: https://github.com/gazebosim/gz-sim/workflows/Ubuntu%20CI/badge.svg?branch=ign-gazebo3&event=push
 [ign-gui3-repo]: https://github.com/gazebosim/gz-gui/tree/ign-gui3
-[ign-gui3-focal]: https://build.osrfoundation.org/job/ignition_gui-ci-ign-gui3-focal-amd64
-[ign-gui3-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_gui-ci-ign-gui3-focal-amd64
+[ign-gui3-bionic]: https://build.osrfoundation.org/job/ign_gui-ci-ign-gui3-bionic-amd64
+[ign-gui3-bionic-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_gui-ci-ign-gui3-bionic-amd64
 [ign-gui3-windows7]: https://build.osrfoundation.org/job/ign_gui-ign-3-win
 [ign-gui3-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_gui-ign-3-win
 [ign-gui3-homebrew]: https://build.osrfoundation.org/job/ignition_gui-ci-ign-gui3-homebrew-amd64
@@ -518,8 +518,8 @@
 [ign-gui3-focal-actions]: https://github.com/gazebosim/gz-gui/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Aign-gui3+event%3Apush
 [ign-gui3-focal-actions-badge]: https://github.com/gazebosim/gz-gui/workflows/Ubuntu%20CI/badge.svg?branch=ign-gui3&event=push
 [ign-launch2-repo]: https://github.com/gazebosim/gz-launch/tree/ign-launch2
-[ign-launch2-focal]: https://build.osrfoundation.org/job/ignition_launch-ci-ign-launch2-focal-amd64
-[ign-launch2-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_launch-ci-ign-launch2-focal-amd64
+[ign-launch2-bionic]: https://build.osrfoundation.org/job/ign_launch-ci-ign-launch2-bionic-amd64
+[ign-launch2-bionic-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_launch-ci-ign-launch2-bionic-amd64
 [ign-launch2-windows7]: https://build.osrfoundation.org/job/ign_launch-ign-2-win
 [ign-launch2-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_launch-ign-2-win
 [ign-launch2-homebrew]: https://build.osrfoundation.org/job/ignition_launch-ci-ign-launch2-homebrew-amd64
@@ -527,8 +527,8 @@
 [ign-launch2-focal-actions]: https://github.com/gazebosim/gz-launch/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Aign-launch2+event%3Apush
 [ign-launch2-focal-actions-badge]: https://github.com/gazebosim/gz-launch/workflows/Ubuntu%20CI/badge.svg?branch=ign-launch2&event=push
 [ign-msgs5-repo]: https://github.com/gazebosim/gz-msgs/tree/ign-msgs5
-[ign-msgs5-focal]: https://build.osrfoundation.org/job/ignition_msgs-ci-ign-msgs5-focal-amd64
-[ign-msgs5-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_msgs-ci-ign-msgs5-focal-amd64
+[ign-msgs5-bionic]: https://build.osrfoundation.org/job/ign_msgs-ci-ign-msgs5-bionic-amd64
+[ign-msgs5-bionic-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_msgs-ci-ign-msgs5-bionic-amd64
 [ign-msgs5-windows7]: https://build.osrfoundation.org/job/ign_msgs-ign-5-win
 [ign-msgs5-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_msgs-ign-5-win
 [ign-msgs5-homebrew]: https://build.osrfoundation.org/job/ignition_msgs-ci-ign-msgs5-homebrew-amd64
@@ -536,8 +536,8 @@
 [ign-msgs5-focal-actions]: https://github.com/gazebosim/gz-msgs/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Aign-msgs5+event%3Apush
 [ign-msgs5-focal-actions-badge]: https://github.com/gazebosim/gz-msgs/workflows/Ubuntu%20CI/badge.svg?branch=ign-msgs5&event=push
 [ign-physics2-repo]: https://github.com/gazebosim/gz-physics/tree/ign-physics2
-[ign-physics2-focal]: https://build.osrfoundation.org/job/ignition_physics-ci-ign-physics2-focal-amd64
-[ign-physics2-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_physics-ci-ign-physics2-focal-amd64
+[ign-physics2-bionic]: https://build.osrfoundation.org/job/ign_physics-ci-ign-physics2-bionic-amd64
+[ign-physics2-bionic-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_physics-ci-ign-physics2-bionic-amd64
 [ign-physics2-windows7]: https://build.osrfoundation.org/job/ign_physics-ign-2-win
 [ign-physics2-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_physics-ign-2-win
 [ign-physics2-homebrew]: https://build.osrfoundation.org/job/ignition_physics-ci-ign-physics2-homebrew-amd64
@@ -545,8 +545,8 @@
 [ign-physics2-focal-actions]: https://github.com/gazebosim/gz-physics/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Aign-physics2+event%3Apush
 [ign-physics2-focal-actions-badge]: https://github.com/gazebosim/gz-physics/workflows/Ubuntu%20CI/badge.svg?branch=ign-physics2&event=push
 [ign-rendering3-repo]: https://github.com/gazebosim/gz-rendering/tree/ign-rendering3
-[ign-rendering3-focal]: https://build.osrfoundation.org/job/ignition_rendering-ci-ign-rendering3-focal-amd64
-[ign-rendering3-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_rendering-ci-ign-rendering3-focal-amd64
+[ign-rendering3-bionic]: https://build.osrfoundation.org/job/ign_rendering-ci-ign-rendering3-bionic-amd64
+[ign-rendering3-bionic-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_rendering-ci-ign-rendering3-bionic-amd64
 [ign-rendering3-windows7]: https://build.osrfoundation.org/job/ign_rendering-ign-3-win
 [ign-rendering3-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_rendering-ign-3-win
 [ign-rendering3-homebrew]: https://build.osrfoundation.org/job/ignition_rendering-ci-ign-rendering3-homebrew-amd64
@@ -554,8 +554,8 @@
 [ign-rendering3-focal-actions]: https://github.com/gazebosim/gz-rendering/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Aign-rendering3+event%3Apush
 [ign-rendering3-focal-actions-badge]: https://github.com/gazebosim/gz-rendering/workflows/Ubuntu%20CI/badge.svg?branch=ign-rendering3&event=push
 [ign-sensors3-repo]: https://github.com/gazebosim/gz-sensors/tree/ign-sensors3
-[ign-sensors3-focal]: https://build.osrfoundation.org/job/ignition_sensors-ci-ign-sensors3-focal-amd64
-[ign-sensors3-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_sensors-ci-ign-sensors3-focal-amd64
+[ign-sensors3-bionic]: https://build.osrfoundation.org/job/ign_sensors-ci-ign-sensors3-bionic-amd64
+[ign-sensors3-bionic-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_sensors-ci-ign-sensors3-bionic-amd64
 [ign-sensors3-windows7]: https://build.osrfoundation.org/job/ign_sensors-ign-3-win
 [ign-sensors3-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_sensors-ign-3-win
 [ign-sensors3-homebrew]: https://build.osrfoundation.org/job/ignition_sensors-ci-ign-sensors3-homebrew-amd64
@@ -563,8 +563,8 @@
 [ign-sensors3-focal-actions]: https://github.com/gazebosim/gz-sensors/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Aign-sensors3+event%3Apush
 [ign-sensors3-focal-actions-badge]: https://github.com/gazebosim/gz-sensors/workflows/Ubuntu%20CI/badge.svg?branch=ign-sensors3&event=push
 [ign-transport8-repo]: https://github.com/gazebosim/gz-transport/tree/ign-transport8
-[ign-transport8-focal]: https://build.osrfoundation.org/job/ignition_transport-ci-ign-transport8-focal-amd64
-[ign-transport8-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ignition_transport-ci-ign-transport8-focal-amd64
+[ign-transport8-bionic]: https://build.osrfoundation.org/job/ign_transport-ci-ign-transport8-bionic-amd64
+[ign-transport8-bionic-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_transport-ci-ign-transport8-bionic-amd64
 [ign-transport8-windows7]: https://build.osrfoundation.org/job/ign_transport-ign-8-win
 [ign-transport8-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_transport-ign-8-win
 [ign-transport8-homebrew]: https://build.osrfoundation.org/job/ignition_transport-ci-ign-transport8-homebrew-amd64
@@ -572,8 +572,8 @@
 [ign-transport8-focal-actions]: https://github.com/gazebosim/gz-transport/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Aign-transport8+event%3Apush
 [ign-transport8-focal-actions-badge]: https://github.com/gazebosim/gz-transport/workflows/Ubuntu%20CI/badge.svg?branch=ign-transport8&event=push
 [sdformat9-repo]: https://github.com/gazebosim/sdformat/tree/sdf9
-[sdformat9-focal]: https://build.osrfoundation.org/job/sdformat-ci-sdformat9-focal-amd64
-[sdformat9-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat-ci-sdformat9-focal-amd64
+[sdformat9-bionic]: https://build.osrfoundation.org/job/sdformat-ci-sdformat9-bionic-amd64
+[sdformat9-bionic-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat-ci-sdformat9-bionic-amd64
 [sdformat9-windows7]: https://build.osrfoundation.org/job/sdformat-sdf-9-win
 [sdformat9-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat-sdf-9-win
 [sdformat9-homebrew]: https://build.osrfoundation.org/job/sdformat-ci-sdformat9-homebrew-amd64
