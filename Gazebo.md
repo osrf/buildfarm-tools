@@ -365,8 +365,8 @@
 [ign-fuel-tools7-focal-actions]: https://github.com/gazebosim/gz-fuel-tools/actions?query=workflow%3A%22Ubuntu+CI%22+branch%3Aign-fuel-tools7+event%3Apush
 [ign-fuel-tools7-focal-actions-badge]: https://github.com/gazebosim/gz-fuel-tools/workflows/Ubuntu%20CI/badge.svg?branch=ign-fuel-tools7&event=push
 [ign-gazebo6-repo]: https://github.com/gazebosim/gz-sim/tree/ign-gazebo6
-[ign-gazebo6-focal]: https://build.osrfoundation.org/job/gz_sim-ci-ign-gazebo6-focal-amd64
-[ign-gazebo6-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sim-ci-ign-gazebo6-focal-amd64
+[ign-gazebo6-focal]: https://build.osrfoundation.org/job/gz_sim-ci-ign-sim6-focal-amd64
+[ign-gazebo6-focal-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sim-ci-ign-sim6-focal-amd64
 [ign-gazebo6-windows7]: https://build.osrfoundation.org/job/ign_gazebo-ign-6-win
 [ign-gazebo6-windows7-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ign_gazebo-ign-6-win
 [ign-gazebo6-homebrew]: https://build.osrfoundation.org/job/ignition_gazebo-ci-ign-gazebo6-homebrew-amd64
