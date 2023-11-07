@@ -6,9 +6,9 @@
 
 Every buildfarmer should follow the priorities defined for triaging issues.
 
-1. Keep the buildfarms up and running (build.ros2.org, build.osrfoundation.org, ci.ros2.org, etc.)
+1. Keep the buildfarms up and running (build.ros.org, build.ros2.org, build.osrfoundation.org, ci.ros2.org)
 2. Keep enough machines to handle current demand for CI
-3. Check build regressions 
+3. Check build regressions
 4. Check test regressions
 
 For items 1 and 2 refer to the [priorities document](../../docs/priorities.md#priorities) items 1 and 2.
@@ -19,7 +19,7 @@ Items 3 and 4 are covered in [Looking for regressions](./looking_for_regressions
 > For ROS, we prioritize regressions based on [REP2000 support tiers](https://github.com/ros-infrastructure/rep/blob/master/rep-2000.rst#support-tiers) for each distribution
 > E.g., we will check regressions in linux builds before checking regressions in RHEL builds.
 > 
-> In the case of Gazebo, all packages and distributions are the same priority.
+> In the case of Gazebo, all packages in each official distribution and for each supported OS, are the same priority.
 
 To acomplish the above tasks, the buildfarmer has a set of tools and resources to work with. For more information refer to [Buildfarmer triage tools](./buildfarmer_triage_tools.md).
 
