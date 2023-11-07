@@ -155,6 +155,8 @@ Remember to set the *domain and job variables* before running this script ([how 
 
 ### refresh_known_open_issues.sh
 
+This script requires having [Github CLI](https://cli.github.com/) installed and configured (authenticated).
+
 ```bash
 ./refresh_known_open_issues.sh
 ```
