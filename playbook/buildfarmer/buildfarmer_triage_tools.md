@@ -23,7 +23,7 @@ Check the [testdb usage](#testdb-usage) section for more information on how to u
 
 The buildfarmer repository stores a local database with information from test regressions, jobs, known issues, etc. The database scripts provide a way to check more information based on the data stored in the database. These scripts are located in the [database/scripts](../../database/scripts/) folder.
 
-*Important note*: Currently, the database is updated daily, so the database scripts will only provide consistent results if the database is up to date.
+*Important note*: Currently, the database is updated daily, so the database scripts will only provide consistent results if the database is up to date. You can check the last time the database was updated in [buildfarm-tools database commit history](https://github.com/osrf/buildfarm-tools/commits/main/database/buildfarmer.db)
 
 * [check_buildfarm.rb](../../database/scripts/check_buildfarm.rb): This script checks the status of the buildfarm and shows potential new issues that need to be reported, as well as other useful information for each job.
 * [statistical_check.rb](../../database/scripts/statistical_check.rb): This script shows the list of all open, closed and new issues and the test regressions associated with them, as well as how many times they happened in the last X days.
