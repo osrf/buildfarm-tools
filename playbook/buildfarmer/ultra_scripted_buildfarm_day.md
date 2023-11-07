@@ -89,6 +89,9 @@ For each issue you opened:
 
 If any change was made to the buildfarmer database, push the changes:
 
+> **Note**:
+> This is part of the buildfarmer role. If you are not an official buildfarmer, you should suggest your changes in [buildfarm-tools discussions](https://github.com/osrf/buildfarm-tools/discussions)
+
 ```bash
 cd ~/buildfarm-tools/
 git add database/buildfarmer.db
