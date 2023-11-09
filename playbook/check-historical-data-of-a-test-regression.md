@@ -1,6 +1,6 @@
 # Check historical data of a test regression
 
-This playbook will help you to check historical data of a test regression.
+This play will help you to check historical data of a test regression.
 
 ## Steps
 
@@ -131,7 +131,3 @@ ignition_gazebo-ci-ign-gazebo3-homebrew-amd64|2023-11-06|2023-10-09|11|11|100.0
 ```
 
 </details>
-
-
-
-
