@@ -98,6 +98,7 @@ git add database/buildfarmer.db
 git commit -sm "<commit-msg>" # Normally: "Update buildfarmer database" or "Refresh known issues"
 git push
 ```
+
 ### 7. Check for remaining warnings
 
 Check unstable build for warnings in buildfarm dashboards:
