@@ -27,15 +27,13 @@ Then, you may follow the next guide to see how can you investigate a build regre
 
 When you have finished getting information about the test regressions, you should report the ones that are not known issues. You may do that by creating an issue on the failing package repository.
 
-We handle build regressions more carefully. You can inform in Slack channels and revert PRs in case that's needed.
+We handle build regressions more carefully. You can inform to development teams and revert PRs in case that's needed.
 
 ## 3. Check test regressions in the buildfarm
 
 After you checked all the build regressions, you should continue by checking test regressions. As there are a lot of them throughout the buildfarm, here are some steps to make the first look easier using [buildfarmer database tools](./buildfarmer_triage_tools.md#database-scripts):
 
-1. Fetch the new data from the buildfarm database 
-  * Use `git pull` to get the latest version of the buildfarmer repository.
-    * [`databaseFetcher.py`](./buildfarmer_triage_tools.md#databasefetcherpy) is a script that downloads all the data from test regressions into the buildfarmer database. Currently is a private script that runs every day using github actions.
+1. Fetch the latest version of the buildfarmer database using `git pull`
 2. Check test regressions by last build using [`check_buildfarm.rb`](./buildfarmer_triage_tools.md#check_buildfarmrb)
   * This script will list all the new possible issues of the last build of each job in the buildfarm (grouped by). Also, you will be able to see if the test regression is reported as a known issue or not, and in which jobs is the test failing.
 3. Check each test regression statistics and failing reason. You can check [**Test regressions investigation**](./test_regressions_investigation.md) to get more information on how to do it.
@@ -56,4 +54,4 @@ After you checked all the build regressions, you should continue by checking tes
   * [databaseFetcher.py](./buildfarmer_triage_tools.md#databasefetcherpy)
   * [errors_check_last_build](./buildfarmer_triage_tools.md#errors_check_last_buildsql)
 
-[Back :arrow_backward: ](index.md)
+[Back :arrow_backward: ](../index.md)

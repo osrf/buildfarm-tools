@@ -4,15 +4,15 @@ This document describes the process for being a buildfarmer for a day.
 
 ## 1. Tool setup
 
-1. Pull the latest version of the buildfarm repository (this repo)
+1. Pull the latest version of the buildfarm-tools repository (this repo)
     ```
     git checkout main
     git pull origin main
     ```
-2. Update Known issues information.
+2. Update Known issues information so you work with the latest information:
 
     ```bash
-    cd ~/buildfarmer/database/scripts
+    cd ~/buildfarm-tools/database/scripts
     ./refresh_known_open_issues.sh
     ./close_old_known_issues.sh
     ```
@@ -25,7 +25,7 @@ Check the following links and verify that each responds correctly (not showing a
 * https://build.osrfoundation.org/
 * https://ci.ros2.org/
 
-If any of the links above are not working you should check [Jenkins server restart](../infra/jenkins_server_restart.md) and report to the infra team in `#infra-core-developers` Slack channel
+If any of the links above are not working you should check with the OSRF infrastructure team to take a look, there might be an infra problem.
 
 ## 3. Check the buildfarm agents
 
@@ -93,8 +93,8 @@ For each failing job (red badge):
    * If you find a possible change that broke the build, you may need to look for the GitHub repository of the package to check if a bug is already reported or report it. If you don't find any change, you may proceed to the next step.
 6. Ask ROS and Gazebo teams. Refer to ROS2 technical lead (Chris Lalancette) and Gazebo technical lead (Addisu Taddese) for more information.
    * If you don't find any suitable cause, you may need to ask the ROS and Gazebo teams if they know about the issue adding all the information you have gathered so far.
-     * For ROS, you can ask in `ros-core-developers` Slack channel or Chris Lalancette (clalancette) in GitHub.
-     * For Gazebo, you can ask in `gazebo-core-developers` Slack channel or Addisu Taddese (azeey) in GitHub.
+     * For ROS, you can ask Chris Lalancette (clalancette) in GitHub.
+     * For Gazebo, you can ask Addisu Taddese (azeey) in GitHub.
  
 > Taken from [Build regressions investigation](./build_regressions_investigation.md#investigation-steps)
 
@@ -129,21 +129,47 @@ For each failing job (red badge):
 5. Report the test regressions
    * When you have finished getting information about the test regressions, you should report the new ones. You may do that by creating an issue on the failing package repository.
    * If you are not sure about the reason for the failure, you should ask ROS and Gazebo teams if they know about the issue.
-     * For ROS, you can ask in `ros-core-developers` Slack channel or Chris Lalancette (clalancette) in GitHub.
-     * For Gazebo, you can ask in `gazebo-core-developers` Slack channel or Addisu Taddese (azeey) in GitHub.
+     * For ROS, you can ask Chris Lalancette (clalancette) in GitHub.
+     * For Gazebo, you can ask Addisu Taddese (azeey) in GitHub.
 
 > Taken from [Looking for regressions](./looking_for_regressions.md#3-check-test-regressions-in-the-buildfarm) and [Test regressions investigation](./test_regressions_investigation.md#investigation-steps)
 
-## 6. Check warnings in remaining builds
+## 6. Add known issues to the buildfarmer database
+
+After you have opened issues in ROS and Gazebo repositories, you should add the issues to the buildfarmer database. This way, we can track the status of the issues and the buildfarm status.
+
+To add issues to the buildfarmer database, you should follow these steps:
+
+1. Identify the failing test name and package name
+     * In a practical way, package name is all the text before the first period in the test name. (e.g., For test "aaaa.bbbb.ccc" package name is "aaaa")
+2. Identify the job name where the test is failing
+3. Add the known issue with the following command
+     ```bash
+     ./issue_save_new.sh "<test-name>" "<package-name>" "<job-name>" "<github-issue-url>"
+     ```
+
+## 7. Check warnings in remaining builds
 
 Some jobs are unstable because of test regressions. Currently we don't track those in `buildfarmer.db` so the process to check the warnings is manual. You should check unstable builds manually in the buildfarm dashboards.
 
 To report and investigate warnings, you can follow the same steps as test regressions.
 
-## 7. Final steps
+## 8. Final steps
+
+If any change was made to the buildfarmer database, push the changes:
+
+> **Note**:
+> This is part of the buildfarmer role. If you are not an official buildfarmer, you should suggest your changes in [buildfarm-tools discussions](https://github.com/osrf/buildfarm-tools/discussions)
+
+```bash
+cd ~/buildfarm-tools/
+git add database/buildfarmer.db
+git commit -sm "<commit-msg>" # Normally: "Update buildfarmer database" or "Refresh known issues"
+git push
+```
 
 When everything is reported, you should add each report/issue to [Buildfarm Payload Board](https://github.com/orgs/osrf/projects/23/views/1) (see [board explanation](./reporting_problems.md#board-explanation)). This way, we can track all the issues happening in the buildfarm in a human readable way
 
 You can check how to report issues here: [Reporting Problems](./reporting_problems.md)
 
-[Back :arrow_backward: ](index.md)
+[Back :arrow_backward: ](../index.md)

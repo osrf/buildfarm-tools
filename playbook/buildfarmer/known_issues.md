@@ -35,6 +35,7 @@ When you find a test regression that is not fixed yet, you may create a known is
   * This script will create a known issue in the database, linking it to the issue you created in the package repository.
   * You need to run this script for each job that is failing. 
     * E.g., if the error is happening in `gz-sim7`,`ign-gazebo6`, and `ign-gazebo3` jobs, you need to run the script three times, changing the job argument between each run.
+  * Usage: `./issue_save_new.sh "<test-name>" "<package-name>" "<job-name>" "<github-issue-url>"`
 
 After that, the error will be considered a known issue, and it will not appear in the list that [`errors_check_last_build.sql`](./buildfarmer_triage_tools.md#errors_check_last_buildsql) returns.
 
@@ -48,6 +49,16 @@ To untrack a known issue, you may follow the steps below:
   * You can use [`get_known_issues.sql`](./buildfarmer_triage_tools.md#get_known_issuessql) to get the list of known issues or [`is_known_issue.sql`](./buildfarmer_triage_tools.md#is_known_issuesql) to get the GitHub issue link for a specific test.
 2. Set the issue status to `CLOSED` in the buildfarmer database using [`issue_close.sql`](./buildfarmer_triage_tools.md#issue_closesql).
   * This script will set the issue status to `CLOSED` in the database (e.g., `./sql_run.sh issue_close.sql "https://github.com/my/issue/123"`).
+
+# Refresh Known Issues in the Database
+
+All the known issues are added manually to the database. They are kept open until someone closes them manually. To keep the database updated, we need to refresh the known issues periodically.
+
+To refresh the known issues, you may follow the steps below:
+1. Run [`./refresh_known_open_issues.sh`](./buildfarmer_triage_tools.md#refresh_known_open_issuessh)
+   * This script will check if the issue is still open in GitHub and update the database accordingly.
+2. Run [`./close_old_known_issues.sh`](./buildfarmer_triage_tools.md#close_old_known_issuessh)
+   * This script will close the issues that haven't happened in the last 30 days.
 
 # Check statistics of current known issues
 
@@ -192,4 +203,4 @@ Open Issue: https://github.com/ros2/rosbag2/issues/1437
   * [issue_close.sql](./buildfarmer_triage_tools.md#issue_closesql)
   * [errors_check_last_build.sql](./buildfarmer_triage_tools.md#errors_check_last_buildsql)
 
-[Back :arrow_backward: ](index.md)
+[Back :arrow_backward: ](../index.md)

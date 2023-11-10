@@ -11,7 +11,7 @@ There are 2 ways to identify failing tests:
   * When using database tools, you should use [`check_buildfarm.rb`](./buildfarmer_triage_tools.md#check_buildfarmrb) script to get a list of potential issues sorted by the number of fails. With this list, you can prioritize the tests that are failing more often and check if they are known issues.
 
 > **Note**
-> In the daily workflow, we skip some jobs that are not Tier 1 priority (check [priorities document](../../docs/priorities.md#priorities)).
+> In the daily workflow, we skip some jobs that are not Tier 1 priority (check ROS [REP2000 support tiers](https://github.com/ros-infrastructure/rep/blob/master/rep-2000.rst#support-tiers) for each distribution. In case of Gazebo, we check all packages and distributions)
 >
 > The jobs we normally skip are: fastrtps-dynamic, performance, repeated and connext jobs.
 >
@@ -44,9 +44,7 @@ To investigate failing tests, you should follow these steps:
 3. Investigate test regression flakiness
   * If the test is failing for a long time, it might be a flaky test. [`calculate_flakiness_jobs.sql`](./buildfarmer_triage_tools.md#calculate_flakiness_jobssql) is a script that shows the failure percentage of a list of jobs that have failed at least once in the last *X* days with a specified test failure (e.g., `./sql_run.sh calculate_flakiness_jobs.sql "Stopwatch.StartStopReset" "15 days"` will show the failure percentage of the last 15 days of the test `Stopwatch.StartStopReset`).
 
-After all these steps, you should have enough information to report the issue in the package repository. If you are not sure about the reason for the failure, you should ask ROS and Gazebo teams if they know about the issue.
-* For ROS, you can ask in `ros-core-developers` Slack channel or Chris Lalancette (clalancette) in GitHub.
-* For Gazebo, you can ask in `gazebo-core-developers` Slack channel or Addisu Taddese (azeey) in GitHub.
+After all these steps, you should have enough information to report the issue the buildfarmers. You can use [buildfarm-tools discussions](https://github.com/osrf/buildfarm-tools/discussions) to ask for help. 
 
 
 ## Common situations
@@ -71,4 +69,4 @@ When a test fails because of a timeout or segfault, the best approach is to comp
   * [errors_get_first_time.sql](./buildfarmer_triage_tools.md#errors_get_first_timesql)
   * [calculate_flakiness_jobs.sql](./buildfarmer_triage_tools.md#calculate_flakiness_jobssql)
 
-[Back :arrow_backward: ](index.md)
+[Back :arrow_backward: ](../index.md)

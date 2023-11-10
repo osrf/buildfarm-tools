@@ -37,4 +37,4 @@ Some issues require more information, for example:
 
 You can check some examples of issues in the [Buildfarm Payload Board](https://github.com/orgs/osrf/projects/23/views/1).
 
-[Back :arrow_backward: ](index.md)
+[Back :arrow_backward: ](../index.md)
