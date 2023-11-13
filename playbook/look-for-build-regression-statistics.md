@@ -20,11 +20,14 @@ export job=[job]
 ./fetch.rb -d $domain -j $job -c [build-count] buildlog
 ```
 
-> build-count is the number of logs you want to fetch
+* build-count is the number of logs you want to fetch
+
+> **Note**
+> This script will download log files to you system in `~/osrf/testdb` folder
 
 ### Check how many times a pattern has appeared in the logs
 
-Use grep to check how many times a pattern has appeared in the logs:
+Use grep to check how many times a pattern has appeared in the downloaded logs:
 
 ```bash
 ./grep.rb -d $domain -j $job -n [build-count] "[PATTERN]"

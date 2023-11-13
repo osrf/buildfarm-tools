@@ -1,4 +1,4 @@
-# Is an error a known issue or a flaky problem?
+# Is an error a known issue or a flaky test?
 
 This play is intended to help you determine if an error is a known issue or a flaky problem.
 
