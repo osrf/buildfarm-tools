@@ -32,15 +32,11 @@ To set up the project locally, please follow the instructions below:
         ./check_buildfarm.rb
         ```
     * Wait for the script to run (around 1 minute) and check the buildfarm issues that are happening in the buildfarms
-4. Read [Buildfarmer Playbook](./playbook/buildfarmer/README.md) and get started in all our scripts!
+4. Read [Tools usage](#tools-usage) section for a quickstart or check [Buildfarmer Playbook](./playbook/buildfarmer/README.md) to see all the tools available.
 
 ## Tools usage
 
-If you are a ROS or Gazebo developer interested in getting information about errors you're getting in CI or if you want to gather statistics of tests and errors in the buildfarms you can check the following plays:
-
-* [Is an error a known issue or a flaky problem?](./playbook/is-an-error-a-known-issue-or-a-flaky-problem.md)
-* [Check historical data of a test regression](./playbook/check-historical-data-of-a-test-regression.md)
-* [Look for build regression statistics](./playbook/look-for-build-regression-statistics.md)
+If you are a ROS or Gazebo developer interested in getting information about errors you're getting in CI or if you want to gather statistics of tests and errors in the buildfarms you can check the [FAQ section](#faq).
 
 Remember that the buildfarmer database is open to anyone who wants to inspect it (binary file: [buildfarmer.db](./database/buildfarmer.db)).
 You can use [SQLite Browser](https://sqlitebrowser.org/) to run personalized queries and filters.
@@ -49,6 +45,20 @@ If you are a buildfarmer team member, or you are interested in learning how we t
 you can check our workflow in the [Buildfarmer Playbook](./playbook/buildfarmer/README.md):
 * [Buildfarmer Scripted day](./playbook/buildfarmer/scripted_buildfarm_day.md)
 * [Buildfarmer tools docs](./playbook/buildfarmer/buildfarmer_triage_tools.md)
+
+## FAQ
+
+#### How can I check if an error is a known issue or a flaky problem?
+
+You can check the [Is an error a known issue or a flaky problem?](./playbook/is-an-error-a-known-issue-or-a-flaky-problem.md) play.
+
+#### How can I check historical data of a test regression?
+
+You can check the [Check historical data of a test regression](./playbook/check-historical-data-of-a-test-regression.md) play.
+
+#### How can I look for build regression statistics?
+
+You can check the [Look for build regression statistics](./playbook/look-for-build-regression-statistics.md) play.
 
 ## Contributing
 
