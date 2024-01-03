@@ -592,8 +592,8 @@
 [sim-3-repo]: https://github.com/gazebosim/gz-sim
 [sim-3-Linux]: https://build.osrfoundation.org/job/gz_sim-ci-ign-gazebo3-focal-amd64
 [sim-3-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sim-ci-ign-gazebo3-focal-amd64
-[sim-3-Windows]: https://build.osrfoundation.org/job/gz_sim-ign-gazebo3-win
-[sim-3-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sim-ign-gazebo3-win
+[sim-3-Windows]: https://build.osrfoundation.org/job/Untracked-Job
+[sim-3-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=Untracked-Job
 [sim-3-Homebrew]: https://build.osrfoundation.org/job/gz_sim-ci-ign-gazebo3-homebrew-amd64
 [sim-3-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sim-ci-ign-gazebo3-homebrew-amd64
 [gui-3-repo]: https://github.com/gazebosim/gz-gui
@@ -606,8 +606,8 @@
 [launch-2-repo]: https://github.com/gazebosim/gz-launch
 [launch-2-Linux]: https://build.osrfoundation.org/job/gz_launch-ci-ign-launch2-focal-amd64
 [launch-2-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_launch-ci-ign-launch2-focal-amd64
-[launch-2-Windows]: https://build.osrfoundation.org/job/gz_launch-ign-launch2-win
-[launch-2-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_launch-ign-launch2-win
+[launch-2-Windows]: https://build.osrfoundation.org/job/Untracked-Job
+[launch-2-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=Untracked-Job
 [launch-2-Homebrew]: https://build.osrfoundation.org/job/gz_launch-ci-ign-launch2-homebrew-amd64
 [launch-2-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_launch-ci-ign-launch2-homebrew-amd64
 [rendering-3-repo]: https://github.com/gazebosim/gz-rendering
