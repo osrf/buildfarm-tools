@@ -1,10 +1,6 @@
 name: Daily Workflow
 
 on:
-  workflow_run:
-    workflows: ["Database Fetcher"]
-    types:
-      - completed
   workflow_dispatch:
     inputs:
       clear-log:
@@ -12,6 +8,9 @@ on:
         type: boolean
         required: false
         default: false
+  schedule:
+    # UTC timezone
+    - cron: '30 11 * * *'
 
 jobs:
     daily-workflow:
