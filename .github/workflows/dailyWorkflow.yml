@@ -1,0 +1,87 @@
+name: Daily Workflow
+
+on:
+  workflow_run:
+    workflows: ["Database Fetcher"]
+    types:
+      - completed
+  workflow_dispatch:
+    inputs:
+      clear-log:
+        description: 'Defines if it closes the old buildfarmer log issue and create a new one'
+        type: boolean
+        required: false
+        default: false
+
+jobs:
+    daily-workflow:
+        if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+        name: Daily Workflow
+        runs-on: ubuntu-22.04
+        steps:
+        - name: Get current date
+          run: echo "DOW=$(date +%u)" >> $GITHUB_ENV # Day of week (1-7, 1 = Monday)
+        - name: Get current buildfarmer log
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          run:
+            echo "CURRENT_LOG=$(gh issue list -R ${{ github.repository }} -l buildfarmer-log | awk '{print $1}')" >> $GITHUB_ENV
+        - name: Close old buildfarmer log
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          if: ${{ inputs.clear-log || env.DOW == '1' }}
+          run: |
+            gh issue close -R ${{ github.repository }} $CURRENT_LOG
+            echo "OLD_LOG=$CURRENT_LOG" >> $GITHUB_ENV
+        - name: Open new buildfarmer log
+          if: ${{ inputs.clear-log || env.DOW == '1' }}
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          run: |
+            current_date=$(date +%Y/%m/%d)
+            issue_title="Buildfarmer log $current_date - $(date -d "$current_date +7 days" +%Y/%m/%d)"
+            issue_body="Previous log #$OLD_LOG"
+            created_issue=$(gh issue create -R ${{ github.repository }} -t "$issue_title" -b "$issue_body" -l buildfarmer-log)
+            echo "CURRENT_LOG=$created_issue" >> $GITHUB_ENV
+            echo "Issue created $created_issue"
+        - uses: actions/checkout@v3
+        - name: Set up Ruby 3.2
+          uses: ruby/setup-ruby@v1
+          with:
+            ruby-version: '3.2'
+        - name: Clone tools repository
+          run: |
+            git clone --depth 1 https://github.com/osrf/buildfarm-tools
+        - name: Install dependencies
+          run: |
+            python -m pip install --upgrade pip
+            pip install -r requirements.txt
+        - name: Run buildfarm scripts
+          run: |
+            cd buildfarm-tools/database/scripts
+            {
+                echo "BUILD_REGRESSIONS<<EOF"
+                ./sql_run.sh builds_failing_today.sql
+                echo EOF
+            } >> $GITHUB_ENV
+
+            {
+                echo "TEST_REGRESSIONS<<EOF"
+                ./check_buildfarm.rb -e "performance connext fastrtps-dynamic"
+                echo EOF
+            } >> $GITHUB_ENV
+        - name: Write buildfarmer log
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          run: |
+            {
+                touch comment.txt
+                echo "## $(date '+%b %d')" >> comment.txt
+                echo -e "<details>\n<summary>\nBuild regressions\n</summary>\n\n\`\`\`" >> comment.txt
+                echo "$BUILD_REGRESSIONS" >> comment.txt
+                echo -e "\`\`\`\n</details>" >> comment.txt
+                echo -e "<details>\n<summary>\nTest regressions\n</summary>\n\n\`\`\`" >> comment.txt
+                echo "$TEST_REGRESSIONS" >> comment.txt
+                echo -e "\`\`\`\n</details>" >> comment.txt
+            }
+            gh issue comment -R ${{ github.repository }} $CURRENT_LOG -F comment.txt          
