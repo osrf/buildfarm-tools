@@ -1,3 +1,5 @@
+[![Daily Workflow](https://github.com/osrf/buildfarm-tools/actions/workflows/dailyWorkflow.yml/badge.svg)](https://github.com/osrf/buildfarm-tools/actions/workflows/dailyWorkflow.yml)
+
 # Buildfarm Tools
 
 Welcome to the Buildfarm Tools Repository!
