@@ -42,7 +42,17 @@ You can find the number of agents per buildfarm in [macines.md](../../machines.m
 If any agents are missing, you should: Ask the infrastructure team for a reason (e.g., some agents are down for maintenance) or manually check spot allocation problems in the AWS autoscaling group the missing agents are.
 
 
-## 4. Check failing jobs on buildfarm dashboards
+## 4. Check automation tools status
+
+Also, we have some automation tools that should run daily for the buildfarmer data to be updated. You can check the private repo readme and verify that all badges are green:
+
+* [osrf/buildfarm-tools-private](https://github.com/osrf/buildfarm-tools-private?tab=readme-ov-file#actions)
+
+If any of these badges are red, you should check the logs of the failed job and report the issue.
+
+These actions can also be manually triggered. Check [Automation Tools](./automation_tools.md) for more information.
+
+## 5. Check failing jobs on buildfarm dashboards
 
 Check the following dashboards and locate the failing jobs:
 
@@ -99,7 +109,7 @@ For each failing job (red badge):
 > Taken from [Build regressions investigation](./build_regressions_investigation.md#investigation-steps)
 
 
-## 5. Check test regressions on buildfarm dashboards
+## 6. Check test regressions on buildfarm dashboards
 
 1. Check test regressions by last build using [`check_buildfarm.rb`](./buildfarmer_triage_tools.md#check_buildfarmrb)
    * This script will check the status of the buildfarm and show potential new issues that need to be reported, as well as other useful information for each.
@@ -134,7 +144,7 @@ For each failing job (red badge):
 
 > Taken from [Looking for regressions](./looking_for_regressions.md#3-check-test-regressions-in-the-buildfarm) and [Test regressions investigation](./test_regressions_investigation.md#investigation-steps)
 
-## 6. Add known issues to the buildfarmer database
+## 7. Add known issues to the buildfarmer database
 
 After you have opened issues in ROS and Gazebo repositories, you should add the issues to the buildfarmer database. This way, we can track the status of the issues and the buildfarm status.
 
@@ -148,13 +158,13 @@ To add issues to the buildfarmer database, you should follow these steps:
      ./issue_save_new.sh "<test-name>" "<package-name>" "<job-name>" "<github-issue-url>"
      ```
 
-## 7. Check warnings in remaining builds
+## 8. Check warnings in remaining builds
 
 Some jobs are unstable because of test regressions. Currently we don't track those in `buildfarmer.db` so the process to check the warnings is manual. You should check unstable builds manually in the buildfarm dashboards.
 
 To report and investigate warnings, you can follow the same steps as test regressions.
 
-## 8. Final steps
+## 9. Final steps
 
 If any change was made to the buildfarmer database, push the changes:
 
