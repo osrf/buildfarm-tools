@@ -46,10 +46,12 @@ If any of these badges are red, you should check the logs of the failed job and 
 ### 5. Check build failures
 
 You can check for red builds in buildfarm dashboards:
-* [ROS2](https://github.com/osrf/buildfarmer/blob/main/ROS2.md)
-* [Gazebo](https://github.com/osrf/buildfarmer/blob/main/Ignition.md)
-* [Gazebo Classic](https://github.com/osrf/buildfarmer/blob/main/Gazebo.md)
-* [Colcon](https://github.com/osrf/buildfarmer/blob/main/Colcon.md)
+* [ROS2  Dashboard](../../ROS2.md)
+* [Gazebo Dashboard](../../Gazebo.md)
+* [Gazebo Classic Dashboard](../../GazeboClassic.md)
+* [Colcon Dashboard](../../Colcon.md)
+* [Standalone Services](../../standalone_services.md)
+* [Homebrew simulation bottle status](https://github.com/osrf/homebrew-simulation/?tab=readme-ov-file#bottle-status)
 
 ```bash
 cd ~/buildfarm/database/scripts

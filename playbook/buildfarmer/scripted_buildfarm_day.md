@@ -56,10 +56,12 @@ These actions can also be manually triggered. Check [Automation Tools](./automat
 
 Check the following dashboards and locate the failing jobs:
 
-* [ROS2  Dashboard](https://github.com/osrf/buildfarmer/blob/main/ROS2.md)
-* [Gazebo Dashboard](https://github.com/osrf/buildfarmer/blob/main/Ignition.md)
-* [Gazebo Classic Dashboard](https://github.com/osrf/buildfarmer/blob/main/Gazebo.md)
-* [Colcon Dashboard](https://github.com/osrf/buildfarmer/blob/main/Colcon.md)
+* [ROS2  Dashboard](../../ROS2.md)
+* [Gazebo Dashboard](../../Gazebo.md)
+* [Gazebo Classic Dashboard](../../GazeboClassic.md)
+* [Colcon Dashboard](../../Colcon.md)
+* [Standalone Services](../../standalone_services.md)
+* [Homebrew simulation bottle status](https://github.com/osrf/homebrew-simulation/?tab=readme-ov-file#bottle-status)
 
 For each failing job (red badge):
 1. Identify the job that failed
