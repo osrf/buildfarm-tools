@@ -35,14 +35,23 @@ cd ~/buildfarm-tools/database/scripts
 ./close_old_known_issues.sh
 ```
 
+### 4. Check automation tools
 
-### 4. Check build failures
+Check the private repo readme. All actions should be green.
+
+* [osrf/buildfarm-tools-private](https://github.com/osrf/buildfarm-tools-private?tab=readme-ov-file#actions)
+
+If any of these badges are red, you should check the logs of the failed job and report the issue.
+
+### 5. Check build failures
 
 You can check for red builds in buildfarm dashboards:
-* [ROS2](https://github.com/osrf/buildfarmer/blob/main/ROS2.md)
-* [Gazebo](https://github.com/osrf/buildfarmer/blob/main/Ignition.md)
-* [Gazebo Classic](https://github.com/osrf/buildfarmer/blob/main/Gazebo.md)
-* [Colcon](https://github.com/osrf/buildfarmer/blob/main/Colcon.md)
+* [ROS2  Dashboard](../../ROS2.md)
+* [Gazebo Dashboard](../../Gazebo.md)
+* [Gazebo Classic Dashboard](../../GazeboClassic.md)
+* [Colcon Dashboard](../../Colcon.md)
+* [Standalone Services](../../standalone_services.md)
+* [Homebrew simulation bottle status](https://github.com/osrf/homebrew-simulation/?tab=readme-ov-file#bottle-status)
 
 ```bash
 cd ~/buildfarm/database/scripts
@@ -51,7 +60,7 @@ cd ~/buildfarm/database/scripts
 
 Check each build failure in Jenkins, find the root cause, and report it to the respective repository if necessary. ([Check failing builds](./scripted_buildfarm_day.md#4-check-failing-jobs-on-buildfarm-dashboards))
 
-### 5. Check new test regressions
+### 6. Check new test regressions
 
 You can check for yellow builds in buildfarm dashboards:
 * [ROS2](https://github.com/osrf/buildfarmer/blob/main/ROS2.md)
@@ -78,7 +87,7 @@ cd ~/buildfarm-tools/database/scripts
 See [Check test regressions](./scripted_buildfarm_day.md#5-check-test-regressions-on-buildfarm-dashboards) for more information.
 
 
-## 6. Add known issues to the buildfarmer database
+## 7. Add known issues to the buildfarmer database
 
 For each issue you opened:
 ```bash
@@ -99,7 +108,7 @@ git commit -sm "<commit-msg>" # Normally: "Update buildfarmer database" or "Refr
 git push
 ```
 
-### 7. Check for remaining warnings
+### 8. Check for remaining warnings
 
 Check unstable build for warnings in buildfarm dashboards:
 * [ROS2](https://github.com/osrf/buildfarmer/blob/main/ROS2.md)
@@ -109,7 +118,7 @@ Check unstable build for warnings in buildfarm dashboards:
 
 Report the warnings to the respective repository if necessary.
 
-### 8. Report issues in Board
+### 9. Report issues in Board
 
 When everything is reported, you should add each report/issue to [Buildfarm Payload Board](https://github.com/orgs/osrf/projects/23/views/1).
 
