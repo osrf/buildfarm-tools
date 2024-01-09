@@ -38,6 +38,7 @@
 | [utils-2][utils-2-repo] | [![Build Status][utils-2-Linux-badge]][utils-2-Linux] | [![Build Status][utils-2-Windows-badge]][utils-2-Windows] | [![Build Status][utils-2-Homebrew-badge]][utils-2-Homebrew] |
 | [sdformat-14][sdformat-14-repo] | [![Build Status][sdformat-14-Linux-badge]][sdformat-14-Linux] | [![Build Status][sdformat-14-Windows-badge]][sdformat-14-Windows] | [![Build Status][sdformat-14-Homebrew-badge]][sdformat-14-Homebrew] |
 
+* [harmonic-ros_gzharmonic_bridge-install-pkg_humble-ci-jammy-amd64][harmonic-ros_gzharmonic_bridge-install-pkg_humble-ci-jammy-amd64-repo]: [![Build Status][harmonic-ros_gzharmonic_bridge-install-pkg_humble-ci-jammy-amd64-badge]][harmonic-ros_gzharmonic_bridge-install-pkg_humble-ci-jammy-amd64-job]
 * [harmonic-ros_gzharmonic_bridge-install-pkg_iron-ci-jammy-amd64][harmonic-ros_gzharmonic_bridge-install-pkg_iron-ci-jammy-amd64-repo]: [![Build Status][harmonic-ros_gzharmonic_bridge-install-pkg_iron-ci-jammy-amd64-badge]][harmonic-ros_gzharmonic_bridge-install-pkg_iron-ci-jammy-amd64-job]
 ## gz-garden
 | | Linux | Windows | Homebrew |
@@ -356,7 +357,10 @@
 [sdformat-14-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat-sdf14-win
 [sdformat-14-Homebrew]: https://build.osrfoundation.org/job/sdformat-ci-sdf14-homebrew-amd64
 [sdformat-14-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat-ci-sdf14-homebrew-amd64
-[harmonic-ros_gzharmonic_bridge-install-pkg_iron-ci-jammy-amd64-repo]: TO-DO
+[harmonic-ros_gzharmonic_bridge-install-pkg_humble-ci-jammy-amd64-repo]: https://github.com/gazebo-release/ros_gz-gzharmonic-release
+[harmonic-ros_gzharmonic_bridge-install-pkg_humble-ci-jammy-amd64-job]: https://build.osrfoundation.org/job/ros_gzharmonic_bridge-install-pkg_humble-ci-jammy-amd64
+[harmonic-ros_gzharmonic_bridge-install-pkg_humble-ci-jammy-amd64-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ros_gzharmonic_bridge-install-pkg_humble-ci-jammy-amd64
+[harmonic-ros_gzharmonic_bridge-install-pkg_iron-ci-jammy-amd64-repo]: https://github.com/gazebo-release/ros_gz-gzharmonic-release
 [harmonic-ros_gzharmonic_bridge-install-pkg_iron-ci-jammy-amd64-job]: https://build.osrfoundation.org/job/ros_gzharmonic_bridge-install-pkg_iron-ci-jammy-amd64
 [harmonic-ros_gzharmonic_bridge-install-pkg_iron-ci-jammy-amd64-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ros_gzharmonic_bridge-install-pkg_iron-ci-jammy-amd64
 [sim-7-repo]: https://github.com/gazebosim/gz-sim
@@ -471,10 +475,10 @@
 [sdformat-13-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat-sdf13-win
 [sdformat-13-Homebrew]: https://build.osrfoundation.org/job/sdformat-ci-sdf13-homebrew-amd64
 [sdformat-13-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat-ci-sdf13-homebrew-amd64
-[garden-ros_gzgarden_bridge-install-pkg_humble-ci-jammy-amd64-repo]: TO-DO
+[garden-ros_gzgarden_bridge-install-pkg_humble-ci-jammy-amd64-repo]: https://github.com/gazebo-release/ros_ign-release/
 [garden-ros_gzgarden_bridge-install-pkg_humble-ci-jammy-amd64-job]: https://build.osrfoundation.org/job/ros_gzgarden_bridge-install-pkg_humble-ci-jammy-amd64
 [garden-ros_gzgarden_bridge-install-pkg_humble-ci-jammy-amd64-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ros_gzgarden_bridge-install-pkg_humble-ci-jammy-amd64
-[garden-ros_gzgarden_bridge-install-pkg_iron-ci-jammy-amd64-repo]: TO-DO
+[garden-ros_gzgarden_bridge-install-pkg_iron-ci-jammy-amd64-repo]: https://github.com/gazebo-release/ros_ign-release/
 [garden-ros_gzgarden_bridge-install-pkg_iron-ci-jammy-amd64-job]: https://build.osrfoundation.org/job/ros_gzgarden_bridge-install-pkg_iron-ci-jammy-amd64
 [garden-ros_gzgarden_bridge-install-pkg_iron-ci-jammy-amd64-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ros_gzgarden_bridge-install-pkg_iron-ci-jammy-amd64
 [sim-6-repo]: https://github.com/gazebosim/gz-sim
