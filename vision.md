@@ -1,4 +1,4 @@
-# Vision of the buildfarmer payload
+# Buildfarmer Payload tasks process vision
 Subset of tasks defined to increase the quality of the ROS/Gazebo code by actively tracking and categorizing problems shipped with new code in a timely manner, making it easier for the development teams to:
 * Fix most errors when they are introduced.
 * Decide if an error that pops up in CI is a flaky test already existing in the codebase.
@@ -9,26 +9,28 @@ Subset of tasks defined to increase the quality of the ROS/Gazebo code by active
 We already have a priority document explaining the order of relevancy of the possible errors, this is a new set of standards to define what we expect of the internal buildfarmer process:
 
 1. Auto-log any error appearing in the nightlies, even when there is no one around. This could serve future investigations.
-2. Any person can become a Buildfarmer Payload in case of necessity, this implies:
+2. Any person can be assigned to Buildfarmer Payload in case of necessity, this implies:
    * Basic duties should be easy to automate, even scripted.
-   * Every Buildfarmer Payload must log/communicate internally any actions completed in the name of the role, so other folks can make progress on top of previous actions.
+   * Everyone assigned to Buildfarmer Payload must log/communicate internally any actions completed in the name of the role, so other folks can make progress on top of previous actions.
    * There will be a public log with investigations related to the Buildfarmer Payload duties.
    * Actions related to Buildfarmer Payload will be differentiated from actions related to the infra team, it is not resposability of the role to investigate infra issues, instead those will be escalated.
 3. Core Team and community developers should be able to check if an existent error in his build it’s also happening in the nightlies CI.
-4. Flaky tests will be categorized based on how often they appear
-   * **~5%** Will not be reported.
-   * **6% - 15%** Will be reported and announced in the weekly meetings. This category will be considered as known issues, as we won’t aim to disable those tests.
-   * **15% - 100%** Will be reported, investigated internally, and eventually assigned someone from the development teams. Flaky tests falling in this category will be expected to be disabled 3 weeks after being assigned a developer to take a look or after being reported.
-5. The buildfarmer team will keep track of all the tests disabled internally and generate a report monthly. That way any developer can track those and aim to fix the underlying issues.
-6. As a new error gets investigated, make sure to close the reported issues/investigations ONLY after the issue is addressed in all combinations of job, platform, distribution where it was reported. Group errors in one a single issue if there's evidence they share an underlying reason (appeared after the same date, they occur in the same jobs, etc).
-7. Reports to generate monthly:
-   * Buildfarm average greenness per distro / platform.
-   * Disabled tests.
+4. Consecutive test failures priorities policy: Test errors occuring consecutively will be prioritized in terms of order of investigation, in the case of Gazebo jobs, the failing build will be retriggered to confirm if the error occurs a third time in a row. Errors happening three times in a row will be reported immediatly to the development teams in case the buildfarmer investigation wasn't enough to solve it. Errors that have appeared at least three times every 2 weeks, will also be prioritized. Buildfarmer Payload scripts will prioritize accordingly new investigations based on this.
+5. Flaky tests will be categorized based on how often they appear in a given month in a unstable builds.
+   * **~7% or errors that happened only once** Will not be reported.
+   * **7% - 20%** Will be reported and announced in the weekly meetings. This category will be considered as known issues, as we won’t aim to disable those tests.
+   * **20% - 100%** Will be reported, investigated internally, and eventually assigned someone from the development teams. Flaky tests falling in this category will be expected to be disabled 3 weeks after being assigned a developer to take a look or after being reported.
+6. The buildfarmer team will keep track of all the tests disabled internally and generate a report monthly. That way any developer can track those and aim to fix the underlying issues.
+7. As a new error gets investigated, make sure to close the reported issues/investigations ONLY after the issue is addressed in all combinations of job, platform, distribution where it was reported. Group errors in one a single issue if there's evidence they share an underlying reason (appeared after the same date, they occur in the same jobs, etc).
+8. Reports to generate monthly:
+   * Buildfarm average greenness per distro / platform (TBD)
+   * Disabled tests: Those can be obtained using the jenkins API, will be saved to our internal database.
+   * Report of flaky tests and disabled tests by the buildfarm team.
    * Average time job per OS.
-   * Instance rotation reports.
-   * Jenkins metrics reports.
+   * Instance rotation reports, private reference: autoscaling_metrics_report.py
+   * Time to response metrics: Issues reported, first time appeared, time to assign, time to close
 
-   Those will be created by the assigned Buildfarmer Payload and will be analyzed by different people in the team accordingly.
+   Those will be created by the person assigned to Buildfarmer Payload and will be analyzed by different people in the team accordingly.
 
 
 ## Definitions
