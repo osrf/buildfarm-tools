@@ -25,7 +25,7 @@ Check the following links and verify that each responds correctly (not showing a
 * https://build.osrfoundation.org/
 * https://ci.ros2.org/
 
-This includes giving a glance to the main webpage status, looking for disconnected agents, hanged jobs, an annormaly queue of jobs, a server waiting to restart or anything that may look _out of place_.
+This includes giving a glance to the main webpage status, looking for disconnected agents, hung jobs, an abnormaly large queue of jobs, a server waiting to restart or anything that may look _out of place_.
 
 If any of the links above are not working you should check with the OSRF infrastructure team to take a look, there might be an infra problem.
 

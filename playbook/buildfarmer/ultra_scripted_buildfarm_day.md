@@ -3,7 +3,7 @@
 This is a TL;DR version of [scripted buildfarm day](./scripted_buildfarm_day.md)
 
 ### 1. Check all servers
-This includes giving a glance to the main webpage status, looking for disconnected agents, hanged jobs, an annormaly queue of jobs, a server waiting to restart or anything that may look _out of place_.
+This includes giving a glance to the main webpage status, looking for disconnected agents, hung jobs, an abnormaly large queue of jobs, a server waiting to restart or anything that may look _out of place_.
 
 * https://build.ros.org/
 * https://build.ros2.org/
