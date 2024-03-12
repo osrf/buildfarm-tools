@@ -37,7 +37,7 @@ recent_failures AS (
         AND build_status.job_name = test_failures.job_name
 	AND build_status.status IN ("SUCCESS", "UNSTABLE")
         AND build_status.build_datetime >= DATE('now', '-@param2@')
-        AND test_failures.error_name LIKE '%@param1@%'
+        AND test_failures.error_name LIKE '@param1@'
     GROUP BY build_status.job_name
 )
 SELECT build_status.job_name,
