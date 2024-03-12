@@ -35,7 +35,7 @@ recent_failures AS (
 		build_status.build_number = test_failures.build_number
 		AND build_status.job_name = test_failures.job_name
 	WHERE build_status.build_datetime >= DATE('now', '-30 days')
-		AND test_failures.error_name LIKE '%@param1@%'
+		AND test_failures.error_name LIKE '@param1@'
 		AND build_status.node_name LIKE '%@param3@%'
 	GROUP BY build_status.node_name, build_status.job_name
 ) 
