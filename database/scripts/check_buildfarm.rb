@@ -40,7 +40,12 @@ def get_issues_list(jobs_to_filter = [])
   issues_map = Hash.new
   test_regressions_today.each do |tr|
     tr_flakiness = %x{./sql_run.sh calculate_flakiness_jobs.sql "#{tr['error_name']}" "15 days"}
-    tr_flakiness_output = parse_sql_output(tr_flakiness).uniq { |item| item["job_name"] }
+    tr_flakiness_raw_out = parse_sql_output(tr_flakiness)
+    if tr_flakiness_raw_out.nil?
+      puts "WARNING: Error parsing flakiness output for '#{tr['error_name']}' in #{tr['job_name']}##{tr['build_number']}"
+      next
+    end
+    tr_flakiness_output = tr_flakiness_raw_out.uniq { |item| item["job_name"] }
     tr_flakiness_output.map { |item|
       item['error_name'] = tr['error_name']
       item['github_issues'] = parse_known_issues(tr['error_name'])
