@@ -18,7 +18,8 @@ else
     param_n=1
     while echo "$query" | grep -qo "param$param_n" 
     do
-        query=$(echo "$query" | sed "s|@param$param_n@|${args[$param_n]}|g")
+        arg_param=$(echo "${args[$param_n]}" | sed -e 's|\\|\\\\|g') # escape backslashes
+        query=$(echo "$query" | sed "s|@param$param_n@|$arg_param|g")
         param_n=$((param_n+1))
     done
 
