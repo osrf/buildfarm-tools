@@ -19,24 +19,24 @@
 | [sdformat-main][sdformat-main-repo] | [![Build Status][sdformat-main-Linux-badge]][sdformat-main-Linux] | [![Build Status][sdformat-main-Windows-badge]][sdformat-main-Windows] | [![Build Status][sdformat-main-Homebrew-badge]][sdformat-main-Homebrew] | [![Build Status][sdformat15-Nightlies-badge]][sdformat15-Nightlies] |
 
 ## gz-harmonic
-| | Linux | Windows | Homebrew |
-|-|-|-|-|
-| [sim-8][sim-8-repo] | [![Build Status][sim-8-Linux-badge]][sim-8-Linux] | [![Build Status][sim-8-Windows-badge]][sim-8-Windows] | [![Build Status][sim-8-Homebrew-badge]][sim-8-Homebrew] |
-| [gui-8][gui-8-repo] | [![Build Status][gui-8-Linux-badge]][gui-8-Linux] | [![Build Status][gui-8-Windows-badge]][gui-8-Windows] | [![Build Status][gui-8-Homebrew-badge]][gui-8-Homebrew] |
-| [launch-7][launch-7-repo] | [![Build Status][launch-7-Linux-badge]][launch-7-Linux] | [![Build Status][launch-7-Windows-badge]][launch-7-Windows] | [![Build Status][launch-7-Homebrew-badge]][launch-7-Homebrew] |
-| [rendering-8][rendering-8-repo] | [![Build Status][rendering-8-Linux-badge]][rendering-8-Linux] | [![Build Status][rendering-8-Windows-badge]][rendering-8-Windows] | [![Build Status][rendering-8-Homebrew-badge]][rendering-8-Homebrew] |
-| [sensors-8][sensors-8-repo] | [![Build Status][sensors-8-Linux-badge]][sensors-8-Linux] | [![Build Status][sensors-8-Windows-badge]][sensors-8-Windows] | [![Build Status][sensors-8-Homebrew-badge]][sensors-8-Homebrew] |
-| [physics-7][physics-7-repo] | [![Build Status][physics-7-Linux-badge]][physics-7-Linux] | [![Build Status][physics-7-Windows-badge]][physics-7-Windows] | [![Build Status][physics-7-Homebrew-badge]][physics-7-Homebrew] |
-| [fuel-tools-9][fuel-tools-9-repo] | [![Build Status][fuel-tools-9-Linux-badge]][fuel-tools-9-Linux] | [![Build Status][fuel-tools-9-Windows-badge]][fuel-tools-9-Windows] | [![Build Status][fuel-tools-9-Homebrew-badge]][fuel-tools-9-Homebrew] |
-| [math-7][math-7-repo] | [![Build Status][math-7-Linux-badge]][math-7-Linux] | [![Build Status][math-7-Windows-badge]][math-7-Windows] | [![Build Status][math-7-Homebrew-badge]][math-7-Homebrew] |
-| [plugin-2][plugin-2-repo] | [![Build Status][plugin-2-Linux-badge]][plugin-2-Linux] | [![Build Status][plugin-2-Windows-badge]][plugin-2-Windows] | [![Build Status][plugin-2-Homebrew-badge]][plugin-2-Homebrew] |
-| [msgs-10][msgs-10-repo] | [![Build Status][msgs-10-Linux-badge]][msgs-10-Linux] | [![Build Status][msgs-10-Windows-badge]][msgs-10-Windows] | [![Build Status][msgs-10-Homebrew-badge]][msgs-10-Homebrew] |
-| [transport-13][transport-13-repo] | [![Build Status][transport-13-Linux-badge]][transport-13-Linux] | [![Build Status][transport-13-Windows-badge]][transport-13-Windows] | [![Build Status][transport-13-Homebrew-badge]][transport-13-Homebrew] |
-| [common-5][common-5-repo] | [![Build Status][common-5-Linux-badge]][common-5-Linux] | [![Build Status][common-5-Windows-badge]][common-5-Windows] | [![Build Status][common-5-Homebrew-badge]][common-5-Homebrew] |
-| [cmake-3][cmake-3-repo] | [![Build Status][cmake-3-Linux-badge]][cmake-3-Linux] | [![Build Status][cmake-3-Windows-badge]][cmake-3-Windows] | [![Build Status][cmake-3-Homebrew-badge]][cmake-3-Homebrew] |
-| [tools-2][tools-2-repo] | [![Build Status][tools-2-Linux-badge]][tools-2-Linux] | [![Build Status][tools-2-Windows-badge]][tools-2-Windows] | [![Build Status][tools-2-Homebrew-badge]][tools-2-Homebrew] |
-| [utils-2][utils-2-repo] | [![Build Status][utils-2-Linux-badge]][utils-2-Linux] | [![Build Status][utils-2-Windows-badge]][utils-2-Windows] | [![Build Status][utils-2-Homebrew-badge]][utils-2-Homebrew] |
-| [sdformat-14][sdformat-14-repo] | [![Build Status][sdformat-14-Linux-badge]][sdformat-14-Linux] | [![Build Status][sdformat-14-Windows-badge]][sdformat-14-Windows] | [![Build Status][sdformat-14-Homebrew-badge]][sdformat-14-Homebrew] |
+| | Linux Noble | Linux | Windows | Homebrew |
+|-|-|-|-|-|
+| [sim-8][sim-8-repo] | [![Build Status][sim-8-Linux Noble-badge]][sim-8-Linux Noble] | [![Build Status][sim-8-Linux-badge]][sim-8-Linux] | [![Build Status][sim-8-Windows-badge]][sim-8-Windows] | [![Build Status][sim-8-Homebrew-badge]][sim-8-Homebrew] |
+| [gui-8][gui-8-repo] | [![Build Status][gui-8-Linux Noble-badge]][gui-8-Linux Noble] | [![Build Status][gui-8-Linux-badge]][gui-8-Linux] | [![Build Status][gui-8-Windows-badge]][gui-8-Windows] | [![Build Status][gui-8-Homebrew-badge]][gui-8-Homebrew] |
+| [launch-7][launch-7-repo] | [![Build Status][launch-7-Linux Noble-badge]][launch-7-Linux Noble] | [![Build Status][launch-7-Linux-badge]][launch-7-Linux] | [![Build Status][launch-7-Windows-badge]][launch-7-Windows] | [![Build Status][launch-7-Homebrew-badge]][launch-7-Homebrew] |
+| [rendering-8][rendering-8-repo] | [![Build Status][rendering-8-Linux Noble-badge]][rendering-8-Linux Noble] | [![Build Status][rendering-8-Linux-badge]][rendering-8-Linux] | [![Build Status][rendering-8-Windows-badge]][rendering-8-Windows] | [![Build Status][rendering-8-Homebrew-badge]][rendering-8-Homebrew] |
+| [sensors-8][sensors-8-repo] | [![Build Status][sensors-8-Linux Noble-badge]][sensors-8-Linux Noble] | [![Build Status][sensors-8-Linux-badge]][sensors-8-Linux] | [![Build Status][sensors-8-Windows-badge]][sensors-8-Windows] | [![Build Status][sensors-8-Homebrew-badge]][sensors-8-Homebrew] |
+| [physics-7][physics-7-repo] | [![Build Status][physics-7-Linux Noble-badge]][physics-7-Linux Noble] | [![Build Status][physics-7-Linux-badge]][physics-7-Linux] | [![Build Status][physics-7-Windows-badge]][physics-7-Windows] | [![Build Status][physics-7-Homebrew-badge]][physics-7-Homebrew] |
+| [fuel-tools-9][fuel-tools-9-repo] | [![Build Status][fuel-tools-9-Linux Noble-badge]][fuel-tools-9-Linux Noble] | [![Build Status][fuel-tools-9-Linux-badge]][fuel-tools-9-Linux] | [![Build Status][fuel-tools-9-Windows-badge]][fuel-tools-9-Windows] | [![Build Status][fuel-tools-9-Homebrew-badge]][fuel-tools-9-Homebrew] |
+| [math-7][math-7-repo] | [![Build Status][math-7-Linux Noble-badge]][math-7-Linux Noble] | [![Build Status][math-7-Linux-badge]][math-7-Linux] | [![Build Status][math-7-Windows-badge]][math-7-Windows] | [![Build Status][math-7-Homebrew-badge]][math-7-Homebrew] |
+| [plugin-2][plugin-2-repo] | [![Build Status][plugin-2-Linux Noble-badge]][plugin-2-Linux Noble] | [![Build Status][plugin-2-Linux-badge]][plugin-2-Linux] | [![Build Status][plugin-2-Windows-badge]][plugin-2-Windows] | [![Build Status][plugin-2-Homebrew-badge]][plugin-2-Homebrew] |
+| [msgs-10][msgs-10-repo] | [![Build Status][msgs-10-Linux Noble-badge]][msgs-10-Linux Noble] | [![Build Status][msgs-10-Linux-badge]][msgs-10-Linux] | [![Build Status][msgs-10-Windows-badge]][msgs-10-Windows] | [![Build Status][msgs-10-Homebrew-badge]][msgs-10-Homebrew] |
+| [transport-13][transport-13-repo] | [![Build Status][transport-13-Linux Noble-badge]][transport-13-Linux Noble] | [![Build Status][transport-13-Linux-badge]][transport-13-Linux] | [![Build Status][transport-13-Windows-badge]][transport-13-Windows] | [![Build Status][transport-13-Homebrew-badge]][transport-13-Homebrew] |
+| [common-5][common-5-repo] | [![Build Status][common-5-Linux Noble-badge]][common-5-Linux Noble] | [![Build Status][common-5-Linux-badge]][common-5-Linux] | [![Build Status][common-5-Windows-badge]][common-5-Windows] | [![Build Status][common-5-Homebrew-badge]][common-5-Homebrew] |
+| [cmake-3][cmake-3-repo] | [![Build Status][cmake-3-Linux Noble-badge]][cmake-3-Linux Noble] | [![Build Status][cmake-3-Linux-badge]][cmake-3-Linux] | [![Build Status][cmake-3-Windows-badge]][cmake-3-Windows] | [![Build Status][cmake-3-Homebrew-badge]][cmake-3-Homebrew] |
+| [tools-2][tools-2-repo] | [![Build Status][tools-2-Linux Noble-badge]][tools-2-Linux Noble] | [![Build Status][tools-2-Linux-badge]][tools-2-Linux] | [![Build Status][tools-2-Windows-badge]][tools-2-Windows] | [![Build Status][tools-2-Homebrew-badge]][tools-2-Homebrew] |
+| [utils-2][utils-2-repo] | [![Build Status][utils-2-Linux Noble-badge]][utils-2-Linux Noble] | [![Build Status][utils-2-Linux-badge]][utils-2-Linux] | [![Build Status][utils-2-Windows-badge]][utils-2-Windows] | [![Build Status][utils-2-Homebrew-badge]][utils-2-Homebrew] |
+| [sdformat-14][sdformat-14-repo] | [![Build Status][sdformat-14-Linux Noble-badge]][sdformat-14-Linux Noble] | [![Build Status][sdformat-14-Linux-badge]][sdformat-14-Linux] | [![Build Status][sdformat-14-Windows-badge]][sdformat-14-Windows] | [![Build Status][sdformat-14-Homebrew-badge]][sdformat-14-Homebrew] |
 
 * [harmonic-ros_gzharmonic_bridge-install-pkg_humble-ci-jammy-amd64][harmonic-ros_gzharmonic_bridge-install-pkg_humble-ci-jammy-amd64-repo]: [![Build Status][harmonic-ros_gzharmonic_bridge-install-pkg_humble-ci-jammy-amd64-badge]][harmonic-ros_gzharmonic_bridge-install-pkg_humble-ci-jammy-amd64-job]
 * [harmonic-ros_gzharmonic_bridge-install-pkg_iron-ci-jammy-amd64][harmonic-ros_gzharmonic_bridge-install-pkg_iron-ci-jammy-amd64-repo]: [![Build Status][harmonic-ros_gzharmonic_bridge-install-pkg_iron-ci-jammy-amd64-badge]][harmonic-ros_gzharmonic_bridge-install-pkg_iron-ci-jammy-amd64-job]
@@ -246,6 +246,8 @@
 [sdformat15-Nightlies]: https://build.osrfoundation.org/job/sdformat15-debbuilder
 [sdformat15-Nightlies-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat15-debbuilder
 [sim-8-repo]: https://github.com/gazebosim/gz-sim
+[sim-8-Linux Noble]: https://build.osrfoundation.org/job/gz_sim-ci-gz-sim8-noble-amd64
+[sim-8-Linux Noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sim-ci-gz-sim8-noble-amd64
 [sim-8-Linux]: https://build.osrfoundation.org/job/gz_sim-ci-gz-sim8-jammy-amd64
 [sim-8-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sim-ci-gz-sim8-jammy-amd64
 [sim-8-Windows]: https://build.osrfoundation.org/job/gz_sim-8-win
@@ -253,6 +255,8 @@
 [sim-8-Homebrew]: https://build.osrfoundation.org/job/gz_sim-ci-gz-sim8-homebrew-amd64
 [sim-8-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sim-ci-gz-sim8-homebrew-amd64
 [gui-8-repo]: https://github.com/gazebosim/gz-gui
+[gui-8-Linux Noble]: https://build.osrfoundation.org/job/gz_gui-ci-gz-gui8-noble-amd64
+[gui-8-Linux Noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_gui-ci-gz-gui8-noble-amd64
 [gui-8-Linux]: https://build.osrfoundation.org/job/gz_gui-ci-gz-gui8-jammy-amd64
 [gui-8-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_gui-ci-gz-gui8-jammy-amd64
 [gui-8-Windows]: https://build.osrfoundation.org/job/gz_gui-8-win
@@ -260,6 +264,8 @@
 [gui-8-Homebrew]: https://build.osrfoundation.org/job/gz_gui-ci-gz-gui8-homebrew-amd64
 [gui-8-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_gui-ci-gz-gui8-homebrew-amd64
 [launch-7-repo]: https://github.com/gazebosim/gz-launch
+[launch-7-Linux Noble]: https://build.osrfoundation.org/job/gz_launch-ci-gz-launch7-noble-amd64
+[launch-7-Linux Noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_launch-ci-gz-launch7-noble-amd64
 [launch-7-Linux]: https://build.osrfoundation.org/job/gz_launch-ci-gz-launch7-jammy-amd64
 [launch-7-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_launch-ci-gz-launch7-jammy-amd64
 [launch-7-Windows]: https://build.osrfoundation.org/job/gz_launch-7-win
@@ -267,6 +273,8 @@
 [launch-7-Homebrew]: https://build.osrfoundation.org/job/gz_launch-ci-gz-launch7-homebrew-amd64
 [launch-7-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_launch-ci-gz-launch7-homebrew-amd64
 [rendering-8-repo]: https://github.com/gazebosim/gz-rendering
+[rendering-8-Linux Noble]: https://build.osrfoundation.org/job/gz_rendering-ci-gz-rendering8-noble-amd64
+[rendering-8-Linux Noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_rendering-ci-gz-rendering8-noble-amd64
 [rendering-8-Linux]: https://build.osrfoundation.org/job/gz_rendering-ci-gz-rendering8-jammy-amd64
 [rendering-8-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_rendering-ci-gz-rendering8-jammy-amd64
 [rendering-8-Windows]: https://build.osrfoundation.org/job/gz_rendering-8-win
@@ -274,6 +282,8 @@
 [rendering-8-Homebrew]: https://build.osrfoundation.org/job/gz_rendering-ci-gz-rendering8-homebrew-amd64
 [rendering-8-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_rendering-ci-gz-rendering8-homebrew-amd64
 [sensors-8-repo]: https://github.com/gazebosim/gz-sensors
+[sensors-8-Linux Noble]: https://build.osrfoundation.org/job/gz_sensors-ci-gz-sensors8-noble-amd64
+[sensors-8-Linux Noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sensors-ci-gz-sensors8-noble-amd64
 [sensors-8-Linux]: https://build.osrfoundation.org/job/gz_sensors-ci-gz-sensors8-jammy-amd64
 [sensors-8-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sensors-ci-gz-sensors8-jammy-amd64
 [sensors-8-Windows]: https://build.osrfoundation.org/job/gz_sensors-8-win
@@ -281,6 +291,8 @@
 [sensors-8-Homebrew]: https://build.osrfoundation.org/job/gz_sensors-ci-gz-sensors8-homebrew-amd64
 [sensors-8-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sensors-ci-gz-sensors8-homebrew-amd64
 [physics-7-repo]: https://github.com/gazebosim/gz-physics
+[physics-7-Linux Noble]: https://build.osrfoundation.org/job/gz_physics-ci-gz-physics7-noble-amd64
+[physics-7-Linux Noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_physics-ci-gz-physics7-noble-amd64
 [physics-7-Linux]: https://build.osrfoundation.org/job/gz_physics-ci-gz-physics7-jammy-amd64
 [physics-7-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_physics-ci-gz-physics7-jammy-amd64
 [physics-7-Windows]: https://build.osrfoundation.org/job/gz_physics-7-win
@@ -288,6 +300,8 @@
 [physics-7-Homebrew]: https://build.osrfoundation.org/job/gz_physics-ci-gz-physics7-homebrew-amd64
 [physics-7-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_physics-ci-gz-physics7-homebrew-amd64
 [fuel-tools-9-repo]: https://github.com/gazebosim/gz-fuel-tools
+[fuel-tools-9-Linux Noble]: https://build.osrfoundation.org/job/gz_fuel_tools-ci-gz-fuel-tools9-noble-amd64
+[fuel-tools-9-Linux Noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_fuel_tools-ci-gz-fuel-tools9-noble-amd64
 [fuel-tools-9-Linux]: https://build.osrfoundation.org/job/gz_fuel_tools-ci-gz-fuel-tools9-jammy-amd64
 [fuel-tools-9-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_fuel_tools-ci-gz-fuel-tools9-jammy-amd64
 [fuel-tools-9-Windows]: https://build.osrfoundation.org/job/gz_fuel_tools-9-win
@@ -295,6 +309,8 @@
 [fuel-tools-9-Homebrew]: https://build.osrfoundation.org/job/gz_fuel_tools-ci-gz-fuel-tools9-homebrew-amd64
 [fuel-tools-9-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_fuel_tools-ci-gz-fuel-tools9-homebrew-amd64
 [math-7-repo]: https://github.com/gazebosim/gz-math
+[math-7-Linux Noble]: https://build.osrfoundation.org/job/gz_math-ci-gz-math7-noble-amd64
+[math-7-Linux Noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_math-ci-gz-math7-noble-amd64
 [math-7-Linux]: https://build.osrfoundation.org/job/gz_math-ci-gz-math7-jammy-amd64
 [math-7-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_math-ci-gz-math7-jammy-amd64
 [math-7-Windows]: https://build.osrfoundation.org/job/gz_math-7-win
@@ -302,6 +318,8 @@
 [math-7-Homebrew]: https://build.osrfoundation.org/job/gz_math-ci-gz-math7-homebrew-amd64
 [math-7-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_math-ci-gz-math7-homebrew-amd64
 [plugin-2-repo]: https://github.com/gazebosim/gz-plugin
+[plugin-2-Linux Noble]: https://build.osrfoundation.org/job/gz_plugin-ci-gz-plugin2-noble-amd64
+[plugin-2-Linux Noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_plugin-ci-gz-plugin2-noble-amd64
 [plugin-2-Linux]: https://build.osrfoundation.org/job/gz_plugin-ci-gz-plugin2-jammy-amd64
 [plugin-2-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_plugin-ci-gz-plugin2-jammy-amd64
 [plugin-2-Windows]: https://build.osrfoundation.org/job/gz_plugin-2-win
@@ -309,6 +327,8 @@
 [plugin-2-Homebrew]: https://build.osrfoundation.org/job/gz_plugin-ci-gz-plugin2-homebrew-amd64
 [plugin-2-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_plugin-ci-gz-plugin2-homebrew-amd64
 [msgs-10-repo]: https://github.com/gazebosim/gz-msgs
+[msgs-10-Linux Noble]: https://build.osrfoundation.org/job/gz_msgs-ci-gz-msgs10-noble-amd64
+[msgs-10-Linux Noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_msgs-ci-gz-msgs10-noble-amd64
 [msgs-10-Linux]: https://build.osrfoundation.org/job/gz_msgs-ci-gz-msgs10-jammy-amd64
 [msgs-10-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_msgs-ci-gz-msgs10-jammy-amd64
 [msgs-10-Windows]: https://build.osrfoundation.org/job/gz_msgs-10-win
@@ -316,6 +336,8 @@
 [msgs-10-Homebrew]: https://build.osrfoundation.org/job/gz_msgs-ci-gz-msgs10-homebrew-amd64
 [msgs-10-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_msgs-ci-gz-msgs10-homebrew-amd64
 [transport-13-repo]: https://github.com/gazebosim/gz-transport
+[transport-13-Linux Noble]: https://build.osrfoundation.org/job/gz_transport-ci-gz-transport13-noble-amd64
+[transport-13-Linux Noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_transport-ci-gz-transport13-noble-amd64
 [transport-13-Linux]: https://build.osrfoundation.org/job/gz_transport-ci-gz-transport13-jammy-amd64
 [transport-13-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_transport-ci-gz-transport13-jammy-amd64
 [transport-13-Windows]: https://build.osrfoundation.org/job/gz_transport-13-win
@@ -323,6 +345,8 @@
 [transport-13-Homebrew]: https://build.osrfoundation.org/job/gz_transport-ci-gz-transport13-homebrew-amd64
 [transport-13-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_transport-ci-gz-transport13-homebrew-amd64
 [common-5-repo]: https://github.com/gazebosim/gz-common
+[common-5-Linux Noble]: https://build.osrfoundation.org/job/gz_common-ci-gz-common5-noble-amd64
+[common-5-Linux Noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_common-ci-gz-common5-noble-amd64
 [common-5-Linux]: https://build.osrfoundation.org/job/gz_common-ci-gz-common5-jammy-amd64
 [common-5-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_common-ci-gz-common5-jammy-amd64
 [common-5-Windows]: https://build.osrfoundation.org/job/gz_common-5-win
@@ -330,6 +354,8 @@
 [common-5-Homebrew]: https://build.osrfoundation.org/job/gz_common-ci-gz-common5-homebrew-amd64
 [common-5-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_common-ci-gz-common5-homebrew-amd64
 [cmake-3-repo]: https://github.com/gazebosim/gz-cmake
+[cmake-3-Linux Noble]: https://build.osrfoundation.org/job/gz_cmake-ci-gz-cmake3-noble-amd64
+[cmake-3-Linux Noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_cmake-ci-gz-cmake3-noble-amd64
 [cmake-3-Linux]: https://build.osrfoundation.org/job/gz_cmake-ci-gz-cmake3-jammy-amd64
 [cmake-3-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_cmake-ci-gz-cmake3-jammy-amd64
 [cmake-3-Windows]: https://build.osrfoundation.org/job/gz_cmake-3-win
@@ -337,6 +363,8 @@
 [cmake-3-Homebrew]: https://build.osrfoundation.org/job/gz_cmake-ci-gz-cmake3-homebrew-amd64
 [cmake-3-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_cmake-ci-gz-cmake3-homebrew-amd64
 [tools-2-repo]: https://github.com/gazebosim/gz-tools
+[tools-2-Linux Noble]: https://build.osrfoundation.org/job/gz_tools-ci-gz-tools2-noble-amd64
+[tools-2-Linux Noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_tools-ci-gz-tools2-noble-amd64
 [tools-2-Linux]: https://build.osrfoundation.org/job/gz_tools-ci-gz-tools2-jammy-amd64
 [tools-2-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_tools-ci-gz-tools2-jammy-amd64
 [tools-2-Windows]: https://build.osrfoundation.org/job/gz_tools-2-win
@@ -344,6 +372,8 @@
 [tools-2-Homebrew]: https://build.osrfoundation.org/job/gz_tools-ci-gz-tools2-homebrew-amd64
 [tools-2-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_tools-ci-gz-tools2-homebrew-amd64
 [utils-2-repo]: https://github.com/gazebosim/gz-utils
+[utils-2-Linux Noble]: https://build.osrfoundation.org/job/gz_utils-ci-gz-utils2-noble-amd64
+[utils-2-Linux Noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_utils-ci-gz-utils2-noble-amd64
 [utils-2-Linux]: https://build.osrfoundation.org/job/gz_utils-ci-gz-utils2-jammy-amd64
 [utils-2-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_utils-ci-gz-utils2-jammy-amd64
 [utils-2-Windows]: https://build.osrfoundation.org/job/gz_utils-2-win
@@ -351,6 +381,8 @@
 [utils-2-Homebrew]: https://build.osrfoundation.org/job/gz_utils-ci-gz-utils2-homebrew-amd64
 [utils-2-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_utils-ci-gz-utils2-homebrew-amd64
 [sdformat-14-repo]: https://github.com/gazebosim/sdformat
+[sdformat-14-Linux Noble]: https://build.osrfoundation.org/job/sdformat-ci-sdf14-noble-amd64
+[sdformat-14-Linux Noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat-ci-sdf14-noble-amd64
 [sdformat-14-Linux]: https://build.osrfoundation.org/job/sdformat-ci-sdf14-jammy-amd64
 [sdformat-14-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat-ci-sdf14-jammy-amd64
 [sdformat-14-Windows]: https://build.osrfoundation.org/job/sdformat-sdf14-win
