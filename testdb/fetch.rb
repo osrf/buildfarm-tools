@@ -27,7 +27,8 @@ DataType = Struct.new(:urlpath, :filename)
 optparser.parse!(ARGV)
 VALID_DATA_TYPES = {
   "testreport" => DataType.new("testReport/api/json", "testreport.json.gz"),
-  "buildlog" => DataType.new("consoleText", "build.txt")
+  "buildlog" => DataType.new("consoleText", "build.txt"),
+  "timestamps" => DataType.new("timestamps/?elapsed=HH:mm:ss.S&appendLog", "timestamps.txt")
 }
 
 data_types = []
