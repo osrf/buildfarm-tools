@@ -141,8 +141,8 @@ From http://build.ros2.org . All Linux jobs, alternating days for released distr
 [Jci-fastrtps-dynamic]:  http://build.ros2.org/view/Jci/job/Jci__nightly-fastrtps-dynamic_ubuntu_noble_amd64/
 [Jci-benchmark-badge]: http://build.ros2.org/buildStatus/icon?job=Jci__benchmark_ubuntu_noble_amd64
 [Jci-benchmark]: http://build.ros2.org/view/Jci/job/Jci__benchmark_ubuntu_noble_amd64/
-[Jci-coverage-badge]: https://ci.ros2.org/buildStatus/icon?job=nightly_linux_iron_coverage
-[Jci-coverage]: https://ci.ros2.org/job/nightly_linux_iron_coverage/
+[Jci-coverage-badge]: https://ci.ros2.org/buildStatus/icon?job=nightly_linux_jazzy_coverage
+[Jci-coverage]: https://ci.ros2.org/job/nightly_linux_jazzy_coverage/
 
 [Rci-release-badge]: http://build.ros2.org/buildStatus/icon?job=Rci__nightly-release_ubuntu_noble_amd64
 [Rci-release]: http://build.ros2.org/view/Rci/job/Rci__nightly-release_ubuntu_noble_amd64/
