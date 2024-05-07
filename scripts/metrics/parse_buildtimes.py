@@ -11,6 +11,7 @@ parser.add_argument('-d', '--domain', help='domain name', type=str, required=Tru
 parser.add_argument('-j', '--job', help='job name', type=str, required=True)
 parser.add_argument('-b', '--build', help='build number. All builds if not specified', type=int)
 parser.add_argument('-o', '--output', help='output file', type=str)
+parser.add_argument('--reuse', help='reuse existing data', action='store_true')
 
 TEST_DB_DIR = f"{os.environ['HOME']}/osrf/testdb/"
 TIME_FORMAT = '%H:%M:%S.%f'
@@ -46,7 +47,13 @@ def parse_times(filename: str):
     return sections
 
 args = parser.parse_args()
+
+if args.reuse and not args.output:
+    print("Cannot reuse data without output file")
+    sys.exit(1)
+
 args.output = args.output if args.output else f"{args.job}_buildtimes.csv"
+
 
 job_dir = os.path.join(TEST_DB_DIR, args.domain, args.job)
 if not os.path.exists(job_dir):
@@ -59,8 +66,8 @@ if args.build:
 else:
     builds = sorted(os.listdir(job_dir), reverse=True)
 
-with open(args.output, 'w') as f:
-    f.write(','.join(OUTPUT_HEADERS) + '\n')
+with open(args.output, 'a' if args.reuse else 'w') as f:
+    f.write(','.join(OUTPUT_HEADERS) + '\n')  if not args.reuse else None
     for build in builds:
         log_file = os.path.join(job_dir, build, 'timestamps.txt')
         if not os.path.exists(log_file):
