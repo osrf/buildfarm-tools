@@ -27,6 +27,16 @@ sections_regex = re.compile(r"^(\d{2}:\d{2}:\d{2}\.\d{3}) +# BEGIN SECTION: (.+)
 subsections_regex = re.compile(r"^(\d{2}:\d{2}:\d{2}\.\d{3}) +# BEGIN SUBSECTION: (.+)$[\s\S]+?^(\d{2}:\d{2}:\d{2}\.\d{3}) +(?:# END SUBSECTION$|Finished: (FAILURE))+?", re.MULTILINE)
 packages_regex = re.compile(r"^(\d{2}:\d{2}:\d{2}\.\d{3}) +Starting >>> (.+)$[\s\S]+?^(\d{2}:\d{2}:\d{2}\.\d{3}) +Finished(?: <<< \2|: (FAILURE))+?", re.MULTILINE)
 
+# \1: start time
+# \2: section name
+start_pkg_regex = re.compile(r"^(\d{2}:\d{2}:\d{2}\.\d{3}) +Starting >>> (.+)$", re.MULTILINE)
+
+# \1: end time
+# \2: section name
+# \3: duration
+# \4: '' or 'FAILURE'
+end_pkg_regex = re.compile(r"^(\d{2}:\d{2}:\d{2}\.\d{3}) +Finished(?: <<< (.+) \[(.*)\]|: (FAILURE))", re.MULTILINE)
+
 def parse_times(filename: str):
     with open(filename, 'r') as f:
         text = f.read()
