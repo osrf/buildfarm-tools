@@ -1,27 +1,102 @@
-def parse_sql_output(output, keys = [])
-  # This function parses the output of an SQL query and returns an array of hashes
-  # The keys of the hashes are the column names of the SQL query or the keys passed as parameter
-  # Note: The SQL query must be formatted using sql_run.sh command
+# frozen_string_literal: true
 
-  if output.empty?
-    return nil
+require 'open3'
+
+module BuildfarmToolsLib
+  class BuildfarmToolsError < RuntimeError; end
+
+  KNOWN_REASONS = Set.new([
+                            'Jenkins channel closing down (Agent disconnected)',
+                            'Network error: Failed to clone github repo'
+                          ])
+
+  def self.build_regressions_today(filter_known: false)
+    # Keys: job_name, build_number, build_datetime, failure_reason, last_section
+    out = run_command('./sql_run.sh builds_failing_today.sql')
+    out.filter! { |e| !KNOWN_REASONS.include? e['failure_reason'] } if filter_known
+    out
   end
 
-  output = output.split("\n")
-  output_array = []
-  if keys.empty?
-    keys = output.shift.split("|")
+  def self.known_issues(status: nil)
+    # Keys: error_name, job_name, github_issue, status
+    out = run_command('./sql_run.sh get_known_issues.sql')
+    out.filter! { |e| e['status'] == status.upcase } unless status.nil?
+    out
   end
 
-  output.each do |line|
-    line = line.split("|")
-    line_hash = Hash.new
-    keys.each_index { |i|
-      line_hash[keys[i]] = line[i]
-    }
-    output_array.append(line_hash)
+  def self.test_regression_history(test_name, job_name)
+    # Keys: error_name, job_name, build_number, build_datetime, node_name
+    run_command('./sql_run.sh test_regression_history.sql', args: [test_name, job_name])
   end
-  output_array
+
+  def self.test_regressions_today(filter_known: false, only_consistent: false)
+    # Keys: job_name, build_number, error_name, build_datetime, node_name
+    out = run_command('./sql_run.sh errors_check_last_build.sql')
+    if filter_known
+      known_error_names = Set.new(known_issues(status: 'open').map { |e| e['error_name'] })
+      out.filter! { |e| !known_error_names.include? e['error_name'] }
+    end
+    if only_consistent
+      out.filter! { |tr| tr['age'] >= 3 }
+      out.sort_by! { |tr| tr['age'] }
+    end
+    out
+  end
+
+  def self.flaky_test_regressions(filter_known: false, time_range: "15 days")
+    today_regressions = test_regressions_today(filter_known: filter_known)
+    out = []
+    today_regressions.each do |tr|
+      next if !tr['age'].nil? && tr['age'] >= 3
+      tr_flakiness = run_command("./sql_run.sh calculate_flakiness_jobs.sql", args:[tr['error_name'], time_range])
+
+      if tr_flakiness.nil?
+        puts "WARNING: Error parsing flakiness output for '#{tr['error_name']}' in #{tr['job_name']}##{tr['build_number']}"
+        next
+      end
+      
+      if tr_flakiness.any? { |item| item['failure_count'].to_i >= 3 }
+        tr['flakiness'] = tr_flakiness.sort_by { |e| -e['failure_percentage'].to_f }
+        out << tr
+      end
+    end
+    out.sort_by! { |e| -e['flakiness'][0]['failure_percentage'].to_f }
+    out
+  end
+
+  def self.run_command(cmd, args: [], keys: [])
+    cmd += " '#{args.shift}'" until args.empty?
+    p "Command: #{cmd}"
+    begin
+      Open3.popen3(cmd) do |_, o, _, _|
+        parse_sql_output(o.read.chomp, keys)
+      end
+    rescue StandardError => e
+      raise BuildfarmToolsError, e
+    end
+  end
+
+  def self.parse_sql_output(output, keys = [])
+    # This function parses the output of an SQL query and returns an array of hashes
+    # The keys of the hashes are the column names of the SQL query or the keys passed as parameter
+    # Note: The SQL query must be formatted using sql_run.sh command
+
+    return nil if output.empty?
+
+    output = output.split("\n")
+    output_array = []
+    keys = output.shift.split('|') if keys.empty?
+
+    output.each do |line|
+      line = line.split('|')
+      line_hash = {}
+      keys.each_index do |i|
+        line_hash[keys[i]] = line[i]
+      end
+      output_array.append(line_hash)
+    end
+    output_array
+  end
 end
 
 def parse_known_issues(error_name, status = nil)
@@ -29,12 +104,10 @@ def parse_known_issues(error_name, status = nil)
   # If the error is not a known issue, it returns an empty list
 
   is_known_issue = parse_sql_output(%x{./sql_run.sh is_known_issue.sql "#{error_name}"})
-  unless is_known_issue
-    return []
-  end
+  return [] unless is_known_issue
 
-  if status
-    is_known_issue = is_known_issue.select { |issue| issue["status"] == status }
-  end
-  is_known_issue.map { |issue| { github_issue: issue["github_issue"], status: issue["status"] } }.uniq
+  is_known_issue = is_known_issue.select { |issue| issue['status'] == status } if status
+  is_known_issue.map { |issue| { github_issue: issue['github_issue'], status: issue['status'] } }.uniq
 end
+
+# puts BuildfarmToolsLib::test_regressions_today(filter_known: true, only_consistent: true)

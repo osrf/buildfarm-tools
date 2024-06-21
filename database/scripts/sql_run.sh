@@ -8,7 +8,7 @@ if [ -z "$1" ]; then
     echo "ERROR, sql file missing"
 elif [ -z "$2" ]; then
     # Take the received script and send it to sql
-    cat $1 | sqlite3 ../buildfarmer.db
+    cat $1 | sqlite3 -header ../buildfarmer.db
 else
     # If there are up to two paremeters ($2, $3), replace them in the sql.
     # Expected strings to replace are @param1@ and @param2@
@@ -29,9 +29,8 @@ else
         exit 1
     }
     exec 3>"$tmpfile" # file descriptor to delete file automatically
-    echo ".headers on" >&3
     echo "$query" >&3
-    cat "$tmpfile" | sqlite3 ../buildfarmer.db
+    cat "$tmpfile" | sqlite3 -header ../buildfarmer.db
     exec 3>&-
     rm "$tmpfile"
 
