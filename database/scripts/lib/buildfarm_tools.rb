@@ -44,8 +44,9 @@ module BuildfarmToolsLib
   end
 
   def self.flaky_test_regressions(filter_known: false, time_range: "15 days")
-    today_regressions = test_regressions_today(filter_known: filter_known)
+    # Keys: job_name, build_number, error_name, build_datetime, node_name, flakiness
     out = []
+    today_regressions = test_regressions_today(filter_known: filter_known)
     today_regressions.each do |tr|
       next if !tr['age'].nil? && tr['age'] >= 3
       tr_flakiness = run_command("./sql_run.sh calculate_flakiness_jobs.sql", args:[tr['error_name'], time_range])
