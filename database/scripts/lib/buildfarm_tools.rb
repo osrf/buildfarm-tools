@@ -58,7 +58,7 @@ module BuildfarmToolsLib
         puts "WARNING: Error parsing flakiness output for '#{tr['error_name']}' in #{tr['job_name']}##{tr['build_number']}"
         next
       end
-      if tr_flakiness.any? { |item| item['failure_count'].to_i >= 3 }
+      if tr_flakiness.any? { |item| item['failure_count'].to_i >= FLAKY_BUILDS_THRESHOLD }
         tr['flakiness'] = tr_flakiness
         out << tr
       end
