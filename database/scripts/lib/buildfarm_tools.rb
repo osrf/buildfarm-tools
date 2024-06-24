@@ -86,7 +86,7 @@ module BuildfarmToolsLib
 
   def self.run_command(cmd, args: [], keys: [])
     cmd += " '#{args.shift}'" until args.empty?
-    p "Command: #{cmd}"
+    # p "Command: #{cmd}"
     begin
       Open3.popen3(cmd) do |_, o, _, _|
         parse_sql_output(o.read.chomp, keys)

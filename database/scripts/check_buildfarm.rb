@@ -24,13 +24,6 @@ def get_issues_list(jobs_to_filter = [])
   # This function returns a map of possible problems in the buildfarm
   # The key of the map is the hash value of the flakiness output
   # The value is an Array of hashes with information about each test regression that belongs to the same problem
-  # filter_command = ""
-  # unless jobs_to_filter.empty?
-  #   filter_command += " | grep -vE \"#{jobs_to_filter.join("|")}\""
-  # end
-  # test_regressions_today = parse_sql_output(%x{./sql_run.sh errors_check_last_build.sql #{filter_command}},
-  #                                           keys = %w[job_name build_number error_name build_datetime node_name]
-  # )
 
   test_regressions_today = BuildfarmToolsLib::test_regressions_today.filter { |e| !jobs_to_filter.include?(e['job_name'])}
 
@@ -41,10 +34,9 @@ def get_issues_list(jobs_to_filter = [])
 
   issues_map = Hash.new
   test_regressions_today.each do |tr|
-    # tr_flakiness = %x{./sql_run.sh calculate_flakiness_jobs.sql "#{tr['error_name']}" "15 days"}
-    # tr_flakiness_raw_out = parse_sql_output(tr_flakiness)
     tr_flakiness_output = BuildfarmToolsLib::test_regression_flakiness(tr['error_name'])
     next if tr_flakiness_output.empty?
+    tr_hash = tr_flakiness_output.hash
 
     tr_flakiness_output.uniq! { |item| item["job_name"] }
     tr_flakiness_output.map! { |item|
@@ -57,10 +49,10 @@ def get_issues_list(jobs_to_filter = [])
       item
     }
 
-    issues_map[tr_flakiness_output.hash] = [] unless issues_map.has_key?(tr_flakiness_output.hash)
+    issues_map[tr_hash] = [] unless issues_map.has_key?(tr_hash)
 
     # Group all issues by flakiness output
-    issues_map[tr_flakiness_output.hash] += tr_flakiness_output
+    issues_map[tr_hash] += tr_flakiness_output
   end
   issues_map.each_pair do |key, value|
     value.sort_by! { |item| item['error_name'] }.uniq! { |item| item['error_name'] }
