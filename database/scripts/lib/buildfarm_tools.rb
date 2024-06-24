@@ -10,6 +10,9 @@ module BuildfarmToolsLib
                             'Network error: Failed to clone github repo'
                           ])
 
+  CONSISTENT_THRESHOLD = 3
+  FLAKY_BUILDS_THRESHOLD = 3 # For 15 days
+
   def self.build_regressions_today(filter_known: false)
     # Keys: job_name, build_number, build_datetime, failure_reason, last_section
     out = run_command('./sql_run.sh builds_failing_today.sql')
@@ -37,32 +40,48 @@ module BuildfarmToolsLib
       out.filter! { |e| !known_error_names.include? e['error_name'] }
     end
     if only_consistent
-      out.filter! { |tr| tr['age'] >= 3 }
+      out.filter! { |tr| tr['age'] >= CONSISTENT_THRESHOLD }
       out.sort_by! { |tr| tr['age'] }
     end
     out
   end
 
-  def self.flaky_test_regressions(filter_known: false, time_range: "15 days")
+  def self.flaky_test_regressions(filter_known: false, time_range: '15 days')
     # Keys: job_name, build_number, error_name, build_datetime, node_name, flakiness
     out = []
     today_regressions = test_regressions_today(filter_known: filter_known)
     today_regressions.each do |tr|
-      next if !tr['age'].nil? && tr['age'] >= 3
-      tr_flakiness = run_command("./sql_run.sh calculate_flakiness_jobs.sql", args:[tr['error_name'], time_range])
+      next if !tr['age'].nil? && tr['age'] >= CONSISTENT_THRESHOLD
 
+      tr_flakiness = test_regression_flakiness(tr['error_name'], time_range: time_range)
       if tr_flakiness.nil?
         puts "WARNING: Error parsing flakiness output for '#{tr['error_name']}' in #{tr['job_name']}##{tr['build_number']}"
         next
       end
-      
       if tr_flakiness.any? { |item| item['failure_count'].to_i >= 3 }
-        tr['flakiness'] = tr_flakiness.sort_by { |e| -e['failure_percentage'].to_f }
+        tr['flakiness'] = tr_flakiness
         out << tr
       end
     end
     out.sort_by! { |e| -e['flakiness'][0]['failure_percentage'].to_f }
     out
+  end
+
+  def self.test_regression_flakiness(error_name, time_range: '15 days')
+    # Keys: job_name, last_fail, first_fail, build_count, failure_count, failure_percentage
+    tr_flakiness = run_command('./sql_run.sh calculate_flakiness_jobs.sql', args:[error_name, time_range])
+    return [] if tr_flakiness.nil?
+
+    tr_flakiness.sort_by { |e| -e['failure_percentage'].to_f }
+  end
+
+  def self.test_regression_reported_issues(error_name, status: nil)
+    # Keys: github_issue, status
+    is_known_issue = run_command('./sql_run.sh is_known_issue.sql', args: [error_name])
+    return [] unless is_known_issue
+
+    is_known_issue.select! { |issue| issue['status'] == status } if status
+    is_known_issue.map { |issue| { 'github_issue' => issue['github_issue'], 'status' => issue['status'] } }.uniq
   end
 
   def self.run_command(cmd, args: [], keys: [])
@@ -100,15 +119,5 @@ module BuildfarmToolsLib
   end
 end
 
-def parse_known_issues(error_name, status = nil)
-  # This function parses the result of is_known_issue.sql and returns a list of closed issues
-  # If the error is not a known issue, it returns an empty list
-
-  is_known_issue = parse_sql_output(%x{./sql_run.sh is_known_issue.sql "#{error_name}"})
-  return [] unless is_known_issue
-
-  is_known_issue = is_known_issue.select { |issue| issue['status'] == status } if status
-  is_known_issue.map { |issue| { github_issue: issue['github_issue'], status: issue['status'] } }.uniq
-end
-
 # puts BuildfarmToolsLib::test_regressions_today(filter_known: true, only_consistent: true)
+# puts BuildfarmToolsLib::flaky_test_regressions
