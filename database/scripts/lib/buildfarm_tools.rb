@@ -41,8 +41,8 @@ module BuildfarmToolsLib
       out.filter! { |e| !known_error_names.include? e['error_name'] }
     end
     if only_consistent
-      out.filter! { |tr| tr['age'] >= CONSISTENT_THRESHOLD || tr['age'] == WARNING_AGE_CONSTANT }
-      out.sort_by! { |tr| tr['age'] }
+      out.filter! { |tr| tr['age'].to_i >= CONSISTENT_THRESHOLD || tr['age'].to_i == WARNING_AGE_CONSTANT }
+      out.sort_by! { |tr| -tr['age'].to_i }
     end
     out
   end
@@ -52,7 +52,7 @@ module BuildfarmToolsLib
     out = []
     today_regressions = test_regressions_today(filter_known: filter_known)
     today_regressions.each do |tr|
-      next if !tr['age'].nil? && tr['age'] >= CONSISTENT_THRESHOLD
+      next if !tr['age'].to_i.nil? && tr['age'].to_i >= CONSISTENT_THRESHOLD
 
       tr_flakiness = test_regression_flakiness(tr['error_name'], time_range: time_range)
       if tr_flakiness.nil?
