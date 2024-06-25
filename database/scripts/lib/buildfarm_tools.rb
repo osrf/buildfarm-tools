@@ -83,7 +83,6 @@ module BuildfarmToolsLib
 
   def self.run_command(cmd, args: [], keys: [])
     cmd += " '#{args.shift}'" until args.empty?
-    # p "Command: #{cmd}"
     begin
       Open3.popen3(cmd) do |_, o, _, _|
         parse_sql_output(o.read.chomp, keys)
@@ -115,6 +114,3 @@ module BuildfarmToolsLib
     output_array
   end
 end
-
-# puts BuildfarmToolsLib::test_regressions_today(filter_known: true, only_consistent: true)
-# puts BuildfarmToolsLib::flaky_test_regressions
