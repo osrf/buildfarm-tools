@@ -71,16 +71,12 @@ module BuildfarmToolsLib
   def self.test_regression_flakiness(error_name, time_range: '15 days')
     # Keys: job_name, last_fail, first_fail, build_count, failure_count, failure_percentage
     tr_flakiness = run_command('./sql_run.sh calculate_flakiness_jobs.sql', args:[error_name, time_range])
-    return [] if tr_flakiness.nil?
-
     tr_flakiness.sort_by { |e| -e['failure_percentage'].to_f }
   end
 
   def self.test_regression_reported_issues(error_name, status: nil)
     # Keys: github_issue, status
     is_known_issue = run_command('./sql_run.sh is_known_issue.sql', args: [error_name])
-    return [] unless is_known_issue
-
     is_known_issue.select! { |issue| issue['status'] == status } if status
     is_known_issue.map { |issue| { 'github_issue' => issue['github_issue'], 'status' => issue['status'] } }.uniq
   end
@@ -102,7 +98,7 @@ module BuildfarmToolsLib
     # The keys of the hashes are the column names of the SQL query or the keys passed as parameter
     # Note: The SQL query must be formatted using sql_run.sh command
 
-    return nil if output.empty?
+    return [] if output.empty?
 
     output = output.split("\n")
     output_array = []
