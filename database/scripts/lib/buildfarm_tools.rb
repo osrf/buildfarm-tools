@@ -12,6 +12,7 @@ module BuildfarmToolsLib
 
   CONSISTENT_THRESHOLD = 3
   FLAKY_BUILDS_THRESHOLD = 3 # For 15 days
+  WARNING_AGE_CONSTANT = -1
 
   def self.build_regressions_today(filter_known: false)
     # Keys: job_name, build_number, build_datetime, failure_reason, last_section
@@ -40,7 +41,7 @@ module BuildfarmToolsLib
       out.filter! { |e| !known_error_names.include? e['error_name'] }
     end
     if only_consistent
-      out.filter! { |tr| tr['age'] >= CONSISTENT_THRESHOLD }
+      out.filter! { |tr| tr['age'] >= CONSISTENT_THRESHOLD || tr['age'] == WARNING_AGE_CONSTANT }
       out.sort_by! { |tr| tr['age'] }
     end
     out
