@@ -10,8 +10,9 @@ module BuildfarmToolsLib
                             'Network error: Failed to clone github repo'
                           ])
 
-  CONSISTENT_THRESHOLD = 3
-  FLAKY_BUILDS_THRESHOLD = 3 # For 15 days
+  CONSECUTIVE_THRESHOLD = 3
+  FLAKY_BUILDS_THRESHOLD = 3
+  FLAKY_BUILDS_DEFAULT_RANGE = '15 days'
   WARNING_AGE_CONSTANT = -1
 
   def self.build_regressions_today(filter_known: false)
@@ -41,18 +42,18 @@ module BuildfarmToolsLib
       out.filter! { |e| !known_error_names.include? e['error_name'] }
     end
     if only_consistent
-      out.filter! { |tr| tr['age'].to_i >= CONSISTENT_THRESHOLD || tr['age'].to_i == WARNING_AGE_CONSTANT }
+      out.filter! { |tr| tr['age'].to_i >= CONSECUTIVE_THRESHOLD || tr['age'].to_i == WARNING_AGE_CONSTANT }
       out.sort_by! { |tr| -tr['age'].to_i }
     end
     out
   end
 
-  def self.flaky_test_regressions(filter_known: false, time_range: '15 days')
+  def self.flaky_test_regressions(filter_known: false, time_range: FLAKY_BUILDS_DEFAULT_RANGE)
     # Keys: job_name, build_number, error_name, build_datetime, node_name, flakiness
     out = []
     today_regressions = test_regressions_today(filter_known: filter_known)
     today_regressions.each do |tr|
-      next if !tr['age'].to_i.nil? && tr['age'].to_i >= CONSISTENT_THRESHOLD
+      next if !tr['age'].to_i.nil? && tr['age'].to_i >= CONSECUTIVE_THRESHOLD
 
       tr_flakiness = test_regression_flakiness(tr['error_name'], time_range: time_range)
       if tr_flakiness.nil?
@@ -68,7 +69,7 @@ module BuildfarmToolsLib
     out
   end
 
-  def self.test_regression_flakiness(error_name, time_range: '15 days')
+  def self.test_regression_flakiness(error_name, time_range: FLAKY_BUILDS_DEFAULT_RANGE)
     # Keys: job_name, last_fail, first_fail, build_count, failure_count, failure_percentage
     tr_flakiness = run_command('./sql_run.sh calculate_flakiness_jobs.sql', args:[error_name, time_range])
     tr_flakiness.sort_by { |e| -e['failure_percentage'].to_f }
