@@ -2,7 +2,8 @@ SELECT tf.job_name,
     tf.build_number,
     tf.error_name,
     bs.build_datetime,
-    bs.node_name
+    bs.node_name,
+    tf.age
 FROM build_status bs
     INNER JOIN last_time_updated lt ON (
         lt.last_build_number = bs.build_number
