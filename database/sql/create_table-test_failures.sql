@@ -3,5 +3,6 @@ CREATE TABLE IF NOT EXISTS test_failures(
     error_name TEXT NOT NULL,
     package_name TEXT NOT NULL,
     job_name TEXT NOT NULL,
-    build_number INT NOT NULL
+    build_number INT NOT NULL,
+    age INT NOT NULL
 );
