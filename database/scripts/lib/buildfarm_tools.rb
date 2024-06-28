@@ -29,9 +29,9 @@ module BuildfarmToolsLib
     out
   end
 
-  def self.test_regression_history(test_name, job_name)
+  def self.error_appearances_in_job(test_name, job_name)
     # Keys: error_name, job_name, build_number, build_datetime, node_name
-    run_command('./sql_run.sh test_regression_history.sql', args: [test_name, job_name])
+    run_command('./sql_run.sh error_appearances_in_job.sql', args: [test_name, job_name])
   end
 
   def self.test_regressions_today(filter_known: false, only_consistent: false)
