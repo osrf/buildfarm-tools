@@ -40,7 +40,6 @@ def generate_report(report_name, exclude_set)
            'build_regressions_known' => [],
            'test_regressions_all' => [],
            'test_regressions_known' => [],
-           'build_regressions_known' => [],
        }
     }
 
@@ -51,3 +50,4 @@ def generate_report(report_name, exclude_set)
 end
 
 generate_report(options[:report_name], options[:exclude])
+puts report_name
