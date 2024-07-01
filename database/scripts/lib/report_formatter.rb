@@ -37,4 +37,21 @@ module ReportFormatter
     table
   end
 
+  def self.format_report(report_hash)
+    # Use <details> and <summary> tags to prevent long reports
+    output_report = ""
+
+    report_hash.each_pair do |category, subcategory_hash|
+      output_report += "<details><summary><h1>#{category}</h1></summary>"
+      subcategory_hash.each_pair do |subcategory, subcategory_report| # Assume that we're traversing a hash of hashes
+        output_report += "<details><summary><h2>#{subcategory}</h2></summary>"
+        
+        # Subcategory report is plain markdown
+        output_report += !subcategory_report.empty? ? "\n#{subcategory_report}\n" : "Emtpy!!"
+        output_report += "</details>\n"
+      end
+      output_report += "</details>\n"
+    end
+    output_report
+  end
 end
