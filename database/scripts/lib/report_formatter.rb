@@ -29,6 +29,7 @@ module ReportFormatter
   end
 
   def self.build_regressions(br_array)
+    return "" if br_array.empty?
     table = "| Reference Build | Failure DateTime | Failure Reason |\n| -- | -- | -- |\n"
     br_array.each do |br_hash|
       reference_build = "[#{br_hash['job_name']}##{br_hash['build_number']}](#{get_build_url(br_hash['job_name'], br_hash['build_number'])})"
@@ -42,15 +43,18 @@ module ReportFormatter
     output_report = ""
 
     report_hash.each_pair do |category, subcategory_hash|
-      output_report += "<details><summary><h1>#{category}</h1></summary>\n"
+      output_report += "<h1>#{category.gsub('_', ' ').capitalize}</h1>"
       subcategory_hash.each_pair do |subcategory, subcategory_report| # Assume that we're traversing a hash of hashes
-        output_report += "<details><summary><h2>#{subcategory}</h2></summary>\n"
-        
-        # Subcategory report is plain markdown
-        output_report += !subcategory_report.empty? ? "\n#{subcategory_report}\n" : "Emtpy!!"
-        output_report += "</details>\n"
+        next if subcategory_report.empty?
+
+        subcategory_report_title = "<h2>#{subcategory.gsub('_', ' ').capitalize}</h2>"
+        if category = 'urgent'
+          subcategory_report_str = "#{subcategory_report_title}\n#{subcategory_report}"
+        else
+          subcategory_report_str = "<details><summary>#{subcategory_report_title}</summary>\n#{subcategory_report}<details>"
+        end
+        output_report += subcategory_report_str
       end
-      output_report += "</details>\n"
     end
     output_report
   end
