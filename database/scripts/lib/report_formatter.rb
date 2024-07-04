@@ -6,7 +6,7 @@ module ReportFormatter
   JOB_URL_PATTERN = {
     /^gz|^sdformat|^ros_gz/ => 'https://build.osrfoundation.org/job/',
     /^[A-Z]ci/ => 'https://build.ros2.org/job/',
-    /^nightly_/ => 'https://ci.ros2.org/job/',
+    /^nightly_|^packaging_/ => 'https://ci.ros2.org/job/',
   }
 
   def self.get_build_url(job_name, build_number)
