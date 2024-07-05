@@ -34,7 +34,7 @@ module BuildfarmToolsLib
     run_command('./sql_run.sh error_appearances_in_job.sql', args: [test_name, job_name])
   end
 
-  def self.test_regressions_today(filter_known: false, only_consistent: false)
+  def self.test_regressions_today(filter_known: false, only_consistent: false, group_issues: false)
     # Keys: job_name, build_number, error_name, build_datetime, node_name
     out = run_command('./sql_run.sh errors_check_last_build.sql')
     if filter_known
@@ -44,6 +44,10 @@ module BuildfarmToolsLib
     if only_consistent
       out.filter! { |tr| tr['age'].to_i >= CONSECUTIVE_THRESHOLD || tr['age'].to_i == WARNING_AGE_CONSTANT }
       out.sort_by! { |tr| -tr['age'].to_i }
+    end
+    if group_issues
+      # Group by (job_name, age)
+      out = out.group_by { |o| [o['job_name'], o['age']] }.to_a.map { |e| e[1] }
     end
     out
   end
