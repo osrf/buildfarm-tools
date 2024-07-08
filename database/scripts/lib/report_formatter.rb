@@ -67,7 +67,7 @@ module ReportFormatter
       errors = "<ul>#{errors}</ul>"
 
       if reports.size > 0
-        reports_str = reports.uniq.map { |e| "<li>#{e['github_issue']} (#{e['status'].capitalize})</li>"}.join
+        reports_str = reports.uniq.map { |e| "<li>`#{e['github_issue']}` (#{e['status'].capitalize})</li>"}.join
         reports_str = "<ul>#{reports_str}</ul>"
       else
         reports_str = "No reports found!"
@@ -93,7 +93,7 @@ module ReportFormatter
         errors << e['error_name']
         reports += e['reports']
       end
-      jobs.uniq.map! { |e| "<li>#{e}</li>" }
+      jobs = jobs.uniq.map { |e| "<li>#{e}</li>" }
       errors.map! { |e| "<li>#{e}</li>" }
 
       jobs_str = "<ul>#{jobs.join}</ul>"
