@@ -52,12 +52,12 @@ module BuildfarmToolsLib
     out
   end
 
-  def self.flaky_test_regressions(filter_known: false, time_range: FLAKY_BUILDS_DEFAULT_RANGE)
+  def self.flaky_test_regressions(filter_known: false, group_issues: false, time_range: FLAKY_BUILDS_DEFAULT_RANGE)
     # Keys: job_name, build_number, error_name, build_datetime, node_name, flakiness
     out = []
     today_regressions = test_regressions_today(filter_known: filter_known)
     today_regressions.each do |tr|
-      next if !tr['age'].to_i.nil? && tr['age'].to_i >= CONSECUTIVE_THRESHOLD
+      next if !tr['age'].to_i.nil? && (tr['age'].to_i >= CONSECUTIVE_THRESHOLD || tr['age'].to_i == WARNING_AGE_CONSTANT)
 
       tr_flakiness = test_regression_flakiness(tr['error_name'], time_range: time_range)
       if tr_flakiness.nil?
@@ -70,6 +70,9 @@ module BuildfarmToolsLib
       end
     end
     out.sort_by! { |e| -e['flakiness'][0]['failure_percentage'].to_f }
+    if group_issues
+      out = out.group_by { |o| o['flakiness'] }.values
+    end
     out
   end
 

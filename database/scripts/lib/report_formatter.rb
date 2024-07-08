@@ -30,6 +30,17 @@ module ReportFormatter
     "#{date} #{hour}:#{minute}"
   end
 
+  def self.format_flakiness(flakiness_arr)
+    table_head = "<thead><tr><th>Job Name</th><th>Last Fail</th><th>First Fail</th><th>Build Count</th><th>Failure Count</th><th>Failure Percentage</th></tr></thead>"
+    table_body = ""
+    flakiness_arr.each do |e|
+      table_body += "<tr><td>#{e['job_name']}</td><td>#{e['last_fail']}</td><td>#{e['first_fail']}</td><td>#{e['build_count']}</td><td>#{e['failure_count']}</td><td>#{e['failure_percentage']}%</td></tr>"
+    end
+    table_body = "<tbody>#{table_body}</tbody>"
+    table = "<table>#{table_head}#{table_body}</table>"
+    table
+  end
+
   def self.build_regressions(br_array)
     return "" if br_array.empty?
     table = "| Reference Build | Failure DateTime | Failure Reason |\n| -- | -- | -- |\n"
@@ -60,6 +71,31 @@ module ReportFormatter
     end
     table
   end
+
+  def self.test_regressions_flaky(tr_array)
+    return "" if tr_array.empty?
+    table = "| Reference builds | Errors | Flaky report | Reports |\n| -- | -- | -- | -- |\n"
+    tr_array.each do |tr|
+      jobs = []
+      errors = []
+      tr.each do |e|
+        jobs << format_reference_build(e)
+        errors << e['error_name']
+      end
+      jobs.uniq.map! { |e| "<li>#{e}</li>" }
+      errors.map! { |e| "<li>#{e}</li>" }
+
+      jobs_str = "<ul>#{jobs.join}</ul>"
+      jobs_str = "<details><summary>#{jobs.size} items</summary>\n#{jobs_str}</details>" if jobs.size >= 10
+
+      errors_str = "<ul>#{errors.join}</ul>"
+      errors_str = "<details><summary>#{errors.size} items</summary>\n#{errors_str}</details>" if errors.size >= 10
+      
+      table += "|#{jobs_str}|#{errors_str}|<details>#{format_flakiness(tr.first['flakiness'])}</details>|NOT IMPLEMENTED|\n"
+    end
+    table
+  end
+  
 
   def self.format_report(report_hash)
     # Use <details> and <summary> tags to prevent long reports
