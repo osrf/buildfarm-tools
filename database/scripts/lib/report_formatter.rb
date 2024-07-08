@@ -53,21 +53,30 @@ module ReportFormatter
 
   def self.test_regressions_consecutive(tr_array)
     return "" if tr_array.empty?
-    table = "| Reference build | Age | Failure DateTime | Errors |\n| -- | -- | -- | -- |\n"
+    table = "| Reference build | Age | Failure DateTime | Errors | Reports |\n| -- | -- | -- | -- | -- |\n"
     tr_array.each do |tr_issue|
       reference_build = format_reference_build(tr_issue[0])
-      age = tr_issue[0]['age']
-      failure_datetime = tr_issue[0]['build_datetime']
+      age = tr_issue.first['age']
+      failure_datetime = tr_issue.first['build_datetime']
       errors = ""
+      reports = []
       tr_issue.each do |e|
         errors += "<li>#{e['error_name']}</li>"
+        reports += e['reports']
       end
       errors = "<ul>#{errors}</ul>"
+
+      if reports.size > 0
+        reports_str = reports.uniq.map { |e| "<li>#{e['github_issue']} (#{e['status'].capitalize})</li>"}.join
+        reports_str = "<ul>#{reports_str}</ul>"
+      else
+        reports_str = "No reports found!"
+      end
 
       # If output is too long, wrap it in a <details>
       errors = "<details><summary>#{tr_issue.size} errors</summary>#{errors}</details>" if tr_issue.size >= 10
 
-      table += "| #{reference_build} | #{age} | #{failure_datetime} | #{errors} |\n"
+      table += "| #{reference_build} | #{age} | #{failure_datetime} | #{errors} | #{reports_str} |\n"
     end
     table
   end
@@ -78,9 +87,11 @@ module ReportFormatter
     tr_array.each do |tr|
       jobs = []
       errors = []
+      reports = []
       tr.each do |e|
         jobs << format_reference_build(e)
         errors << e['error_name']
+        reports += e['reports']
       end
       jobs.uniq.map! { |e| "<li>#{e}</li>" }
       errors.map! { |e| "<li>#{e}</li>" }
@@ -90,8 +101,15 @@ module ReportFormatter
 
       errors_str = "<ul>#{errors.join}</ul>"
       errors_str = "<details><summary>#{errors.size} items</summary>\n#{errors_str}</details>" if errors.size >= 10
+
+      if reports.size > 0
+        reports_str = reports.uniq.map { |e| "<li>#{e['github_issue']} (#{e['status'].capitalize})</li>"}.join
+        reports_str = "<ul>#{reports_str}</ul>"
+      else
+        reports_str = "No reports found!"
+      end
       
-      table += "|#{jobs_str}|#{errors_str}|<details>#{format_flakiness(tr.first['flakiness'])}</details>|NOT IMPLEMENTED|\n"
+      table += "|#{jobs_str}|#{errors_str}|<details>#{format_flakiness(tr.first['flakiness'])}</details>|#{reports_str}|\n"
     end
     table
   end

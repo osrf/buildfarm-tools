@@ -45,6 +45,9 @@ module BuildfarmToolsLib
       out.filter! { |tr| tr['age'].to_i >= CONSECUTIVE_THRESHOLD || tr['age'].to_i == WARNING_AGE_CONSTANT }
       out.sort_by! { |tr| -tr['age'].to_i }
     end
+    out.each do |e|
+      e['reports'] = test_regression_reported_issues e['error_name']
+    end
     if group_issues
       # Group by (job_name, age)
       out = out.group_by { |o| [o['job_name'], o['age']] }.to_a.map { |e| e[1] }
