@@ -54,9 +54,10 @@ module ReportFormatter
   def self.test_regressions_consecutive(tr_array)
     return "" if tr_array.empty?
     table = "| Reference build | Age | Failure DateTime | Errors | Reports |\n| -- | -- | -- | -- | -- |\n"
+    warnings_table = table
     tr_array.each do |tr_issue|
       reference_build = format_reference_build(tr_issue[0])
-      age = tr_issue.first['age']
+      age = tr_issue.first['age'].to_i
       failure_datetime = tr_issue.first['build_datetime']
       errors = ""
       reports = []
@@ -76,14 +77,21 @@ module ReportFormatter
       # If output is too long, wrap it in a <details>
       errors = "<details><summary>#{tr_issue.size} errors</summary>#{errors}</details>" if tr_issue.size >= 10
 
-      table += "| #{reference_build} | #{age} | #{failure_datetime} | #{errors} | #{reports_str} |\n"
+      if age == -1
+        warnings_table += "| #{reference_build} | #{age} | #{failure_datetime} | #{errors} | #{reports_str} |\n"
+      else
+        table += "| #{reference_build} | #{age} | #{failure_datetime} | #{errors} | #{reports_str} |\n"
+      end
     end
-    table
+    out = "### Test regressions\n#{table}\n"
+    out += "### Warnings\n#{warnings_table}\n" if warnings_table.count("\n") > 2
+    out
   end
 
   def self.test_regressions_flaky(tr_array)
     return "" if tr_array.empty?
     table = "| Reference builds | Errors | Flaky report | Reports |\n| -- | -- | -- | -- |\n"
+    warnings_table = table
     tr_array.each do |tr|
       jobs = []
       errors = []
@@ -109,9 +117,15 @@ module ReportFormatter
         reports_str = "No reports found!"
       end
       
-      table += "|#{jobs_str}|#{errors_str}|<details>#{format_flakiness(tr.first['flakiness'])}</details>|#{reports_str}|\n"
+      if tr.first['age'].to_i == -1
+        warnings_table += "|#{jobs_str}|#{errors_str}|<details>#{format_flakiness(tr.first['flakiness'])}</details>|#{reports_str}|\n"
+      else
+        table += "|#{jobs_str}|#{errors_str}|<details>#{format_flakiness(tr.first['flakiness'])}</details>|#{reports_str}|\n"
+      end
     end
-    table
+    out = "### Test regressions\n#{table}\n"
+    out += "### Warnings\n#{warnings_table}\n" if warnings_table.count("\n") > 2
+    out
   end
   
 
