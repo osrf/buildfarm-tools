@@ -111,7 +111,7 @@ module ReportFormatter
       errors_str = "<details><summary>#{errors.size} items</summary>\n#{errors_str}</details>" if errors.size >= 10
 
       if reports.size > 0
-        reports_str = reports.uniq.map { |e| "<li>#{e['github_issue']} (#{e['status'].capitalize})</li>"}.join
+        reports_str = reports.uniq.map { |e| "<li>`#{e['github_issue']}` (#{e['status'].capitalize})</li>"}.join
         reports_str = "<ul>#{reports_str}</ul>"
       else
         reports_str = "No reports found!"
