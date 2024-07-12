@@ -55,11 +55,22 @@ jobs:
           with:
             name: ${{ env.REPORT_NAME }}
             path: database/scripts/${{ env.REPORT_NAME }}
+          # Get artifact from `gh api -XGET '/repos/Crola1702/buildfarm-tools/actions/artifacts' --jq ".artifacts[0].archive_download_url"`
+        - name: Download latest report
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          run: |
+            cd database/scripts
+            curl -L \
+              -H "Authorizatiopn: Bearer $GITHUB_TOKEN" \
+              $(gh api -XGET '/repos/Crola1702/buildfarm-tools/actions/artifacts' --jq ".artifacts[0].archive_download_url")
+            unzip buildfarm-report_*.zip
+            mv buildfarm-report_*.json latest_report.json
         - name: Format report
           run: |
             cd database/scripts
             echo "# $(date '+%b %d')" > formatted_report.md
-            ./format_report.rb ${{ env.REPORT_NAME }} >> formatted_report.md
+            ./format_report.rb -b latest_report.json -c ${{ env.REPORT_NAME }} >> formatted_report.md
         - name: Write report
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
