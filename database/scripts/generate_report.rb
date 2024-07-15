@@ -28,8 +28,8 @@ def generate_report(report_name, exclude_set)
     report = {
         'urgent' => {
             'build_regressions' => urgent_build_regressions = BuildfarmToolsLib::build_regressions_today(filter_known: true),
-            'test_regressions_consecutive' => urgent_consistent_test_regressions = BuildfarmToolsLib::test_regressions_today(filter_known: true, only_consistent: true),
-            'test_regressions_flaky' => urgent_flaky_test_regressions = BuildfarmToolsLib::flaky_test_regressions(filter_known: true),
+            'test_regressions_consecutive' => urgent_consistent_test_regressions = BuildfarmToolsLib::test_regressions_today(filter_known: true, only_consistent: true, group_issues: true),
+            'test_regressions_flaky' => urgent_flaky_test_regressions = BuildfarmToolsLib::flaky_test_regressions(filter_known: true, group_issues: true),
        },
        'maintenance' => {
             'jobs_failing' => [],
@@ -40,7 +40,6 @@ def generate_report(report_name, exclude_set)
            'build_regressions_known' => [],
            'test_regressions_all' => [],
            'test_regressions_known' => [],
-           'build_regressions_known' => [],
        }
     }
 
@@ -51,3 +50,4 @@ def generate_report(report_name, exclude_set)
 end
 
 generate_report(options[:report_name], options[:exclude])
+puts options[:report_name]
