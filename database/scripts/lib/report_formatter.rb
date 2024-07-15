@@ -57,6 +57,7 @@ module ReportFormatter
     warnings_table = table
     tr_array.each do |tr_issue|
       reference_build = format_reference_build(tr_issue[0])
+      reference_build = "**NEW** #{reference_build}" if tr_issue.first['new']
       age = tr_issue.first['age'].to_i
       failure_datetime = tr_issue.first['build_datetime']
       errors = ""
@@ -106,6 +107,7 @@ module ReportFormatter
 
       jobs_str = "<ul>#{jobs.join}</ul>"
       jobs_str = "<details><summary>#{jobs.size} items</summary>\n#{jobs_str}</details>" if jobs.size >= 10
+      jobs_str = "**NEW** #{jobs_str}" if tr.first['new']
 
       errors_str = "<ul>#{errors.join}</ul>"
       errors_str = "<details><summary>#{errors.size} items</summary>\n#{errors_str}</details>" if errors.size >= 10
