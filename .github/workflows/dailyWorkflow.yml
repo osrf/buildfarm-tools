@@ -47,21 +47,36 @@ jobs:
           uses: ruby/setup-ruby@v1
           with:
             ruby-version: '3.2'
-        - name: Generate report
+        - name: Install dependencies
+          run: |
+            python -m pip install --upgrade pip
+            pip install -r requirements.txt
+        - name: Run buildfarm scripts
           run: |
             cd database/scripts
-            echo "REPORT_NAME=$(./generate_report.rb)" >> $GITHUB_ENV
-        - uses: actions/upload-artifact@v4
-          with:
-            name: ${{ env.REPORT_NAME }}
-            path: database/scripts/${{ env.REPORT_NAME }}
-        - name: Format report
-          run: |
-            cd database/scripts
-            echo "# $(date '+%b %d')" > formatted_report.md
-            ./format_report.rb ${{ env.REPORT_NAME }} >> formatted_report.md
-        - name: Write report
+            {
+                echo "BUILD_REGRESSIONS<<EOF"
+                ./sql_run.sh builds_failing_today.sql
+                echo EOF
+            } >> $GITHUB_ENV
+
+            {
+                echo "TEST_REGRESSIONS<<EOF"
+                ./check_buildfarm.rb -e "performance connext fastrtps-dynamic"
+                echo EOF
+            } >> $GITHUB_ENV
+        - name: Write buildfarmer log
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           run: |
-            gh issue comment -R ${{ github.repository }} $CURRENT_LOG -F database/scripts/formatted_report.md
+            {
+                touch comment.txt
+                echo "## $(date '+%b %d')" >> comment.txt
+                echo -e "<details>\n<summary>\nBuild regressions\n</summary>\n\n\`\`\`" >> comment.txt
+                echo "$BUILD_REGRESSIONS" >> comment.txt
+                echo -e "\`\`\`\n</details>" >> comment.txt
+                echo -e "<details>\n<summary>\nTest regressions\n</summary>\n\n\`\`\`" >> comment.txt
+                echo "$TEST_REGRESSIONS" >> comment.txt
+                echo -e "\`\`\`\n</details>" >> comment.txt
+            }
+            gh issue comment -R ${{ github.repository }} $CURRENT_LOG -F comment.txt          
