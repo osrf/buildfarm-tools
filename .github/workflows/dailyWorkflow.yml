@@ -47,7 +47,7 @@ jobs:
           uses: ruby/setup-ruby@v1
           with:
             ruby-version: '3.2'
-        - name: Generate report
+        - name: Generate today's report
           run: |
             cd database/scripts
             echo "REPORT_NAME=$(./generate_report.rb)" >> $GITHUB_ENV
@@ -55,12 +55,12 @@ jobs:
           with:
             name: ${{ env.REPORT_NAME }}
             path: database/scripts/${{ env.REPORT_NAME }}
-        - name: Format report
+        - name: Save report into markdown format
           run: |
             cd database/scripts
             echo "# $(date '+%b %d')" > formatted_report.md
             ./format_report.rb ${{ env.REPORT_NAME }} >> formatted_report.md
-        - name: Write report
+        - name: Upload report to weekly buildfarmer log
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           run: |
