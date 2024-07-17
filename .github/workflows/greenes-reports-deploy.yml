@@ -24,9 +24,11 @@ jobs:
       - name: Install tree utility
         run: |
           sudo apt-get install tree -y
+      - name: Run tree to see if it's installed by defalt
+        run: tree
       - name: Generate tree index
         run: |
-          cd reports/greeness_reports/
+          cd reports/greenness_reports/
           tree -H \                                                              (base) 
             --noreport \
             --dirsfirst \
