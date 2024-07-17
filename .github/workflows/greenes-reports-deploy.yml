@@ -1,0 +1,43 @@
+name: Deploy greeness reports to GitHub pages
+
+on:
+  push:
+    branches:
+      - 'main'
+    paths:
+      - 'reports/greeness_reports/'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install tree utility
+        run: |
+          sudo apt-get install tree -y
+      - name: Generate tree index
+        run: |
+          cd reports/greeness_reports/
+          tree -H \                                                              (base) 
+            --noreport \
+            --dirsfirst \
+            -T "Buildfarm Greeness Reports" \
+            -P "*.html" \
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'reports/greeness_reports/'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+            -o index.html
+
