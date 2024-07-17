@@ -25,7 +25,7 @@ jobs:
         run: |
           # Tree is installed by default on gh runners
           cd reports/greenness_reports/
-          tree -H \
+          tree -H '.' \
             --noreport \
             --dirsfirst \
             -T "Buildfarm Greeness Reports" \
