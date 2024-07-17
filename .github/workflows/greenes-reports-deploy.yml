@@ -5,7 +5,7 @@ on:
     branches:
       - 'main'
     paths:
-      - 'reports/greeness_reports/'
+      - 'reports/greenness_reports/'
   workflow_dispatch:
 
 permissions:
@@ -21,13 +21,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install tree utility
-        run: |
-          sudo apt-get install tree -y
-      - name: Generate tree index
+      - name: Generate directory index using tree
         run: |
           # Tree is installed by default on gh runners
-          cd reports/greenness_reports/ && 
+          cd reports/greenness_reports/
           tree -H \
             --noreport \
             --dirsfirst \
@@ -37,7 +34,7 @@ jobs:
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: 'reports/greeness_reports/'
+          path: 'reports/greenness_reports/'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
