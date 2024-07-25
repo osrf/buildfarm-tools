@@ -14,10 +14,4 @@ FROM build_status bs
         AND lt.job_name = tf.job_name
     )
 WHERE bs.build_datetime > DATETIME('now', '-4 days') -- Outdated job threshold
-    AND (tf.error_name, tf.job_name) NOT IN (
-        SELECT DISTINCT error_name,
-            job_name
-        FROM test_fail_issues
-        WHERE status = 'OPEN'
-    )
 ORDER BY bs.job_name DESC
