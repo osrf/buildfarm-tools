@@ -1,5 +1,4 @@
-SELECT error_name,
-    job_name,
+SELECT DISTINCT
     github_issue,
     status
 FROM test_fail_issues
