@@ -140,7 +140,7 @@ module ReportFormatter
 
         subcategory_report_title = "<h2>#{subcategory.gsub('_', ' ').capitalize}</h2>\n"
         subcategory_report_str = "#{subcategory_report_title}\n#{subcategory_report}\n"
-        subcategory_report_str = "<details><summary>#{subcategory_report_title}</summary>\n\n#{subcategory_report}<details>\n" if subcategory == 'test_regressions_flaky'
+        subcategory_report_str = "<details><summary>#{subcategory_report_title}</summary>\n\n#{subcategory_report}</details>\n" if subcategory == 'test_regressions_flaky'
         output_report += subcategory_report_str
       end
     end
