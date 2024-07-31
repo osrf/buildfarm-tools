@@ -24,7 +24,7 @@ module BuildfarmToolsLib
 
   def self.known_issues(status: '')
     # Keys: error_name, job_name, github_issue, status
-    run_command("./sql_run.sh get_known_issues.sql #{status.upcase}")
+    run_command("./sql_run.sh get_known_issues.sql", args: [status.upcase])
   end
 
   def self.error_appearances_in_job(test_name, job_name)
