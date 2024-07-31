@@ -105,10 +105,10 @@ module ReportFormatter
       errors.map! { |e| "<li>#{e}</li>" }
 
       jobs_str = "<ul>#{jobs.join}</ul>"
-      jobs_str = "<details><summary>#{jobs.size} items</summary>\n#{jobs_str}</details>" if jobs.size >= 10
+      jobs_str = "<details><summary>#{jobs.size} items</summary>#{jobs_str}</details>" if jobs.size >= 10
 
       errors_str = "<ul>#{errors.join}</ul>"
-      errors_str = "<details><summary>#{errors.size} items</summary>\n#{errors_str}</details>" if errors.size >= 10
+      errors_str = "<details><summary>#{errors.size} items</summary>#{errors_str}</details>" if errors.size >= 10
 
       if reports.size > 0
         reports_str = reports.uniq.map { |e| "<li>`#{e['github_issue']}` (#{e['status'].capitalize})</li>"}.join
