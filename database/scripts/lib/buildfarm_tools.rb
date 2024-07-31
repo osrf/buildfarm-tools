@@ -22,11 +22,9 @@ module BuildfarmToolsLib
     out
   end
 
-  def self.known_issues(status: nil)
+  def self.known_issues(status: '')
     # Keys: error_name, job_name, github_issue, status
-    out = run_command('./sql_run.sh get_known_issues.sql')
-    out.filter! { |e| e['status'] == status.upcase } unless status.nil?
-    out
+    run_command("./sql_run.sh get_known_issues.sql #{status.upcase}")
   end
 
   def self.error_appearances_in_job(test_name, job_name)
