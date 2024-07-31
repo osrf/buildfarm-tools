@@ -90,6 +90,29 @@ module BuildfarmToolsLib
     is_known_issue.map { |issue| { 'github_issue' => issue['github_issue'], 'status' => issue['status'] } }.uniq
   end
 
+  def self.jobs_last_success
+    run_command('./sql_run.sh jobs_last_success.sql')
+  end
+
+  def self.jobs_never_passed
+    run_command('./sql_run.sh jobs_never_passed.sql')
+  end
+
+  def self.jobs_failing(days_exclude: 0)
+    # Keys: job_name, last_success
+    out = []
+    jobs_never_passed.each do |e|
+      out << {"job_name" => e["job_name"], "last_success" => "Never"}
+    end
+
+    jobs_last_success.each do |e|
+      last_success = DateTime.parse(e['last_success_time']) 
+      next if last_success > (Date.today - days_exclude)
+      out << {"job_name" => e["job_name"], "last_success" => last_success.strftime('%Y-%m-%d')}
+    end
+    out
+  end
+
   def self.run_command(cmd, args: [], keys: [])
     cmd += " '#{args.shift}'" until args.empty?
     begin
