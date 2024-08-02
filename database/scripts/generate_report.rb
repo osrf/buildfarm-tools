@@ -32,7 +32,7 @@ def generate_report(report_name, exclude_set)
             'test_regressions_flaky' => urgent_flaky_test_regressions = BuildfarmToolsLib::flaky_test_regressions(group_issues: true),
        },
        'maintenance' => {
-            'jobs_failing' => maintenance_jobs_failing = BuildfarmToolsLib::jobs_failing(days_exclude: 7),
+            'jobs_last_success_date' => maintenance_jobs_last_success_date = BuildfarmToolsLib::jobs_last_success_date(older_than_days: 7),
             'gh_issues_reported' => [],
             'tests_disabled' => [],
        },
