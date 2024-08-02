@@ -7,8 +7,13 @@ close_issue() {
     ./sql_run.sh issue_close_by_name.sql "$error_name" "$error_job_name"
 }
 
-for Line in $(./sql_run.sh get_known_issues.sql OPEN)
+for Line in $(./sql_run.sh get_known_issues.sql)
 do
+
+    if [[ $Line =~ "CLOSED" ]]
+    then
+        continue
+    fi
 
     error_name=$(echo $Line | sed 's/|.*//')
     error_job_name=$(echo $Line | sed 's/^.*|\(.*\)|.*|.*/\1/')
