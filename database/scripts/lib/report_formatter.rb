@@ -128,7 +128,7 @@ module ReportFormatter
     out
   end
 
-  def self.jobs_failing(job_array)
+  def self.jobs_last_success_date(job_array)
     return "" if job_array.empty?
     table = "| Job Name | Last Success |\n| -- | -- |\n"
     job_array.each do |job|
@@ -139,7 +139,7 @@ module ReportFormatter
 
   def self.format_report(report_hash)
     # Use <details> and <summary> tags to prevent long reports
-    details_subcategories = ['test_regressions_flaky', 'jobs_failing']
+    details_subcategories = ['test_regressions_flaky', 'jobs_last_success_date']
     output_report = ""
 
     report_hash.each_pair do |category, subcategory_hash|
