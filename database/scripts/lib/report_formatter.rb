@@ -127,10 +127,19 @@ module ReportFormatter
     out += "### Warnings\n#{warnings_table}\n" if warnings_table.count("\n") > 2
     out
   end
-  
+
+  def self.jobs_failing(job_array)
+    return "" if job_array.empty?
+    table = "| Job Name | Last Success |\n| -- | -- |\n"
+    job_array.each do |job|
+      table += "| #{job['job_name']} | #{job['last_success']} |\n"
+    end
+    table
+  end
 
   def self.format_report(report_hash)
     # Use <details> and <summary> tags to prevent long reports
+    details_subcategories = ['test_regressions_flaky', 'jobs_failing']
     output_report = ""
 
     report_hash.each_pair do |category, subcategory_hash|
@@ -140,7 +149,7 @@ module ReportFormatter
 
         subcategory_report_title = "<h2>#{subcategory.gsub('_', ' ').capitalize}</h2>\n"
         subcategory_report_str = "#{subcategory_report_title}\n#{subcategory_report}\n"
-        subcategory_report_str = "<details><summary>#{subcategory_report_title}</summary>\n\n#{subcategory_report}</details>\n" if subcategory == 'test_regressions_flaky'
+        subcategory_report_str = "<details><summary>#{subcategory_report_title}</summary>\n\n#{subcategory_report}</details>\n" if details_subcategories.include? subcategory 
         output_report += subcategory_report_str
       end
     end
