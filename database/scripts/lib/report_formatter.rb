@@ -9,6 +9,19 @@ module ReportFormatter
     /^nightly_|^packaging_/ => 'https://ci.ros2.org/job/',
   }
 
+  JOB_PROJECT_PATTERN = {
+    /^gz|^sdformat|^ros_gz/ => 'gazebo',
+    /^[A-Z]ci|^nightly_|^packaging_/ => 'ros',
+  }
+
+  def self.get_job_project(job_name)
+    project_name = ""
+    JOB_PROJECT_PATTERN.each_pair do |pattern, project|
+      project_name = project if pattern.match? job_name
+    end
+    project_name
+  end
+
   def self.format_reference_build(issue_hash)
     job_name = issue_hash['job_name']
     build_number = issue_hash['build_number']
@@ -138,19 +151,26 @@ module ReportFormatter
   end
 
   def self.test_regressions_known(issue_array)
-    table = "| Issue | Job Name | Error Name |\n| -- | -- | -- |\n"
+    tables = Hash[JOB_PROJECT_PATTERN.values.each_with_object("| Issue | Job Name | Error Name |\n| -- | -- | -- |\n").to_a]
     issue_array.each do |iss_report|
       jobs = iss_report.map { |o| o['job_name'] }.uniq
       jobs_str = "<ul><li>#{jobs.join('</li><li>')}</li></ul>"
       jobs_str = "<details><summary>#{jobs.size} jobs</summary>#{jobs_str}</details>" if jobs.size > 9
-
+      
       errors = iss_report.map { |o| o['error_name'] }.uniq
       errors_str = "<ul><li>#{errors.join('</li><li>')}</li></ul>"
       errors_str = "<details><summary>#{errors.size} errors</summary>#{errors_str}</details>" if errors.size > 9
-
-      table += "| `#{iss_report[0]['github_issue']}` | #{jobs_str} | #{errors_str} |\n"
+      
+      project = get_job_project(jobs[0])
+      
+      tables[project] += "| `#{iss_report[0]['github_issue']}` | #{jobs_str} | #{errors_str} |\n"
     end
-    table
+    out = ""
+    tables.each_pair do |k, v|
+      out += "### #{k.capitalize}\n"
+      out += "#{v}\n"
+    end
+    out
   end
 
   def self.format_report(report_hash)
