@@ -113,6 +113,12 @@ module BuildfarmToolsLib
     out
   end
 
+  def self.test_regressions_known
+    out = known_issues(status: 'open')
+    out = out.group_by { |e| e["github_issue"] }.to_a.map { |e| e[1] }
+    out
+  end
+
   def self.run_command(cmd, args: [], keys: [])
     cmd += " '#{args.shift}'" until args.empty?
     begin

@@ -39,7 +39,7 @@ def generate_report(report_name, exclude_set)
        'pending' => {
            'build_regressions_known' => [],
            'test_regressions_all' => [],
-           'test_regressions_known' => [],
+           'test_regressions_known' => pending_test_regressions_known = BuildfarmToolsLib::test_regressions_known,
        }
     }
 

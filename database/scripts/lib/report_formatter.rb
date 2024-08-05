@@ -137,9 +137,25 @@ module ReportFormatter
     table
   end
 
+  def self.test_regressions_known(issue_array)
+    table = "| Issue | Job Name | Error Name |\n| -- | -- | -- |\n"
+    issue_array.each do |iss_report|
+      jobs = iss_report.map { |o| o['job_name'] }.uniq
+      jobs_str = "<ul><li>#{jobs.join('</li><li>')}</li></ul>"
+      jobs_str = "<details><summary>#{jobs.size} jobs</summary>#{jobs_str}</details>" if jobs.size > 9
+
+      errors = iss_report.map { |o| o['error_name'] }.uniq
+      errors_str = "<ul><li>#{errors.join('</li><li>')}</li></ul>"
+      errors_str = "<details><summary>#{errors.size} errors</summary>#{errors_str}</details>" if errors.size > 9
+
+      table += "| `#{iss_report[0]['github_issue']}` | #{jobs_str} | #{errors_str} |\n"
+    end
+    table
+  end
+
   def self.format_report(report_hash)
     # Use <details> and <summary> tags to prevent long reports
-    details_subcategories = ['test_regressions_flaky', 'jobs_last_success_date']
+    details_subcategories = ['test_regressions_flaky', 'jobs_last_success_date', 'test_regressions_known']
     output_report = ""
 
     report_hash.each_pair do |category, subcategory_hash|
