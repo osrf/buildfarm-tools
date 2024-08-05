@@ -151,7 +151,7 @@ module ReportFormatter
   end
 
   def self.test_regressions_known(issue_array)
-    tables = Hash[JOB_PROJECT_PATTERN.values.each_with_object("| Issue | Job Name | Error Name |\n| -- | -- | -- |\n").to_a]
+    tables = Hash[JOB_PROJECT_PATTERN.values.each_with_object("| Issue | Jobs Name | Errors Name |\n| -- | -- | -- |\n").to_a]
     issue_array.each do |iss_report|
       jobs = iss_report.map { |o| o['job_name'] }.uniq
       jobs_str = "<ul><li>#{jobs.join('</li><li>')}</li></ul>"
