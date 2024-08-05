@@ -151,6 +151,7 @@ module ReportFormatter
   end
 
   def self.test_regressions_known(issue_array)
+    # Create a table for each project: {'ros' => <table>, 'gazebo' => <table>}
     tables = Hash[JOB_PROJECT_PATTERN.values.each_with_object("| Issue | Jobs Name | Errors Name |\n| -- | -- | -- |\n").to_a]
     issue_array.each do |iss_report|
       jobs = iss_report.map { |o| o['job_name'] }.uniq
@@ -161,8 +162,8 @@ module ReportFormatter
       errors_str = "<ul><li>#{errors.join('</li><li>')}</li></ul>"
       errors_str = "<details><summary>#{errors.size} errors</summary>#{errors_str}</details>" if errors.size > 9
       
+      # Add issue report data to it's respective project table
       project = get_job_project(jobs[0])
-      
       tables[project] += "| `#{iss_report[0]['github_issue']}` | #{jobs_str} | #{errors_str} |\n"
     end
     out = ""
