@@ -28,18 +28,18 @@ def generate_report(report_name, exclude_set)
     report = {
         'urgent' => {
             'build_regressions' => urgent_build_regressions = BuildfarmToolsLib::build_regressions_today(filter_known: true),
-            'test_regressions_consecutive' => urgent_consistent_test_regressions = BuildfarmToolsLib::test_regressions_today(filter_known: true, only_consistent: true, group_issues: true),
-            'test_regressions_flaky' => urgent_flaky_test_regressions = BuildfarmToolsLib::flaky_test_regressions(filter_known: true, group_issues: true),
+            'test_regressions_consecutive' => BuildfarmToolsLib::test_regressions_today(filter_known: true, only_consistent: true, group_issues: true),
+            'test_regressions_flaky' => BuildfarmToolsLib::flaky_test_regressions(filter_known: true, group_issues: true),
        },
        'maintenance' => {
-            'jobs_last_success_date' => maintenance_jobs_last_success_date = BuildfarmToolsLib::jobs_last_success_date(older_than_days: 7),
+            'jobs_last_success_date' => BuildfarmToolsLib::jobs_last_success_date(older_than_days: 7),
             'gh_issues_reported' => [],
             'tests_disabled' => [],
        },
        'pending' => {
            'build_regressions_known' => [],
            'test_regressions_all' => [],
-           'test_regressions_known' => pending_test_regressions_known = BuildfarmToolsLib::test_regressions_known,
+           'test_regressions_known' => BuildfarmToolsLib::test_regressions_known,
        }
     }
 
