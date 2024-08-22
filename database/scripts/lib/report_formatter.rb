@@ -169,9 +169,7 @@ module ReportFormatter
       # Add issue report data to it's respective project table
       project = get_job_project(jobs[0])
       tables[project][iss_report.first['status'].downcase] += "| `#{iss_report[0]['github_issue']}` | #{jobs_str} | #{errors_str} |\n"
-      # puts tables
     end
-    # puts
 
     out = ""
     tables.each_pair do |project, v|
