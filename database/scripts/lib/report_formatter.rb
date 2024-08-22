@@ -151,8 +151,12 @@ module ReportFormatter
   end
 
   def self.test_regressions_known(issue_array)
-    # Create a table for each project: {'ros' => <table>, 'gazebo' => <table>}
-    tables = Hash[JOB_PROJECT_PATTERN.values.each_with_object("| Issue | Jobs Name | Errors Name |\n| -- | -- | -- |\n").to_a]
+    # Create a table for each project: {'ros' => {'open' => <table>, 'disabled' => <table>}, 'gazebo' => {'open' => <table>, 'disabled' => <table>}}
+    table_template = "| Issue | Jobs Name | Errors Name |\n| -- | -- | -- |\n"
+    table_by_status = {'open' => table_template, 'disabled' => table_template}
+    projects = JOB_PROJECT_PATTERN.values.to_a
+    tables = Hash[projects.zip([table_by_status, table_by_status.clone])]
+
     issue_array.each do |iss_report|
       jobs = iss_report.map { |o| o['job_name'] }.uniq
       jobs_str = "<ul><li>#{jobs.join('</li><li>')}</li></ul>"
@@ -164,12 +168,19 @@ module ReportFormatter
       
       # Add issue report data to it's respective project table
       project = get_job_project(jobs[0])
-      tables[project] += "| `#{iss_report[0]['github_issue']}` | #{jobs_str} | #{errors_str} |\n"
+      tables[project][iss_report.first['status'].downcase] += "| `#{iss_report[0]['github_issue']}` | #{jobs_str} | #{errors_str} |\n"
+      # puts tables
     end
+    # puts
+
     out = ""
-    tables.each_pair do |k, v|
-      out += "### #{k.capitalize}\n"
-      out += "#{v}\n"
+    tables.each_pair do |project, v|
+      out += "### #{project.capitalize}\n"
+      v.each_pair do |status, table|
+        next if table == table_template
+        out += "#### #{status} issues\n"
+        out += "#{table}\n"
+      end
     end
     out
   end
