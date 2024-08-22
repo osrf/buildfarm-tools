@@ -115,6 +115,7 @@ module BuildfarmToolsLib
 
   def self.test_regressions_known
     out = known_issues(status: 'open')
+    out.concat known_issues(status: 'disabled')
     out = out.group_by { |e| e["github_issue"] }.to_a.map { |e| e[1] }
     out
   end
