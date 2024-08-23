@@ -36,7 +36,9 @@ module BuildfarmToolsLib
     # Keys: job_name, build_number, error_name, build_datetime, node_name
     out = run_command('./sql_run.sh errors_check_last_build.sql')
     if filter_known
-      known_error_names = Set.new(known_issues(status: 'open').map { |e| e['error_name'] })
+      known_errors = known_issues(status: 'open')
+      known_errors.concat known_issues(status: 'disabled')
+      known_error_names = Set.new(known_errors.map { |e| e['error_name'] })
       out.filter! { |e| !known_error_names.include? e['error_name'] }
     end
     if only_consistent
