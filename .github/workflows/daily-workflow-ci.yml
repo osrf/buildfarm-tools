@@ -1,0 +1,54 @@
+name: Daily Workflow CI
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'database/scripts/lib/*'
+      - 'database/scripts/generate_report.rb'
+      - 'database/scripts/format_report.rb'
+jobs:
+  setup:
+    name: Setup
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Ruby 3.2
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+      - name: Extract branch name
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
+  generate-report:
+    needs: setup
+    name: Generate Report
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Generate today's report
+      run: |
+        cd database/scripts
+        ./generate_report.rb -o ci_report.json
+    - uses: actions/upload-artifact@v4
+      with:
+        name: ${{ needs.setup.outputs.branch }}-report
+        path: database/scripts/ci_report.json
+        retention-days: 5 # Don't keep the artifact for much longer
+        overwrite: true # Use the same artifact name each tiemt to save space
+  format-report:
+    needs: [setup, generate-report]
+    name: Format Report
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Save report into markdown format
+      run: |
+        cd database/scripts
+        echo "# $(date '+%b %d')" > formatted_report.md
+        ./format_report.rb ci_report.json >> formatted_report.md
+    - uses: actions/upload-artifact@v4
+      with:
+        path: database/scripts/formatted_report.md
+        name: ${{ needs.setup.outputs.branch }}-formatted-reporT
+        retention-days: 5
+        overwrite: true
