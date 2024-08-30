@@ -3,16 +3,8 @@
 require 'json'
 
 module ReportFormatter
-  JOB_URL_PATTERN = {
-    /^gz|^sdformat|^ros_gz/ => 'https://build.osrfoundation.org/job/',
-    /^[A-Z]ci/ => 'https://build.ros2.org/job/',
-    /^nightly_|^packaging_/ => 'https://ci.ros2.org/job/',
-  }
 
-  JOB_PROJECT_PATTERN = {
-    /^gz|^sdformat|^ros_gz/ => 'gazebo',
-    /^[A-Z]ci|^nightly_|^packaging_/ => 'ros',
-  }
+  TRACKED_PROJECTS = %w[ROS GAZEBO]
 
   def self.get_job_project(job_name)
     project_name = ""
@@ -25,16 +17,9 @@ module ReportFormatter
   def self.format_reference_build(issue_hash)
     job_name = issue_hash['job_name']
     build_number = issue_hash['build_number']
-    base_url = ""
+    base_url = issue_hash['domain']
 
-    JOB_URL_PATTERN.each_pair do |pattern, url|
-      if pattern.match? job_name
-        base_url = url
-        break
-      end
-    end
-
-    "[#{job_name}##{build_number}](#{base_url}#{job_name}/#{build_number})"
+    "[#{job_name}##{build_number}](#{base_url}/job/#{job_name}/#{build_number})"
   end
 
   def self.format_datetime(datetime)
@@ -154,8 +139,7 @@ module ReportFormatter
     # Create a table for each project: {'ros' => {'open' => <table>, 'disabled' => <table>}, 'gazebo' => {'open' => <table>, 'disabled' => <table>}}
     table_template = "| Issue | Jobs Name | Errors Name |\n| -- | -- | -- |\n"
     table_by_status = {'open' => table_template, 'disabled' => table_template}
-    projects = JOB_PROJECT_PATTERN.values.to_a
-    tables = Hash[projects.zip([table_by_status, table_by_status.clone])]
+    tables = Hash[TRACKED_PROJECTS.zip([table_by_status, table_by_status.clone])]
 
     issue_array.each do |iss_report|
       jobs = iss_report.map { |o| o['job_name'] }.uniq
@@ -167,7 +151,7 @@ module ReportFormatter
       errors_str = "<details><summary>#{errors.size} errors</summary>#{errors_str}</details>" if errors.size > 9
       
       # Add issue report data to it's respective project table
-      project = get_job_project(jobs[0])
+      project = iss_report.first['project']
       tables[project][iss_report.first['status'].downcase] += "| `#{iss_report[0]['github_issue']}` | #{jobs_str} | #{errors_str} |\n"
     end
 
@@ -176,7 +160,7 @@ module ReportFormatter
       out += "### #{project.capitalize}\n"
       v.each_pair do |status, table|
         next if table == table_template
-        out += "#### #{status} issues\n"
+        out += "#### #{status.capitalize} issues\n"
         out += "#{table}\n"
       end
     end

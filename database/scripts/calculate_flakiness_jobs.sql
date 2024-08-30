@@ -48,10 +48,13 @@ SELECT build_status.job_name,
     ROUND(
         CAST(recent_failures.failure_count AS FLOAT) / recent_builds.build_count * 100,
         2
-    ) AS failure_percentage
+    ) AS failure_percentage,
+    server_status.project,
+    server_status.domain
 FROM build_status,
     recent_builds,
     recent_failures
+INNER JOIN server_status ON server_status.job_name = build_status.job_name
 WHERE recent_builds.job_name = build_status.job_name
     AND recent_failures.job_name = build_status.job_name
     AND recent_failures.failure_count > 0
