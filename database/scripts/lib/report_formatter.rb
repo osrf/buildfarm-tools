@@ -19,7 +19,7 @@ module ReportFormatter
     build_number = issue_hash['build_number']
     base_url = issue_hash['domain']
 
-    "[#{job_name}##{build_number}](#{base_url}/#{job_name}/#{build_number})"
+    "[#{job_name}##{build_number}](#{base_url}/job/#{job_name}/#{build_number})"
   end
 
   def self.format_datetime(datetime)
@@ -160,7 +160,7 @@ module ReportFormatter
       out += "### #{project.capitalize}\n"
       v.each_pair do |status, table|
         next if table == table_template
-        out += "#### #{status.titelize} issues\n"
+        out += "#### #{status.capitalize} issues\n"
         out += "#{table}\n"
       end
     end
