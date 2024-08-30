@@ -3,5 +3,6 @@ CREATE TABLE IF NOT EXISTS server_status(
     server_status TEXT,
     release TEXT,
     os_name TEXT,
-    project TEXT
+    project TEXT,
+    domain TEXT
 );
