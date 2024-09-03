@@ -135,6 +135,23 @@ module ReportFormatter
     table
   end
 
+  def self.test_regressions_all(test_regressions_array)
+    table = "| Reference Build | Error Name |\n| -- | -- |\n"
+    regressions = test_regressions_array.group_by { |e| e['job_name'] }
+    regressions.each_pair do |job, errors_hash|
+
+      errors = errors_hash.map { |o| [o['error_name'], o['age']] }
+      errors_str = ""
+      errors.each do |e|
+        errors_str = "<ul><li>#{e.first} (age: #{e.last})</li><ul>"
+      end
+      errors_str = "<details><summary>#{errors.size} errors</summary>#{errors_str}</details>" if errors.size > 9
+
+      table += "| #{format_reference_build errors_hash[0]} | #{errors_str} |\n"
+    end
+    table
+  end
+
   def self.test_regressions_known(issue_array)
     # Create a table for each project: {'ros' => {'open' => <table>, 'disabled' => <table>}, 'gazebo' => {'open' => <table>, 'disabled' => <table>}}
     table_template = "| Issue | Jobs Name | Errors Name |\n| -- | -- | -- |\n"
@@ -169,7 +186,7 @@ module ReportFormatter
 
   def self.format_report(report_hash)
     # Use <details> and <summary> tags to prevent long reports
-    details_subcategories = ['test_regressions_flaky', 'jobs_last_success_date', 'test_regressions_known']
+    details_subcategories = ['test_regressions_flaky', 'jobs_last_success_date', 'test_regressions_all', 'test_regressions_known']
     output_report = ""
 
     report_hash.each_pair do |category, subcategory_hash|
