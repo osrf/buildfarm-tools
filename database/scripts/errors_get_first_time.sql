@@ -10,5 +10,6 @@ FROM test_failures
         AND test_failures.job_name = build_status.job_name
     )
 WHERE test_failures.error_name LIKE "@param1@"
+    AND test_failures.job_name LIKE "%@param2@%"
 ORDER BY build_status.build_datetime ASC
 LIMIT 25
