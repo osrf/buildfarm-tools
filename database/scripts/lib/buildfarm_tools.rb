@@ -32,7 +32,7 @@ module BuildfarmToolsLib
     run_command('./sql_run.sh error_appearances_in_job.sql', args: [test_name, job_name])
   end
 
-  def self.test_regressions_today(filter_known: false, only_consistent: false, group_issues: false)
+  def self.test_regressions_all(filter_known: false)
     # Keys: job_name, build_number, error_name, build_datetime, node_name
     out = run_command('./sql_run.sh errors_check_last_build.sql')
     if filter_known
@@ -41,6 +41,13 @@ module BuildfarmToolsLib
       known_error_names = Set.new(known_errors.map { |e| e['error_name'] })
       out.filter! { |e| !known_error_names.include? e['error_name'] }
     end
+    out
+  end
+
+  def self.test_regressions_today(filter_known: false, only_consistent: false, group_issues: false, report_regressions: [])
+    # Keys: job_name, build_number, error_name, build_datetime, node_name
+    out = report_regressions
+    out = test_regressions_all(filter_known: filter_known) if out.empty?
     if only_consistent
       out.filter! { |tr| tr['age'].to_i >= CONSECUTIVE_THRESHOLD || tr['age'].to_i == WARNING_AGE_CONSTANT }
       out.sort_by! { |tr| -tr['age'].to_i }
@@ -55,10 +62,11 @@ module BuildfarmToolsLib
     out
   end
 
-  def self.flaky_test_regressions(filter_known: false, group_issues: false, time_range: FLAKY_BUILDS_DEFAULT_RANGE)
+  def self.flaky_test_regressions(filter_known: false, group_issues: false, time_range: FLAKY_BUILDS_DEFAULT_RANGE, report_regressions: [])
     # Keys: job_name, build_number, error_name, build_datetime, node_name, flakiness
     out = []
-    today_regressions = test_regressions_today(filter_known: filter_known)
+    today_regressions = report_regressions
+    today_regressions = test_regressions_all(filter_known: filter_known) if today_regressions.empty?
     today_regressions.each do |tr|
       next if !tr['age'].to_i.nil? && (tr['age'].to_i >= CONSECUTIVE_THRESHOLD || tr['age'].to_i == WARNING_AGE_CONSTANT)
 
