@@ -5,7 +5,7 @@ on:
     branches:
       - 'main'
     paths:
-      - 'reports/greenness_reports/'
+      - 'reports/greenness_reports/*'
   workflow_dispatch:
 
 permissions:
