@@ -8,6 +8,7 @@ on:
       - 'database/scripts/lib/*'
       - 'database/scripts/generate_report.rb'
       - 'database/scripts/format_report.rb'
+      - 'database/buildfarmer.db'
 jobs:
   run-ci:
     name: Setup
