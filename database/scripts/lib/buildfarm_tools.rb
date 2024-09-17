@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'open3'
+require 'csv'
 
 module BuildfarmToolsLib
   class BuildfarmToolsError < RuntimeError; end
@@ -14,6 +15,8 @@ module BuildfarmToolsLib
   FLAKY_BUILDS_THRESHOLD = 3
   FLAKY_BUILDS_DEFAULT_RANGE = '15 days'
   WARNING_AGE_CONSTANT = -1
+
+  JOB_PRIORITIES = CSV.read('lib/job_priorities.csv', converters: :numeric).to_h
 
   def self.build_regressions_today(filter_known: false)
     # Keys: job_name, build_number, build_datetime, failure_reason, last_section
@@ -133,6 +136,36 @@ module BuildfarmToolsLib
     out.concat known_issues(status: 'disabled')
     out = out.group_by { |e| e["github_issue"] }.to_a.map { |e| e[1] }
     out
+  end
+
+  def self.issue_priority(issue_link)
+    sql_out = run_command('./sql_run.sh get_known_issues_job_link.sql', args: [issue_link])
+    errors = sql_out.map {|e| e['error_name']}.uniq
+    jobs = sql_out.map {|e| e['job_name']}.uniq
+
+    error_score_jobs = {}
+
+    errors.each do |e|
+      puts "--- Error #{e}:"
+      jobs.each do |job|
+        flaky_result = run_command('./sql_run.sh calculate_flakiness_jobs.sql', args: [e, FLAKY_BUILDS_DEFAULT_RANGE, job])
+        next if flaky_result.empty?
+        # This is not guaranteed to be 'not consistent', we need to re-check if the last 3 builds were failing because of this
+        flaky_ratio = flaky_result.first['failure_percentage'].to_f/100.0
+
+        job_priority = JOB_PRIORITIES[job]
+        job_priority = job_priority*1.5 if flaky_ratio == 1
+        puts "#{job} - #{JOB_PRIORITIES[job]} - #{flaky_ratio} - #{job_priority}"
+        
+        error_score_jobs[job] = [] if error_score_jobs[job].nil?
+        error_score_jobs[job] << (job_priority*flaky_ratio)
+      end
+      puts "---"
+    end
+    
+    puts "Job scores: #{error_score_jobs}"
+    # Get only maximum score for each job
+    error_score_jobs.each_value.map {|e| e.max}.sum.round(3)
   end
 
   def self.run_command(cmd, args: [], keys: [])
