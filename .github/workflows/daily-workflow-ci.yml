@@ -30,7 +30,7 @@ jobs:
           name: "$BRANCH-report"
           path: database/scripts/ci_report.json
           retention-days: 5 # Don't keep the artifact for much longer
-          overwrite: true # Use the same artifact name each tiemt to save space
+          overwrite: true # Use the same artifact name each time to save space
       - name: Save report into markdown format
         run: |
           cd database/scripts
