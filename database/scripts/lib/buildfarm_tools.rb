@@ -51,7 +51,7 @@ module BuildfarmToolsLib
 
   def self.test_regressions_today(filter_known: false, only_consistent: false, group_issues: false, report_regressions: [])
     # Keys: job_name, build_number, error_name, build_datetime, node_name
-    out = report_regressions.clone(freeze: false) # Clone because we return the same array but modified
+    out = report_regressions.clone(freeze: false) # Clone because we return a modified version
     out = test_regressions_all(filter_known: filter_known) if out.empty?
     if only_consistent
       out.filter! { |tr| tr['age'].to_i >= CONSECUTIVE_THRESHOLD || tr['age'].to_i == WARNING_AGE_CONSTANT }
