@@ -1,4 +1,4 @@
-name: Daily Workflow CI
+name: Report Generation CI
 
 on:
   pull_request:
