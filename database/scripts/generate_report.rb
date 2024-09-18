@@ -27,13 +27,12 @@ options[:report_name] = "buildfarm-report_#{DateTime.now.strftime("%Y-%m-%d_%H-%
 def generate_report(report_name, exclude_set)
     report_regressions_all = BuildfarmToolsLib::test_regressions_all(filter_known: true)
     report_regressions_consecutive = BuildfarmToolsLib::test_regressions_today(filter_known: true, only_consistent: true, group_issues: true, report_regressions: report_regressions_all)
-    report_regressions_flaky = BuildfarmToolsLib::flaky_test_regressions(filter_known: true, group_issues: true, report_regressions: report_regressions_all)
     
     report = {
         'urgent' => {
             'build_regressions' => BuildfarmToolsLib::build_regressions_today(filter_known: true),
             'test_regressions_consecutive' => report_regressions_consecutive ,
-            'test_regressions_flaky' => report_regressions_flaky,
+            'test_regressions_flaky' => BuildfarmToolsLib::flaky_test_regressions(filter_known: true, group_issues: true),
        },
        'maintenance' => {
             'jobs_last_success_date' => BuildfarmToolsLib::jobs_last_success_date(older_than_days: 7),
