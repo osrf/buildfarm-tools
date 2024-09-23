@@ -1,4 +1,4 @@
-name: Report Generation CI
+name: Buildfarmer Log Daily Report Generation CI
 
 on:
   pull_request:
