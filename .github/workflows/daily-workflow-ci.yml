@@ -9,6 +9,7 @@ on:
       - 'database/scripts/generate_report.rb'
       - 'database/scripts/format_report.rb'
       - 'database/buildfarmer.db'
+  workflow_dispatch:
 jobs:
   run-ci:
     name: Setup
