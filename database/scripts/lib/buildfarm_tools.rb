@@ -131,7 +131,7 @@ module BuildfarmToolsLib
     out
   end
 
-  def self.test_regressions_known
+  def self.test_regressions_known(sort_by: 'priority')
     out = known_issues(status: 'open')
     out.concat known_issues(status: 'disabled')
     out = out.group_by { |e| e["github_issue"] }.to_a.map { |e| e[1] }
@@ -140,6 +140,10 @@ module BuildfarmToolsLib
       error_list.each do |error|
         error["priority"] = priority
       end
+    end
+
+    unless sort_by.nil?
+      out.sort_by! { |r| -r.first['priority'] }
     end
     out
   end
