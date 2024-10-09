@@ -149,7 +149,7 @@ module BuildfarmToolsLib
   end
 
   def self.issue_priority(issue_link)
-    sql_out = run_command('./sql_run.sh get_known_issues_job_link.sql', args: [issue_link])
+    sql_out = run_command('./sql_run.sh get_known_issue_errors.sql', args: [issue_link])
     errors = sql_out.map {|e| e['error_name']}.uniq
     jobs = sql_out.map {|e| e['job_name']}.uniq
 
