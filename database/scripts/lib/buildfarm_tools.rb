@@ -135,6 +135,12 @@ module BuildfarmToolsLib
     out = known_issues(status: 'open')
     out.concat known_issues(status: 'disabled')
     out = out.group_by { |e| e["github_issue"] }.to_a.map { |e| e[1] }
+    out.each do |error_list|
+      priority = issue_priority(error_list.first["github_issue"])
+      error_list.each do |error|
+        error["priority"] = priority
+      end
+    end
     out
   end
 
@@ -146,7 +152,6 @@ module BuildfarmToolsLib
     error_score_jobs = {}
 
     errors.each do |e|
-      puts "--- Error #{e}:"
       jobs.each do |job|
         flaky_result = run_command('./sql_run.sh calculate_flakiness_jobs.sql', args: [e, FLAKY_BUILDS_DEFAULT_RANGE, job])
         next if flaky_result.empty?
@@ -155,15 +160,12 @@ module BuildfarmToolsLib
 
         job_priority = JOB_PRIORITIES[job]
         job_priority = job_priority*1.5 if flaky_ratio == 1
-        puts "#{job} - #{JOB_PRIORITIES[job]} - #{flaky_ratio} - #{job_priority}"
         
         error_score_jobs[job] = [] if error_score_jobs[job].nil?
         error_score_jobs[job] << (job_priority*flaky_ratio)
       end
-      puts "---"
     end
     
-    puts "Job scores: #{error_score_jobs}"
     # Get only maximum score for each job
     error_score_jobs.each_value.map {|e| e.max}.sum.round(3)
   end
