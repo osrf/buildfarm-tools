@@ -154,7 +154,7 @@ module ReportFormatter
 
   def self.test_regressions_known(issue_array)
     # Create a table for each project: {'ros' => {'open' => <table>, 'disabled' => <table>}, 'gazebo' => {'open' => <table>, 'disabled' => <table>}}
-    table_template = "| Issue | Jobs Name | Errors Name |\n| -- | -- | -- |\n"
+    table_template = "| Issue | Priority | Jobs Name | Errors Name |\n| -- | -- | -- | -- |\n"
     table_by_status = {'open' => table_template, 'disabled' => table_template}
     tables = Hash[TRACKED_PROJECTS.zip([table_by_status, table_by_status.clone])]
 
@@ -169,7 +169,7 @@ module ReportFormatter
       
       # Add issue report data to it's respective project table
       project = iss_report.first['project']
-      tables[project][iss_report.first['status'].downcase] += "| `#{iss_report[0]['github_issue']}` | #{jobs_str} | #{errors_str} |\n"
+      tables[project][iss_report.first['status'].downcase] += "| `#{iss_report.first['github_issue']}` | #{iss_report.first['priority']} | #{jobs_str} | #{errors_str} |\n"
     end
 
     out = ""
