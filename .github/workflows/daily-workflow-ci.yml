@@ -21,13 +21,19 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'
+      - name: Set report name
+        run: |
+          BRANCH=${{ github.head_ref }}
+          REPORT_NAME="${BRANCH/\//_}"
+          echo "REPORT_NAME is: $REPORT_NAME"
+          echo "REPORT_NAME=$REPORT_NAME" >> $GITHUB_ENV
       - name: Generate today's report
         run: |
           cd database/scripts
           ./generate_report.rb -o ci_report.json
       - uses: actions/upload-artifact@v4
         with:
-          name: "${{ github.ref_name }}-report"
+          name: "${{ env.REPORT_NAME }}-report"
           path: database/scripts/ci_report.json
           retention-days: 5 # Don't keep the artifact for much longer
           overwrite: true # Use the same artifact name each time to save space
@@ -39,6 +45,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           path: database/scripts/formatted_report.md
-          name: "${{ github.ref_name }}-formatted-report"
+          name: "${{ env.REPORT_NAME }}-formatted-report"
           retention-days: 5
           overwrite: true
