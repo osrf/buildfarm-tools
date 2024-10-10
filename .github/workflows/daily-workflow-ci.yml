@@ -31,7 +31,7 @@ jobs:
           ./generate_report.rb -o ci_report.json
       - uses: actions/upload-artifact@v4
         with:
-          name: "${{ REPORT_NAME }}-report"
+          name: "${{ env.REPORT_NAME }}-report"
           path: database/scripts/ci_report.json
           retention-days: 5 # Don't keep the artifact for much longer
           overwrite: true # Use the same artifact name each time to save space
@@ -43,6 +43,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           path: database/scripts/formatted_report.md
-          name: "${{ REPORT_NAME }}-formatted-report"
+          name: "${{ env.REPORT_NAME }}-formatted-report"
           retention-days: 5
           overwrite: true
