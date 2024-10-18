@@ -23,8 +23,7 @@ jobs:
           ruby-version: '3.2'
       - name: Set report name
         run: |
-          BRANCH=${{ github.head_ref }}
-          REPORT_NAME="${BRANCH/\//_}"
+          REPORT_NAME="${github.head_ref //\//_}"
           echo "REPORT_NAME is: $REPORT_NAME"
           echo "REPORT_NAME=$REPORT_NAME" >> $GITHUB_ENV
       - name: Generate today's report
