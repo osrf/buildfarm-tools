@@ -136,7 +136,7 @@ module BuildfarmToolsLib
     out.concat known_issues(status: 'disabled')
     out = out.group_by { |e| e["github_issue"] }.to_a.map { |e| e[1] }
     out.each do |error_list|
-      priority = issue_priority(error_list.first["github_issue"])
+      priority = calculate_issue_priority(error_list.first["github_issue"])
       error_list.each do |error|
         error["priority"] = priority
       end
@@ -148,8 +148,8 @@ module BuildfarmToolsLib
     out
   end
 
-  def self.issue_priority(issue_link)
-    sql_out = run_command('./sql_run.sh get_known_issue_errors.sql', args: [issue_link])
+  def self.calculate_issue_priority(issue_link)
+    sql_out = run_command('./sql_run.sh get_known_issue_by_url.sql', args: [issue_link])
     errors = sql_out.map {|e| e['error_name']}.uniq
     jobs = sql_out.map {|e| e['job_name']}.uniq
 
