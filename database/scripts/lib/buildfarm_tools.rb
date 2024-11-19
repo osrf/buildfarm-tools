@@ -41,6 +41,7 @@ module BuildfarmToolsLib
     if filter_known
       known_errors = known_issues(status: 'open')
       known_errors.concat known_issues(status: 'disabled')
+      known_errors.concat known_issues(status: 'wontfix')
       known_error_names = Set.new(known_errors.map { |e| e['error_name'] })
       out.filter! { |e| !known_error_names.include? e['error_name'] }
     end

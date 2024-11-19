@@ -7,7 +7,8 @@ CREATE TABLE IF NOT EXISTS test_fail_issues(
         status IN (
             "OPEN",
             "CLOSED",
-            "DISABLED"
+            "DISABLED",
+            "WONTFIX"
         )
     ) NOT NULL ON CONFLICT REPLACE DEFAULT "OPEN"
 );
