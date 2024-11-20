@@ -164,6 +164,10 @@ module BuildfarmToolsLib
         flaky_ratio = flaky_result.first['failure_percentage'].to_f/100.0
 
         job_priority = JOB_PRIORITIES[job]
+        if job_priority.nil?
+          puts "WARNING: No job priority for job #{job}. Defaulting to 1"
+          job_priority = 1
+        end
         job_priority = job_priority*1.5 if flaky_ratio == 1
         
         error_score_jobs[job] = [] if error_score_jobs[job].nil?
