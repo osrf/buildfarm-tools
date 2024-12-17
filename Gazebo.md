@@ -79,7 +79,6 @@
 | [sdformat-14][sdformat-14-repo] | [![Build Status][sdformat-14-Linux Noble-badge]][sdformat-14-Linux Noble] | [![Build Status][sdformat-14-Linux-badge]][sdformat-14-Linux] | [![Build Status][sdformat-14-Windows-badge]][sdformat-14-Windows] | [![Build Status][sdformat-14-Homebrew-badge]][sdformat-14-Homebrew] | [![Build Status][sdformat-14-Nightlies jammy-badge]][sdformat-14-Nightlies jammy] | [![Build Status][sdformat-14-Nightlies noble-badge]][sdformat-14-Nightlies noble] |
 
 * [harmonic-ros_gzharmonic_bridge-install-pkg_humble-ci-jammy-amd64][harmonic-ros_gzharmonic_bridge-install-pkg_humble-ci-jammy-amd64-repo]: [![Build Status][harmonic-ros_gzharmonic_bridge-install-pkg_humble-ci-jammy-amd64-badge]][harmonic-ros_gzharmonic_bridge-install-pkg_humble-ci-jammy-amd64-job]
-* [harmonic-ros_gzharmonic_bridge-install-pkg_iron-ci-jammy-amd64][harmonic-ros_gzharmonic_bridge-install-pkg_iron-ci-jammy-amd64-repo]: [![Build Status][harmonic-ros_gzharmonic_bridge-install-pkg_iron-ci-jammy-amd64-badge]][harmonic-ros_gzharmonic_bridge-install-pkg_iron-ci-jammy-amd64-job]
 ## gz-fortress
 | | Linux | Windows | Homebrew |
 |-|-|-|-|
@@ -858,9 +857,6 @@
 [harmonic-ros_gzharmonic_bridge-install-pkg_humble-ci-jammy-amd64-repo]: https://github.com/gazebo-release/ros_gz-gzharmonic-release
 [harmonic-ros_gzharmonic_bridge-install-pkg_humble-ci-jammy-amd64-job]: https://build.osrfoundation.org/job/ros_gzharmonic_bridge-install-pkg_humble-ci-jammy-amd64
 [harmonic-ros_gzharmonic_bridge-install-pkg_humble-ci-jammy-amd64-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ros_gzharmonic_bridge-install-pkg_humble-ci-jammy-amd64
-[harmonic-ros_gzharmonic_bridge-install-pkg_iron-ci-jammy-amd64-repo]: https://github.com/gazebo-release/ros_gz-gzharmonic-release
-[harmonic-ros_gzharmonic_bridge-install-pkg_iron-ci-jammy-amd64-job]: https://build.osrfoundation.org/job/ros_gzharmonic_bridge-install-pkg_iron-ci-jammy-amd64
-[harmonic-ros_gzharmonic_bridge-install-pkg_iron-ci-jammy-amd64-badge]: https://build.osrfoundation.org/buildStatus/icon?job=ros_gzharmonic_bridge-install-pkg_iron-ci-jammy-amd64
 [sim-6-repo]: https://github.com/gazebosim/gz-sim
 [sim-6-Linux]: https://build.osrfoundation.org/job/gz_sim-ci-ign-gazebo6-focal-amd64
 [sim-6-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sim-ci-ign-gazebo6-focal-amd64
