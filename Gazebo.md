@@ -21,9 +21,9 @@
 ## gz-jetty
 | | Linux | Windows | Homebrew | Nightlies noble |
 |-|-|-|-|-|
-| [sim-9][sim-9-repo] | [![Build Status][sim-9-Linux-badge]][sim-9-Linux] | [![Build Status][sim-9-Windows-badge]][sim-9-Windows] | [![Build Status][sim-9-Homebrew-badge]][sim-9-Homebrew] | [![Build Status][gz-sim9-Nightlies noble-badge]][gz-sim9-Nightlies noble] |
-| [gui-9][gui-9-repo] | [![Build Status][gui-9-Linux-badge]][gui-9-Linux] | [![Build Status][gui-9-Windows-badge]][gui-9-Windows] | [![Build Status][gui-9-Homebrew-badge]][gui-9-Homebrew] | [![Build Status][gz-gui9-Nightlies noble-badge]][gz-gui9-Nightlies noble] |
-| [launch-8][launch-8-repo] | [![Build Status][launch-8-Linux-badge]][launch-8-Linux] | [![Build Status][launch-8-Windows-badge]][launch-8-Windows] | [![Build Status][launch-8-Homebrew-badge]][launch-8-Homebrew] | [![Build Status][gz-launch8-Nightlies noble-badge]][gz-launch8-Nightlies noble] |
+| [sim-main][sim-main-repo] | [![Build Status][sim-main-Linux-badge]][sim-main-Linux] | [![Build Status][sim-main-Windows-badge]][sim-main-Windows] | [![Build Status][sim-main-Homebrew-badge]][sim-main-Homebrew] | [![Build Status][gz-sim10-Nightlies noble-badge]][gz-sim10-Nightlies noble] |
+| [gui-main][gui-main-repo] | [![Build Status][gui-main-Linux-badge]][gui-main-Linux] | [![Build Status][gui-main-Windows-badge]][gui-main-Windows] | [![Build Status][gui-main-Homebrew-badge]][gui-main-Homebrew] | [![Build Status][gz-gui10-Nightlies noble-badge]][gz-gui10-Nightlies noble] |
+| [launch-main][launch-main-repo] | [![Build Status][launch-main-Linux-badge]][launch-main-Linux] | [![Build Status][launch-main-Windows-badge]][launch-main-Windows] | [![Build Status][launch-main-Homebrew-badge]][launch-main-Homebrew] | [![Build Status][gz-launch9-Nightlies noble-badge]][gz-launch9-Nightlies noble] |
 | [rendering-9][rendering-9-repo] | [![Build Status][rendering-9-Linux-badge]][rendering-9-Linux] | [![Build Status][rendering-9-Windows-badge]][rendering-9-Windows] | [![Build Status][rendering-9-Homebrew-badge]][rendering-9-Homebrew] | [![Build Status][gz-rendering9-Nightlies noble-badge]][gz-rendering9-Nightlies noble] |
 | [sensors-9][sensors-9-repo] | [![Build Status][sensors-9-Linux-badge]][sensors-9-Linux] | [![Build Status][sensors-9-Windows-badge]][sensors-9-Windows] | [![Build Status][sensors-9-Homebrew-badge]][sensors-9-Homebrew] | [![Build Status][gz-sensors9-Nightlies noble-badge]][gz-sensors9-Nightlies noble] |
 | [physics-8][physics-8-repo] | [![Build Status][physics-8-Linux-badge]][physics-8-Linux] | [![Build Status][physics-8-Windows-badge]][physics-8-Windows] | [![Build Status][physics-8-Homebrew-badge]][physics-8-Homebrew] | [![Build Status][gz-physics8-Nightlies noble-badge]][gz-physics8-Nightlies noble] |
@@ -243,33 +243,33 @@
 [sdformat-main-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat-ci-main-homebrew-amd64
 [sdformat-main-Nightlies noble]: https://build.osrfoundation.org/job/Untracked-Job
 [sdformat-main-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=Untracked-Job
-[sim-9-repo]: https://github.com/gazebosim/gz-sim
-[sim-9-Linux]: https://build.osrfoundation.org/job/gz_sim-ci-gz-sim9-noble-amd64
-[sim-9-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sim-ci-gz-sim9-noble-amd64
-[sim-9-Windows]: https://build.osrfoundation.org/job/gz_sim-9-win
-[sim-9-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sim-9-win
-[sim-9-Homebrew]: https://build.osrfoundation.org/job/gz_sim-ci-gz-sim9-homebrew-amd64
-[sim-9-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sim-ci-gz-sim9-homebrew-amd64
-[gz-sim9-Nightlies noble]: https://build.osrfoundation.org/job/gz-sim9-debbuilder
-[gz-sim9-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-sim9-debbuilder&build=last:${params.DISTRO=noble}
-[gui-9-repo]: https://github.com/gazebosim/gz-gui
-[gui-9-Linux]: https://build.osrfoundation.org/job/gz_gui-ci-gz-gui9-noble-amd64
-[gui-9-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_gui-ci-gz-gui9-noble-amd64
-[gui-9-Windows]: https://build.osrfoundation.org/job/gz_gui-9-win
-[gui-9-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_gui-9-win
-[gui-9-Homebrew]: https://build.osrfoundation.org/job/gz_gui-ci-gz-gui9-homebrew-amd64
-[gui-9-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_gui-ci-gz-gui9-homebrew-amd64
-[gz-gui9-Nightlies noble]: https://build.osrfoundation.org/job/gz-gui9-debbuilder
-[gz-gui9-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-gui9-debbuilder&build=last:${params.DISTRO=noble}
-[launch-8-repo]: https://github.com/gazebosim/gz-launch
-[launch-8-Linux]: https://build.osrfoundation.org/job/gz_launch-ci-gz-launch8-noble-amd64
-[launch-8-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_launch-ci-gz-launch8-noble-amd64
-[launch-8-Windows]: https://build.osrfoundation.org/job/gz_launch-8-win
-[launch-8-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_launch-8-win
-[launch-8-Homebrew]: https://build.osrfoundation.org/job/gz_launch-ci-gz-launch8-homebrew-amd64
-[launch-8-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_launch-ci-gz-launch8-homebrew-amd64
-[gz-launch8-Nightlies noble]: https://build.osrfoundation.org/job/gz-launch8-debbuilder
-[gz-launch8-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-launch8-debbuilder&build=last:${params.DISTRO=noble}
+[sim-main-repo]: https://github.com/gazebosim/gz-sim
+[sim-main-Linux]: https://build.osrfoundation.org/job/gz_sim-ci-main-noble-amd64
+[sim-main-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sim-ci-main-noble-amd64
+[sim-main-Windows]: https://build.osrfoundation.org/job/gz_sim-main-win
+[sim-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sim-main-win
+[sim-main-Homebrew]: https://build.osrfoundation.org/job/gz_sim-ci-main-homebrew-amd64
+[sim-main-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sim-ci-main-homebrew-amd64
+[gz-sim10-Nightlies noble]: https://build.osrfoundation.org/job/gz-sim10-debbuilder
+[gz-sim10-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-sim10-debbuilder&build=last:${params.DISTRO=noble}
+[gui-main-repo]: https://github.com/gazebosim/gz-gui
+[gui-main-Linux]: https://build.osrfoundation.org/job/gz_gui-ci-main-noble-amd64
+[gui-main-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_gui-ci-main-noble-amd64
+[gui-main-Windows]: https://build.osrfoundation.org/job/gz_gui-main-win
+[gui-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_gui-main-win
+[gui-main-Homebrew]: https://build.osrfoundation.org/job/gz_gui-ci-main-homebrew-amd64
+[gui-main-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_gui-ci-main-homebrew-amd64
+[gz-gui10-Nightlies noble]: https://build.osrfoundation.org/job/gz-gui10-debbuilder
+[gz-gui10-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-gui10-debbuilder&build=last:${params.DISTRO=noble}
+[launch-main-repo]: https://github.com/gazebosim/gz-launch
+[launch-main-Linux]: https://build.osrfoundation.org/job/gz_launch-ci-main-noble-amd64
+[launch-main-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_launch-ci-main-noble-amd64
+[launch-main-Windows]: https://build.osrfoundation.org/job/gz_launch-main-win
+[launch-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_launch-main-win
+[launch-main-Homebrew]: https://build.osrfoundation.org/job/gz_launch-ci-main-homebrew-amd64
+[launch-main-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_launch-ci-main-homebrew-amd64
+[gz-launch9-Nightlies noble]: https://build.osrfoundation.org/job/gz-launch9-debbuilder
+[gz-launch9-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-launch9-debbuilder&build=last:${params.DISTRO=noble}
 [rendering-9-repo]: https://github.com/gazebosim/gz-rendering
 [rendering-9-Linux]: https://build.osrfoundation.org/job/gz_rendering-ci-gz-rendering9-noble-amd64
 [rendering-9-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_rendering-ci-gz-rendering9-noble-amd64
