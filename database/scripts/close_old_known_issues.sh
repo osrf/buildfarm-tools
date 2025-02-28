@@ -7,14 +7,14 @@ close_issue() {
     ./sql_run.sh issue_close_by_name.sql "$error_name" "$error_job_name"
 }
 
-for Line in $(./sql_run.sh get_known_issues.sql OPEN)
+IFS=$'\n'
+for Line in $(./sql_run.sh get_known_issues.sql OPEN | grep -v error_name)
 do
+    error_name=$(echo "$Line" | sed 's/^\([^|]*\).*/\1/')
+    error_job_name=$(echo "$Line" | sed 's/^[^|]*|\([^|]*\).*/\1/')
 
-    error_name=$(echo $Line | sed 's/|.*//')
-    error_job_name=$(echo $Line | sed 's/^.*|\(.*\)|.*|.*/\1/')
-    
-    last_times_output="$(./sql_run.sh errors_get_last_ones.sql $error_name)"
-    last_time_job="$(echo "$last_times_output" | grep $error_job_name | head -1)"
+    last_times_output="$(./sql_run.sh errors_get_last_ones.sql "$error_name")"
+    last_time_job="$(echo "$last_times_output" | grep "$error_job_name" | head -1)"
 
     if [[ -z $last_time_job ]]
     then

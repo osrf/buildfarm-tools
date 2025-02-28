@@ -1,16 +1,9 @@
 #!/bin/bash
 
-for Line in $(./sql_run.sh get_opened_known_issues.sql)
+for Line in $(./sql_run.sh get_opened_known_issues.sql | grep -v error_name)
 do
     gh_issue=`expr match "$Line" '.*\(https://github.com.*\)'`
-    gh_type=`expr match "$gh_issue" '.*\(pull\|issue\).*'`
-    if [ $gh_type = "pull" ] 
-    then 
-        echo "[WARNING] $gh_issue gh_type is Pull request. Change it to issue."
-        continue
-    fi
-
-    issue_data=`gh $gh_type view $gh_issue`
+    issue_data=`gh issue view $gh_issue`
     issue_status=`python3 -c "import sys; import re; print(re.match(r'[\S\s]*state:[\s](.*?)[\s]', sys.argv[1]).group(1))" "$issue_data"`
 
     if [ -z $issue_status ]
