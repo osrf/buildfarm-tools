@@ -18,7 +18,7 @@ Builds [ros2.repos](https://raw.githubusercontent.com/ros2/ros2/master/ros2.repo
 From http://build.ros2.org . All Linux jobs, alternating days for released distributions: https://github.com/ros2/ros_buildfarm_config/pull/112
 
 |  | Humble | Jazzy | Kilted | Rolling |
-|---|---|---|---|
+|---|---|---|---|---|
 | Nightly Release | [![Build Status][Hci-release-badge]][Hci-release] | [![Build Status][Jci-release-badge]][Jci-release] | [![Build Status][Kci-release-badge]][Kci-release] | [![Build Status][Rci-release-badge]][Rci-release] |
 | Nightly Debug | [![Build Status][Hci-debug-badge]][Hci-debug] | [![Build Status][Jci-debug-badge]][Jci-debug] | [![Build Status][Kci-debug-badge]][Kci-debug] | [![Build Status][Rci-debug-badge]][Rci-debug] |
 | Nightly Performance | [![Build Status][Hci-performance-badge]][Hci-performance] | [![Build Status][Jci-performance-badge]][Jci-performance] | [![Build Status][Kci-performance-badge]][Kci-performance] | [![Build Status][Rci-performance-badge]][Rci-performance] |
