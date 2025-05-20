@@ -24,19 +24,19 @@
 | [sim-main][sim-main-repo] | [![Build Status][sim-main-Linux-badge]][sim-main-Linux] | [![Build Status][sim-main-Windows-badge]][sim-main-Windows] | [![Build Status][sim-main-Homebrew-badge]][sim-main-Homebrew] | [![Build Status][gz-sim10-Nightlies noble-badge]][gz-sim10-Nightlies noble] |
 | [gui-main][gui-main-repo] | [![Build Status][gui-main-Linux-badge]][gui-main-Linux] | [![Build Status][gui-main-Windows-badge]][gui-main-Windows] | [![Build Status][gui-main-Homebrew-badge]][gui-main-Homebrew] | [![Build Status][gz-gui10-Nightlies noble-badge]][gz-gui10-Nightlies noble] |
 | [launch-main][launch-main-repo] | [![Build Status][launch-main-Linux-badge]][launch-main-Linux] | [![Build Status][launch-main-Windows-badge]][launch-main-Windows] | [![Build Status][launch-main-Homebrew-badge]][launch-main-Homebrew] | [![Build Status][gz-launch9-Nightlies noble-badge]][gz-launch9-Nightlies noble] |
-| [rendering-9][rendering-9-repo] | [![Build Status][rendering-9-Linux-badge]][rendering-9-Linux] | [![Build Status][rendering-9-Windows-badge]][rendering-9-Windows] | [![Build Status][rendering-9-Homebrew-badge]][rendering-9-Homebrew] | [![Build Status][gz-rendering9-Nightlies noble-badge]][gz-rendering9-Nightlies noble] |
+| [rendering-main][rendering-main-repo] | [![Build Status][rendering-main-Linux-badge]][rendering-main-Linux] | [![Build Status][rendering-main-Windows-badge]][rendering-main-Windows] | [![Build Status][rendering-main-Homebrew-badge]][rendering-main-Homebrew] | [![Build Status][gz-rendering10-Nightlies noble-badge]][gz-rendering10-Nightlies noble] |
 | [sensors-main][sensors-main-repo] | [![Build Status][sensors-main-Linux-badge]][sensors-main-Linux] | [![Build Status][sensors-main-Windows-badge]][sensors-main-Windows] | [![Build Status][sensors-main-Homebrew-badge]][sensors-main-Homebrew] | [![Build Status][gz-sensors10-Nightlies noble-badge]][gz-sensors10-Nightlies noble] |
-| [physics-8][physics-8-repo] | [![Build Status][physics-8-Linux-badge]][physics-8-Linux] | [![Build Status][physics-8-Windows-badge]][physics-8-Windows] | [![Build Status][physics-8-Homebrew-badge]][physics-8-Homebrew] | [![Build Status][gz-physics8-Nightlies noble-badge]][gz-physics8-Nightlies noble] |
-| [fuel-tools-10][fuel-tools-10-repo] | [![Build Status][fuel-tools-10-Linux-badge]][fuel-tools-10-Linux] | [![Build Status][fuel-tools-10-Windows-badge]][fuel-tools-10-Windows] | [![Build Status][fuel-tools-10-Homebrew-badge]][fuel-tools-10-Homebrew] | [![Build Status][gz-fuel-tools10-Nightlies noble-badge]][gz-fuel-tools10-Nightlies noble] |
-| [math-8][math-8-repo] | [![Build Status][math-8-Linux-badge]][math-8-Linux] | [![Build Status][math-8-Windows-badge]][math-8-Windows] | [![Build Status][math-8-Homebrew-badge]][math-8-Homebrew] | [![Build Status][gz-math8-Nightlies noble-badge]][gz-math8-Nightlies noble] |
-| [plugin-3][plugin-3-repo] | [![Build Status][plugin-3-Linux-badge]][plugin-3-Linux] | [![Build Status][plugin-3-Windows-badge]][plugin-3-Windows] | [![Build Status][plugin-3-Homebrew-badge]][plugin-3-Homebrew] | [![Build Status][gz-plugin3-Nightlies noble-badge]][gz-plugin3-Nightlies noble] |
-| [msgs-11][msgs-11-repo] | [![Build Status][msgs-11-Linux-badge]][msgs-11-Linux] | [![Build Status][msgs-11-Windows-badge]][msgs-11-Windows] | [![Build Status][msgs-11-Homebrew-badge]][msgs-11-Homebrew] | [![Build Status][gz-msgs11-Nightlies noble-badge]][gz-msgs11-Nightlies noble] |
+| [physics-main][physics-main-repo] | [![Build Status][physics-main-Linux-badge]][physics-main-Linux] | [![Build Status][physics-main-Windows-badge]][physics-main-Windows] | [![Build Status][physics-main-Homebrew-badge]][physics-main-Homebrew] | [![Build Status][gz-physics9-Nightlies noble-badge]][gz-physics9-Nightlies noble] |
+| [fuel-tools-main][fuel-tools-main-repo] | [![Build Status][fuel-tools-main-Linux-badge]][fuel-tools-main-Linux] | [![Build Status][fuel-tools-main-Windows-badge]][fuel-tools-main-Windows] | [![Build Status][fuel-tools-main-Homebrew-badge]][fuel-tools-main-Homebrew] | [![Build Status][gz-fuel-tools11-Nightlies noble-badge]][gz-fuel-tools11-Nightlies noble] |
+| [math-main][math-main-repo] | [![Build Status][math-main-Linux-badge]][math-main-Linux] | [![Build Status][math-main-Windows-badge]][math-main-Windows] | [![Build Status][math-main-Homebrew-badge]][math-main-Homebrew] | [![Build Status][gz-math9-Nightlies noble-badge]][gz-math9-Nightlies noble] |
+| [plugin-main][plugin-main-repo] | [![Build Status][plugin-main-Linux-badge]][plugin-main-Linux] | [![Build Status][plugin-main-Windows-badge]][plugin-main-Windows] | [![Build Status][plugin-main-Homebrew-badge]][plugin-main-Homebrew] | [![Build Status][gz-plugin4-Nightlies noble-badge]][gz-plugin4-Nightlies noble] |
+| [msgs-main][msgs-main-repo] | [![Build Status][msgs-main-Linux-badge]][msgs-main-Linux] | [![Build Status][msgs-main-Windows-badge]][msgs-main-Windows] | [![Build Status][msgs-main-Homebrew-badge]][msgs-main-Homebrew] | [![Build Status][gz-msgs12-Nightlies noble-badge]][gz-msgs12-Nightlies noble] |
 | [transport-main][transport-main-repo] | [![Build Status][transport-main-Linux-badge]][transport-main-Linux] | [![Build Status][transport-main-Windows-badge]][transport-main-Windows] | [![Build Status][transport-main-Homebrew-badge]][transport-main-Homebrew] | [![Build Status][gz-transport15-Nightlies noble-badge]][gz-transport15-Nightlies noble] |
-| [common-6][common-6-repo] | [![Build Status][common-6-Linux-badge]][common-6-Linux] | [![Build Status][common-6-Windows-badge]][common-6-Windows] | [![Build Status][common-6-Homebrew-badge]][common-6-Homebrew] | [![Build Status][gz-common6-Nightlies noble-badge]][gz-common6-Nightlies noble] |
-| [cmake-4][cmake-4-repo] | [![Build Status][cmake-4-Linux-badge]][cmake-4-Linux] | [![Build Status][cmake-4-Windows-badge]][cmake-4-Windows] | [![Build Status][cmake-4-Homebrew-badge]][cmake-4-Homebrew] | [![Build Status][gz-cmake4-Nightlies noble-badge]][gz-cmake4-Nightlies noble] |
+| [common-main][common-main-repo] | [![Build Status][common-main-Linux-badge]][common-main-Linux] | [![Build Status][common-main-Windows-badge]][common-main-Windows] | [![Build Status][common-main-Homebrew-badge]][common-main-Homebrew] | [![Build Status][gz-common7-Nightlies noble-badge]][gz-common7-Nightlies noble] |
+| [cmake-main][cmake-main-repo] | [![Build Status][cmake-main-Linux-badge]][cmake-main-Linux] | [![Build Status][cmake-main-Windows-badge]][cmake-main-Windows] | [![Build Status][cmake-main-Homebrew-badge]][cmake-main-Homebrew] | [![Build Status][gz-cmake5-Nightlies noble-badge]][gz-cmake5-Nightlies noble] |
 | [tools-2][tools-2-repo] | [![Build Status][tools-2-Linux-badge]][tools-2-Linux] | [![Build Status][tools-2-Windows-badge]][tools-2-Windows] | [![Build Status][tools-2-Homebrew-badge]][tools-2-Homebrew] | [![Build Status][gz-tools2-Nightlies noble-badge]][gz-tools2-Nightlies noble] |
-| [utils-3][utils-3-repo] | [![Build Status][utils-3-Linux-badge]][utils-3-Linux] | [![Build Status][utils-3-Windows-badge]][utils-3-Windows] | [![Build Status][utils-3-Homebrew-badge]][utils-3-Homebrew] | [![Build Status][gz-utils3-Nightlies noble-badge]][gz-utils3-Nightlies noble] |
-| [sdformat-15][sdformat-15-repo] | [![Build Status][sdformat-15-Linux-badge]][sdformat-15-Linux] | [![Build Status][sdformat-15-Windows-badge]][sdformat-15-Windows] | [![Build Status][sdformat-15-Homebrew-badge]][sdformat-15-Homebrew] | [![Build Status][sdformat15-Nightlies noble-badge]][sdformat15-Nightlies noble] |
+| [utils-main][utils-main-repo] | [![Build Status][utils-main-Linux-badge]][utils-main-Linux] | [![Build Status][utils-main-Windows-badge]][utils-main-Windows] | [![Build Status][utils-main-Homebrew-badge]][utils-main-Homebrew] | [![Build Status][gz-utils4-Nightlies noble-badge]][gz-utils4-Nightlies noble] |
+| [sdformat-main][sdformat-main-repo] | [![Build Status][sdformat-main-Linux-badge]][sdformat-main-Linux] | [![Build Status][sdformat-main-Windows-badge]][sdformat-main-Windows] | [![Build Status][sdformat-main-Homebrew-badge]][sdformat-main-Homebrew] | [![Build Status][sdformat16-Nightlies noble-badge]][sdformat16-Nightlies noble] |
 
 ## gz-ionic
 | | Linux | Windows | Homebrew |
@@ -270,15 +270,15 @@
 [launch-main-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_launch-ci-main-homebrew-amd64
 [gz-launch9-Nightlies noble]: https://build.osrfoundation.org/job/gz-launch9-debbuilder
 [gz-launch9-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-launch9-debbuilder&build=last:${params.DISTRO=noble}
-[rendering-9-repo]: https://github.com/gazebosim/gz-rendering
-[rendering-9-Linux]: https://build.osrfoundation.org/job/gz_rendering-ci-gz-rendering9-noble-amd64
-[rendering-9-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_rendering-ci-gz-rendering9-noble-amd64
-[rendering-9-Windows]: https://build.osrfoundation.org/job/gz_rendering-9-cnlwin
-[rendering-9-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_rendering-9-cnlwin
-[rendering-9-Homebrew]: https://build.osrfoundation.org/job/gz_rendering-ci-gz-rendering9-homebrew-amd64
-[rendering-9-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_rendering-ci-gz-rendering9-homebrew-amd64
-[gz-rendering9-Nightlies noble]: https://build.osrfoundation.org/job/gz-rendering9-debbuilder
-[gz-rendering9-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rendering9-debbuilder&build=last:${params.DISTRO=noble}
+[rendering-main-repo]: https://github.com/gazebosim/gz-rendering
+[rendering-main-Linux]: https://build.osrfoundation.org/job/gz_rendering-ci-main-noble-amd64
+[rendering-main-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_rendering-ci-main-noble-amd64
+[rendering-main-Windows]: https://build.osrfoundation.org/job/gz_rendering-main-cnlwin
+[rendering-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_rendering-main-cnlwin
+[rendering-main-Homebrew]: https://build.osrfoundation.org/job/gz_rendering-ci-main-homebrew-amd64
+[rendering-main-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_rendering-ci-main-homebrew-amd64
+[gz-rendering10-Nightlies noble]: https://build.osrfoundation.org/job/gz-rendering10-debbuilder
+[gz-rendering10-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rendering10-debbuilder&build=last:${params.DISTRO=noble}
 [sensors-main-repo]: https://github.com/gazebosim/gz-sensors
 [sensors-main-Linux]: https://build.osrfoundation.org/job/gz_sensors-ci-main-noble-amd64
 [sensors-main-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sensors-ci-main-noble-amd64
@@ -288,51 +288,51 @@
 [sensors-main-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sensors-ci-main-homebrew-amd64
 [gz-sensors10-Nightlies noble]: https://build.osrfoundation.org/job/gz-sensors10-debbuilder
 [gz-sensors10-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-sensors10-debbuilder&build=last:${params.DISTRO=noble}
-[physics-8-repo]: https://github.com/gazebosim/gz-physics
-[physics-8-Linux]: https://build.osrfoundation.org/job/gz_physics-ci-gz-physics8-noble-amd64
-[physics-8-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_physics-ci-gz-physics8-noble-amd64
-[physics-8-Windows]: https://build.osrfoundation.org/job/gz_physics-8-cnlwin
-[physics-8-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_physics-8-cnlwin
-[physics-8-Homebrew]: https://build.osrfoundation.org/job/gz_physics-ci-gz-physics8-homebrew-amd64
-[physics-8-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_physics-ci-gz-physics8-homebrew-amd64
-[gz-physics8-Nightlies noble]: https://build.osrfoundation.org/job/gz-physics8-debbuilder
-[gz-physics8-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-physics8-debbuilder&build=last:${params.DISTRO=noble}
-[fuel-tools-10-repo]: https://github.com/gazebosim/gz-fuel-tools
-[fuel-tools-10-Linux]: https://build.osrfoundation.org/job/gz_fuel_tools-ci-gz-fuel-tools10-noble-amd64
-[fuel-tools-10-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_fuel_tools-ci-gz-fuel-tools10-noble-amd64
-[fuel-tools-10-Windows]: https://build.osrfoundation.org/job/gz_fuel_tools-10-cnlwin
-[fuel-tools-10-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_fuel_tools-10-cnlwin
-[fuel-tools-10-Homebrew]: https://build.osrfoundation.org/job/gz_fuel_tools-ci-gz-fuel-tools10-homebrew-amd64
-[fuel-tools-10-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_fuel_tools-ci-gz-fuel-tools10-homebrew-amd64
-[gz-fuel-tools10-Nightlies noble]: https://build.osrfoundation.org/job/gz-fuel-tools10-debbuilder
-[gz-fuel-tools10-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-fuel-tools10-debbuilder&build=last:${params.DISTRO=noble}
-[math-8-repo]: https://github.com/gazebosim/gz-math
-[math-8-Linux]: https://build.osrfoundation.org/job/gz_math-ci-gz-math8-noble-amd64
-[math-8-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_math-ci-gz-math8-noble-amd64
-[math-8-Windows]: https://build.osrfoundation.org/job/gz_math-8-cnlwin
-[math-8-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_math-8-cnlwin
-[math-8-Homebrew]: https://build.osrfoundation.org/job/gz_math-ci-gz-math8-homebrew-amd64
-[math-8-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_math-ci-gz-math8-homebrew-amd64
-[gz-math8-Nightlies noble]: https://build.osrfoundation.org/job/gz-math8-debbuilder
-[gz-math8-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-math8-debbuilder&build=last:${params.DISTRO=noble}
-[plugin-3-repo]: https://github.com/gazebosim/gz-plugin
-[plugin-3-Linux]: https://build.osrfoundation.org/job/gz_plugin-ci-gz-plugin3-noble-amd64
-[plugin-3-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_plugin-ci-gz-plugin3-noble-amd64
-[plugin-3-Windows]: https://build.osrfoundation.org/job/gz_plugin-3-cnlwin
-[plugin-3-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_plugin-3-cnlwin
-[plugin-3-Homebrew]: https://build.osrfoundation.org/job/gz_plugin-ci-gz-plugin3-homebrew-amd64
-[plugin-3-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_plugin-ci-gz-plugin3-homebrew-amd64
-[gz-plugin3-Nightlies noble]: https://build.osrfoundation.org/job/gz-plugin3-debbuilder
-[gz-plugin3-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-plugin3-debbuilder&build=last:${params.DISTRO=noble}
-[msgs-11-repo]: https://github.com/gazebosim/gz-msgs
-[msgs-11-Linux]: https://build.osrfoundation.org/job/gz_msgs-ci-gz-msgs11-noble-amd64
-[msgs-11-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_msgs-ci-gz-msgs11-noble-amd64
-[msgs-11-Windows]: https://build.osrfoundation.org/job/gz_msgs-11-cnlwin
-[msgs-11-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_msgs-11-cnlwin
-[msgs-11-Homebrew]: https://build.osrfoundation.org/job/gz_msgs-ci-gz-msgs11-homebrew-amd64
-[msgs-11-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_msgs-ci-gz-msgs11-homebrew-amd64
-[gz-msgs11-Nightlies noble]: https://build.osrfoundation.org/job/gz-msgs11-debbuilder
-[gz-msgs11-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-msgs11-debbuilder&build=last:${params.DISTRO=noble}
+[physics-main-repo]: https://github.com/gazebosim/gz-physics
+[physics-main-Linux]: https://build.osrfoundation.org/job/gz_physics-ci-main-noble-amd64
+[physics-main-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_physics-ci-main-noble-amd64
+[physics-main-Windows]: https://build.osrfoundation.org/job/gz_physics-main-cnlwin
+[physics-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_physics-main-cnlwin
+[physics-main-Homebrew]: https://build.osrfoundation.org/job/gz_physics-ci-main-homebrew-amd64
+[physics-main-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_physics-ci-main-homebrew-amd64
+[gz-physics9-Nightlies noble]: https://build.osrfoundation.org/job/gz-physics9-debbuilder
+[gz-physics9-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-physics9-debbuilder&build=last:${params.DISTRO=noble}
+[fuel-tools-main-repo]: https://github.com/gazebosim/gz-fuel-tools
+[fuel-tools-main-Linux]: https://build.osrfoundation.org/job/gz_fuel_tools-ci-main-noble-amd64
+[fuel-tools-main-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_fuel_tools-ci-main-noble-amd64
+[fuel-tools-main-Windows]: https://build.osrfoundation.org/job/gz_fuel_tools-main-cnlwin
+[fuel-tools-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_fuel_tools-main-cnlwin
+[fuel-tools-main-Homebrew]: https://build.osrfoundation.org/job/gz_fuel_tools-ci-main-homebrew-amd64
+[fuel-tools-main-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_fuel_tools-ci-main-homebrew-amd64
+[gz-fuel-tools11-Nightlies noble]: https://build.osrfoundation.org/job/gz-fuel-tools11-debbuilder
+[gz-fuel-tools11-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-fuel-tools11-debbuilder&build=last:${params.DISTRO=noble}
+[math-main-repo]: https://github.com/gazebosim/gz-math
+[math-main-Linux]: https://build.osrfoundation.org/job/gz_math-ci-main-noble-amd64
+[math-main-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_math-ci-main-noble-amd64
+[math-main-Windows]: https://build.osrfoundation.org/job/gz_math-main-cnlwin
+[math-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_math-main-cnlwin
+[math-main-Homebrew]: https://build.osrfoundation.org/job/gz_math-ci-main-homebrew-amd64
+[math-main-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_math-ci-main-homebrew-amd64
+[gz-math9-Nightlies noble]: https://build.osrfoundation.org/job/gz-math9-debbuilder
+[gz-math9-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-math9-debbuilder&build=last:${params.DISTRO=noble}
+[plugin-main-repo]: https://github.com/gazebosim/gz-plugin
+[plugin-main-Linux]: https://build.osrfoundation.org/job/gz_plugin-ci-main-noble-amd64
+[plugin-main-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_plugin-ci-main-noble-amd64
+[plugin-main-Windows]: https://build.osrfoundation.org/job/gz_plugin-main-cnlwin
+[plugin-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_plugin-main-cnlwin
+[plugin-main-Homebrew]: https://build.osrfoundation.org/job/gz_plugin-ci-main-homebrew-amd64
+[plugin-main-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_plugin-ci-main-homebrew-amd64
+[gz-plugin4-Nightlies noble]: https://build.osrfoundation.org/job/gz-plugin4-debbuilder
+[gz-plugin4-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-plugin4-debbuilder&build=last:${params.DISTRO=noble}
+[msgs-main-repo]: https://github.com/gazebosim/gz-msgs
+[msgs-main-Linux]: https://build.osrfoundation.org/job/gz_msgs-ci-main-noble-amd64
+[msgs-main-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_msgs-ci-main-noble-amd64
+[msgs-main-Windows]: https://build.osrfoundation.org/job/gz_msgs-main-cnlwin
+[msgs-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_msgs-main-cnlwin
+[msgs-main-Homebrew]: https://build.osrfoundation.org/job/gz_msgs-ci-main-homebrew-amd64
+[msgs-main-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_msgs-ci-main-homebrew-amd64
+[gz-msgs12-Nightlies noble]: https://build.osrfoundation.org/job/gz-msgs12-debbuilder
+[gz-msgs12-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-msgs12-debbuilder&build=last:${params.DISTRO=noble}
 [transport-main-repo]: https://github.com/gazebosim/gz-transport
 [transport-main-Linux]: https://build.osrfoundation.org/job/gz_transport-ci-main-noble-amd64
 [transport-main-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_transport-ci-main-noble-amd64
@@ -342,24 +342,24 @@
 [transport-main-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_transport-ci-main-homebrew-amd64
 [gz-transport15-Nightlies noble]: https://build.osrfoundation.org/job/gz-transport15-debbuilder
 [gz-transport15-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-transport15-debbuilder&build=last:${params.DISTRO=noble}
-[common-6-repo]: https://github.com/gazebosim/gz-common
-[common-6-Linux]: https://build.osrfoundation.org/job/gz_common-ci-gz-common6-noble-amd64
-[common-6-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_common-ci-gz-common6-noble-amd64
-[common-6-Windows]: https://build.osrfoundation.org/job/gz_common-6-cnlwin
-[common-6-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_common-6-cnlwin
-[common-6-Homebrew]: https://build.osrfoundation.org/job/gz_common-ci-gz-common6-homebrew-amd64
-[common-6-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_common-ci-gz-common6-homebrew-amd64
-[gz-common6-Nightlies noble]: https://build.osrfoundation.org/job/gz-common6-debbuilder
-[gz-common6-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-common6-debbuilder&build=last:${params.DISTRO=noble}
-[cmake-4-repo]: https://github.com/gazebosim/gz-cmake
-[cmake-4-Linux]: https://build.osrfoundation.org/job/gz_cmake-ci-gz-cmake4-noble-amd64
-[cmake-4-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_cmake-ci-gz-cmake4-noble-amd64
-[cmake-4-Windows]: https://build.osrfoundation.org/job/gz_cmake-4-cnlwin
-[cmake-4-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_cmake-4-cnlwin
-[cmake-4-Homebrew]: https://build.osrfoundation.org/job/gz_cmake-ci-gz-cmake4-homebrew-amd64
-[cmake-4-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_cmake-ci-gz-cmake4-homebrew-amd64
-[gz-cmake4-Nightlies noble]: https://build.osrfoundation.org/job/gz-cmake4-debbuilder
-[gz-cmake4-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-cmake4-debbuilder&build=last:${params.DISTRO=noble}
+[common-main-repo]: https://github.com/gazebosim/gz-common
+[common-main-Linux]: https://build.osrfoundation.org/job/gz_common-ci-main-noble-amd64
+[common-main-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_common-ci-main-noble-amd64
+[common-main-Windows]: https://build.osrfoundation.org/job/gz_common-main-cnlwin
+[common-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_common-main-cnlwin
+[common-main-Homebrew]: https://build.osrfoundation.org/job/gz_common-ci-main-homebrew-amd64
+[common-main-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_common-ci-main-homebrew-amd64
+[gz-common7-Nightlies noble]: https://build.osrfoundation.org/job/gz-common7-debbuilder
+[gz-common7-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-common7-debbuilder&build=last:${params.DISTRO=noble}
+[cmake-main-repo]: https://github.com/gazebosim/gz-cmake
+[cmake-main-Linux]: https://build.osrfoundation.org/job/gz_cmake-ci-main-noble-amd64
+[cmake-main-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_cmake-ci-main-noble-amd64
+[cmake-main-Windows]: https://build.osrfoundation.org/job/gz_cmake-main-cnlwin
+[cmake-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_cmake-main-cnlwin
+[cmake-main-Homebrew]: https://build.osrfoundation.org/job/gz_cmake-ci-main-homebrew-amd64
+[cmake-main-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_cmake-ci-main-homebrew-amd64
+[gz-cmake5-Nightlies noble]: https://build.osrfoundation.org/job/gz-cmake5-debbuilder
+[gz-cmake5-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-cmake5-debbuilder&build=last:${params.DISTRO=noble}
 [tools-2-repo]: https://github.com/gazebosim/gz-tools
 [tools-2-Linux]: https://build.osrfoundation.org/job/gz_tools-ci-gz-tools2-noble-amd64
 [tools-2-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_tools-ci-gz-tools2-noble-amd64
@@ -369,24 +369,24 @@
 [tools-2-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_tools-ci-gz-tools2-homebrew-amd64
 [gz-tools2-Nightlies noble]: https://build.osrfoundation.org/job/gz-tools2-debbuilder
 [gz-tools2-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-tools2-debbuilder&build=last:${params.DISTRO=noble}
-[utils-3-repo]: https://github.com/gazebosim/gz-utils
-[utils-3-Linux]: https://build.osrfoundation.org/job/gz_utils-ci-gz-utils3-noble-amd64
-[utils-3-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_utils-ci-gz-utils3-noble-amd64
-[utils-3-Windows]: https://build.osrfoundation.org/job/gz_utils-3-cnlwin
-[utils-3-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_utils-3-cnlwin
-[utils-3-Homebrew]: https://build.osrfoundation.org/job/gz_utils-ci-gz-utils3-homebrew-amd64
-[utils-3-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_utils-ci-gz-utils3-homebrew-amd64
-[gz-utils3-Nightlies noble]: https://build.osrfoundation.org/job/gz-utils3-debbuilder
-[gz-utils3-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-utils3-debbuilder&build=last:${params.DISTRO=noble}
-[sdformat-15-repo]: https://github.com/gazebosim/sdformat
-[sdformat-15-Linux]: https://build.osrfoundation.org/job/sdformat-ci-sdf15-noble-amd64
-[sdformat-15-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat-ci-sdf15-noble-amd64
-[sdformat-15-Windows]: https://build.osrfoundation.org/job/sdformat-sdf15-cnlwin
-[sdformat-15-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat-sdf15-cnlwin
-[sdformat-15-Homebrew]: https://build.osrfoundation.org/job/sdformat-ci-sdf15-homebrew-amd64
-[sdformat-15-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat-ci-sdf15-homebrew-amd64
-[sdformat15-Nightlies noble]: https://build.osrfoundation.org/job/sdformat15-debbuilder
-[sdformat15-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat15-debbuilder&build=last:${params.DISTRO=noble}
+[utils-main-repo]: https://github.com/gazebosim/gz-utils
+[utils-main-Linux]: https://build.osrfoundation.org/job/gz_utils-ci-main-noble-amd64
+[utils-main-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_utils-ci-main-noble-amd64
+[utils-main-Windows]: https://build.osrfoundation.org/job/gz_utils-main-cnlwin
+[utils-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_utils-main-cnlwin
+[utils-main-Homebrew]: https://build.osrfoundation.org/job/gz_utils-ci-main-homebrew-amd64
+[utils-main-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_utils-ci-main-homebrew-amd64
+[gz-utils4-Nightlies noble]: https://build.osrfoundation.org/job/gz-utils4-debbuilder
+[gz-utils4-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-utils4-debbuilder&build=last:${params.DISTRO=noble}
+[sdformat-main-repo]: https://github.com/gazebosim/sdformat
+[sdformat-main-Linux]: https://build.osrfoundation.org/job/sdformat-ci-main-noble-amd64
+[sdformat-main-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat-ci-main-noble-amd64
+[sdformat-main-Windows]: https://build.osrfoundation.org/job/sdformat-main-cnlwin
+[sdformat-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat-main-cnlwin
+[sdformat-main-Homebrew]: https://build.osrfoundation.org/job/sdformat-ci-main-homebrew-amd64
+[sdformat-main-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat-ci-main-homebrew-amd64
+[sdformat16-Nightlies noble]: https://build.osrfoundation.org/job/sdformat16-debbuilder
+[sdformat16-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat16-debbuilder&build=last:${params.DISTRO=noble}
 [sim-9-repo]: https://github.com/gazebosim/gz-sim
 [sim-9-Linux]: https://build.osrfoundation.org/job/gz_sim-ci-gz-sim9-noble-amd64
 [sim-9-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sim-ci-gz-sim9-noble-amd64
