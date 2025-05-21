@@ -7,4 +7,6 @@ In buildfarm-tools adding a ROS ditribution implies:
     1. Manually add Kilted jobs to [Buildfarm Triage Sheet](https://docs.google.com/spreadsheets/d/1gX7Hw_aVsI4U05i2-NxCY66a4CmRy1Yyb6dokK5QtMg/edit?gid=1789704531#gid=1789704531)
     2. Update priorities in the sheet
     3. Copy priorities from the sheet to the csv file
-    4. Replace with the csv format (e.g., using a Vim expression: `s/\(.*\)\s/\1,`)
+    4. Fix the format of pasted elements to be in the same format as the csv file
+        * Run `awk '{print $1 "," $NF}' job_priorities.csv > job_priorities_new.csv`
+        * Check that `job_priorities_new.csv` has the correct format and then replace original file with `mv job_priorities_new.csv job_priorities.csv`
