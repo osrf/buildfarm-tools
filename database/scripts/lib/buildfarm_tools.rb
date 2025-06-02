@@ -179,6 +179,14 @@ module BuildfarmToolsLib
     error_score_jobs.each_value.map {|e| e.max}.sum.round(3)
   end
 
+  def self.add_known_issue(error_name, job_name, github_issue)
+    Open3.popen3("./issue_save_new.sh '#{error_name}' '#{error_name.split('.').first}' '#{job_name}' '#{github_issue}'") do |_, _, _, t|
+      t.value.exitstatus
+    end
+  rescue StandardError => e
+    raise BuildfarmToolsError, e
+  end
+
   def self.run_command(cmd, args: [], keys: [])
     cmd += " '#{args.shift}'" until args.empty?
     begin
