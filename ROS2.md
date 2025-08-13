@@ -26,15 +26,11 @@ From http://build.ros2.org . All Linux jobs, alternating days for released distr
 | Nightly Cyclone | [![Build Status][Hci-cyclone-badge]][Hci-cyclone] | [![Build Status][Jci-cyclone-badge]][Jci-cyclone] | [![Build Status][Kci-cyclone-badge]][Kci-cyclone] | [![Build Status][Rci-cyclone-badge]][Rci-cyclone] |
 | Nightly FastRTPS | [![Build Status][Hci-fastrtps-badge]][Hci-fastrtps] | [![Build Status][Jci-fastrtps-badge]][Jci-fastrtps] | [![Build Status][Kci-fastrtps-badge]][Kci-fastrtps] | [![Build Status][Rci-fastrtps-badge]][Rci-fastrtps] |
 | Nightly FastRTPS Dynamic | [![Build Status][Hci-fastrtps-dynamic-badge]][Hci-fastrtps-dynamic] | [![Build Status][Jci-fastrtps-dynamic-badge]][Jci-fastrtps-dynamic] | [![Build Status][Kci-fastrtps-dynamic-badge]][Kci-fastrtps-dynamic] | [![Build Status][Rci-fastrtps-dynamic-badge]][Rci-fastrtps-dynamic] |
+| Nightly Zenoh | [![Build Status][Hci-zenoh-badge]][Hci-zenoh] | [![Build Status][Jci-zenoh-badge]][Jci-zenoh] | [![Build Status][Kci-zenoh-badge]][Kci-zenoh] | [![Build Status][Rci-zenoh-badge]][Rci-zenoh] |
 | Benchmarks | [![Build Status][Hci-benchmark-badge]][Hci-benchmark] | [![Build Status][Jci-benchmark-badge]][Jci-benchmark] | [![Build Status][Kci-benchmark-badge]][Kci-benchmark] | [![Build Status][Rci-benchmark-badge]][Rci-benchmark] |
 | Coverage | [![Build Status][Hci-coverage-badge]][Hci-coverage] | [![Build Status][Jci-coverage-badge]][Jci-coverage] | [![Build Status][Kci-coverage-badge]][Kci-coverage] | [![Build Status][Rci-coverage-badge]][Rci-coverage] |
 
 ## Upload OSUOSL Repositories
-### ROS 1
-* Upload Main: [![Build Status](https://build.ros.org/job/upload_main/badge/icon)](https://build.ros.org/job/upload_main/)
-* Upload Testing: [![Build Status](https://build.ros.org/job/upload_testing/badge/icon)](https://build.ros.org/job/upload_testing/)
-
-### ROS 2
 * Upload Main: [![Build Status](https://build.ros2.org/job/upload_main/badge/icon)](https://build.ros2.org/job/upload_main/)
 * Upload Testing: [![Build Status](https://build.ros2.org/job/upload_testing/badge/icon)](https://build.ros2.org/job/upload_testing/)
 
@@ -47,7 +43,6 @@ From http://build.ros2.org . All Linux jobs, alternating days for released distr
 
 | Distribution | Build Status |
 | ------------ | ------------ |
-| Noetic | [![Build Status](https://build.ros.org/job/Nrel_sync-packages-to-testing_focal_amd64/badge/icon)](https://build.ros.org/job/Nrel_sync-packages-to-testing_focal_amd64/) |
 | Humble | [![Build Status](https://build.ros2.org/job/Hrel_sync-packages-to-testing_jammy_amd64/badge/icon)](https://build.ros2.org/job/Hrel_sync-packages-to-testing_jammy_amd64/) |
 | Jazzy | [![Build Status](https://build.ros2.org/job/Jrel_sync-packages-to-testing_noble_amd64/badge/icon)](https://build.ros2.org/job/Jrel_sync-packages-to-testing_noble_amd64/) |
 | Kilted | [![Build Status](https://build.ros2.org/job/Krel_sync-packages-to-testing_noble_amd64/badge/icon)](https://build.ros2.org/job/Krel_sync-packages-to-testing_noble_amd64/) |
@@ -103,6 +98,8 @@ From http://build.ros2.org . All Linux jobs, alternating days for released distr
 [Hci-fastrtps]: http://build.ros2.org/view/Hci/job/Hci__nightly-fastrtps_ubuntu_jammy_amd64/
 [Hci-fastrtps-dynamic-badge]: http://build.ros2.org/buildStatus/icon?job=Hci__nightly-fastrtps-dynamic_ubuntu_jammy_amd64
 [Hci-fastrtps-dynamic]:  http://build.ros2.org/view/Hci/job/Hci__nightly-fastrtps-dynamic_ubuntu_jammy_amd64/
+[Hci-zenoh-badge]: http://build.ros2.org/buildStatus/icon?job=Hci__nightly-zenoh_ubuntu_jammy_amd64
+[Hci-zenoh]:  http://build.ros2.org/view/Hci/job/Hci__nightly-zenoh_ubuntu_jammy_amd64/
 [Hci-benchmark-badge]: http://build.ros2.org/buildStatus/icon?job=Hci__benchmark_ubuntu_jammy_amd64
 [Hci-benchmark]: http://build.ros2.org/view/Hci/job/Hci__benchmark_ubuntu_jammy_amd64/
 [Hci-coverage-badge]: https://ci.ros2.org/buildStatus/icon?job=nightly_linux_humble_coverage
@@ -122,6 +119,8 @@ From http://build.ros2.org . All Linux jobs, alternating days for released distr
 [Jci-fastrtps]: http://build.ros2.org/view/Jci/job/Jci__nightly-fastrtps_ubuntu_noble_amd64/
 [Jci-fastrtps-dynamic-badge]: http://build.ros2.org/buildStatus/icon?job=Jci__nightly-fastrtps-dynamic_ubuntu_noble_amd64
 [Jci-fastrtps-dynamic]:  http://build.ros2.org/view/Jci/job/Jci__nightly-fastrtps-dynamic_ubuntu_noble_amd64/
+[Jci-zenoh-badge]: http://build.ros2.org/buildStatus/icon?job=Jci__nightly-zenoh_ubuntu_noble_amd64
+[Jci-zenoh]:  http://build.ros2.org/view/Jci/job/Jci__nightly-zenoh_ubuntu_noble_amd64/
 [Jci-benchmark-badge]: http://build.ros2.org/buildStatus/icon?job=Jci__benchmark_ubuntu_noble_amd64
 [Jci-benchmark]: http://build.ros2.org/view/Jci/job/Jci__benchmark_ubuntu_noble_amd64/
 [Jci-coverage-badge]: https://ci.ros2.org/buildStatus/icon?job=nightly_linux_jazzy_coverage
@@ -141,6 +140,8 @@ From http://build.ros2.org . All Linux jobs, alternating days for released distr
 [Kci-fastrtps]: http://build.ros2.org/view/Kci/job/Kci__nightly-fastrtps_ubuntu_noble_amd64/
 [Kci-fastrtps-dynamic-badge]: http://build.ros2.org/buildStatus/icon?job=Kci__nightly-fastrtps-dynamic_ubuntu_noble_amd64
 [Kci-fastrtps-dynamic]:  http://build.ros2.org/view/Kci/job/Kci__nightly-fastrtps-dynamic_ubuntu_noble_amd64/
+[Kci-zenoh-badge]: http://build.ros2.org/buildStatus/icon?job=Kci__nightly-zenoh_ubuntu_noble_amd64
+[Kci-zenoh]:  http://build.ros2.org/view/Kci/job/Kci__nightly-zenoh_ubuntu_noble_amd64/
 [Kci-benchmark-badge]: http://build.ros2.org/buildStatus/icon?job=Kci__benchmark_ubuntu_noble_amd64
 [Kci-benchmark]: http://build.ros2.org/view/Kci/job/Kci__benchmark_ubuntu_noble_amd64/
 [Kci-coverage-badge]: https://ci.ros2.org/buildStatus/icon?job=nightly_linux_kilted_coverage
@@ -160,6 +161,8 @@ From http://build.ros2.org . All Linux jobs, alternating days for released distr
 [Rci-fastrtps]: http://build.ros2.org/view/Rci/job/Rci__nightly-fastrtps_ubuntu_noble_amd64/
 [Rci-fastrtps-dynamic-badge]: http://build.ros2.org/buildStatus/icon?job=Rci__nightly-fastrtps-dynamic_ubuntu_noble_amd64
 [Rci-fastrtps-dynamic]:  http://build.ros2.org/view/Rci/job/Rci__nightly-fastrtps-dynamic_ubuntu_noble_amd64/
+[Rci-zenoh-badge]: http://build.ros2.org/buildStatus/icon?job=Rci__nightly-zenoh_ubuntu_noble_amd64
+[Rci-zenoh]:  http://build.ros2.org/view/Rci/job/Rci__nightly-zenoh_ubuntu_noble_amd64/
 [Rci-benchmark-badge]: http://build.ros2.org/buildStatus/icon?job=Rci__benchmark_ubuntu_noble_amd64
 [Rci-benchmark]: http://build.ros2.org/view/Rci/job/Rci__benchmark_ubuntu_noble_amd64/
 [Rci-coverage-badge]: https://ci.ros2.org/buildStatus/icon?job=nightly_linux_coverage
