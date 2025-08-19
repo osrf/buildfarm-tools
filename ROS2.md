@@ -10,7 +10,7 @@ Builds [ros2.repos](https://raw.githubusercontent.com/ros2/ros2/master/ros2.repo
 |---------------------------|-----------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
 | **x86_64 Ubuntu**  | [![Build Status][nightly-linux-debug-badge]][nightly-linux-debug]                 | [![Build Status][nightly-linux-release-badge]][nightly-linux-release]                 | [![Build Status][nightly-linux-repeated-badge]][nightly-linux-repeated]                 | [![Build Status][nightly-linux-packaging-badge]][nightly-linux-packaging]                 |
 | **aarch64 Ubuntu** | [![Build Status][nightly-linux-aarch64-debug-badge]][nightly-linux-aarch64-debug] | [![Build Status][nightly-linux-aarch64-release-badge]][nightly-linux-aarch64-release] | [![Build Status][nightly-linux-aarch64-repeated-badge]][nightly-linux-aarch64-repeated] | [![Build Status][nightly-linux-aarch64-packaging-badge]][nightly-linux-aarch64-packaging] |
-| **Windows**               | [![Build Status][nightly-win-debug-badge]][nightly-win-debug]                     | [![Build Status][nightly-win-release-badge]][nightly-win-release]                     | [![Build Status][nightly-win-repeated-badge]][nightly-win-repeated]                     | [![Build Status][nightly-win-packaging-badge]][nightly-win-packaging]                     |
+| **Windows**               | Not Supported                     | [![Build Status][nightly-win-release-badge]][nightly-win-release]                     | [![Build Status][nightly-win-repeated-badge]][nightly-win-repeated]                     | [![Build Status][nightly-win-packaging-badge]][nightly-win-packaging]                     |
 | **RHEL(Tier2)**           | [![Build Status][nightly-linux-rhel-debug-badge]][nightly-linux-rhel-debug]                   | [![Build Status][nightly-linux-rhel-release-badge]][nightly-linux-rhel-release]                   | [![Build Status][nightly-linux-rhel-repeated-badge]][nightly-linux-rhel-repeated]                   | [![Build Status][nightly-linux-rhel-packaging-badge]][nightly-linux-rhel-packaging]                   |
 
 ## Distribution CI
@@ -26,9 +26,12 @@ From http://build.ros2.org . All Linux jobs, alternating days for released distr
 | Nightly Cyclone | [![Build Status][Hci-cyclone-badge]][Hci-cyclone] | [![Build Status][Jci-cyclone-badge]][Jci-cyclone] | [![Build Status][Kci-cyclone-badge]][Kci-cyclone] | [![Build Status][Rci-cyclone-badge]][Rci-cyclone] |
 | Nightly FastRTPS | [![Build Status][Hci-fastrtps-badge]][Hci-fastrtps] | [![Build Status][Jci-fastrtps-badge]][Jci-fastrtps] | [![Build Status][Kci-fastrtps-badge]][Kci-fastrtps] | [![Build Status][Rci-fastrtps-badge]][Rci-fastrtps] |
 | Nightly FastRTPS Dynamic | [![Build Status][Hci-fastrtps-dynamic-badge]][Hci-fastrtps-dynamic] | [![Build Status][Jci-fastrtps-dynamic-badge]][Jci-fastrtps-dynamic] | [![Build Status][Kci-fastrtps-dynamic-badge]][Kci-fastrtps-dynamic] | [![Build Status][Rci-fastrtps-dynamic-badge]][Rci-fastrtps-dynamic] |
-| Nightly Zenoh | [![Build Status][Hci-zenoh-badge]][Hci-zenoh] | [![Build Status][Jci-zenoh-badge]][Jci-zenoh] | [![Build Status][Kci-zenoh-badge]][Kci-zenoh] | [![Build Status][Rci-zenoh-badge]][Rci-zenoh] |
+| Nightly Zenoh | Not Supported | Not Supported | [![Build Status][Kci-zenoh-badge]][Kci-zenoh] | [![Build Status][Rci-zenoh-badge]][Rci-zenoh] |
 | Benchmarks | [![Build Status][Hci-benchmark-badge]][Hci-benchmark] | [![Build Status][Jci-benchmark-badge]][Jci-benchmark] | [![Build Status][Kci-benchmark-badge]][Kci-benchmark] | [![Build Status][Rci-benchmark-badge]][Rci-benchmark] |
-| Coverage | [![Build Status][Hci-coverage-badge]][Hci-coverage] | [![Build Status][Jci-coverage-badge]][Jci-coverage] | [![Build Status][Kci-coverage-badge]][Kci-coverage] | [![Build Status][Rci-coverage-badge]][Rci-coverage] |
+
+<!--
+Coverage jobs has been disabled due to the high load on the CI server. See https://github.com/ros2/ci/pull/816
+ | Coverage | [![Build Status][Hci-coverage-badge]][Hci-coverage] | [![Build Status][Jci-coverage-badge]][Jci-coverage] | [![Build Status][Kci-coverage-badge]][Kci-coverage] | [![Build Status][Rci-coverage-badge]][Rci-coverage] | -->
 
 ## Upload OSUOSL Repositories
 * Upload Main: [![Build Status](https://build.ros2.org/job/upload_main/badge/icon)](https://build.ros2.org/job/upload_main/)
@@ -66,8 +69,6 @@ From http://build.ros2.org . All Linux jobs, alternating days for released distr
 [nightly-linux-aarch64-packaging]: https://ci.ros2.org/view/packaging/job/packaging_linux-aarch64
 [nightly-linux-aarch64-packaging-badge]: https://ci.ros2.org/buildStatus/icon?job=packaging_linux-aarch64
 
-[nightly-win-debug]: https://ci.ros2.org/view/nightly/job/nightly_win_deb
-[nightly-win-debug-badge]: https://ci.ros2.org/buildStatus/icon?job=nightly_win_deb
 [nightly-win-release]: https://ci.ros2.org/view/nightly/job/nightly_win_rel
 [nightly-win-release-badge]: https://ci.ros2.org/buildStatus/icon?job=nightly_win_rel
 [nightly-win-repeated]: https://ci.ros2.org/view/nightly/job/nightly_win_rep
@@ -98,8 +99,6 @@ From http://build.ros2.org . All Linux jobs, alternating days for released distr
 [Hci-fastrtps]: http://build.ros2.org/view/Hci/job/Hci__nightly-fastrtps_ubuntu_jammy_amd64/
 [Hci-fastrtps-dynamic-badge]: http://build.ros2.org/buildStatus/icon?job=Hci__nightly-fastrtps-dynamic_ubuntu_jammy_amd64
 [Hci-fastrtps-dynamic]:  http://build.ros2.org/view/Hci/job/Hci__nightly-fastrtps-dynamic_ubuntu_jammy_amd64/
-[Hci-zenoh-badge]: http://build.ros2.org/buildStatus/icon?job=Hci__nightly-zenoh_ubuntu_jammy_amd64
-[Hci-zenoh]:  http://build.ros2.org/view/Hci/job/Hci__nightly-zenoh_ubuntu_jammy_amd64/
 [Hci-benchmark-badge]: http://build.ros2.org/buildStatus/icon?job=Hci__benchmark_ubuntu_jammy_amd64
 [Hci-benchmark]: http://build.ros2.org/view/Hci/job/Hci__benchmark_ubuntu_jammy_amd64/
 [Hci-coverage-badge]: https://ci.ros2.org/buildStatus/icon?job=nightly_linux_humble_coverage
@@ -119,8 +118,6 @@ From http://build.ros2.org . All Linux jobs, alternating days for released distr
 [Jci-fastrtps]: http://build.ros2.org/view/Jci/job/Jci__nightly-fastrtps_ubuntu_noble_amd64/
 [Jci-fastrtps-dynamic-badge]: http://build.ros2.org/buildStatus/icon?job=Jci__nightly-fastrtps-dynamic_ubuntu_noble_amd64
 [Jci-fastrtps-dynamic]:  http://build.ros2.org/view/Jci/job/Jci__nightly-fastrtps-dynamic_ubuntu_noble_amd64/
-[Jci-zenoh-badge]: http://build.ros2.org/buildStatus/icon?job=Jci__nightly-zenoh_ubuntu_noble_amd64
-[Jci-zenoh]:  http://build.ros2.org/view/Jci/job/Jci__nightly-zenoh_ubuntu_noble_amd64/
 [Jci-benchmark-badge]: http://build.ros2.org/buildStatus/icon?job=Jci__benchmark_ubuntu_noble_amd64
 [Jci-benchmark]: http://build.ros2.org/view/Jci/job/Jci__benchmark_ubuntu_noble_amd64/
 [Jci-coverage-badge]: https://ci.ros2.org/buildStatus/icon?job=nightly_linux_jazzy_coverage
