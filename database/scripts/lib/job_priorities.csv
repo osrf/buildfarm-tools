@@ -5,6 +5,7 @@ Rci__nightly-fastrtps_ubuntu_noble_amd64,0.85
 Rci__nightly-debug_ubuntu_noble_amd64,1
 Rci__nightly-cyclonedds_ubuntu_noble_amd64,0.85
 Rci__nightly-connext_ubuntu_noble_amd64,0.85
+Rci__nightly-zenoh_ubuntu_noble_amd64,1
 Rci__benchmark_ubuntu_noble_amd64,0.25
 packaging_windows,1
 packaging_linux-rhel,0.5
@@ -34,6 +35,7 @@ Kci__nightly-fastrtps_ubuntu_noble_amd64,0.8
 Kci__nightly-debug_ubuntu_noble_amd64,0.95
 Kci__nightly-cyclonedds_ubuntu_noble_amd64,0.8
 Kci__nightly-connext_ubuntu_noble_amd64,0.8
+Kci__nightly-zenoh_ubuntu_noble_amd64,1
 Kci__benchmark_ubuntu_noble_amd64,0.25
 Jci__nightly-release_ubuntu_noble_amd64,0.95
 Jci__nightly-performance_ubuntu_noble_amd64,0.25
