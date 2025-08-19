@@ -50,7 +50,7 @@ jobs:
         - name: Generate today's report
           run: |
             cd database/scripts
-            echo "REPORT_NAME=$(./generate_report.rb)" >> $GITHUB_ENV
+            echo "REPORT_NAME=$(./generate_report.rb | tail -1)" >> $GITHUB_ENV
         - uses: actions/upload-artifact@v4
           with:
             name: ${{ env.REPORT_NAME }}
