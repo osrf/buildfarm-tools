@@ -33,7 +33,7 @@
 | [msgs-main][msgs-main-repo] | [![Build Status][msgs-main-Linux-badge]][msgs-main-Linux] | [![Build Status][msgs-main-Windows-badge]][msgs-main-Windows] | [![Build Status][msgs-main-Homebrew-badge]][msgs-main-Homebrew] | [![Build Status][gz-msgs12-Nightlies noble-badge]][gz-msgs12-Nightlies noble] |
 | [transport-main][transport-main-repo] | [![Build Status][transport-main-Linux-badge]][transport-main-Linux] | [![Build Status][transport-main-Windows-badge]][transport-main-Windows] | [![Build Status][transport-main-Homebrew-badge]][transport-main-Homebrew] | [![Build Status][gz-transport15-Nightlies noble-badge]][gz-transport15-Nightlies noble] |
 | [common-main][common-main-repo] | [![Build Status][common-main-Linux-badge]][common-main-Linux] | [![Build Status][common-main-Windows-badge]][common-main-Windows] | [![Build Status][common-main-Homebrew-badge]][common-main-Homebrew] | [![Build Status][gz-common7-Nightlies noble-badge]][gz-common7-Nightlies noble] |
-| [cmake-main][cmake-main-repo] | [![Build Status][cmake-main-Linux-badge]][cmake-main-Linux] | [![Build Status][cmake-main-Windows-badge]][cmake-main-Windows] | [![Build Status][cmake-main-Homebrew-badge]][cmake-main-Homebrew] | [![Build Status][gz-cmake5-Nightlies noble-badge]][gz-cmake5-Nightlies noble] |
+| [cmake-5][cmake-5-repo] | [![Build Status][cmake-5-Linux-badge]][cmake-5-Linux] | [![Build Status][cmake-5-Windows-badge]][cmake-5-Windows] | [![Build Status][cmake-5-Homebrew-badge]][cmake-5-Homebrew] | [![Build Status][gz-cmake5-Nightlies noble-badge]][gz-cmake5-Nightlies noble] |
 | [tools-2][tools-2-repo] | [![Build Status][tools-2-Linux-badge]][tools-2-Linux] | [![Build Status][tools-2-Windows-badge]][tools-2-Windows] | [![Build Status][tools-2-Homebrew-badge]][tools-2-Homebrew] | [![Build Status][gz-tools2-Nightlies noble-badge]][gz-tools2-Nightlies noble] |
 | [utils-main][utils-main-repo] | [![Build Status][utils-main-Linux-badge]][utils-main-Linux] | [![Build Status][utils-main-Windows-badge]][utils-main-Windows] | [![Build Status][utils-main-Homebrew-badge]][utils-main-Homebrew] | [![Build Status][gz-utils4-Nightlies noble-badge]][gz-utils4-Nightlies noble] |
 | [sdformat-main][sdformat-main-repo] | [![Build Status][sdformat-main-Linux-badge]][sdformat-main-Linux] | [![Build Status][sdformat-main-Windows-badge]][sdformat-main-Windows] | [![Build Status][sdformat-main-Homebrew-badge]][sdformat-main-Homebrew] | [![Build Status][sdformat16-Nightlies noble-badge]][sdformat16-Nightlies noble] |
@@ -351,13 +351,13 @@
 [common-main-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_common-ci-main-homebrew-amd64
 [gz-common7-Nightlies noble]: https://build.osrfoundation.org/job/gz-common7-debbuilder
 [gz-common7-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-common7-debbuilder&build=last:${params.DISTRO=noble}
-[cmake-main-repo]: https://github.com/gazebosim/gz-cmake
-[cmake-main-Linux]: https://build.osrfoundation.org/job/gz_cmake-ci-main-noble-amd64
-[cmake-main-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_cmake-ci-main-noble-amd64
-[cmake-main-Windows]: https://build.osrfoundation.org/job/gz_cmake-main-cnlwin
-[cmake-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_cmake-main-cnlwin
-[cmake-main-Homebrew]: https://build.osrfoundation.org/job/gz_cmake-ci-main-homebrew-amd64
-[cmake-main-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_cmake-ci-main-homebrew-amd64
+[cmake-5-repo]: https://github.com/gazebosim/gz-cmake
+[cmake-5-Linux]: https://build.osrfoundation.org/job/gz_cmake-ci-gz-cmake5-noble-amd64
+[cmake-5-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_cmake-ci-gz-cmake5-noble-amd64
+[cmake-5-Windows]: https://build.osrfoundation.org/job/gz_cmake-5-cnlwin
+[cmake-5-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_cmake-5-cnlwin
+[cmake-5-Homebrew]: https://build.osrfoundation.org/job/gz_cmake-ci-gz-cmake5-homebrew-amd64
+[cmake-5-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_cmake-ci-gz-cmake5-homebrew-amd64
 [gz-cmake5-Nightlies noble]: https://build.osrfoundation.org/job/gz-cmake5-debbuilder
 [gz-cmake5-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-cmake5-debbuilder&build=last:${params.DISTRO=noble}
 [tools-2-repo]: https://github.com/gazebosim/gz-tools
