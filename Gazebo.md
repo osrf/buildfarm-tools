@@ -26,7 +26,7 @@
 | [launch-main][launch-main-repo] | [![Build Status][launch-main-Linux-badge]][launch-main-Linux] | [![Build Status][launch-main-Windows-badge]][launch-main-Windows] | [![Build Status][launch-main-Homebrew-badge]][launch-main-Homebrew] | [![Build Status][gz-launch9-Nightlies noble-badge]][gz-launch9-Nightlies noble] |
 | [rendering-10][rendering-10-repo] | [![Build Status][rendering-10-Linux-badge]][rendering-10-Linux] | [![Build Status][rendering-10-Windows-badge]][rendering-10-Windows] | [![Build Status][rendering-10-Homebrew-badge]][rendering-10-Homebrew] | [![Build Status][gz-rendering10-Nightlies noble-badge]][gz-rendering10-Nightlies noble] |
 | [sensors-10][sensors-10-repo] | [![Build Status][sensors-10-Linux-badge]][sensors-10-Linux] | [![Build Status][sensors-10-Windows-badge]][sensors-10-Windows] | [![Build Status][sensors-10-Homebrew-badge]][sensors-10-Homebrew] | [![Build Status][gz-sensors10-Nightlies noble-badge]][gz-sensors10-Nightlies noble] |
-| [physics-main][physics-main-repo] | [![Build Status][physics-main-Linux-badge]][physics-main-Linux] | [![Build Status][physics-main-Windows-badge]][physics-main-Windows] | [![Build Status][physics-main-Homebrew-badge]][physics-main-Homebrew] | [![Build Status][gz-physics9-Nightlies noble-badge]][gz-physics9-Nightlies noble] |
+| [physics-9][physics-9-repo] | [![Build Status][physics-9-Linux-badge]][physics-9-Linux] | [![Build Status][physics-9-Windows-badge]][physics-9-Windows] | [![Build Status][physics-9-Homebrew-badge]][physics-9-Homebrew] | [![Build Status][gz-physics9-Nightlies noble-badge]][gz-physics9-Nightlies noble] |
 | [fuel-tools-main][fuel-tools-main-repo] | [![Build Status][fuel-tools-main-Linux-badge]][fuel-tools-main-Linux] | [![Build Status][fuel-tools-main-Windows-badge]][fuel-tools-main-Windows] | [![Build Status][fuel-tools-main-Homebrew-badge]][fuel-tools-main-Homebrew] | [![Build Status][gz-fuel-tools11-Nightlies noble-badge]][gz-fuel-tools11-Nightlies noble] |
 | [math-9][math-9-repo] | [![Build Status][math-9-Linux-badge]][math-9-Linux] | [![Build Status][math-9-Windows-badge]][math-9-Windows] | [![Build Status][math-9-Homebrew-badge]][math-9-Homebrew] | [![Build Status][gz-math9-Nightlies noble-badge]][gz-math9-Nightlies noble] |
 | [plugin-main][plugin-main-repo] | [![Build Status][plugin-main-Linux-badge]][plugin-main-Linux] | [![Build Status][plugin-main-Windows-badge]][plugin-main-Windows] | [![Build Status][plugin-main-Homebrew-badge]][plugin-main-Homebrew] | [![Build Status][gz-plugin4-Nightlies noble-badge]][gz-plugin4-Nightlies noble] |
@@ -288,13 +288,13 @@
 [sensors-10-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sensors-ci-gz-sensors10-homebrew-amd64
 [gz-sensors10-Nightlies noble]: https://build.osrfoundation.org/job/gz-sensors10-debbuilder
 [gz-sensors10-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-sensors10-debbuilder&build=last:${params.DISTRO=noble}
-[physics-main-repo]: https://github.com/gazebosim/gz-physics
-[physics-main-Linux]: https://build.osrfoundation.org/job/gz_physics-ci-main-noble-amd64
-[physics-main-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_physics-ci-main-noble-amd64
-[physics-main-Windows]: https://build.osrfoundation.org/job/gz_physics-main-cnlwin
-[physics-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_physics-main-cnlwin
-[physics-main-Homebrew]: https://build.osrfoundation.org/job/gz_physics-ci-main-homebrew-amd64
-[physics-main-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_physics-ci-main-homebrew-amd64
+[physics-9-repo]: https://github.com/gazebosim/gz-physics
+[physics-9-Linux]: https://build.osrfoundation.org/job/gz_physics-ci-gz-physics9-noble-amd64
+[physics-9-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_physics-ci-gz-physics9-noble-amd64
+[physics-9-Windows]: https://build.osrfoundation.org/job/gz_physics-9-cnlwin
+[physics-9-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_physics-9-cnlwin
+[physics-9-Homebrew]: https://build.osrfoundation.org/job/gz_physics-ci-gz-physics9-homebrew-amd64
+[physics-9-Homebrew-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_physics-ci-gz-physics9-homebrew-amd64
 [gz-physics9-Nightlies noble]: https://build.osrfoundation.org/job/gz-physics9-debbuilder
 [gz-physics9-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-physics9-debbuilder&build=last:${params.DISTRO=noble}
 [fuel-tools-main-repo]: https://github.com/gazebosim/gz-fuel-tools
