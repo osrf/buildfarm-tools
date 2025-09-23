@@ -52,7 +52,7 @@ jobs:
             cd database/scripts
             echo "REPORT_NAME=$(./generate_report.rb | tee report_log.txt | tail -1)" >> $GITHUB_ENV
             echo "REPORT WARNINGS:"
-            head report_log.txt -n -1 | awk -F: '{ print "::warning title=No priority for job::"$2 }'
+            head report_log.txt -n -1 | awk -F: '{ print "::warning title={No priority for job}::"$2 }'
         - uses: actions/upload-artifact@v4
           with:
             name: ${{ env.REPORT_NAME }}

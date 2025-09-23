@@ -33,7 +33,7 @@ jobs:
           cd database/scripts
           ./generate_report.rb -o ci_report.json | tee report_log.txt
           echo "REPORT WARNINGS:"
-          head report_log.txt -n -1 | awk -F: '{ print "::warning title=No priority for job::"$2 }'
+          head report_log.txt -n -1 | awk -F: '{ print "::warning title={No priority for job}::"$2 }'
       - uses: actions/upload-artifact@v4
         with:
           name: "${{ env.REPORT_NAME }}-report"
