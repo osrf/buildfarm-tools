@@ -563,7 +563,7 @@ gz_gui-ci-gz-gui9-homebrew-arm64,0.9
 gz_launch-ci-gz-launch8-homebrew-arm64,0.9
 gz_tools-ci-gz-tools2-homebrew-arm64,0.9
 gz_common-ci-gz-common6-homebrew-arm64,0.9
-gz_rendering-ci-gz-rendering9-homebrew-arm64,0.9
+gz_rendering-ci-gz-rendering10-homebrew-arm64,0.9
 gz_cmake-ci-gz-cmake4-homebrew-arm64,0.9
 gz_utils-ci-gz-utils3-homebrew-arm64,0.9
 gz_plugin-ci-gz-plugin3-homebrew-arm64,0.9
