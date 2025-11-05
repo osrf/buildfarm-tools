@@ -11,7 +11,7 @@ Every buildfarmer should follow the priorities defined for triaging issues.
 3. Check build regressions
 4. Check test regressions
 
-For items 1 and 2 refer to the [priorities document](../../docs/priorities.md#priorities) items 1 and 2.
+For items 1 and 2 refer to the [priorities document](./priorities.md#priorities) items 1 and 2.
 
 Items 3 and 4 are covered in [Looking for regressions](./looking_for_regressions.md).
 
