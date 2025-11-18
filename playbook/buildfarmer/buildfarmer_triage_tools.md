@@ -2,7 +2,7 @@
 
 We utilize our custom tools within the buildfarm to facilitate our workflow. The relevant scripts can be found in the [scripts](../../scripts/) directory.
 
-* [scripts/ci-log](../../scripts/ci-log): Sometimes the log of a build is too heavy to be rendered in a web browser. This script provides a way to download the log of a build.
+* [scripts/ci-log](../../scripts/ci-log): Fetch CI log from Jenkins using curl. Sometimes the log of a build is too heavy to be rendered in a web browser. This script provides a way to download the log of a build.
 * [scripts/extract-vcs-exact](../../scripts/extract-vcs-exact): Extract the vcs --exact output from a build log to create a repos file. It is useful for knowing the exact list of repositories that were used in a build.
 * [scripts/extract-package-output](../../scripts/extract-package-output): Extract package output from a build log using colcon markers. Useful for getting the console output of a specific package in a build.
 
@@ -46,32 +46,39 @@ The buildfarmer repository stores a local database with information from test re
 
 Check the [database scripts usage](#database-scripts-usage) section for more information on how to use these scripts.
 
-# Scripts Usage
 
-## Scripts folder usage
 
 ### ci-log
+
+Fetch CI log from Jenkins using curl.
 
 ```bash
 ci-log <url-to-build>
 ```
 
-> Will download the log of the specified build and save it in pwd.
+> Will download the log of the specified build and save it in the current directory with the name `<job-name>-<build-number>.txt`.
 
 ### extract-vcs-exact
+
+Extract the `vcs --exact` output from a build log to create a repos file.
 
 ```bash
 cat <log-file> | extract-vcs-exact
 ```
 
-> Will show the exact version of the repositories used in the build.
+> Will show the exact version of the repositories used in the build. This is useful for reproducing a build.
 
 ### extract-package-output
 
-extract-package-output OPERATION PACKAGE \[BUILD_LOG_FILE]
-    OPERATION: Either 'build' or 'test'
-    PACKAGE: The target package name
-    BUILD_LOG_FILE: Path to the target build log. Defaults to stdin
+Extract package output from a build log using colcon markers.
+
+```bash
+extract-package-output OPERATION PACKAGE [BUILD_LOG_FILE]
+```
+
+*   **OPERATION**: Either `build` or `test`.
+*   **PACKAGE**: The target package name.
+*   **BUILD_LOG_FILE**: Path to the target build log. Defaults to stdin.
 
 ```bash
 cat <log-file> | extract-package-output build <package-name>

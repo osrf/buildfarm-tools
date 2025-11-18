@@ -13,6 +13,6 @@ This is the index of playbooks for buildfarm. Intended to provide guidance when 
 * [Known Issues :arrow_forward:](./buildfarmer/known_issues.md)
 * [Looking for regressions :arrow_forward:](./buildfarmer/looking_for_regressions.md)
 * [Reporting problems :arrow_forward:](./buildfarmer/reporting_problems.md)
-* [Ultra short version :arrow_forward:](./buildfarmer/ultra_scripted_buildfarm_day.md)
+* [Ultra Scripted Buildfarm Day :arrow_forward:](./buildfarmer/ultra_scripted_buildfarm_day.md)
   * Detailed version: [Scripted buildfarm day :arrow_forward:](./buildfarmer/scripted_buildfarm_day.md)
 * [Test regressions investigation :arrow_forward:](./buildfarmer/test_regressions_investigation.md)

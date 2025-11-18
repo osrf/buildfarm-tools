@@ -52,7 +52,6 @@ After you checked all the build regressions, you should continue by checking tes
 * [Buildfarm triage tools](./buildfarmer_triage_tools.md)
   * [ci-log](./buildfarmer_triage_tools.md#ci-log)
   * [buildfarmer database tools](./buildfarmer_triage_tools.md#database-scripts)
-  * [databaseFetcher.py](./buildfarmer_triage_tools.md#databasefetcherpy)
-  * [errors_check_last_build](./buildfarmer_triage_tools.md#errors_check_last_buildsql)
+  * [errors_check_last_build.sql](./buildfarmer_triage_tools.md#errors_check_last_buildsql)
 
 [Back :arrow_backward: ](../index.md)

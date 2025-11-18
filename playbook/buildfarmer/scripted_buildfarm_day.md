@@ -32,12 +32,13 @@ If any of the links above are not working you should check with the OSRF infrast
 
 Check the following links and verify that each contains the expected number of agents:
 <ul>
+<li><a href="https://build.ros.org/computer/">build.ros.org machines</a></li>
 <li><a href="https://build.ros2.org/computer">build.ros2.org machines</a></li>
 <li><a href="https://build.osrfoundation.org/computer/">build.osrfoundation.org machines</a></li>
 <li><a href="https://ci.ros2.org/computer/">ci.ros2.org machines</a></li>
 </ul>
 
-You can find the number of agents per buildfarm in [macines.md](../../machines.md#nodes-list)
+You can find the number of agents per buildfarm in [machines.md](../../machines.md#agents-list)
 
 If any agents are missing, you should: Ask the infrastructure team for a reason (e.g., some agents are down for maintenance) or manually check spot allocation problems in the AWS autoscaling group the missing agents are.
 
