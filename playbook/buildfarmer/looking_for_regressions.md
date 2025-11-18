@@ -1,6 +1,6 @@
 # Looking for regressions
 
-The first task of the buildfarmer is to look for build and test regressions. To do that you may follow the next steps:
+One of the buildfarmer priorities is to look for build and test regressions. To do that you may follow the next steps:
 
 ## 1. Check failing jobs on buildfarm dashboards
 
@@ -10,10 +10,11 @@ The buildfarm dashboards are a good way to check the status of the buildfarm, si
 - **Red (Failing)**: The job is failing in the building or testing stages or there are a lot of test regressions in the build.
 
 Dashboard list:
-* [ROS2  Dashboard](https://github.com/osrf/buildfarmer/blob/main/ROS2.md)
-* [Gazebo Dashboard](https://github.com/osrf/buildfarmer/blob/main/Ignition.md)
-* [Gazebo Classic Dashboard](https://github.com/osrf/buildfarmer/blob/main/Gazebo.md)
-* [Colcon Dashboard](https://github.com/osrf/buildfarmer/blob/main/Colcon.md)
+* [ROS2  Dashboard](../../ROS2.md)
+* [Gazebo Dashboard](../../Gazebo.md)
+* [Colcon Dashboard](../../Colcon.md)
+* [Standalone Services](../../standalone_services.md)
+* [Homebrew simulation bottle status](https://github.com/osrf/homebrew-simulation/?tab=readme-ov-file#bottle-status)
 
 ## 2. Check build regressions in the buildfarm
 

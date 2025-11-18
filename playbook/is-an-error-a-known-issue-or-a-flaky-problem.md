@@ -11,7 +11,7 @@ You can check manually if an issue is reported checking [Buildfarm Issues](https
 Also, you can gather more information using the scripts in this repository:
 
 ```bash
-./sql_run is_known_issue.sql "<test-name>" # Replace with the name of the test you want to check
+./sql_run.sh is_known_issue.sql "<test-name>" # Replace with the name of the test you want to check
 ```
 
 If the test is a known issue, you will get the job name and the issue link. If you don't get any result, the test is not reported as a known issue.
@@ -19,7 +19,7 @@ If the test is a known issue, you will get the job name and the issue link. If y
 If you want to check if the test is a flaky problem, you can run the following script:
 
 ```bash
-./sql_run ./sql_run.sh calculate_flakiness_jobs.sql "<test-name>" "<time-range>" # Replace with the name of the test and the time range (e.g., 30 days) you want to check
+./sql_run.sh calculate_flakiness_jobs.sql "<test-name>" "<time-range>" # Replace with the name of the test and the time range (e.g., 30 days) you want to check
 ```
 
 This will list the jobs that have failed in the time range and the flaky ratio of the test.

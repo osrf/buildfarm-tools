@@ -20,7 +20,6 @@ This document describes the process for being a buildfarmer for a day.
 ## 2. Check the buildfarm status
 
 Check the following links and verify that each responds correctly (not showing any errors):
-* https://build.ros.org/
 * https://build.ros2.org/
 * https://build.osrfoundation.org/
 * https://ci.ros2.org/
@@ -33,7 +32,6 @@ If any of the links above are not working you should check with the OSRF infrast
 
 Check the following links and verify that each contains the expected number of agents:
 <ul>
-<li><a href="https://build.ros.org/computer/">build.ros.org machines</a></li>
 <li><a href="https://build.ros2.org/computer">build.ros2.org machines</a></li>
 <li><a href="https://build.osrfoundation.org/computer/">build.osrfoundation.org machines</a></li>
 <li><a href="https://ci.ros2.org/computer/">ci.ros2.org machines</a></li>
@@ -60,7 +58,6 @@ Check the following dashboards and locate the failing jobs:
 
 * [ROS2  Dashboard](../../ROS2.md)
 * [Gazebo Dashboard](../../Gazebo.md)
-* [Gazebo Classic Dashboard](../../GazeboClassic.md)
 * [Colcon Dashboard](../../Colcon.md)
 * [Standalone Services](../../standalone_services.md)
 * [Homebrew simulation bottle status](https://github.com/osrf/homebrew-simulation/?tab=readme-ov-file#bottle-status)
@@ -105,9 +102,9 @@ For each failing job (red badge):
 
      </details>
    * If you find a possible change that broke the build, you may need to look for the GitHub repository of the package to check if a bug is already reported or report it. If you don't find any change, you may proceed to the next step.
-6. Ask ROS and Gazebo teams. Refer to ROS2 technical lead (Chris Lalancette) and Gazebo technical lead (Addisu Taddese) for more information.
+6. Ask ROS and Gazebo teams. Refer to ROS2 technical lead (Michael Carroll) and Gazebo technical lead (Addisu Taddese) for more information.
    * If you don't find any suitable cause, you may need to ask the ROS and Gazebo teams if they know about the issue adding all the information you have gathered so far.
-     * For ROS, you can ask Chris Lalancette (clalancette) in GitHub.
+     * For ROS, you can ask Michael Carroll (mjcarroll) in GitHub.
      * For Gazebo, you can ask Addisu Taddese (azeey) in GitHub.
  
 > Taken from [Build regressions investigation](./build_regressions_investigation.md#investigation-steps)
@@ -161,6 +158,13 @@ To add issues to the buildfarmer database, you should follow these steps:
      ```bash
      ./issue_save_new.sh "<test-name>" "<package-name>" "<job-name>" "<github-issue-url>"
      ```
+4. Another option is to use `add_multiple_known_errors.rb` script, which receives a github issue link as an argument and then asks for a list of test regressions which will be added to the database to different jobs using `calculate_flakiness_jobs.sql` to find them.
+      ```bash
+      ./add_multiple_known_errors.rb "<github-issue-url>"
+      <error-name-1>
+      <error-name-2>
+      ...
+      ```
 
 ## 8. Check warnings in remaining builds
 
