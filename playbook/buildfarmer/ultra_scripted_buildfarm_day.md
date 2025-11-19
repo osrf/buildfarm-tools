@@ -12,13 +12,17 @@ This includes giving a glance to the main webpage status, looking for disconnect
 * https://ci.ros2.org/
 
 ### 2. Check agents capacity
-Compare the following document [machines.md agents list](../../machines.md#agents-list) with the agents from each buildfarm:
 > Details in [Scripted buildfarm day: Check the buildfarm agents](./scripted_buildfarm_day.md#3-check-the-buildfarm-agents)
 
-* https://build.ros.org/computer/
-* https://build.ros2.org/computer/
-* https://build.osrfoundation.org/computer/
-* https://ci.ros2.org/computer/
+We manage the amount of agents per buildfarm using terraform (private [osrf-terraform](https://github.com/osrf/osrf-terraform) repository).
+For each of the projects, you can compare the production number of agents that should be online and compere them to the current number: 
+
+* https://build.ros2.org/computer/ -> `production.ros2_buildfarm` project
+* https://build.osrfoundation.org/computer/ -> `production.osrf_buildfarm` project
+* https://ci.ros2.org/computer/ -> `ros2_ci.production` project
+
+
+If an agent is offline, you may follow [revive_agent.md](https://github.com/osrf/infrastructure-private/blob/main/playbook/infra/revive_agent.md) (private repository) play to put it back online.
 
 ### 3. Pull changes from buildfarm repository and refresh known issues
 > Details in [Scripted buildfarm day: Tool setup](./scripted_buildfarm_day.md#1-tool-setup)

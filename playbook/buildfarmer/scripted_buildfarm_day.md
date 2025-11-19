@@ -30,17 +30,18 @@ If any of the links above are not working you should check with the OSRF infrast
 
 ## 3. Check the buildfarm agents
 
-Check the following links and verify that each contains the expected number of agents:
-<ul>
-<li><a href="https://build.ros.org/computer/">build.ros.org machines</a></li>
-<li><a href="https://build.ros2.org/computer">build.ros2.org machines</a></li>
-<li><a href="https://build.osrfoundation.org/computer/">build.osrfoundation.org machines</a></li>
-<li><a href="https://ci.ros2.org/computer/">ci.ros2.org machines</a></li>
-</ul>
 
-You can find the number of agents per buildfarm in [machines.md](../../machines.md#agents-list)
+We manage the amount of agents per buildfarm using terraform (private [osrf-terraform](https://github.com/osrf/osrf-terraform) repository).
+For each of the projects, you can compare the production number of agents that should be online and compere them to the current number: 
+
+* https://build.ros2.org/computer/ -> `production.ros2_buildfarm` project
+* https://build.osrfoundation.org/computer/ -> `production.osrf_buildfarm` project
+* https://ci.ros2.org/computer/ -> `ros2_ci.production` project
+
 
 If any agents are missing, you should: Ask the infrastructure team for a reason (e.g., some agents are down for maintenance) or manually check spot allocation problems in the AWS autoscaling group the missing agents are.
+
+If an agent is offline, you may follow [revive_agent.md](https://github.com/osrf/infrastructure-private/blob/main/playbook/infra/revive_agent.md) (private repository) play to put it back online.
 
 
 ## 4. Check automation tools status
