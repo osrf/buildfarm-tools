@@ -20,6 +20,7 @@ This document describes the process for being a buildfarmer for a day.
 ## 2. Check the buildfarm status
 
 Check the following links and verify that each responds correctly (not showing any errors):
+
 * https://build.ros2.org/
 * https://build.osrfoundation.org/
 * https://ci.ros2.org/

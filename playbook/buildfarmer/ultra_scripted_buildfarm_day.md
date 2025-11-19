@@ -6,7 +6,6 @@ This is a TL;DR version of [scripted buildfarm day](./scripted_buildfarm_day.md)
 This includes giving a glance to the main webpage status, looking for disconnected agents, hung jobs, an abnormaly large queue of jobs, a server waiting to restart or anything that may look _out of place_.
 > Details in [Scripted buildfarm day: Check the buildfarm status](./scripted_buildfarm_day.md#2-check-the-buildfarm-status)
 
-* https://build.ros.org/
 * https://build.ros2.org/
 * https://build.osrfoundation.org/
 * https://ci.ros2.org/
