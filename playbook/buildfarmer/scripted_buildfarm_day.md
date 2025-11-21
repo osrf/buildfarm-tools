@@ -180,7 +180,7 @@ To report and investigate warnings, you can follow the same steps as test regres
 If any change was made to the buildfarmer database, push the changes:
 
 > **Note**:
-> This is part of the buildfarmer role. If you are not an official buildfarmer, you should suggest your changes in [buildfarm-tools discussions](https://github.com/osrf/buildfarm-tools/discussions)
+> This is part of the buildfarmer role. If you are not an official buildfarmer, you should suggest your changes in [Open Robotics Zullip - Infrastructure General channel](https://openrobotics.zulipchat.com/#narrow/channel/526042-Infrastructure-General)
 
 ```bash
 cd ~/buildfarm-tools/
@@ -189,7 +189,7 @@ git commit -sm "<commit-msg>" # Normally: "Update buildfarmer database" or "Refr
 git push
 ```
 
-When everything is reported, you should add each report/issue to [Buildfarm Payload Board](https://github.com/orgs/osrf/projects/23/views/1) (see [board explanation](./reporting_problems.md#board-explanation)). This way, we can track all the issues happening in the buildfarm in a human readable way
+When everything is reported, you should add each report/issue to [Buildfarm Issues Spreadsheet](https://docs.google.com/spreadsheets/d/1gX7Hw_aVsI4U05i2-NxCY66a4CmRy1Yyb6dokK5QtMg/edit?gid=0#gid=0) (see [board explanation](./reporting_problems.md#board-explanation)). This way, we can track all the issues happening in the buildfarm in a human readable way
 
 You can check how to report issues here: [Reporting Problems](./reporting_problems.md)
 

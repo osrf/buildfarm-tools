@@ -5,7 +5,9 @@ Sometimes many issues will happen at once, but there is only one of you.
 This page list categories of priorities where your highest priority is **first** in this page.
 Solve the highest priority problem first when faced with multiple problems.
 
-For how to solve problems, [see the Buildfarmer troubleshooting guide](./troubleshooting.md).
+If you find any infrastructure problems you might want to take look at [osrf/infrastructure-private playbook](https://github.com/osrf/infrastructure-private/tree/main/playbook) (private repository)
+
+For how to solve general regression problems you might want to take a look at the playbook on this same repository [Playbook index](../index.md)
 
 Before that, here are notes that apply within the categories of priorities.
 

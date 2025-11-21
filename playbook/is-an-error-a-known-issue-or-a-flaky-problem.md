@@ -2,11 +2,16 @@
 
 This play is intended to help you determine if an error is a known issue or a flaky problem.
 
+You can check manually if an issue is reported checking:
+- [Buildfarmer Issues Spreadsheet](https://docs.google.com/spreadsheets/d/1gX7Hw_aVsI4U05i2-NxCY66a4CmRy1Yyb6dokK5QtMg/edit?gid=0#gid=0) (has both ROS issues and Gazebo issues).
+- [Latest buildfarmer log "Test regression known" section](https://github.com/osrf/buildfarm-tools/issues/?q=is%3Aissue%20state%3Aopen%20label%3Abuildfarmer-log)
+
+If not, then you can follow the next steps:
+
 ## Steps
 
 First, move to the `database/scripts` folder.
 
-You can check manually if an issue is reported checking [Buildfarm Issues](https://github.com/orgs/osrf/projects/23/views/1) board.
 
 Also, you can gather more information using the scripts in this repository:
 
