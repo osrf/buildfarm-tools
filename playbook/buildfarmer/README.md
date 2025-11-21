@@ -6,12 +6,12 @@
 
 Every buildfarmer should follow the priorities defined for triaging issues.
 
-1. Keep the buildfarms up and running (build.ros.org, build.ros2.org, build.osrfoundation.org, ci.ros2.org)
+1. Keep the buildfarms up and running (build.ros2.org, build.osrfoundation.org, ci.ros2.org)
 2. Keep enough machines to handle current demand for CI
 3. Check build regressions
 4. Check test regressions
 
-For items 1 and 2 refer to the [priorities document](../../docs/priorities.md#priorities) items 1 and 2.
+For items 1 and 2 refer to the [priorities document](./priorities.md) items 1 and 2.
 
 Items 3 and 4 are covered in [Looking for regressions](./looking_for_regressions.md).
 
