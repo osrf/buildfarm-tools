@@ -80,7 +80,7 @@ options.count.times do |i|
                     auth_string = Base64.strict_encode64("#{username}:#{token}")
                     { "Authorization" => "Basic #{auth_string}"}
                   else
-                    nil
+                    {}
                   end
     request_headers = {}
     if data_type == "testreport"
