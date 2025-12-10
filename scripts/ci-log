@@ -15,7 +15,12 @@ BEGIN {
   }
   # https://ci.ros2.org/view/nightly/job/nightly_linux-aarch64_debug/1641/
   if (match(job_url, /(https?):\/\/([^\/]+)\/(view\/.*\/)?job\/(.*)\/([0-9]+)\/?/, url)) {
-    system("curl --compressed " url[1] "://" url[2] "/job/" url[4] "/" url[5] "/consoleText" " > " url[4] "-" url[5] ".txt")
+    command = "curl"
+    # If authentication is set then use jenkins basic auth
+    if (ENVIRON["JENKINS_USERNAME"] != "" && ENVIRON["JENKINS_API_TOKEN"] != "") {
+      command = command " -u " ENVIRON["JENKINS_USERNAME"] ":" ENVIRON["JENKINS_API_TOKEN"]
+    }
+    system(command " --compressed " url[1] "://" url[2] "/job/" url[4] "/" url[5] "/consoleText" " > " url[4] "-" url[5] ".txt")
   } else {
     print "Unable to extract consoleText url from " job_url > "/dev/stderr"
   }
