@@ -440,6 +440,7 @@ gz_math-ci-gz-math8-noble-amd64,0.95
 gz_fuel_tools-10-win,0.85
 gz_cmake-ci-gz-cmake4-noble-amd64,0.95
 gz_common-ci-gz-common6-noble-amd64,0.95
+gz_msgs-12-cnlwin,0.9
 gz_gui-ci-gz-gui9-noble-amd64,0.95
 gz_gui-ci-gz-gui9-homebrew-amd64,0.85
 gz_physics-ci-gz-physics8-noble-amd64,0.95
@@ -476,6 +477,8 @@ sdformat-ci-sdf15-homebrew-arm64,0.85
 gz_fuel_tools-ci-gz-fuel-tools10-homebrew-arm64,0.85
 gz_cmake-ci-gz-cmake4-homebrew-arm64,0.85
 gz_gui-ci-gz-gui9-homebrew-arm64,0.85
+gz_launch-ci-gz-launch9-homebrew-arm64,0.9
+gz_launch-9-cnlwin,0.9
 gz_launch-ci-gz-launch8-homebrew-arm64,0.85
 gz-sensors9-debbuilder,1
 gz_plugin-ci-gz-plugin3-noble-amd64,1
