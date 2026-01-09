@@ -38,7 +38,7 @@ Coverage jobs has been disabled due to the high load on the CI server. See https
 * Upload Testing: [![Build Status](https://build.ros2.org/job/upload_testing/badge/icon)](https://build.ros2.org/job/upload_testing/)
 
 ## Build index.ros.org
-* Doc RosIndex: [![Build Status](https://build.ros.org/job/doc_rosindex/badge/icon)](https://build.ros.org/job/doc_rosindex/)
+* Doc RosIndex: [![Build Status](https://build.ros2.org/job/doc_rosindex/badge/icon)](https://build.ros2.org/job/doc_rosindex/)
 
 ## Sync packages to testing jobs
 
