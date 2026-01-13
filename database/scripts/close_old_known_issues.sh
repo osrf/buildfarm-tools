@@ -32,7 +32,7 @@ do
         continue
     fi
 
-    if [ $(date -d "$error_datetime" +%s) -lt $(date -d "30 days ago" +%s) ]
+    if [ $(date -d "$error_datetime" +%s) -lt $(date -d "20 days ago" +%s) ]
     then
         close_issue "$error_name" "$error_job_name"
     fi

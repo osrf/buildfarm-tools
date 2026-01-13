@@ -3,6 +3,7 @@
 require "fileutils"
 require "json"
 require "net/http"
+require "base64"
 require "open-uri"
 require "optparse"
 require "ostruct"
@@ -43,8 +44,20 @@ end
 
 TESTDB_DIR = ENV['TESTDB_DIR'] || File.join(ENV['HOME'], 'osrf', 'testdb')
 
+def jenkins_auth_params
+  if ENV['JENKINS_USERNAME'] && ENV['JENKINS_API_TOKEN'] then
+    puts "Using Jenkins Authentication"
+    [ENV['JENKINS_USERNAME'], ENV['JENKINS_API_TOKEN']]
+  else
+    nil
+  end
+end
+
+auth = jenkins_auth_params
+open_options = auth ? { :http_basic_authentication => auth } : {}
+
 job_url = "https://#{options.domain}/job/#{options.job}/api/json"
-job_data = JSON.load(URI(job_url).open)
+job_data = JSON.load(URI(job_url).open(open_options))
 last_completed_build = job_data["lastCompletedBuild"]["number"]
 http = Net::HTTP.new("#{options.domain}", 443)
 http.use_ssl = true
@@ -62,8 +75,19 @@ options.count.times do |i|
     urlpath = "/job/#{options.job}/#{build_id}/#{VALID_DATA_TYPES[data_type].urlpath}"
     # If Accept-encoding is not set Net::HTTP will automatically add compression headers and decompress the response.
     # If we want to preserve the compressed response we need to add the Accept-encoding header ourselves.
-    compression_header = if data_type == "testreport" then { "Accept-encoding" => "gzip" } else nil end
-    response = http.request_get(urlpath, compression_header)
+    auth_header = if auth
+                    username, token = auth
+                    auth_string = Base64.strict_encode64("#{username}:#{token}")
+                    { "Authorization" => "Basic #{auth_string}"}
+                  else
+                    {}
+                  end
+    request_headers = {}
+    if data_type == "testreport"
+      request_headers["Accept-encoding"] = "gzip"
+    end
+    request_headers.merge!(auth_header)
+    response = http.request_get(urlpath, request_headers)
     if response.code == "200"
       File.write(filepath, response.body)
       STDOUT.puts "Downloaded #{options.job}/#{build_id}"

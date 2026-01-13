@@ -13,7 +13,7 @@ module BuildfarmToolsLib
 
   CONSECUTIVE_THRESHOLD = 3
   FLAKY_BUILDS_THRESHOLD = 3
-  FLAKY_BUILDS_DEFAULT_RANGE = '15 days'
+  FLAKY_BUILDS_DEFAULT_RANGE = '20 days'
   WARNING_AGE_CONSTANT = -1
 
   JOB_PRIORITIES = CSV.read('lib/job_priorities.csv', converters: :numeric).to_h
