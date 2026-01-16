@@ -2,3 +2,6 @@ python-jenkins
 pyyaml
 # Pining version due to error introduced in >2.0.0  https://bugs.launchpad.net/python-jenkins/+bug/2018567
 urllib3<2.0.0
+# For Google Sheets integration
+gspread>=5.0.0
+google-auth>=2.0.0
