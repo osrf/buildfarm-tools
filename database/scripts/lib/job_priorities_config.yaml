@@ -1,0 +1,225 @@
+# Job Priorities Configuration
+# This file defines priority values for different job patterns
+# Priorities range from 0.25 (lowest) to 1.0 (highest)
+
+# ROS 2 CI Jobs
+ros2_ci:
+  # Rolling (R) - Latest ROS 2 distro
+  - pattern: "^Rci__nightly-(release|debug)_ubuntu_noble_amd64$"
+    priority: 1.0
+  - pattern: "^Rci__nightly-(fastrtps|cyclonedds|connext|zenoh)_ubuntu_noble_amd64$"
+    priority: 0.85
+  - pattern: "^Rci__nightly-(performance|fastrtps-dynamic)_ubuntu_noble_amd64$"
+    priority: 0.25
+  - pattern: "^Rci__benchmark_ubuntu_noble_amd64$"
+    priority: 0.25
+
+  # Kilted (K) - Second newest
+  - pattern: "^Kci__nightly-(release|debug)_ubuntu_noble_amd64$"
+    priority: 0.95
+  - pattern: "^Kci__nightly-(fastrtps|cyclonedds|connext|zenoh)_ubuntu_noble_amd64$"
+    priority: 0.8
+  - pattern: "^Kci__nightly-(performance|fastrtps-dynamic)_ubuntu_noble_amd64$"
+    priority: 0.25
+  - pattern: "^Kci__benchmark_ubuntu_noble_amd64$"
+    priority: 0.25
+
+  # Jazzy (J)
+  - pattern: "^Jci__nightly-(release|debug)_ubuntu_noble_amd64$"
+    priority: 0.95
+  - pattern: "^Jci__nightly-(fastrtps|cyclonedds|connext)_ubuntu_noble_amd64$"
+    priority: 0.8
+  - pattern: "^Jci__nightly-(performance|fastrtps-dynamic)_ubuntu_noble_amd64$"
+    priority: 0.25
+  - pattern: "^Jci__benchmark_ubuntu_noble_amd64$"
+    priority: 0.25
+
+  # Iron (I)
+  - pattern: "^Ici__nightly-(release|debug)_ubuntu_jammy_amd64$"
+    priority: 0.9
+  - pattern: "^Ici__nightly-(fastrtps|cyclonedds|connext)_ubuntu_jammy_amd64$"
+    priority: 0.75
+  - pattern: "^Ici__nightly-(performance|fastrtps-dynamic)_ubuntu_jammy_amd64$"
+    priority: 0.25
+  - pattern: "^Ici__benchmark_ubuntu_jammy_amd64$"
+    priority: 0.25
+
+  # Humble (H)
+  - pattern: "^Hci__nightly-(release|debug)_ubuntu_jammy_amd64$"
+    priority: 0.85
+  - pattern: "^Hci__nightly-(fastrtps|cyclonedds|connext)_ubuntu_jammy_amd64$"
+    priority: 0.7
+  - pattern: "^Hci__nightly-(performance|fastrtps-dynamic)_ubuntu_jammy_amd64$"
+    priority: 0.25
+  - pattern: "^Hci__benchmark_ubuntu_jammy_amd64$"
+    priority: 0.25
+
+# Packaging Jobs
+packaging:
+  - pattern: "^packaging_(windows|linux)$"
+    priority: 1.0
+  - pattern: "^packaging_linux-aarch64$"
+    priority: 1.0
+  - pattern: "^packaging_linux-rhel$"
+    priority: 0.5
+
+# Nightly Linux Jobs
+nightly_linux:
+  - pattern: "^nightly_(win_rep|win_rel|win_deb)$"
+    priority: 1.0
+  - pattern: "^nightly_linux_(repeated|release|debug)$"
+    priority: 1.0
+  - pattern: "^nightly_linux-aarch64_(repeated|release|debug)$"
+    priority: 1.0
+  - pattern: "^nightly_linux_coverage$"
+    priority: 0.85
+  - pattern: "^nightly_linux_kilted_coverage$"
+    priority: 0.8
+  - pattern: "^nightly_linux_jazzy_coverage$"
+    priority: 0.8
+  - pattern: "^nightly_linux_iron_coverage$"
+    priority: 0.75
+  - pattern: "^nightly_linux_humble_coverage$"
+    priority: 0.7
+  - pattern: "^nightly_linux-rhel_(repeated|release|debug)$"
+    priority: 0.5
+
+# Gazebo Jobs - Main Branch (highest priority within version)
+gazebo_main:
+  # CI jobs on Linux (noble)
+  - pattern: "^gz_[a-z_]+-ci-main-noble-amd64$"
+    priority: 1.0
+  - pattern: "^sdformat-ci-main-noble-amd64$"
+    priority: 1.0
+  
+  # CI jobs on macOS (homebrew)
+  - pattern: "^gz_[a-z_]+-ci-main-homebrew-(amd64|arm64)$"
+    priority: 1.0
+  - pattern: "^sdformat-ci-main-homebrew-(amd64|arm64)$"
+    priority: 1.0
+  
+  # Windows (cnlwin) - slightly lower
+  - pattern: "^gz_[a-z_]+-main-cnlwin$"
+    priority: 0.9
+  - pattern: "^sdformat-main-cnlwin$"
+    priority: 0.9
+
+# Gazebo Version 10 (Latest stable)
+gazebo_v10:
+  # CI jobs on Linux
+  - pattern: "^gz_[a-z_]+-ci-gz-[a-z_]+(10|sdf16)-noble-amd64$"
+    priority: 0.95
+  - pattern: "^sdformat-ci-sdf16-noble-amd64$"
+    priority: 0.95
+  
+  # CI jobs on macOS
+  - pattern: "^gz_[a-z_]+-ci-gz-[a-z_]+(10|sdf16)-homebrew-(amd64|arm64)$"
+    priority: 0.95
+  - pattern: "^sdformat-ci-sdf16-homebrew-(amd64|arm64)$"
+    priority: 0.95
+  
+  # Windows builds
+  - pattern: "^gz_[a-z_]+-(10|sdf16)-cnlwin$"
+    priority: 0.85
+  - pattern: "^sdformat-sdf16-cnlwin$"
+    priority: 0.85
+  
+  # Debian builders
+  - pattern: "^gz-[a-z_-]+(10|sdf16)-debbuilder$"
+    priority: 1.0
+  - pattern: "^sdformat16-debbuilder$"
+    priority: 1.0
+
+# Gazebo Version 9 (Older stable)
+gazebo_v9:
+  # CI jobs
+  - pattern: "^gz_[a-z_]+-ci-gz-[a-z_]+(9|sdf15)-noble-amd64$"
+    priority: 0.9
+  - pattern: "^gz_[a-z_]+-ci-gz-[a-z_]+(9|sdf15)-homebrew-(amd64|arm64)$"
+    priority: 0.9
+  - pattern: "^sdformat-ci-sdf15-(noble|homebrew-(amd64|arm64))$"
+    priority: 0.9
+  
+  # Windows builds (clowin)
+  - pattern: "^gz_[a-z_]+-(9|sdf15)-clowin$"
+    priority: 0.8
+  - pattern: "^sdformat-sdf15-clowin$"
+    priority: 0.8
+
+# Gazebo Version 8 (Older)
+gazebo_v8:
+  # CI jobs
+  - pattern: "^gz_[a-z_]+-ci-gz-[a-z_]+(8|sdf14)-jammy-amd64$"
+    priority: 0.85
+  - pattern: "^gz_[a-z_]+-ci-gz-[a-z_]+(8|sdf14)-noble-amd64$"
+    priority: 0.85
+  - pattern: "^gz_[a-z_]+-ci-gz-[a-z_]+(8|sdf14)-homebrew-(amd64|arm64)$"
+    priority: 0.85
+  - pattern: "^sdformat-ci-sdf14-(jammy|noble|homebrew-(amd64|arm64))$"
+    priority: 0.85
+  
+  # Windows builds
+  - pattern: "^gz_[a-z_]+-(8|sdf14)-clowin$"
+    priority: 0.75
+  - pattern: "^sdformat-sdf14-clowin$"
+    priority: 0.75
+
+# Gazebo Ignition (Legacy naming)
+gazebo_ignition:
+  # Gazebo 6 / Ignition
+  - pattern: "^gz_[a-z_]+-ci-ign-[a-z_]+6-homebrew-(amd64|arm64)$"
+    priority: 0.8
+  - pattern: "^gz_[a-z_]+-ci-ign-[a-z_]+6-focal-amd64$"
+    priority: 0.8
+  - pattern: "^gz_[a-z_]+-ign-[a-z_]+6-clwin$"
+    priority: 0.7
+  
+  # Ignition components (various versions)
+  - pattern: "^gz_[a-z_]+-ci-ign-[a-z_]+(1|2|4|5|7|8|11|12)-homebrew-(amd64|arm64)$"
+    priority: 0.8
+  - pattern: "^gz_[a-z_]+-ci-ign-[a-z_]+(1|2|4|5|7|8|11|12)-focal-amd64$"
+    priority: 0.8
+  - pattern: "^gz_[a-z_]+-ign-[a-z_]+(1|2|4|5|7|8|11|12)-clwin$"
+    priority: 0.7
+  - pattern: "^sdformat-ci-sdf12-(homebrew-(amd64|arm64)|focal-amd64)$"
+    priority: 0.8
+  - pattern: "^sdformat-sdf12-clwin$"
+    priority: 0.7
+
+# Gazebo Number-based versions
+gazebo_numbered:
+  # Version 5 components
+  - pattern: "^gz_cmake-ci-gz-cmake5-(noble|homebrew-(amd64|arm64))$"
+    priority: 0.95
+  - pattern: "^gz_cmake-5-cnlwin$"
+    priority: 0.85
+  - pattern: "^gz-cmake5-debbuilder$"
+    priority: 1.0
+  
+  # Version 4 components
+  - pattern: "^gz_[a-z_]+-ci-gz-[a-z_]+4-(noble|homebrew-(amd64|arm64))$"
+    priority: 0.9
+  - pattern: "^gz_[a-z_]+-4-clowin$"
+    priority: 0.8
+  - pattern: "^gz-[a-z_]+4-debbuilder$"
+    priority: 1.0
+  
+  # Version 3 components
+  - pattern: "^gz_[a-z_]+-ci-gz-[a-z_]+3-(jammy|noble|homebrew-(amd64|arm64))$"
+    priority: 0.85
+  - pattern: "^gz_[a-z_]+-3-clowin$"
+    priority: 0.75
+  
+  # Version 2 components
+  - pattern: "^gz_[a-z_]+-ci-gz-[a-z_]+2-(jammy|noble|homebrew-(amd64|arm64))$"
+    priority: 0.85
+  - pattern: "^gz_tools-ci-gz-tools2-(noble|homebrew-(amd64|arm64))$"
+    priority: 0.95
+  - pattern: "^gz_[a-z_]+-2-clowin$"
+    priority: 0.75
+  - pattern: "^gz-tools2-debbuilder$"
+    priority: 1.0
+
+# Default priority for unmatched jobs
+default:
+  priority: 1.0
