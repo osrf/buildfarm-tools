@@ -19,6 +19,7 @@ import logging
 import os
 import sqlite3
 import sys
+import traceback
 from datetime import datetime
 from pathlib import Path
 
@@ -285,7 +286,6 @@ def main():
         
     except Exception as e:
         logger.error(f"Error updating spreadsheet: {e}")
-        import traceback
         traceback.print_exc()
         sys.exit(1)
 

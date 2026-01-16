@@ -193,6 +193,9 @@ Ensure service account has edit access to the spreadsheet.
 ### "No open issues found"
 This is normal if there are no open issues in the database.
 
+### Malformed job names in priorities CSV
+If you see job names concatenated together (e.g., "jobA_namejobB_name"), this indicates data quality issues in the `server_status` table of the database. These should be corrected at the source (database) rather than in the generated CSV.
+
 ## Maintenance
 
 ### Adding New Job Patterns

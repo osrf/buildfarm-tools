@@ -11,6 +11,7 @@ import json
 import logging
 import sqlite3
 import sys
+import traceback
 from datetime import datetime
 from pathlib import Path
 
@@ -209,7 +210,6 @@ def main():
         
     except Exception as e:
         logger.error(f"Error creating snapshot: {e}")
-        import traceback
         traceback.print_exc()
         sys.exit(1)
 

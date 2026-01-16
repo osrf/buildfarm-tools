@@ -17,6 +17,7 @@ import re
 import sqlite3
 import subprocess
 import sys
+import traceback
 from datetime import datetime, timedelta
 from pathlib import Path
 
