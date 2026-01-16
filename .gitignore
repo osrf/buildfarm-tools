@@ -1,2 +1,6 @@
 __pycache__/
+*.pyc
+*.pyo
 
+# Snapshot files (can be large)
+database/snapshots/*.json
