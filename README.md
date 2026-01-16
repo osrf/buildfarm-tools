@@ -14,6 +14,17 @@ This repo contains all the tools to get information from the ROS and Gazebo buil
 > **Note**
 > If you're interested in what tools we have available and how to use them, check the [Tools usage](#tools-usage) section
 
+## Automation
+
+The repository includes automated scripts for managing buildfarm issues:
+
+* **Job Priorities**: Automatically generated from configurable patterns (`generate_priorities.py`)
+* **Issue Tracking**: Syncs GitHub issues with the database (`update_issues_table.py`)
+* **Spreadsheet Updates**: Updates Google Sheets with current status (`update_spreadsheet.py`)
+* **Weekly Snapshots**: Creates performance tracking snapshots (`create_snapshot.py`)
+
+See [database/scripts/AUTOMATION_README.md](./database/scripts/AUTOMATION_README.md) for detailed documentation.
+
 ## Getting Started
 
 To set up the project locally, please follow the instructions below:
