@@ -10,6 +10,8 @@ jobs:
   snapshot:
     name: Create Weekly Snapshot
     runs-on: ubuntu-22.04
+    permissions:
+      contents: write  # Needed to commit and push snapshots
     steps:
       - uses: actions/checkout@v3
       

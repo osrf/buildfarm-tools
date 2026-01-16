@@ -16,6 +16,9 @@ jobs:
     daily-workflow:
         name: Daily Workflow
         runs-on: ubuntu-22.04
+        permissions:
+          contents: read      # Read repository contents
+          issues: write       # Create/close/comment on issues
         steps:
         - name: Get current date
           run: echo "DOW=$(date +%u)" >> $GITHUB_ENV # Day of week (1-7, 1 = Monday)
