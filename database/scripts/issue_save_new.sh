@@ -16,6 +16,7 @@ if [ -z "$4" ]; then
     echo "ERROR, this script takes 4 parameters"
 else
     # sql = "insert into test_fail_issues values ('error_name', 'package_name', 'job_name', 'github_issue')"
-    echo "insert into test_fail_issues values ('$1', '$2', '$3', '$4', 'OPEN')"
-    sqlite3 ../buildfarmer.db "insert into test_fail_issues (error_name, package_name, job_name, github_issue, status) values ('$1', '$2', '$3', '$4', 'OPEN')"
+    SQL_COMMAND = "insert into test_fail_issues (error_name, package_name, job_name, github_issue, status) values ('$1', '$2', '$3', '$4', 'OPEN')"
+    echo "Running: $SQL_COMMAND"
+    sqlite3 ../buildfarmer.db $SQL_COMMAND
 fi
