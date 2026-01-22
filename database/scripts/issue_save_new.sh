@@ -17,5 +17,5 @@ if [ -z "$4" ]; then
 else
     # sql = "insert into test_fail_issues values ('error_name', 'package_name', 'job_name', 'github_issue')"
     echo "insert into test_fail_issues values ('$1', '$2', '$3', '$4', 'OPEN')"
-    sqlite3 ../buildfarmer.db "insert into test_fail_issues (error_name, package_name, job_name, github_issue, status, priority, assignee) values ('$1', '$2', '$3', '$4', 'OPEN', '1', '')"
+    sqlite3 ../buildfarmer.db "insert into test_fail_issues (error_name, package_name, job_name, github_issue, status) values ('$1', '$2', '$3', '$4', 'OPEN')"
 fi
