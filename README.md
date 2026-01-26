@@ -9,6 +9,15 @@ You can look at the dashboards to inspect the status of all tracked jobs:
 * [Gazebo Classic Dashboard](./GazeboClassic.md)
 * [Colcon Dashboard](./Colcon.md)
 
+## What is the ROS/Gazebo buildfarm?
+
+The ROS and Gazebo buildfarms operate as large-scale continuous integration (CI) systems.
+
+When ROS or Gazebo packages are released or updated, the buildfarm automatically builds them across supported platforms and architectures, runs tests, publishes results, and tracks regressions over time. The buildfarmer team monitors and maintains this infrastructure to ensure the stability and reproducibility of ROS and Gazebo distributions.
+
+While dashboards provide a high-level view of job status, many maintenance and debugging tasks require deeper inspection of build results and historical data. This repository contains tools used in buildfarmer workflows to query, analyze, and triage buildfarm data programmatically.
+
+
 This repo contains all the tools to get information from the ROS and Gazebo buildfarms.
 
 > **Note**
