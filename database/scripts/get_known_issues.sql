@@ -1,9 +1,12 @@
-SELECT error_name,
-    test_fail_issues.job_name,
-    github_issue,
-    status,
-    server_status.project,
-    server_status.domain
-FROM test_fail_issues
-    INNER JOIN server_status ON server_status.job_name = test_fail_issues.job_name
-WHERE status LIKE "%@param1@%";
+SELECT
+    t.github_issue,
+    t.status,
+    t.assignee,
+    t.priority,
+    t.created_at,
+    t.issue_last_activity
+FROM test_fail_issues t
+INNER JOIN server_status s
+    ON s.job_name = t.job_name
+WHERE t.status LIKE "%@param1@%"
+  AND t.github_issue IS NOT NULL;
