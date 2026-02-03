@@ -1,4 +1,5 @@
 SELECT
+    test_fail_issues.error_name,
     test_fail_issues.job_name,
     test_fail_issues.github_issue,
     test_fail_issues.status,
