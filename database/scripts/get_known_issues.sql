@@ -5,7 +5,7 @@ SELECT
     test_fail_issues.priority,
     test_fail_issues.created_at,
     test_fail_issues.issue_last_activity,
-    server_status.project
+    server_status.project,
     server_status.domain
 FROM test_fail_issues
 INNER JOIN server_status
