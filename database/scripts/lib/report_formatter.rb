@@ -168,8 +168,11 @@ module ReportFormatter
       errors_str = "<details><summary>#{errors.size} errors</summary>#{errors_str}</details>" if errors.size > 9
       
       # Add issue report data to it's respective project table
-      project = iss_report.first['project']
-      tables[project][iss_report.first['status'].downcase] += "| `#{iss_report.first['github_issue']}` | #{iss_report.first['priority']} | #{jobs_str} | #{errors_str} |\n"
+      project = iss_report.first['project']&.upcase
+      status = iss_report.first['status']&.downcase
+      next unless project && status && tables.key?(project) && tables[project].key?(status)
+
+      tables[project][status] += "| `#{iss_report.first['github_issue']}` | #{iss_report.first['priority']} | #{jobs_str} | #{errors_str} |\n"
     end
 
     out = ""
