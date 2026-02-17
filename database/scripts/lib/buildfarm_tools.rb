@@ -42,12 +42,13 @@ module BuildfarmToolsLib
       known_errors = known_issues(status: 'open')
       known_errors.concat known_issues(status: 'disabled')
       known_errors.concat known_issues(status: 'wontfix')
-      known_error_names = Set.new(known_errors.map { |e| e['error_name'] })
-      out.filter! { |e| !known_error_names.include? e['error_name'] }
+      known_error_names = Set.new(known_errors.map { |e| [e['error_name'], e['job_name']] })
+      out.filter! { |e| !known_error_names.include? [e['error_name'], e['job_name']] }
     end
     if include_reports
       out.each do |e|
-        e['reports'] = test_regression_reported_issues e['error_name']
+        reports = test_regression_reported_issues e['error_name'], job_name: e['job_name']
+        e['reports'] = reports
       end
     end
     out
@@ -62,7 +63,8 @@ module BuildfarmToolsLib
       out.sort_by! { |tr| -tr['age'].to_i }
     end
     out.each do |e|
-      e['reports'] = test_regression_reported_issues e['error_name']
+      reports = test_regression_reported_issues e['error_name'], job_name: e['job_name']
+      e['reports'] = reports
     end
     if group_issues
       # Group by (job_name, age)
@@ -102,10 +104,11 @@ module BuildfarmToolsLib
     tr_flakiness.sort_by { |e| -e['failure_percentage'].to_f }
   end
 
-  def self.test_regression_reported_issues(error_name, status: nil)
+  def self.test_regression_reported_issues(error_name, job_name: nil, status: nil)
     # Keys: github_issue, status
     is_known_issue = run_command('./sql_run.sh is_known_issue.sql', args: [error_name])
     is_known_issue.select! { |issue| issue['status'] == status } if status
+    is_known_issue.select! { |issue| issue['job_name'] == job_name } if job_name
     is_known_issue.map { |issue| { 'github_issue' => issue['github_issue'], 'status' => issue['status'] } }.uniq
   end
 
