@@ -48,7 +48,7 @@ module BuildfarmToolsLib
     if include_reports
       out.each do |e|
         reports = test_regression_reported_issues e['error_name'], job_name: e['job_name']
-        e['reports'] = reports unless reports.empty?
+        e['reports'] = reports
       end
     end
     out
@@ -64,7 +64,7 @@ module BuildfarmToolsLib
     end
     out.each do |e|
       reports = test_regression_reported_issues e['error_name'], job_name: e['job_name']
-      e['reports'] = reports unless reports.empty?
+      e['reports'] = reports
     end
     if group_issues
       # Group by (job_name, age)
