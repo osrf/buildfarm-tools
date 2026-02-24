@@ -27,7 +27,7 @@ module BuildfarmToolsLib
 
   def self.known_issues(status: '')
     # Keys: error_name, job_name, github_issue, status
-    run_command("./sql_run.sh get_known_issues.sql", args: [status.upcase])
+    run_command('./sql_run.sh get_known_issues.sql', args: [status.upcase])
   end
 
   def self.error_appearances_in_job(test_name, job_name)
@@ -54,7 +54,8 @@ module BuildfarmToolsLib
     out
   end
 
-  def self.test_regressions_today(filter_known: false, only_consistent: false, group_issues: false, report_regressions: [])
+  def self.test_regressions_today(filter_known: false, only_consistent: false, group_issues: false,
+                                  report_regressions: [])
     # Keys: job_name, build_number, error_name, build_datetime, node_name
     out = report_regressions.clone(freeze: false) # Clone because we return a modified version
     out = test_regressions_all(filter_known: filter_known) if out.empty?
@@ -73,13 +74,16 @@ module BuildfarmToolsLib
     out
   end
 
-  def self.flaky_test_regressions(filter_known: false, group_issues: false, time_range: FLAKY_BUILDS_DEFAULT_RANGE, report_regressions: [])
+  def self.flaky_test_regressions(filter_known: false, group_issues: false, time_range: FLAKY_BUILDS_DEFAULT_RANGE,
+                                  report_regressions: [])
     # Keys: job_name, build_number, error_name, build_datetime, node_name, flakiness
     out = []
     today_regressions = report_regressions
     today_regressions = test_regressions_all(filter_known: filter_known) if today_regressions.empty?
     today_regressions.each do |tr|
-      next if !tr['age'].to_i.nil? && (tr['age'].to_i >= CONSECUTIVE_THRESHOLD || tr['age'].to_i == WARNING_AGE_CONSTANT)
+      if !tr['age'].to_i.nil? && (tr['age'].to_i >= CONSECUTIVE_THRESHOLD || tr['age'].to_i == WARNING_AGE_CONSTANT)
+        next
+      end
 
       tr_flakiness = test_regression_flakiness(tr['error_name'], time_range: time_range)
       if tr_flakiness.nil?
@@ -92,15 +96,13 @@ module BuildfarmToolsLib
       end
     end
     out.sort_by! { |e| -e['flakiness'][0]['failure_percentage'].to_f }
-    if group_issues
-      out = out.group_by { |o| o['flakiness'] }.values
-    end
+    out = out.group_by { |o| o['flakiness'] }.values if group_issues
     out
   end
 
   def self.test_regression_flakiness(error_name, time_range: FLAKY_BUILDS_DEFAULT_RANGE)
     # Keys: job_name, last_fail, first_fail, build_count, failure_count, failure_percentage
-    tr_flakiness = run_command('./sql_run.sh calculate_flakiness_jobs.sql', args:[error_name, time_range])
+    tr_flakiness = run_command('./sql_run.sh calculate_flakiness_jobs.sql', args: [error_name, time_range])
     tr_flakiness.sort_by { |e| -e['failure_percentage'].to_f }
   end
 
@@ -124,13 +126,14 @@ module BuildfarmToolsLib
     # Keys: job_name, last_success
     out = []
     jobs_never_passed.each do |e|
-      out << {"job_name" => e["job_name"], "last_success" => "Never"}
+      out << { 'job_name' => e['job_name'], 'last_success' => 'Never' }
     end
 
     jobs_last_success.each do |e|
-      last_success = DateTime.parse(e['last_success_time']) 
+      last_success = DateTime.parse(e['last_success_time'])
       next if last_success > (Date.today - older_than_days)
-      out << {"job_name" => e["job_name"], "last_success" => last_success.strftime('%Y-%m-%d')}
+
+      out << { 'job_name' => e['job_name'], 'last_success' => last_success.strftime('%Y-%m-%d') }
     end
     out
   end
@@ -138,48 +141,48 @@ module BuildfarmToolsLib
   def self.test_regressions_known(sort_by: 'priority')
     out = known_issues(status: 'open')
     out.concat known_issues(status: 'disabled')
-    out = out.group_by { |e| e["github_issue"] }.to_a.map { |e| e[1] }
+    out = out.group_by { |e| e['github_issue'] }.to_a.map { |e| e[1] }
     out.each do |error_list|
-      priority = calculate_issue_priority(error_list.first["github_issue"])
+      priority = calculate_issue_priority(error_list.first['github_issue'])
       error_list.each do |error|
-        error["priority"] = priority
+        error['priority'] = priority
       end
     end
 
-    unless sort_by.nil?
-      out.sort_by! { |r| -r.first['priority'] }
-    end
+    out.sort_by! { |r| -r.first['priority'] } unless sort_by.nil?
     out
   end
 
   def self.calculate_issue_priority(issue_link)
     sql_out = run_command('./sql_run.sh get_known_issue_by_url.sql', args: [issue_link])
-    errors = sql_out.map {|e| e['error_name']}.uniq
-    jobs = sql_out.map {|e| e['job_name']}.uniq
+    errors = sql_out.map { |e| e['error_name'] }.uniq
+    jobs = sql_out.map { |e| e['job_name'] }.uniq
 
     error_score_jobs = {}
 
     errors.each do |e|
       jobs.each do |job|
-        flaky_result = run_command('./sql_run.sh calculate_flakiness_jobs.sql', args: [e, FLAKY_BUILDS_DEFAULT_RANGE, job])
+        flaky_result = run_command('./sql_run.sh calculate_flakiness_jobs.sql',
+                                   args: [e, FLAKY_BUILDS_DEFAULT_RANGE, job])
         next if flaky_result.empty?
+
         # This is not guaranteed to be 'not consistent', we need to re-check if the last 3 builds were failing because of this
-        flaky_ratio = flaky_result.first['failure_percentage'].to_f/100.0
+        flaky_ratio = flaky_result.first['failure_percentage'].to_f / 100.0
 
         job_priority = JOB_PRIORITIES[job]
         if job_priority.nil?
           puts "WARNING: No job priority for job #{job}. Defaulting to 1"
           job_priority = 1
         end
-        job_priority = job_priority*1.5 if flaky_ratio == 1
-        
+        job_priority *= 1.5 if flaky_ratio == 1
+
         error_score_jobs[job] = [] if error_score_jobs[job].nil?
-        error_score_jobs[job] << (job_priority*flaky_ratio)
+        error_score_jobs[job] << (job_priority * flaky_ratio)
       end
     end
-    
+
     # Get only maximum score for each job
-    error_score_jobs.each_value.map {|e| e.max}.sum.round(3)
+    error_score_jobs.each_value.map { |e| e.max }.sum.round(3)
   end
 
   def self.add_known_issue(error_name, job_name, github_issue)
