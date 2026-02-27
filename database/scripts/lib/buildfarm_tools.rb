@@ -25,7 +25,7 @@ module BuildfarmToolsLib
     out
   end
 
-  def self.known_issues(status: '')
+  def self.known_issues(status: '%%') # Default is all issues. This is not the best approach, but better than none
     # Keys: error_name, job_name, github_issue, status
     run_command("./sql_run.sh get_known_issues.sql", args: [status.upcase])
   end
@@ -180,6 +180,15 @@ module BuildfarmToolsLib
     
     # Get only maximum score for each job
     error_score_jobs.each_value.map {|e| e.max}.sum.round(3)
+  end
+
+  def self.update_issues_priority
+    issues_list = known_issues.group_by { |e| e["github_issue"] }.to_a.map {|e| e[0]}
+    issues_list.each do |i| 
+      priority = calculate_issue_priority(i)
+      run_command('./sql_run.sh issue_update_priority.sql', args: [i, priority])
+      puts "Updated Priority of: #{i} -> #{priority}"
+    end
   end
 
   def self.add_known_issue(error_name, job_name, github_issue)
