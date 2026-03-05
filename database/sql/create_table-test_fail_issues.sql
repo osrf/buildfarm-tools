@@ -5,10 +5,14 @@ CREATE TABLE IF NOT EXISTS test_fail_issues(
     github_issue VARCHAR(300),
     status TEXT DEFAULT "OPEN" CHECK (
         status IN (
-            "OPEN",
-            "CLOSED",
             "DISABLED",
-            "WONTFIX"
+            "BLOCKED",
+            "HELP WANTED",
+            "COMPLETED",
+            "OBLIVIATED",
+            "PENDING FIX",
+            "INVESTIGATING",
+            "NOT ASSIGNED"
         )
     ) NOT NULL ON CONFLICT REPLACE DEFAULT "OPEN"
 );
