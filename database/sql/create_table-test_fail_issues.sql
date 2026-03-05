@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS test_fail_issues(
     github_issue VARCHAR(300),
     status TEXT DEFAULT "OPEN" CHECK (
         status IN (
+            "OPEN",
             "DISABLED",
             "BLOCKED",
             "HELP WANTED",
