@@ -33,6 +33,7 @@ module BuildfarmToolsLib
       run_command("./sql_run.sh get_disabled_known_issues.sql")
     elsif status == 'wontfix'
       ## TODO I don't know which ones are wontfix
+    end
   end
 
   def self.error_appearances_in_job(test_name, job_name)
