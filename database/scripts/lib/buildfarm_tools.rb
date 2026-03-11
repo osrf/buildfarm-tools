@@ -29,10 +29,10 @@ module BuildfarmToolsLib
     # Keys: error_name, job_name, github_issue, status
     if status == 'open'
       run_command("./sql_run.sh get_opened_known_issues.sql")
-    elsif status == 'disabled'
-      run_command("./sql_run.sh get_disabled_known_issues.sql")
-    elsif status == 'wontfix'
-      ## TODO I don't know which ones are wontfix
+    elsif status == 'closed'
+      run_command("./sql_run.sh get_closed_known_issues.sql")
+    else
+      run_command("./sql_run.sh get_known_issues.sql", args: [status.upcase])
     end
   end
 
@@ -47,7 +47,6 @@ module BuildfarmToolsLib
     if filter_known
       known_errors = known_issues(status: 'open')
       known_errors.concat known_issues(status: 'disabled')
-      known_errors.concat known_issues(status: 'wontfix')
       known_error_names = Set.new(known_errors.map { |e| [e['error_name'], e['job_name']] })
       out.filter! { |e| !known_error_names.include? [e['error_name'], e['job_name']] }
     end
