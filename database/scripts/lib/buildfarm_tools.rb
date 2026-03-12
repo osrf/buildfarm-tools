@@ -27,7 +27,13 @@ module BuildfarmToolsLib
 
   def self.known_issues(status: '%%') # Default is all issues. This is not the best approach, but better than none
     # Keys: error_name, job_name, github_issue, status
-    run_command("./sql_run.sh get_known_issues.sql", args: [status.upcase])
+    if status == 'open'
+      run_command("./sql_run.sh get_opened_known_issues.sql")
+    elsif status == 'closed'
+      run_command("./sql_run.sh get_closed_known_issues.sql")
+    else
+      run_command("./sql_run.sh get_known_issues.sql", args: [status.upcase])
+    end
   end
 
   def self.error_appearances_in_job(test_name, job_name)
@@ -41,7 +47,6 @@ module BuildfarmToolsLib
     if filter_known
       known_errors = known_issues(status: 'open')
       known_errors.concat known_issues(status: 'disabled')
-      known_errors.concat known_issues(status: 'wontfix')
       known_error_names = Set.new(known_errors.map { |e| [e['error_name'], e['job_name']] })
       out.filter! { |e| !known_error_names.include? [e['error_name'], e['job_name']] }
     end
