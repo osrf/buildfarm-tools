@@ -42,7 +42,6 @@ def generate_report(report_name, exclude_set)
        },
        'pending' => {
            'test_regressions_all' => BuildfarmToolsLib::test_regressions_all,
-           'test_regressions_known' => BuildfarmToolsLib::test_regressions_known,
        }
     }
 
