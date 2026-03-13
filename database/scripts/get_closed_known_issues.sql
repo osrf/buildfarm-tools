@@ -1,9 +1,13 @@
-SELECT error_name,
-    github_issue
+SELECT test_fail_issues.error_name,
+    test_fail_issues.github_issue,
+    test_fail_issues.status,
+    test_fail_issues.job_name,
+    server_status.project
 FROM test_fail_issues
-WHERE status IN (
+LEFT JOIN server_status ON test_fail_issues.job_name = server_status.job_name
+WHERE test_fail_issues.status IN (
     "COMPLETED",
     "OBLIVIATED",
     "DISABLED"
 )
-GROUP BY github_issue;
+GROUP BY test_fail_issues.github_issue, test_fail_issues.job_name;
