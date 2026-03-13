@@ -152,38 +152,6 @@ module ReportFormatter
     table
   end
 
-  def self.test_regressions_known(issue_array)
-    # Create a table for each project: {'ros' => {'open' => <table>, 'disabled' => <table>}, 'gazebo' => {'open' => <table>, 'disabled' => <table>}}
-    table_template = "| Issue | Priority | Jobs Name | Errors Name |\n| -- | -- | -- | -- |\n"
-    table_by_status = {'open' => table_template, 'disabled' => table_template}
-    tables = Hash[TRACKED_PROJECTS.zip([table_by_status, table_by_status.clone])]
-
-    issue_array.each do |iss_report|
-      jobs = iss_report.map { |o| o['job_name'] }.uniq
-      jobs_str = "<ul><li>#{jobs.join('</li><li>')}</li></ul>"
-      jobs_str = "<details><summary>#{jobs.size} jobs</summary>#{jobs_str}</details>" if jobs.size > 9
-      
-      errors = iss_report.map { |o| o['error_name'] }.uniq
-      errors_str = "<ul><li>#{errors.join('</li><li>')}</li></ul>"
-      errors_str = "<details><summary>#{errors.size} errors</summary>#{errors_str}</details>" if errors.size > 9
-      
-      # Add issue report data to it's respective project table
-      project = iss_report.first['project']
-      tables[project][iss_report.first['status'].downcase] += "| `#{iss_report.first['github_issue']}` | #{iss_report.first['priority']} | #{jobs_str} | #{errors_str} |\n"
-    end
-
-    out = ""
-    tables.each_pair do |project, v|
-      out += "### #{project.capitalize}\n"
-      v.each_pair do |status, table|
-        next if table == table_template
-        out += "#### #{status.capitalize} issues\n"
-        out += "#{table}\n"
-      end
-    end
-    out
-  end
-
   def self.format_report(report_hash)
     # Use <details> and <summary> tags to prevent long reports
     details_subcategories = ['test_regressions_flaky', 'jobs_last_success_date', 'test_regressions_all', 'test_regressions_known']
