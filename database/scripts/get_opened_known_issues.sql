@@ -9,5 +9,5 @@ WHERE test_fail_issues.status NOT IN (
     "COMPLETED",
     "OBLIVIATED",
     "DISABLED"
-)
-GROUP BY test_fail_issues.github_issue, test_fail_issues.job_name, test_fail_issues.error_name;
+);
+#GROUP BY test_fail_issues.github_issue, test_fail_issues.job_name, test_fail_issues.error_name;
