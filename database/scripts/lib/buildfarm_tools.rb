@@ -45,12 +45,7 @@ module BuildfarmToolsLib
     # Keys: job_name, build_number, error_name, build_datetime, node_name
     out = run_command('./sql_run.sh errors_check_last_build.sql')
     if filter_known
-      excluded_statuses = Set.new(%w[completed obliviated disabled])
-      known_errors = known_issues(status: '%%')
-      known_errors.select! do |issue|
-        issue_status = issue['status'].to_s.strip.downcase
-        !excluded_statuses.include?(issue_status)
-      end
+      known_errors = known_issues(status: 'open')
       known_error_names = Set.new(known_errors.map { |e| [e['error_name'], e['job_name']] })
       out.filter! { |e| !known_error_names.include? [e['error_name'], e['job_name']] }
     end
