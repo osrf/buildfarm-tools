@@ -46,7 +46,6 @@ module BuildfarmToolsLib
     out = run_command('./sql_run.sh errors_check_last_build.sql')
     if filter_known
       known_errors = known_issues(status: 'open')
-      known_errors.concat known_issues(status: 'disabled')
       known_error_names = Set.new(known_errors.map { |e| [e['error_name'], e['job_name']] })
       out.filter! { |e| !known_error_names.include? [e['error_name'], e['job_name']] }
     end
