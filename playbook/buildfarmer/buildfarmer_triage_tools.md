@@ -8,6 +8,8 @@ We utilize our custom tools within the buildfarm to facilitate our workflow. The
 
 Check the [scripts usage](#scripts-usage) section for more information on how to use these scripts.
 
+For monthly greenness report generation and spreadsheet updates, see [Greenness Report](./greenness_report.md).
+
 # Testdb scripts
 
 The testdb scripts provide a way to check more information on builds by downloading the logs of the builds and performing some text based analysis on them. These scripts are located in the [testdb](../../testdb) folder.
