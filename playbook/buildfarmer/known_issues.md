@@ -52,11 +52,13 @@ To untrack a known issue, you may follow the steps below:
 
 # Refresh Known Issues in the Database
 
-All the known issues are added manually to the database. They are kept open until someone closes them manually. To keep the database updated, we need to refresh the known issues periodically.
+All the known issues are added manually to the database. Their status is now refreshed automatically by the Daily Workflow. If an issue is closed in GitHub, it is also closed automatically in the database.
+
+You can still run a manual refresh when needed.
 
 To refresh the known issues, you may follow the steps below:
 1. Run [`./refresh_known_open_issues.sh`](./buildfarmer_triage_tools.md#refresh_known_open_issuessh)
-   * This script will check if the issue is still open in GitHub and update the database accordingly.
+	* This script checks whether each tracked issue is still open in GitHub and updates the database accordingly.
 2. Run [`./close_old_known_issues.sh`](./buildfarmer_triage_tools.md#close_old_known_issuessh)
    * This script will close the issues that haven't happened in the last 30 days.
 
