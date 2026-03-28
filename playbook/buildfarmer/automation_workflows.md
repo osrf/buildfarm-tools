@@ -21,6 +21,10 @@ This action can be manually triggered by the buildfarmers to update the database
 
 This action maintains [the buildfarmer log](https://github.com/osrf/buildfarm-tools/labels/buildfarmer-log) each week. On Mondays, it creates a new log issue and closes the previous one. Then, each day it comments on the log issue with the daily build and test regressions.
 
+In addition, it verifies the status of the tracked issues and updates their state in the buildfarmer database.
+
+It also automatically refreshes the issue information in the Buildfarm Issue Triage Spreadsheet.
+
 This action can be manually triggered by the buildfarmers to create a new weekly log issue, or publish the daily build and test regressions, at any time.
 
 ## Update Gazebo Dashboard
