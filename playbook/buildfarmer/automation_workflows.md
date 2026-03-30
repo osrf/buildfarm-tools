@@ -32,6 +32,7 @@ It also automatically refreshes the issue information in the [Buildfarm Issue Tr
 This action can be manually triggered by the buildfarmers to create a new weekly log issue, or publish the daily build and test regressions, at any time.
 
 ## Daily workflow component diagram
+<img width="735" height="595" alt="535315120-5dde3dec-29e1-4a83-bf93-ed3869bd3216" src="https://github.com/user-attachments/assets/59c339d8-7778-41b4-8695-7f8f523b77c9" />
 
 
 ## Update Gazebo Dashboard
