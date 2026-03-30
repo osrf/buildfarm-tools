@@ -11,7 +11,11 @@ To support the daily work of the buildfarmers, we have created a set of GitHub a
 
 This action is used to update the buildfarmer database every day, so the buildfarmers can use the latest data to triage the build failures.
 
+As part of this workflow, job priorities are generated and synced to the public repository as `job_priorities.csv`.
+
 More information can be found in: [Buildfarm Triage Tools](https://github.com/osrf/buildfarm-tools-private/blob/main/docs/buildfarm_triage_tools.md#database-fetching-scripts)
+
+For details about the priorities generation logic and local execution, see [Job Priorities](./job_priorities.md).
 
 This action can be manually triggered by the buildfarmers to update the database at any time.
 
