@@ -34,7 +34,7 @@ For each release, it computes success/unstable/failure/aborted percentages and t
 
 When updating Google Sheets, the script:
 
-1. Authenticates with service-account credentials in [`credentials.json`](../../../credentials.json).
+1. Authenticates with service-account credentials (This is a buildfarmer's own credential).
 2. Opens spreadsheet **Buildfarm Issue Triage**.
 3. Resolves ROS and Gazebo projects from database project names.
 4. Looks up each release column by header name (normalized match).
@@ -62,7 +62,7 @@ Then [`buildfarm-tools/.github/workflows/greenness-reports-deploy.yml`](../../.g
 
 ### Prerequisites
 
-* Python 3.11+ recommended.
+* Python 3.11 recommended.
 * Local clone of this private repository.
 * Local clone of public [`buildfarm-tools`](https://github.com/osrf/buildfarm-tools) as a sibling folder (required by [`lib/database.py`](../../../lib/database.py)).
 * Valid local database in `buildfarm-tools/database/`.
@@ -117,6 +117,8 @@ Or with open-ended end date (defaults to current date):
 ```bash
 python3 greenness_report.py -f 2026-02-01
 ```
+
+## How does it look
 
 ## Troubleshooting
 
