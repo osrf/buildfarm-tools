@@ -27,9 +27,12 @@ This action maintains [the buildfarmer log](https://github.com/osrf/buildfarm-to
 
 In addition, it verifies the status of the tracked issues and updates their state in the buildfarmer database.
 
-It also automatically refreshes the issue information in the Buildfarm Issue Triage Spreadsheet.
+It also automatically refreshes the issue information in the [Buildfarm Issue Triage Spreadsheet](https://docs.google.com/spreadsheets/d/1gX7Hw_aVsI4U05i2-NxCY66a4CmRy1Yyb6dokK5QtMg).
 
 This action can be manually triggered by the buildfarmers to create a new weekly log issue, or publish the daily build and test regressions, at any time.
+
+## Daily workflow component diagram
+
 
 ## Update Gazebo Dashboard
 

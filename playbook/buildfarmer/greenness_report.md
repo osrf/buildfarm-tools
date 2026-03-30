@@ -119,7 +119,7 @@ python3 greenness_report.py -f 2026-02-01
 ```
 
 ## How does it look
-
+- https://osrf.github.io/buildfarm-tools/2026/greenness_buildfarm_metrics_report_2026-01-01_to_2026-02-01.html
 ## Troubleshooting
 
 * **Database not found / empty results**:
