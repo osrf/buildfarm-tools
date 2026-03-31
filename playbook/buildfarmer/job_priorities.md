@@ -85,7 +85,7 @@ After any rule update, regenerate the CSV and verify a sample of critical jobs h
 
 ## How does it looks
 
-Here are some examples of jobs and their priorities in the format <job>,<priority>
+Here are some examples of jobs and their priorities in the format \<job>,\<priority>
 
 ```csv
 Hci__benchmark_ubuntu_jammy_amd64,0.25
