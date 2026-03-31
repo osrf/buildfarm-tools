@@ -5,8 +5,12 @@ We utilize our custom tools within the buildfarm to facilitate our workflow. The
 * [scripts/ci-log](../../scripts/ci-log): Fetch CI log from Jenkins using curl. Sometimes the log of a build is too heavy to be rendered in a web browser. This script provides a way to download the log of a build.
 * [scripts/extract-vcs-exact](../../scripts/extract-vcs-exact): Extract the vcs --exact output from a build log to create a repos file. It is useful for knowing the exact list of repositories that were used in a build.
 * [scripts/extract-package-output](../../scripts/extract-package-output): Extract package output from a build log using colcon markers. Useful for getting the console output of a specific package in a build.
+* [generate_priorities.py](../../../generate_priorities.py): Generates `job_priorities.csv` used by automation to rank issues.
 
 Check the [scripts usage](#scripts-usage) section for more information on how to use these scripts.
+
+For monthly greenness report generation and spreadsheet updates, see [Greenness Report](./greenness_report.md).
+For priorities generation workflow and local usage, see [Job Priorities](./job_priorities.md).
 
 # Testdb scripts
 

@@ -5,11 +5,13 @@ This is the index of playbooks for buildfarm. Intended to provide guidance when 
 * [Is an error a known issue or a flaky problem?](./is-an-error-a-known-issue-or-a-flaky-problem.md)
 * [Check historical data of a test regression](./check-historical-data-of-a-test-regression.md)
 * [Look for build regression statistics](./look-for-build-regression-statistics.md)
+* [Update automatically the buildfarmers issue spreadsheet](./buildfarmer/update_issue_spreadsheet.md)
 
 ## Buildfarmer Triage
 * [Buildfarm introduction :arrow_forward:](./buildfarmer/README.md)
 * [Build regressions investigation :arrow_forward:](./buildfarmer/build_regressions_investigation.md)
 * [Buildfarmer triage tools :arrow_forward:](./buildfarmer/buildfarmer_triage_tools.md)
+* [Job priorities workflow :arrow_forward:](./buildfarmer/job_priorities.md)
 * [Known Issues :arrow_forward:](./buildfarmer/known_issues.md)
 * [Looking for regressions :arrow_forward:](./buildfarmer/looking_for_regressions.md)
 * [Reporting problems :arrow_forward:](./buildfarmer/reporting_problems.md)
