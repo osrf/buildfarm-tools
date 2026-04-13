@@ -6,6 +6,9 @@ require 'csv'
 module BuildfarmToolsLib
   class BuildfarmToolsError < RuntimeError; end
 
+  BUILD_REGRESSION_ERROR_NAME = 'build_regression'
+  BUILD_REGRESSION_STATIC_PRIORITY = 10
+
   KNOWN_REASONS = Set.new([
                             'Jenkins channel closing down (Agent disconnected)',
                             'Network error: Failed to clone github repo'
@@ -189,18 +192,29 @@ module BuildfarmToolsLib
   def self.update_issues_priority
     issues_list = known_issues.group_by { |e| e["github_issue"] }.to_a.map {|e| e[0]}
     issues_list.each do |i| 
-      priority = calculate_issue_priority(i)
+      issue_entries = run_command('./sql_run.sh get_known_issue_by_url.sql', args: [i])
+      is_build_regression_issue = issue_entries.any? { |entry| entry['error_name'] == BUILD_REGRESSION_ERROR_NAME }
+      priority = is_build_regression_issue ? BUILD_REGRESSION_STATIC_PRIORITY : calculate_issue_priority(i)
       run_command('./sql_run.sh issue_update_priority.sql', args: [i, priority])
       puts "Updated Priority of: #{i} -> #{priority}"
     end
   end
 
   def self.add_known_issue(error_name, job_name, github_issue)
-    Open3.popen3("./issue_save_new.sh '#{error_name}' '#{error_name.split('.').first}' '#{job_name}' '#{github_issue}'") do |_, _, _, t|
+    command = "./issue_save_new.sh '#{error_name}' '#{error_name.split('.').first}' '#{job_name}' '#{github_issue}'"
+    Open3.popen3(command) do |_, _, _, t|
       t.value.exitstatus
     end
   rescue StandardError => e
     raise BuildfarmToolsError, e
+  end
+
+  def self.add_known_build_regression(job_name, github_issue)
+    add_known_issue(
+      BUILD_REGRESSION_ERROR_NAME,
+      job_name,
+      github_issue
+    )
   end
 
   def self.run_command(cmd, args: [], keys: [])
