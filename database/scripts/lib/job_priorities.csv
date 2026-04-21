@@ -32,16 +32,6 @@ Rci__nightly-fastrtps_ubuntu_noble_amd64,0.8
 Rci__nightly-performance_ubuntu_noble_amd64,0.25
 Rci__nightly-release_ubuntu_noble_amd64,1.0
 Rci__nightly-zenoh_ubuntu_noble_amd64,1
-gz-cmake5-debbuilder,1.0
-gz-common7-debbuilder,1.0
-gz-fuel-tools11-debbuilder,1.0
-gz-gui10-debbuilder,1.0
-gz-launch9-debbuilder,1.0
-gz-math9-debbuilder,1.0
-gz-msgs12-debbuilder,1.0
-gz-physics9-debbuilder,1.0
-gz-plugin4-debbuilder,1.0
-gz-rendering10-debbuilder,1.0
 gz-rotary-cmake-debbuilder,1.0
 gz-rotary-common-debbuilder,1.0
 gz-rotary-fuel-tools-debbuilder,1.0
@@ -57,11 +47,6 @@ gz-rotary-sim-debbuilder,1.0
 gz-rotary-tools-debbuilder,1.0
 gz-rotary-transport-debbuilder,1.0
 gz-rotary-utils-debbuilder,1.0
-gz-sensors10-debbuilder,1.0
-gz-sim10-debbuilder,1.0
-gz-tools2-debbuilder,1.0
-gz-transport15-debbuilder,1.0
-gz-utils4-debbuilder,1.0
 gz_cmake-3-clowin,0.75
 gz_cmake-4-clowin,0.8
 gz_cmake-5-cnlwin,0.85
@@ -407,4 +392,3 @@ sdformat-sdf12-clwin,0.7
 sdformat-sdf14-clowin,0.75
 sdformat-sdf15-clowin,0.8
 sdformat-sdf16-cnlwin,0.85
-sdformat16-debbuilder,1.0
