@@ -49,7 +49,7 @@ Coverage jobs has been disabled due to the high load on the CI server. See https
 | Humble | [![Build Status](https://build.ros2.org/job/Hrel_sync-packages-to-testing_jammy_amd64/badge/icon)](https://build.ros2.org/job/Hrel_sync-packages-to-testing_jammy_amd64/) |
 | Jazzy | [![Build Status](https://build.ros2.org/job/Jrel_sync-packages-to-testing_noble_amd64/badge/icon)](https://build.ros2.org/job/Jrel_sync-packages-to-testing_noble_amd64/) |
 | Kilted | [![Build Status](https://build.ros2.org/job/Krel_sync-packages-to-testing_noble_amd64/badge/icon)](https://build.ros2.org/job/Krel_sync-packages-to-testing_noble_amd64/) |
-| Rolling | [![Build Status](https://build.ros2.org/job/Rrel_sync-packages-to-testing_noble_amd64/badge/icon)](https://build.ros2.org/job/Rrel_sync-packages-to-testing_noble_amd64/) |
+| Rolling | [![Build Status](https://build.ros2.org/job/Rrel_sync-packages-to-testing_noble_amd64/badge/icon)](https://build.ros2.org/job/Rrel_sync-packages-to-testing_resolute_amd64/) |
 
 [nightly-linux-debug]: https://ci.ros2.org/view/nightly/job/nightly_linux_debug
 [nightly-linux-debug-badge]: https://ci.ros2.org/buildStatus/icon?job=nightly_linux_debug
@@ -144,24 +144,24 @@ Coverage jobs has been disabled due to the high load on the CI server. See https
 [Kci-coverage-badge]: https://ci.ros2.org/buildStatus/icon?job=nightly_linux_kilted_coverage
 [Kci-coverage]: https://ci.ros2.org/job/nightly_linux_kilted_coverage/
 
-[Rci-release-badge]: http://build.ros2.org/buildStatus/icon?job=Rci__nightly-release_ubuntu_noble_amd64
-[Rci-release]: http://build.ros2.org/view/Rci/job/Rci__nightly-release_ubuntu_noble_amd64/
-[Rci-debug-badge]: http://build.ros2.org/buildStatus/icon?job=Rci__nightly-debug_ubuntu_noble_amd64
-[Rci-debug]: http://build.ros2.org/view/Rci/job/Rci__nightly-debug_ubuntu_noble_amd64/
-[Rci-performance-badge]: http://build.ros2.org/buildStatus/icon?job=Rci__nightly-performance_ubuntu_noble_amd64
-[Rci-performance]: http://build.ros2.org/view/Rci/job/Rci__nightly-performance_ubuntu_noble_amd64/
-[Rci-connext-badge]: http://build.ros2.org/buildStatus/icon?job=Rci__nightly-connext_ubuntu_noble_amd64
-[Rci-connext]: http://build.ros2.org/view/Rci/job/Rci__nightly-connext_ubuntu_noble_amd64/
-[Rci-cyclone-badge]: http://build.ros2.org/buildStatus/icon?job=Rci__nightly-cyclonedds_ubuntu_noble_amd64
-[Rci-cyclone]: http://build.ros2.org/view/Rci/job/Rci__nightly-cyclonedds_ubuntu_noble_amd64/
-[Rci-fastrtps-badge]: http://build.ros2.org/buildStatus/icon?job=Rci__nightly-fastrtps_ubuntu_noble_amd64
-[Rci-fastrtps]: http://build.ros2.org/view/Rci/job/Rci__nightly-fastrtps_ubuntu_noble_amd64/
-[Rci-fastrtps-dynamic-badge]: http://build.ros2.org/buildStatus/icon?job=Rci__nightly-fastrtps-dynamic_ubuntu_noble_amd64
-[Rci-fastrtps-dynamic]:  http://build.ros2.org/view/Rci/job/Rci__nightly-fastrtps-dynamic_ubuntu_noble_amd64/
-[Rci-zenoh-badge]: http://build.ros2.org/buildStatus/icon?job=Rci__nightly-zenoh_ubuntu_noble_amd64
-[Rci-zenoh]:  http://build.ros2.org/view/Rci/job/Rci__nightly-zenoh_ubuntu_noble_amd64/
-[Rci-benchmark-badge]: http://build.ros2.org/buildStatus/icon?job=Rci__benchmark_ubuntu_noble_amd64
-[Rci-benchmark]: http://build.ros2.org/view/Rci/job/Rci__benchmark_ubuntu_noble_amd64/
+[Rci-release-badge]: http://build.ros2.org/buildStatus/icon?job=Rci__nightly-release_ubuntu_resolute_amd64
+[Rci-release]: http://build.ros2.org/view/Rci/job/Rci__nightly-release_ubuntu_resolute_amd64/
+[Rci-debug-badge]: http://build.ros2.org/buildStatus/icon?job=Rci__nightly-debug_ubuntu_resolute_amd64
+[Rci-debug]: http://build.ros2.org/view/Rci/job/Rci__nightly-debug_ubuntu_resolute_amd64/
+[Rci-performance-badge]: http://build.ros2.org/buildStatus/icon?job=Rci__nightly-performance_ubuntu_resolute_amd64
+[Rci-performance]: http://build.ros2.org/view/Rci/job/Rci__nightly-performance_ubuntu_resolute_amd64/
+[Rci-connext-badge]: http://build.ros2.org/buildStatus/icon?job=Rci__nightly-connext_ubuntu_resolute_amd64
+[Rci-connext]: http://build.ros2.org/view/Rci/job/Rci__nightly-connext_ubuntu_resolute_amd64/
+[Rci-cyclone-badge]: http://build.ros2.org/buildStatus/icon?job=Rci__nightly-cyclonedds_ubuntu_resolute_amd64
+[Rci-cyclone]: http://build.ros2.org/view/Rci/job/Rci__nightly-cyclonedds_ubuntu_resolute_amd64/
+[Rci-fastrtps-badge]: http://build.ros2.org/buildStatus/icon?job=Rci__nightly-fastrtps_ubuntu_resaolute_amd64
+[Rci-fastrtps]: http://build.ros2.org/view/Rci/job/Rci__nightly-fastrtps_ubuntu_resolute_amd64/
+[Rci-fastrtps-dynamic-badge]: http://build.ros2.org/buildStatus/icon?job=Rci__nightly-fastrtps-dynamic_ubuntu_resolute_amd64
+[Rci-fastrtps-dynamic]:  http://build.ros2.org/view/Rci/job/Rci__nightly-fastrtps-dynamic_ubuntu_resolute_amd64/
+[Rci-zenoh-badge]: http://build.ros2.org/buildStatus/icon?job=Rci__nightly-zenoh_ubuntu_resolute_amd64
+[Rci-zenoh]:  http://build.ros2.org/view/Rci/job/Rci__nightly-zenoh_ubuntu_resolute_amd64/
+[Rci-benchmark-badge]: http://build.ros2.org/buildStatus/icon?job=Rci__benchmark_ubuntu_resolute_amd64
+[Rci-benchmark]: http://build.ros2.org/view/Rci/job/Rci__benchmark_ubuntu_resolute_amd64/
 [Rci-coverage-badge]: https://ci.ros2.org/buildStatus/icon?job=nightly_linux_coverage
 [Rci-coverage]: https://ci.ros2.org/job/nightly_linux_coverage/
 
