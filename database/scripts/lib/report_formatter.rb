@@ -14,12 +14,16 @@ module ReportFormatter
     project_name
   end
 
-  def self.format_reference_build(issue_hash)
+  def self.format_reference_build(issue_hash, include_build_number: true)
     job_name = issue_hash['job_name']
     build_number = issue_hash['build_number']
     base_url = issue_hash['domain']
 
-    "[#{job_name}##{build_number}](#{base_url}/job/#{job_name}/#{build_number})"
+    if include_build_number
+      "[#{job_name}##{build_number}](#{base_url}/job/#{job_name}/#{build_number})"
+    else
+      "[#{job_name}](#{base_url}/job/#{job_name})"
+    end
   end
 
   def self.format_datetime(datetime)
@@ -64,12 +68,11 @@ module ReportFormatter
 
   def self.build_regressions_known(br_known_array)
     return "" if br_known_array.nil? || br_known_array.empty?
-    table = "| Reference Build | Age | Failure DateTime | Errors | Reports |\n| -- | -- | -- | -- | -- |\n"
+    table = "| Reference Build | Age | Errors | Reports |\n| -- | -- | -- | -- |\n"
     br_known_array.each do |item|
       ref = item['reference_build'] || {}
-      reference_build = format_reference_build(ref)
+      reference_build = format_reference_build(ref, include_build_number: false)
       age = item['age'] || -1
-      failure_dt = item['failure_datetime'] || "N/A"
 
       errors = ""
       if item['errors'] && item['errors'].any?
@@ -86,8 +89,7 @@ module ReportFormatter
         reports_str = "No reports found!"
       end
 
-      formatted_failure = failure_dt == "N/A" ? "N/A" : format_datetime(failure_dt)
-      table += "| #{reference_build} | #{age} | #{formatted_failure} | #{errors} | #{reports_str} |\n"
+      table += "| #{reference_build} | #{age} | #{errors} | #{reports_str} |\n"
     end
     table
   end
@@ -230,7 +232,6 @@ module ReportFormatter
   def self.format_report(report_hash)
     # Use <details> and <summary> tags to prevent long reports
     details_subcategories = ['test_regressions_flaky', 'jobs_last_success_date', 'test_regressions_all', 'test_regressions_known']
-    details_subcategories << 'build_regressions_known'
     output_report = ""
 
     report_hash.each_pair do |category, subcategory_hash|
