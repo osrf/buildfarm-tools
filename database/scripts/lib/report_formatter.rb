@@ -23,9 +23,22 @@ module ReportFormatter
   end
 
   def self.format_datetime(datetime)
-    date, time = datetime.split
+    return "N/A" if datetime.nil?
+    # Handle Date/Time objects
+    if datetime.respond_to?(:strftime)
+      return datetime.strftime('%Y-%m-%d %H:%M')
+    end
+
+    str = datetime.to_s
+    return "N/A" if str.strip.empty?
+    parts = str.split
+    return str if parts.empty?
+    date = parts[0]
+    time = parts[1] || ''
     hour, minute, _ = time.split(':')
-    "#{date} #{hour}:#{minute}"
+    return "#{date} #{hour}:#{minute}" if hour && minute
+    # Fallback to the original string
+    str
   end
 
   def self.format_flakiness(flakiness_arr)
@@ -45,6 +58,36 @@ module ReportFormatter
     br_array.each do |br_hash|
       reference_build = format_reference_build(br_hash)
       table += "| #{reference_build} | #{format_datetime(br_hash['build_datetime'])} | #{br_hash['failure_reason']} |\n"
+    end
+    table
+  end
+
+  def self.build_regressions_known(br_known_array)
+    return "" if br_known_array.nil? || br_known_array.empty?
+    table = "| Reference Build | Age | Failure DateTime | Errors | Reports |\n| -- | -- | -- | -- | -- |\n"
+    br_known_array.each do |item|
+      ref = item['reference_build'] || {}
+      reference_build = format_reference_build(ref)
+      age = item['age'] || -1
+      failure_dt = item['failure_datetime'] || "N/A"
+
+      errors = ""
+      if item['errors'] && item['errors'].any?
+        errors = item['errors'].map { |e| "<li>#{e}</li>" }.join
+        errors = "<ul>#{errors}</ul>"
+      else
+        errors = "No errors"
+      end
+
+      if item['reports'] && item['reports'].any?
+        reports_str = item['reports'].uniq.map { |e| "<li>`#{e['github_issue']}` (#{e['status'].to_s.capitalize})</li>" }.join
+        reports_str = "<ul>#{reports_str}</ul>"
+      else
+        reports_str = "No reports found!"
+      end
+
+      formatted_failure = failure_dt == "N/A" ? "N/A" : format_datetime(failure_dt)
+      table += "| #{reference_build} | #{age} | #{formatted_failure} | #{errors} | #{reports_str} |\n"
     end
     table
   end
@@ -187,6 +230,7 @@ module ReportFormatter
   def self.format_report(report_hash)
     # Use <details> and <summary> tags to prevent long reports
     details_subcategories = ['test_regressions_flaky', 'jobs_last_success_date', 'test_regressions_all', 'test_regressions_known']
+    details_subcategories << 'build_regressions_known'
     output_report = ""
 
     report_hash.each_pair do |category, subcategory_hash|
