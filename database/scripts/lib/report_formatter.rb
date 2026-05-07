@@ -14,18 +14,35 @@ module ReportFormatter
     project_name
   end
 
-  def self.format_reference_build(issue_hash)
+  def self.format_reference_build(issue_hash, include_build_number: true)
     job_name = issue_hash['job_name']
     build_number = issue_hash['build_number']
     base_url = issue_hash['domain']
 
-    "[#{job_name}##{build_number}](#{base_url}/job/#{job_name}/#{build_number})"
+    if include_build_number
+      "[#{job_name}##{build_number}](#{base_url}/job/#{job_name}/#{build_number})"
+    else
+      "[#{job_name}](#{base_url}/job/#{job_name})"
+    end
   end
 
   def self.format_datetime(datetime)
-    date, time = datetime.split
+    return "N/A" if datetime.nil?
+    # Handle Date/Time objects
+    if datetime.respond_to?(:strftime)
+      return datetime.strftime('%Y-%m-%d %H:%M')
+    end
+
+    str = datetime.to_s
+    return "N/A" if str.strip.empty?
+    parts = str.split
+    return str if parts.empty?
+    date = parts[0]
+    time = parts[1] || ''
     hour, minute, _ = time.split(':')
-    "#{date} #{hour}:#{minute}"
+    return "#{date} #{hour}:#{minute}" if hour && minute
+    # Fallback to the original string
+    str
   end
 
   def self.format_flakiness(flakiness_arr)
@@ -47,6 +64,33 @@ module ReportFormatter
       table += "| #{reference_build} | #{format_datetime(br_hash['build_datetime'])} | #{br_hash['failure_reason']} |\n"
     end
     table
+  end
+
+  def self.build_regressions_known(br_known_array)
+    return "" if br_known_array.nil? || br_known_array.empty?
+    begin
+      table = "| Reference Build | Age | Errors | Reports |\n| -- | -- | -- | -- |\n"
+      br_known_array.each do |item|
+        ref = item['reference_build'] || {}
+        reference_build = format_reference_build(ref, include_build_number: false)
+        age = item['age'] || -1
+
+        errors = item['errors']&.first || "No errors"
+
+        if item['reports'] && item['reports'].any?
+          reports_str = item['reports'].uniq.map { |e| "<li>`#{e['github_issue']}` (#{e['status'].to_s.capitalize})</li>" }.join
+          reports_str = "<ul>#{reports_str}</ul>"
+        else
+          reports_str = "No reports found!"
+        end
+
+        table += "| #{reference_build} | #{age} | #{errors} | #{reports_str} |\n"
+      end
+      table
+    rescue StandardError => _e
+      puts "ERROR building known build regressions: #{_e}"
+      ""
+    end
   end
 
   def self.test_regressions_consecutive(tr_array)

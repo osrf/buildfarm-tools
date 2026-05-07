@@ -32,6 +32,7 @@ def generate_report(report_name, exclude_set)
     report = {
         'urgent' => {
             'build_regressions' => BuildfarmToolsLib::build_regressions_today(filter_known: true),
+            'build_regressions_known' => BuildfarmToolsLib::build_regressions_known_enriched,
             'test_regressions_consecutive' => report_regressions_consecutive,
             'test_regressions_flaky' => report_flaky_regressions,
        },
@@ -44,7 +45,6 @@ def generate_report(report_name, exclude_set)
            'test_regressions_all' => BuildfarmToolsLib::test_regressions_all,
        }
     }
-
 
     File.open(report_name, 'w') do |f|
         f.write(report.to_json)

@@ -6,6 +6,9 @@ require 'csv'
 module BuildfarmToolsLib
   class BuildfarmToolsError < RuntimeError; end
 
+  BUILD_REGRESSION_ERROR_NAME = 'build_regression'
+  BUILD_REGRESSION_STATIC_PRIORITY = 10
+
   KNOWN_REASONS = Set.new([
                             'Jenkins channel closing down (Agent disconnected)',
                             'Network error: Failed to clone github repo'
@@ -189,18 +192,29 @@ module BuildfarmToolsLib
   def self.update_issues_priority
     issues_list = known_issues.group_by { |e| e["github_issue"] }.to_a.map {|e| e[0]}
     issues_list.each do |i| 
-      priority = calculate_issue_priority(i)
+      issue_entries = run_command('./sql_run.sh get_known_issue_by_url.sql', args: [i])
+      is_build_regression_issue = issue_entries.any? { |entry| entry['error_name'] == BUILD_REGRESSION_ERROR_NAME }
+      priority = is_build_regression_issue ? BUILD_REGRESSION_STATIC_PRIORITY : calculate_issue_priority(i)
       run_command('./sql_run.sh issue_update_priority.sql', args: [i, priority])
       puts "Updated Priority of: #{i} -> #{priority}"
     end
   end
 
   def self.add_known_issue(error_name, job_name, github_issue)
-    Open3.popen3("./issue_save_new.sh '#{error_name}' '#{error_name.split('.').first}' '#{job_name}' '#{github_issue}'") do |_, _, _, t|
+    command = "./issue_save_new.sh '#{error_name}' '#{error_name.split('.').first}' '#{job_name}' '#{github_issue}'"
+    Open3.popen3(command) do |_, _, _, t|
       t.value.exitstatus
     end
   rescue StandardError => e
     raise BuildfarmToolsError, e
+  end
+
+  def self.add_known_build_regression(job_name, github_issue)
+    add_known_issue(
+      BUILD_REGRESSION_ERROR_NAME,
+      job_name,
+      github_issue
+    )
   end
 
   def self.run_command(cmd, args: [], keys: [])
@@ -234,5 +248,30 @@ module BuildfarmToolsLib
       output_array.append(line_hash)
     end
     output_array
+  end
+
+  def self.build_regressions_known_enriched
+    known_groups = test_regressions_known
+    # Keep only groups that include build_regression errors
+    known_groups.select! do |issue_list|
+      issue_list.any? { |i| i['error_name'] == BUILD_REGRESSION_ERROR_NAME }
+    end
+
+    known_groups.map do |issue_list|
+      first = issue_list.first
+      # Find an entry within the group that is a build_regression and try to get a reference build
+      br_entry = issue_list.find { |i| i['error_name'] == BUILD_REGRESSION_ERROR_NAME } || first
+      occ = error_appearances_in_job(br_entry['error_name'], br_entry['job_name'])
+      reference = occ.empty? ? nil : occ.first
+
+      {
+        'github_issue' => first['github_issue'],
+        'reference_build' => reference || { 'job_name' => br_entry['job_name'], 'build_number' => 'N/A', 'build_datetime' => first['created_at'], 'failure_reason' => br_entry['error_name'], 'domain' => first['domain'] },
+        'age' => reference && reference['age'] ? reference['age'] : -1,
+        'failure_datetime' => reference && reference['build_datetime'] ? reference['build_datetime'] : first['created_at'],
+        'errors' => [BUILD_REGRESSION_ERROR_NAME],
+        'reports' => issue_list.map { |i| { 'github_issue' => i['github_issue'], 'status' => i['status'] } }.uniq
+      }
+    end
   end
 end
