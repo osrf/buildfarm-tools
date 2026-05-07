@@ -68,24 +68,29 @@ module ReportFormatter
 
   def self.build_regressions_known(br_known_array)
     return "" if br_known_array.nil? || br_known_array.empty?
-    table = "| Reference Build | Age | Errors | Reports |\n| -- | -- | -- | -- |\n"
-    br_known_array.each do |item|
-      ref = item['reference_build'] || {}
-      reference_build = format_reference_build(ref, include_build_number: false)
-      age = item['age'] || -1
+    begin
+      table = "| Reference Build | Age | Errors | Reports |\n| -- | -- | -- | -- |\n"
+      br_known_array.each do |item|
+        ref = item['reference_build'] || {}
+        reference_build = format_reference_build(ref, include_build_number: false)
+        age = item['age'] || -1
 
-      errors = item['errors']&.first || "No errors"
+        errors = item['errors']&.first || "No errors"
 
-      if item['reports'] && item['reports'].any?
-        reports_str = item['reports'].uniq.map { |e| "<li>`#{e['github_issue']}` (#{e['status'].to_s.capitalize})</li>" }.join
-        reports_str = "<ul>#{reports_str}</ul>"
-      else
-        reports_str = "No reports found!"
+        if item['reports'] && item['reports'].any?
+          reports_str = item['reports'].uniq.map { |e| "<li>`#{e['github_issue']}` (#{e['status'].to_s.capitalize})</li>" }.join
+          reports_str = "<ul>#{reports_str}</ul>"
+        else
+          reports_str = "No reports found!"
+        end
+
+        table += "| #{reference_build} | #{age} | #{errors} | #{reports_str} |\n"
       end
-
-      table += "| #{reference_build} | #{age} | #{errors} | #{reports_str} |\n"
+      table
+    rescue StandardError => _e
+      puts "ERROR building known build regressions: #{_e}"
+      ""
     end
-    table
   end
 
   def self.test_regressions_consecutive(tr_array)

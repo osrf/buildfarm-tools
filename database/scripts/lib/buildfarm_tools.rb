@@ -269,7 +269,7 @@ module BuildfarmToolsLib
         'reference_build' => reference || { 'job_name' => br_entry['job_name'], 'build_number' => 'N/A', 'build_datetime' => first['created_at'], 'failure_reason' => br_entry['error_name'], 'domain' => first['domain'] },
         'age' => reference && reference['age'] ? reference['age'] : -1,
         'failure_datetime' => reference && reference['build_datetime'] ? reference['build_datetime'] : first['created_at'],
-        'errors' => issue_list.map { |i| i['error_name'] }.uniq,
+        'errors' => [BUILD_REGRESSION_ERROR_NAME],
         'reports' => issue_list.map { |i| { 'github_issue' => i['github_issue'], 'status' => i['status'] } }.uniq
       }
     end
