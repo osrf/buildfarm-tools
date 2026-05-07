@@ -50,28 +50,7 @@ def generate_report(report_name, exclude_set)
     File.open(report_name, 'w') do |f|
         # Build regressions known: group by distinct github_issue and enrich with reference build, age, errors and reports
         begin
-            known_groups = BuildfarmToolsLib::test_regressions_known
-            # Keep only groups that include build_regression errors and ensure distinct by github_issue
-            known_groups.select! do |issue_list|
-                issue_list.any? { |i| i['error_name'] == BuildfarmToolsLib::BUILD_REGRESSION_ERROR_NAME }
-            end
-
-            report['urgent']['build_regressions_known'] = known_groups.map do |issue_list|
-                first = issue_list.first
-                # Find an entry within the group that is a build_regression and try to get a reference build
-                br_entry = issue_list.find { |i| i['error_name'] == BuildfarmToolsLib::BUILD_REGRESSION_ERROR_NAME } || first
-                occ = BuildfarmToolsLib.error_appearances_in_job(br_entry['error_name'], br_entry['job_name'])
-                reference = occ.empty? ? nil : occ.first
-
-                {
-                    'github_issue' => first['github_issue'],
-                    'reference_build' => reference || { 'job_name' => br_entry['job_name'], 'build_number' => 'N/A', 'build_datetime' => first['created_at'], 'failure_reason' => br_entry['error_name'], 'domain' => first['domain'] },
-                    'age' => reference && reference['age'] ? reference['age'] : -1,
-                    'failure_datetime' => reference && reference['build_datetime'] ? reference['build_datetime'] : first['created_at'],
-                    'errors' => issue_list.map { |i| i['error_name'] }.uniq,
-                    'reports' => issue_list.map { |i| { 'github_issue' => i['github_issue'], 'status' => i['status'] } }.uniq
-                }
-            end
+            report['urgent']['build_regressions_known'] = BuildfarmToolsLib::build_regressions_known_enriched
         rescue StandardError => _e
             report['urgent']['build_regressions_known'] = []
         end

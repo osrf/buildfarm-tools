@@ -249,4 +249,29 @@ module BuildfarmToolsLib
     end
     output_array
   end
+
+  def self.build_regressions_known_enriched
+    known_groups = test_regressions_known
+    # Keep only groups that include build_regression errors
+    known_groups.select! do |issue_list|
+      issue_list.any? { |i| i['error_name'] == BUILD_REGRESSION_ERROR_NAME }
+    end
+
+    known_groups.map do |issue_list|
+      first = issue_list.first
+      # Find an entry within the group that is a build_regression and try to get a reference build
+      br_entry = issue_list.find { |i| i['error_name'] == BUILD_REGRESSION_ERROR_NAME } || first
+      occ = error_appearances_in_job(br_entry['error_name'], br_entry['job_name'])
+      reference = occ.empty? ? nil : occ.first
+
+      {
+        'github_issue' => first['github_issue'],
+        'reference_build' => reference || { 'job_name' => br_entry['job_name'], 'build_number' => 'N/A', 'build_datetime' => first['created_at'], 'failure_reason' => br_entry['error_name'], 'domain' => first['domain'] },
+        'age' => reference && reference['age'] ? reference['age'] : -1,
+        'failure_datetime' => reference && reference['build_datetime'] ? reference['build_datetime'] : first['created_at'],
+        'errors' => issue_list.map { |i| i['error_name'] }.uniq,
+        'reports' => issue_list.map { |i| { 'github_issue' => i['github_issue'], 'status' => i['status'] } }.uniq
+      }
+    end
+  end
 end

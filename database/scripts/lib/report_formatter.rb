@@ -74,13 +74,7 @@ module ReportFormatter
       reference_build = format_reference_build(ref, include_build_number: false)
       age = item['age'] || -1
 
-      errors = ""
-      if item['errors'] && item['errors'].any?
-        errors = item['errors'].map { |e| "<li>#{e}</li>" }.join
-        errors = "<ul>#{errors}</ul>"
-      else
-        errors = "No errors"
-      end
+      errors = item['errors']&.first || "No errors"
 
       if item['reports'] && item['reports'].any?
         reports_str = item['reports'].uniq.map { |e| "<li>`#{e['github_issue']}` (#{e['status'].to_s.capitalize})</li>" }.join
