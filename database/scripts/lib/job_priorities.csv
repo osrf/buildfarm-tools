@@ -66,6 +66,7 @@ gz_cmake-ci-ign-cmake2-jammy-amd64,0.8
 gz_cmake-ci-main-homebrew-amd64,0.9
 gz_cmake-ci-main-homebrew-arm64,0.9
 gz_cmake-ci-main-noble-amd64,1.0
+gz_cmake-ci-main-resolute-amd64,1.0
 gz_cmake-ign-cmake2-clwin,0.7
 gz_cmake-main-cnlwin,0.9
 gz_common-5-clowin,0.75
@@ -87,6 +88,7 @@ gz_common-ci-ign-common4-jammy-amd64,0.8
 gz_common-ci-main-homebrew-amd64,0.9
 gz_common-ci-main-homebrew-arm64,0.9
 gz_common-ci-main-noble-amd64,1.0
+gz_common-ci-main-resolute-amd64,1.0
 gz_common-ign-common4-clwin,0.7
 gz_common-main-cnlwin,0.9
 gz_fuel_tools-10-clowin,0.8
@@ -108,6 +110,7 @@ gz_fuel_tools-ci-ign-fuel-tools7-jammy-amd64,0.8
 gz_fuel_tools-ci-main-homebrew-amd64,0.9
 gz_fuel_tools-ci-main-homebrew-arm64,0.9
 gz_fuel_tools-ci-main-noble-amd64,1.0
+gz_fuel_tools-ci-main-resolute-amd64,1.0
 gz_fuel_tools-ign-fuel-tools7-clwin,0.7
 gz_fuel_tools-main-cnlwin,0.9
 gz_gui-10-cnlwin,0.85
@@ -129,6 +132,7 @@ gz_gui-ci-ign-gui6-jammy-amd64,0.8
 gz_gui-ci-main-homebrew-amd64,0.9
 gz_gui-ci-main-homebrew-arm64,0.9
 gz_gui-ci-main-noble-amd64,1.0
+gz_gui-ci-main-resolute-amd64,1.0
 gz_gui-ign-gui6-clwin,0.7
 gz_gui-main-cnlwin,0.9
 gz_launch-7-clowin,0.75
@@ -167,6 +171,7 @@ gz_math-ci-ign-math6-jammy-amd64,0.8
 gz_math-ci-main-homebrew-amd64,0.9
 gz_math-ci-main-homebrew-arm64,0.9
 gz_math-ci-main-noble-amd64,1.0
+gz_math-ci-main-resolute-amd64,1.0
 gz_math-ign-math6-clwin,0.7
 gz_math-main-cnlwin,0.9
 gz_msgs-10-clowin,0.75
@@ -188,6 +193,7 @@ gz_msgs-ci-ign-msgs8-jammy-amd64,0.8
 gz_msgs-ci-main-homebrew-amd64,0.9
 gz_msgs-ci-main-homebrew-arm64,0.9
 gz_msgs-ci-main-noble-amd64,1.0
+gz_msgs-ci-main-resolute-amd64,1.0
 gz_msgs-ign-msgs8-clwin,0.7
 gz_msgs-main-cnlwin,0.9
 gz_physics-7-clowin,0.75
@@ -209,6 +215,7 @@ gz_physics-ci-ign-physics5-jammy-amd64,0.8
 gz_physics-ci-main-homebrew-amd64,0.9
 gz_physics-ci-main-homebrew-arm64,0.9
 gz_physics-ci-main-noble-amd64,1.0
+gz_physics-ci-main-resolute-amd64,1.0
 gz_physics-ign-physics5-clwin,0.7
 gz_physics-main-cnlwin,0.9
 gz_plugin-2-clowin,0.75
@@ -230,6 +237,7 @@ gz_plugin-ci-ign-plugin1-jammy-amd64,0.8
 gz_plugin-ci-main-homebrew-amd64,0.9
 gz_plugin-ci-main-homebrew-arm64,0.9
 gz_plugin-ci-main-noble-amd64,1.0
+gz_plugin-ci-main-resolute-amd64,1.0
 gz_plugin-ign-plugin1-clwin,0.7
 gz_plugin-main-cnlwin,0.9
 gz_rendering-10-cnlwin,0.85
@@ -251,6 +259,7 @@ gz_rendering-ci-ign-rendering6-jammy-amd64,0.8
 gz_rendering-ci-main-homebrew-amd64,0.9
 gz_rendering-ci-main-homebrew-arm64,0.9
 gz_rendering-ci-main-noble-amd64,1.0
+gz_rendering-ci-main-resolute-amd64,1.0
 gz_rendering-ign-rendering6-clwin,0.7
 gz_rendering-main-cnlwin,0.9
 gz_sensors-10-cnlwin,0.85
@@ -272,6 +281,7 @@ gz_sensors-ci-ign-sensors6-jammy-amd64,0.8
 gz_sensors-ci-main-homebrew-amd64,0.9
 gz_sensors-ci-main-homebrew-arm64,0.9
 gz_sensors-ci-main-noble-amd64,1.0
+gz_sensors-ci-main-resolute-amd64,1.0
 gz_sensors-ign-sensors6-clwin,0.7
 gz_sensors-main-cnlwin,0.9
 gz_sim-10-cnlwin,0.85
@@ -293,6 +303,7 @@ gz_sim-ci-ign-gazebo6-jammy-amd64,0.8
 gz_sim-ci-main-homebrew-amd64,0.9
 gz_sim-ci-main-homebrew-arm64,0.9
 gz_sim-ci-main-noble-amd64,1.0
+gz_sim-ci-main-resolute-amd64,1.0
 gz_sim-ign-gazebo6-clwin,0.7
 gz_sim-main-cnlwin,0.9
 gz_tools-2-clowin,0.75
@@ -307,6 +318,7 @@ gz_tools-ci-ign-tools1-jammy-amd64,0.8
 gz_tools-ci-main-homebrew-amd64,0.9
 gz_tools-ci-main-homebrew-arm64,0.9
 gz_tools-ci-main-noble-amd64,1.0
+gz_tools-ci-main-resolute-amd64,1.0
 gz_tools-ign-tools1-clwin,0.7
 gz_tools-main-cnlwin,0.9
 gz_transport-13-clowin,0.75
@@ -328,6 +340,7 @@ gz_transport-ci-ign-transport11-jammy-amd64,0.8
 gz_transport-ci-main-homebrew-amd64,0.9
 gz_transport-ci-main-homebrew-arm64,0.9
 gz_transport-ci-main-noble-amd64,1.0
+gz_transport-ci-main-resolute-amd64,1.0
 gz_transport-ign-transport11-clwin,0.7
 gz_transport-main-cnlwin,0.9
 gz_utils-2-clowin,0.75
@@ -349,6 +362,7 @@ gz_utils-ci-ign-utils1-jammy-amd64,0.8
 gz_utils-ci-main-homebrew-amd64,0.9
 gz_utils-ci-main-homebrew-arm64,0.9
 gz_utils-ci-main-noble-amd64,1.0
+gz_utils-ci-main-resolute-amd64,1.0
 gz_utils-ign-utils1-clwin,0.7
 gz_utils-main-cnlwin,0.9
 nightly_linux-aarch64_debug,1.0
@@ -374,6 +388,7 @@ packaging_windows_debug,1.0
 sdformat-ci-main-homebrew-amd64,0.9
 sdformat-ci-main-homebrew-arm64,0.9
 sdformat-ci-main-noble-amd64,1.0
+sdformat-ci-main-resolute-amd64,1.0
 sdformat-ci-sdf12-homebrew-amd64,0.7
 sdformat-ci-sdf12-homebrew-arm64,0.7
 sdformat-ci-sdf12-jammy-amd64,0.8
