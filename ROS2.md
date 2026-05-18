@@ -102,8 +102,6 @@ Coverage jobs has been disabled due to the high load on the CI server. See https
 [Hci-fastrtps-dynamic]:  http://build.ros2.org/view/Hci/job/Hci__nightly-fastrtps-dynamic_ubuntu_jammy_amd64/
 [Hci-benchmark-badge]: http://build.ros2.org/buildStatus/icon?job=Hci__benchmark_ubuntu_jammy_amd64
 [Hci-benchmark]: http://build.ros2.org/view/Hci/job/Hci__benchmark_ubuntu_jammy_amd64/
-[Hci-coverage-badge]: https://ci.ros2.org/buildStatus/icon?job=nightly_linux_humble_coverage
-[Hci-coverage]: https://ci.ros2.org/job/nightly_linux_humble_coverage/
 
 [Jci-release-badge]: http://build.ros2.org/buildStatus/icon?job=Jci__nightly-release_ubuntu_noble_amd64
 [Jci-release]: http://build.ros2.org/view/Jci/job/Jci__nightly-release_ubuntu_noble_amd64/
@@ -121,8 +119,6 @@ Coverage jobs has been disabled due to the high load on the CI server. See https
 [Jci-fastrtps-dynamic]:  http://build.ros2.org/view/Jci/job/Jci__nightly-fastrtps-dynamic_ubuntu_noble_amd64/
 [Jci-benchmark-badge]: http://build.ros2.org/buildStatus/icon?job=Jci__benchmark_ubuntu_noble_amd64
 [Jci-benchmark]: http://build.ros2.org/view/Jci/job/Jci__benchmark_ubuntu_noble_amd64/
-[Jci-coverage-badge]: https://ci.ros2.org/buildStatus/icon?job=nightly_linux_jazzy_coverage
-[Jci-coverage]: https://ci.ros2.org/job/nightly_linux_jazzy_coverage/
 
 [Kci-release-badge]: http://build.ros2.org/buildStatus/icon?job=Kci__nightly-release_ubuntu_noble_amd64
 [Kci-release]: http://build.ros2.org/view/Kci/job/Kci__nightly-release_ubuntu_noble_amd64/
@@ -142,8 +138,6 @@ Coverage jobs has been disabled due to the high load on the CI server. See https
 [Kci-zenoh]:  http://build.ros2.org/view/Kci/job/Kci__nightly-zenoh_ubuntu_noble_amd64/
 [Kci-benchmark-badge]: http://build.ros2.org/buildStatus/icon?job=Kci__benchmark_ubuntu_noble_amd64
 [Kci-benchmark]: http://build.ros2.org/view/Kci/job/Kci__benchmark_ubuntu_noble_amd64/
-[Kci-coverage-badge]: https://ci.ros2.org/buildStatus/icon?job=nightly_linux_kilted_coverage
-[Kci-coverage]: https://ci.ros2.org/job/nightly_linux_kilted_coverage/
 
 [Lci-release-badge]: http://build.ros2.org/buildStatus/icon?job=Lci__nightly-release_ubuntu_resolute_amd64
 [Lci-release]: http://build.ros2.org/view/Lci/job/Lci__nightly-release_ubuntu_resolute_amd64/
@@ -163,8 +157,6 @@ Coverage jobs has been disabled due to the high load on the CI server. See https
 [Lci-zenoh]:  http://build.ros2.org/view/Lci/job/Lci__nightly-zenoh_ubuntu_resolute_amd64/
 [Lci-benchmark-badge]: http://build.ros2.org/buildStatus/icon?job=Lci__benchmark_ubuntu_resolute_amd64
 [Lci-benchmark]: http://build.ros2.org/view/Lci/job/Lci__benchmark_ubuntu_resolute_amd64/
-[Lci-coverage-badge]: https://ci.ros2.org/buildStatus/icon?job=nightly_linux_lyrical_coverage
-<!--[Lci-coverage]: https://ci.ros2.org/job/nightly_linux_lyrical_coverage/ Placeholder if gets added-->
 
 [Rci-release-badge]: http://build.ros2.org/buildStatus/icon?job=Rci__nightly-release_ubuntu_resolute_amd64
 [Rci-release]: http://build.ros2.org/view/Rci/job/Rci__nightly-release_ubuntu_resolute_amd64/
@@ -184,7 +176,5 @@ Coverage jobs has been disabled due to the high load on the CI server. See https
 [Rci-zenoh]:  http://build.ros2.org/view/Rci/job/Rci__nightly-zenoh_ubuntu_resolute_amd64/
 [Rci-benchmark-badge]: http://build.ros2.org/buildStatus/icon?job=Rci__benchmark_ubuntu_resolute_amd64
 [Rci-benchmark]: http://build.ros2.org/view/Rci/job/Rci__benchmark_ubuntu_resolute_amd64/
-[Rci-coverage-badge]: https://ci.ros2.org/buildStatus/icon?job=nightly_linux_coverage
-[Rci-coverage]: https://ci.ros2.org/job/nightly_linux_coverage/
 
 
