@@ -24,6 +24,22 @@ Sample row:
 | --- | --- | --- | ---: | --- | --- |
 | `topic_monitor.topic_monitor.test.test_mypy.test_mypy` | `topic_monitor` | `2026-05-29` | `34` | `[{"os":"linux","arch":"unknown"}]` | `https://github.com/ros2/geometry2/issues/941` |
 
+Example run
+
+Command (run from `database/scripts`):
+
+```bash
+cd database/scripts
+./sql_run.sh active_test_regressions.sql
+```
+
+Sample output (first row):
+
+```
+test_name                                                   package         first_seen_date  consecutive_failures  affected_platforms                             linked_issue
+topic_monitor.topic_monitor.test.test_mypy.test_mypy       topic_monitor   2026-05-29       34                    [{"os":"linux","arch":"unknown"}]       https://github.com/ros2/geometry2/issues/941
+```
+
 ## 1.2 `flaky_tests`
 
 Source: `flaky_tests.sql`
@@ -46,6 +62,22 @@ Sample row:
 | --- | --- | ---: | ---: | ---: | --- | --- |
 | `1 cmake warnings` | `cmake` | `90` | `145` | `62.07` | `[{"os":"linux","arch":"aarch64"},{"os":"linux","arch":"unknown"},{"os":"unknown","arch":"amd64"}]` | `https://github.com/ros2/rviz/issues/1750` |
 
+Example run
+
+Command (run from `database/scripts`):
+
+```bash
+cd database/scripts
+./sql_run.sh flaky_tests.sql
+```
+
+Sample output (first row):
+
+```
+test_name           package   failure_count  total_runs  fail_rate_pct  affected_platforms                                                                 linked_issue
+1 cmake warnings    cmake     90             145         62.07          [{"os":"linux","arch":"aarch64"},{"os":"linux","arch":"unknown"},{"os":"unknown","arch":"amd64"}]   https://github.com/ros2/rviz/issues/1750
+```
+
 ## 1.3 `single_test_history`
 
 Source: `single_test_history.sql`
@@ -62,6 +94,22 @@ Sample row:
 | date | result |
 | --- | ---: |
 | `2026-03-06` | `0` |
+
+Example run
+
+Command (run from `database/scripts` and replace the test name):
+
+```bash
+cd database/scripts
+./sql_run.sh single_test_history.sql "topic_monitor.topic_monitor.test.test_mypy.test_mypy"
+```
+
+Sample output (snippet):
+
+```
+date        result
+2026-03-06  0
+```
 
 ## 1.4 `known_issues_summary`
 
@@ -85,6 +133,22 @@ Sample row:
 | issue_id | title | status | priority | assignee | last_activity_date | last_seen_in_build_date | stale |
 | --- | --- | --- | ---: | --- | --- | --- | ---: |
 | `https://github.com/gazebosim/gz-plugin/issues/210` | `gazebosim/gz-plugin#210` | `NOT ASSIGNED` | `0.175` | `Not Assigned` | `NULL` | `2026-05-17` | `0` |
+
+Example run
+
+Command (run from `database/scripts`):
+
+```bash
+cd database/scripts
+./sql_run.sh known_issues_summary.sql
+```
+
+Sample output (first row):
+
+```
+issue_id                                           title                      status         priority  assignee       last_activity_date  last_seen_in_build_date  stale
+https://github.com/gazebosim/gz-plugin/issues/210  gazebosim/gz-plugin#210   NOT ASSIGNED    0.175     Not Assigned   NULL                2026-05-17               0
+```
 
 ## Notes
 
