@@ -3,6 +3,8 @@ CREATE TABLE IF NOT EXISTS server_status(
     server_status TEXT,
     release TEXT,
     os_name TEXT,
+    platform_os TEXT,
+    platform_arch TEXT,
     project TEXT,
     domain TEXT
 );
