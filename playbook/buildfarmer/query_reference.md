@@ -3,6 +3,28 @@
 This document describes the SQLite data contract consumed by the dashboard generator.
 Each query is a standalone contract: its output columns, inferred SQLite types, and one sample row.
 
+## Shared view: `active_failures`
+
+Source: `database/sql/create_view-active_failures.sql`
+
+Reusable stored query that identifies persistently broken test/job pairs across the buildfarms.
+
+| Column | Type | Description |
+| --- | --- | --- |
+| `test_name` | `TEXT` | Test identifier from `test_failures.error_name`. |
+| `package` | `TEXT` | Package name from `test_failures.package_name`. |
+| `job_name` | `TEXT` | Job identifier. |
+| `build_date` | `TEXT` (`YYYY-MM-DD`) | Date of the last active failure for that job. |
+| `consecutive_failures` | `INTEGER` | Current consecutive failure streak. |
+| `os` | `TEXT` | Normalized operating system label derived from the job name. |
+| `arch` | `TEXT` | Normalized architecture label derived from the job name. |
+
+Sample row:
+
+| test_name | package | job_name | build_date | consecutive_failures | os | arch |
+| --- | --- | --- | --- | ---: | --- | --- |
+| `topic_monitor.topic_monitor.test.test_mypy.test_mypy` | `topic_monitor` | `nightly_linux_debug` | `2026-05-29` | `34` | `linux` | `unknown` |
+
 ## 1.1 `active_test_regressions`
 
 Source: `active_test_regressions.sql`

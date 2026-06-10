@@ -31,6 +31,7 @@ The buildfarmer repository stores a local database with information from test re
 
 * [check_buildfarm.rb](../../database/scripts/check_buildfarm.rb): This script checks the status of the buildfarm and shows potential new issues that need to be reported, as well as other useful information for each job.
 * [statistical_check.rb](../../database/scripts/statistical_check.rb): This script shows the list of all open, closed and new issues and the test regressions associated with them, as well as how many times they happened in the last X days.
+* [create_view-active_failures.sql](../../database/sql/create_view-active_failures.sql): This view stores the reusable definition of persistently broken tests across the buildfarms.
 * [refresh_known_open_issues.sh](../../database/scripts/refresh_known_open_issues.sh): This script updates the list of known open issues based on issue status in github. It requires [Github CLI](https://cli.github.com/) to be installed and configured.
 * [close_old_known_issues.sh](../../database/scripts/close_old_known_issues.sh): This script closes issues that haven't happened in the last 30 days.
 * [sql_run.sh](../../database/scripts/sql_run.sh): This script receives an SQL query file as an argument and returns the results after running it in the database. For running almost any of the other scripts, you will need to use this script.

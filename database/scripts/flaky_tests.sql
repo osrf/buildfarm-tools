@@ -1,70 +1,5 @@
-WITH failure_events_90 AS (
-  SELECT
-    tf.error_name AS test_name,
-    tf.package_name AS package,
-    tf.job_name,
-    tf.build_number,
-    bs.build_datetime,
-    CASE
-      WHEN tf.age >= 0 THEN tf.age + 1
-      ELSE 1
-    END AS consecutive_failures
-  FROM test_failures tf
-  JOIN build_status bs
-    ON bs.job_name = tf.job_name
-   AND bs.build_number = tf.build_number
-  WHERE bs.build_datetime IS NOT NULL
-    AND datetime(bs.build_datetime) >= datetime('now', '-90 days')
-),
-latest_failure_per_job_3d AS (
-  SELECT
-    x.test_name,
-    x.package,
-    x.job_name,
-    x.build_datetime,
-    x.consecutive_failures
-  FROM (
-    SELECT
-      fe.*,
-      ROW_NUMBER() OVER (
-        PARTITION BY fe.test_name, fe.package, fe.job_name
-        ORDER BY datetime(fe.build_datetime) DESC, fe.build_number DESC
-      ) AS rn
-    FROM failure_events_90 fe
-  ) x
-  WHERE x.rn = 1
-    AND datetime(x.build_datetime) >= datetime('now', '-3 days')
-),
-passes_in_last_3_days AS (
-  SELECT DISTINCT
-    lf.test_name,
-    lf.package,
-    lf.job_name
-  FROM latest_failure_per_job_3d lf
-  JOIN build_status bs
-    ON bs.job_name = lf.job_name
-  LEFT JOIN test_failures tf
-    ON tf.job_name = bs.job_name
-   AND tf.build_number = bs.build_number
-   AND tf.error_name = lf.test_name
-   AND tf.package_name = lf.package
-  WHERE bs.build_datetime IS NOT NULL
-    AND datetime(bs.build_datetime) >= datetime('now', '-3 days')
-    AND (COALESCE(bs.passed, 0) + COALESCE(bs.failures, 0) + COALESCE(bs.skipped, 0)) > 0
-    AND tf.error_name IS NULL
-),
-active_test_names AS (
-  SELECT DISTINCT
-    lf.test_name
-  FROM latest_failure_per_job_3d lf
-  LEFT JOIN passes_in_last_3_days p
-    ON p.test_name = lf.test_name
-   AND p.package = lf.package
-   AND p.job_name = lf.job_name
-  WHERE p.test_name IS NULL
-    AND lf.consecutive_failures >= 2
-),
-failure_runs_20 AS (
+-- Collect failing runs in the 20-day window and normalize the platform labels.
+WITH failure_runs_20 AS (
   SELECT DISTINCT
     tf.error_name AS test_name,
     tf.package_name AS package,
@@ -94,6 +29,7 @@ failure_runs_20 AS (
   WHERE bs.build_datetime IS NOT NULL
     AND datetime(bs.build_datetime) >= datetime('now', '-20 days')
 ),
+-- Limit the rest of the query to jobs where the test has at least one failure.
 candidate_jobs AS (
   SELECT DISTINCT
     fr.test_name,
@@ -101,6 +37,7 @@ candidate_jobs AS (
     fr.job_name
   FROM failure_runs_20 fr
 ),
+-- Count all observed runs for the candidate jobs in the same 20-day window.
 runs_20 AS (
   SELECT DISTINCT
     cj.test_name,
@@ -114,6 +51,7 @@ runs_20 AS (
     AND datetime(bs.build_datetime) >= datetime('now', '-20 days')
     AND (COALESCE(bs.passed, 0) + COALESCE(bs.failures, 0) + COALESCE(bs.skipped, 0)) > 0
 ),
+-- Turn the raw runs into failure counts and total run counts per test/package.
 counts AS (
   SELECT
     r.test_name,
@@ -133,6 +71,7 @@ counts AS (
    AND fr.build_number = r.build_number
   GROUP BY r.test_name, r.package
 ),
+-- Apply the flaky-test threshold.
 flaky_candidates AS (
   SELECT
     c.test_name,
@@ -145,6 +84,7 @@ flaky_candidates AS (
     AND (c.total_runs - c.failure_count) >= 1
     AND c.total_runs > 0
 ),
+-- Collect the platform mix only for the tests that survived the threshold.
 platforms AS (
   SELECT DISTINCT
     fr.test_name,
@@ -156,6 +96,7 @@ platforms AS (
     ON fc.test_name = fr.test_name
    AND fc.package = fr.package
 ),
+-- Reuse the best known GitHub issue per test/package.
 issue_links AS (
   SELECT
     tfi.error_name AS test_name,
@@ -169,6 +110,7 @@ issue_links AS (
   FROM test_fail_issues tfi
   GROUP BY tfi.error_name, tfi.package_name
 )
+-- Drop any test that already belongs to the active regression set.
 SELECT
   fc.test_name,
   fc.package,
@@ -186,7 +128,10 @@ FROM flaky_candidates fc
 LEFT JOIN issue_links il
   ON il.test_name = fc.test_name
  AND il.package = fc.package
-LEFT JOIN active_test_names atn
+LEFT JOIN (
+  SELECT DISTINCT test_name
+  FROM active_failures
+) atn
   ON atn.test_name = fc.test_name
 WHERE atn.test_name IS NULL
 ORDER BY fc.failure_count DESC, fc.fail_rate_pct DESC, fc.test_name ASC;
