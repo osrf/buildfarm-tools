@@ -3,8 +3,8 @@
 -- to repeat the same windowing and platform parsing rules.
 CREATE VIEW IF NOT EXISTS active_failures AS
 WITH failure_events AS (
-    -- Collect all failure events in the last 90 days and normalize the job name
-    -- into the platform labels used by the dashboard.
+    -- Collect all failure events in the last 90 days and read the normalized
+    -- platform labels from server_status.
     SELECT
         tf.error_name AS test_name,
         tf.package_name AS package,
@@ -16,26 +16,14 @@ WITH failure_events AS (
             WHEN tf.age >= 0 THEN tf.age + 1
             ELSE 1
         END AS consecutive_failures,
-        CASE
-            WHEN tf.job_name LIKE '%-jammy-%' OR tf.job_name LIKE '%_jammy_%' THEN 'jammy'
-            WHEN tf.job_name LIKE '%-noble-%' OR tf.job_name LIKE '%_noble_%' THEN 'noble'
-            WHEN tf.job_name LIKE '%-focal-%' OR tf.job_name LIKE '%_focal_%' THEN 'focal'
-            WHEN tf.job_name LIKE '%-homebrew-%' OR tf.job_name LIKE '%_homebrew_%' THEN 'homebrew'
-            WHEN tf.job_name LIKE '%linux%' THEN 'linux'
-            WHEN tf.job_name LIKE '%osx%' THEN 'osx'
-            WHEN tf.job_name LIKE '%win%' OR tf.job_name LIKE '%clwin%' OR tf.job_name LIKE '%clowin%' THEN 'windows'
-            ELSE 'unknown'
-        END AS os,
-        CASE
-            WHEN tf.job_name LIKE '%-aarch64%' OR tf.job_name LIKE '%_aarch64%' THEN 'aarch64'
-            WHEN tf.job_name LIKE '%-arm64%' OR tf.job_name LIKE '%_arm64%' THEN 'arm64'
-            WHEN tf.job_name LIKE '%-amd64%' OR tf.job_name LIKE '%_amd64%' THEN 'amd64'
-            ELSE 'unknown'
-        END AS arch
+        COALESCE(ss.platform_os, 'unknown') AS os,
+        COALESCE(ss.platform_arch, 'unknown') AS arch
     FROM test_failures tf
     JOIN build_status bs
         ON bs.job_name = tf.job_name
        AND bs.build_number = tf.build_number
+    LEFT JOIN server_status ss
+        ON ss.job_name = tf.job_name
     WHERE bs.build_datetime IS NOT NULL
       AND datetime(bs.build_datetime) >= datetime('now', '-90 days')
 ),
