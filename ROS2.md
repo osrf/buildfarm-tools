@@ -168,7 +168,7 @@ Coverage jobs has been disabled due to the high load on the CI server. See https
 [Rci-connext]: http://build.ros2.org/view/Rci/job/Rci__nightly-connext_ubuntu_resolute_amd64/
 [Rci-cyclone-badge]: http://build.ros2.org/buildStatus/icon?job=Rci__nightly-cyclonedds_ubuntu_resolute_amd64
 [Rci-cyclone]: http://build.ros2.org/view/Rci/job/Rci__nightly-cyclonedds_ubuntu_resolute_amd64/
-[Rci-fastrtps-badge]: http://build.ros2.org/buildStatus/icon?job=Rci__nightly-fastrtps_ubuntu_resaolute_amd64
+[Rci-fastrtps-badge]: http://build.ros2.org/buildStatus/icon?job=Rci__nightly-fastrtps_ubuntu_resolute_amd64
 [Rci-fastrtps]: http://build.ros2.org/view/Rci/job/Rci__nightly-fastrtps_ubuntu_resolute_amd64/
 [Rci-fastrtps-dynamic-badge]: http://build.ros2.org/buildStatus/icon?job=Rci__nightly-fastrtps-dynamic_ubuntu_resolute_amd64
 [Rci-fastrtps-dynamic]:  http://build.ros2.org/view/Rci/job/Rci__nightly-fastrtps-dynamic_ubuntu_resolute_amd64/
