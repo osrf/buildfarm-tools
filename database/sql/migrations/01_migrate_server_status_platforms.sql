@@ -9,6 +9,7 @@ UPDATE server_status
 SET
     platform_os = CASE
         WHEN job_name LIKE '%homebrew%' THEN 'homebrew'
+        WHEN job_name LIKE '%debbuilder' THEN 'ubuntu'
         WHEN job_name LIKE '%osx%' THEN 'osx'
         WHEN job_name LIKE '%win%' OR job_name LIKE '%clwin%' OR job_name LIKE '%clowin%' THEN 'windows'
         WHEN job_name LIKE '%linux%'
@@ -21,6 +22,9 @@ SET
     END,
     platform_arch = CASE
         WHEN job_name LIKE '%aarch64%' THEN 'aarch64'
+        WHEN job_name LIKE '%debbuilder' THEN 'amd64'
+        WHEN job_name LIKE 'nightly_linux%'
+          OR job_name LIKE 'packaging%' THEN 'amd64'
         WHEN job_name LIKE '%arm64%' THEN 'arm64'
         WHEN job_name LIKE '%amd64%' THEN 'amd64'
         WHEN job_name LIKE '%win%' OR job_name LIKE '%clwin%' OR job_name LIKE '%clowin%' THEN 'amd64'
