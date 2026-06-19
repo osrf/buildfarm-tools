@@ -4,15 +4,13 @@ This directory contains the ordered SQL scripts used to evolve the dashboard sch
 
 Run them in numerical order on a fresh database or on a copy of an existing `buildfarmer.db` snapshot:
 
-1. `1_create_table-server_status.sql`
-2. `2_migrate_server_status_platforms.sql`
-3. `3_create_view-active_failures.sql`
+1. `1_migrate_server_status_platforms.sql`
+2. `2_create_view-active_failures.sql`
 
 ## Purpose
 
-- `1_create_table-server_status.sql` defines the target `server_status` table schema.
-- `2_migrate_server_status_platforms.sql` backfills platform data for older snapshots.
-- `3_create_view-active_failures.sql` creates the reusable view consumed by the dashboard queries.
+- `1_migrate_server_status_platforms.sql` backfills platform data for older snapshots.
+- `2_create_view-active_failures.sql` creates the reusable view consumed by the dashboard queries.
 
 ## Pre-migration schema
 
