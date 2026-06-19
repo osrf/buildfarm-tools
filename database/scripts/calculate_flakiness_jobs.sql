@@ -23,7 +23,7 @@ WITH recent_builds AS (
         COUNT(*) build_count
     FROM build_status
     WHERE build_datetime >= DATE('now', '-@param2@')
-	AND build_status.status IN ("SUCCESS", "UNSTABLE")
+	AND build_status.status IN ('SUCCESS', 'UNSTABLE')
     GROUP BY job_name
 ),
 recent_failures AS (
@@ -35,7 +35,7 @@ recent_failures AS (
         test_failures
     WHERE build_status.build_number = test_failures.build_number
         AND build_status.job_name = test_failures.job_name
-	AND build_status.status IN ("SUCCESS", "UNSTABLE")
+	AND build_status.status IN ('SUCCESS', 'UNSTABLE')
         AND build_status.build_datetime >= DATE('now', '-@param2@')
         AND test_failures.error_name LIKE '@param1@'
     GROUP BY build_status.job_name
@@ -58,6 +58,6 @@ INNER JOIN server_status ON server_status.job_name = build_status.job_name
 WHERE recent_builds.job_name = build_status.job_name
     AND recent_failures.job_name = build_status.job_name
     AND recent_failures.failure_count > 0
-    AND build_status.job_name LIKE "%@param3@%"
+    AND build_status.job_name LIKE '%@param3@%'
 GROUP BY build_status.job_name
 ORDER BY last_fail DESC;
