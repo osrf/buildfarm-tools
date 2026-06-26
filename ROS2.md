@@ -42,7 +42,7 @@ Coverage jobs has been disabled due to the high load on the CI server. See https
 
 ## Sync packages to testing jobs
 
-> Check [ROS packages not found in cache](./playbook/ROS-packages-not-found-in-cache.md) for more information
+> For troubleshooting steps, check the [Buildfarmer Playbook index](./playbook/index.md).
 
 | Distribution | Build Status |
 | ------------ | ------------ |

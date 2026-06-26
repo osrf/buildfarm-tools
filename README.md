@@ -6,7 +6,6 @@ The buildfarmer team is in charge of maintaining build results on the ROS and Ga
 You can look at the dashboards to inspect the status of all tracked jobs:
 * [ROS2  Dashboard](./ROS2.md)
 * [Gazebo Dashboard](./Gazebo.md)
-* [Gazebo Classic Dashboard](./GazeboClassic.md)
 * [Colcon Dashboard](./Colcon.md)
 
 ## What is the ROS/Gazebo buildfarm?
