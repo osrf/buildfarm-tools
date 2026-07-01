@@ -62,7 +62,42 @@ test_name                                                   package         firs
 topic_monitor.topic_monitor.test.test_mypy.test_mypy       topic_monitor   2026-05-29       34                    [{"os":"linux","arch":"unknown"}]       https://github.com/ros2/geometry2/issues/941
 ```
 
-## 1.2 `flaky_tests`
+## 1.2 `active_test_regressions_reference_builds`
+
+Source: `active_test_regressions_reference_builds.sql`
+
+Returns one row per active regression at `test/package/job` granularity and
+adds the build references required by `suspect_commits.py`.
+
+| Column | Type | Description |
+| --- | --- | --- |
+| `test_name` | `TEXT` | Test identifier from `test_failures.error_name`. |
+| `package` | `TEXT` | Package name from `test_failures.package_name`. |
+| `job_name` | `TEXT` | Jenkins job where the regression is active. |
+| `consecutive_failures` | `INTEGER` | Current consecutive failure streak for the job. |
+| `first_failure_build` | `INTEGER` | Build number where the current failure streak started. |
+| `last_success_build` | `INTEGER` or `NULL` | Latest build number before `first_failure_build` where the test passed. |
+| `latest_failure_build` | `INTEGER` | Most recent failing build number for the job. |
+| `last_failure_date` | `TEXT` (`YYYY-MM-DD`) | Date of `latest_failure_build`. |
+| `linked_issue` | `TEXT` or `NULL` | Best known GitHub issue URL linked to this test/package/job. |
+
+Example run
+
+Command (run from `database/scripts`):
+
+```bash
+cd database/scripts
+./sql_run.sh active_test_regressions_reference_builds.sql
+```
+
+Sample output (shape):
+
+```
+test_name                                           package         job_name                           consecutive_failures  first_failure_build  last_success_build  latest_failure_build  last_failure_date  linked_issue
+topic_monitor.topic_monitor.test.test_mypy.test_mypy topic_monitor  nightly_linux_debug                               34                 1278                1277                 1311          2026-05-29  https://github.com/ros2/geometry2/issues/941
+```
+
+## 1.3 `flaky_tests`
 
 Source: `flaky_tests.sql`
 
@@ -100,7 +135,7 @@ test_name           package   failure_count  total_runs  fail_rate_pct  affected
 1 cmake warnings    cmake     90             145         62.07          [{"os":"linux","arch":"aarch64"},{"os":"linux","arch":"unknown"},{"os":"unknown","arch":"amd64"}]   https://github.com/ros2/rviz/issues/1750
 ```
 
-## 1.3 `single_test_history`
+## 1.4 `single_test_history`
 
 Source: `single_test_history.sql`
 
@@ -133,7 +168,7 @@ date        result
 2026-03-06  0
 ```
 
-## 1.4 `known_issues_summary`
+## 1.5 `known_issues_summary`
 
 Source: `known_issues_summary.sql`
 
