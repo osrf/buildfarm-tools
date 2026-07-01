@@ -53,7 +53,7 @@ Also, we have some automation tools that should run daily for the buildfarmer da
 
 If any of these badges are red, you should check the logs of the failed job and report the issue.
 
-These actions can also be manually triggered. Check [Automation Tools](./automation_tools.md) for more information.
+These actions can also be manually triggered. Check [Automation Workflows](./automation_workflows.md) for more information.
 
 ## 5. Check failing jobs on buildfarm dashboards
 
