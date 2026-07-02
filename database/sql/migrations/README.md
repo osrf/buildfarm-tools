@@ -6,11 +6,15 @@ Run them in numerical order on a fresh database or on a copy of an existing `bui
 
 1. `1_migrate_server_status_platforms.sql`
 2. `2_create_view-active_failures.sql`
+3. `3_add_query_performance_indexes.sql`
+4. `4_recreate_view-active_failures.sql`
 
 ## Purpose
 
 - `1_migrate_server_status_platforms.sql` backfills platform data for older snapshots.
 - `2_create_view-active_failures.sql` creates the reusable view consumed by the dashboard queries.
+- `3_add_query_performance_indexes.sql` adds persistent indexes used by active regression queries.
+- `4_recreate_view-active_failures.sql` refreshes the `active_failures` view so existing databases pick up optimized SQL.
 
 ## Pre-migration schema
 
