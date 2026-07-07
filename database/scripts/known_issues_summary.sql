@@ -25,11 +25,11 @@ last_seen AS (
     date(MAX(bs.build_datetime)) AS last_seen_in_build_date
   FROM test_fail_issues tfi
   INNER JOIN test_failures tf
-    ON tf.job_name     = tfi.job_name
-   AND tf.error_name   = tfi.error_name
+    ON tf.job_name = tfi.job_name
+   AND tf.error_name = tfi.error_name
    AND tf.package_name = tfi.package_name
   INNER JOIN build_status bs
-    ON bs.job_name     = tf.job_name
+    ON bs.job_name = tf.job_name
    AND bs.build_number = tf.build_number
   WHERE bs.build_datetime IS NOT NULL
   GROUP BY tfi.github_issue

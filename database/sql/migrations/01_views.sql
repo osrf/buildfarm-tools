@@ -8,14 +8,14 @@ SELECT
     job_name,
     CASE
         WHEN os_name IN ('win', 'Windows') THEN 'windows'
-        WHEN os_name LIKE 'Brew%'           THEN 'macos'
-        ELSE                                     'linux'
+        WHEN os_name LIKE 'Brew%' THEN 'macos'
+        ELSE 'linux'
     END AS platform_os,
     CASE
         WHEN job_name LIKE '%-arm64'
           OR job_name LIKE '%-aarch64%'
-          OR os_name  = 'aarch64_Ubuntu'   THEN 'aarch64'
-        ELSE                                    'amd64'
+          OR os_name = 'aarch64_Ubuntu' THEN 'aarch64'
+        ELSE 'amd64'
     END AS platform_arch
 FROM server_status;
 
@@ -25,7 +25,7 @@ FROM server_status;
 DROP VIEW IF EXISTS issue_links;
 CREATE VIEW issue_links AS
 SELECT
-    error_name   AS test_name,
+    error_name AS test_name,
     package_name AS package,
     job_name,
     status,
@@ -50,7 +50,7 @@ WITH time_windows AS ( -- Calculate the date thresholds exactly once
 ),
 failure_events AS (
     SELECT
-        tf.error_name   AS test_name,
+        tf.error_name AS test_name,
         tf.package_name AS package,
         tf.job_name,
         tf.build_number,
@@ -60,7 +60,7 @@ failure_events AS (
             WHEN tf.age >= 0 THEN tf.age + 1
             ELSE 1
         END AS consecutive_failures,
-        jp.platform_os  AS os,
+        jp.platform_os AS os,
         jp.platform_arch AS arch,
         ROW_NUMBER() OVER (
             PARTITION BY tf.error_name, tf.package_name, tf.job_name 
@@ -68,7 +68,7 @@ failure_events AS (
         ) AS rn
     FROM test_failures tf
     JOIN build_status bs
-        ON bs.job_name     = tf.job_name
+        ON bs.job_name = tf.job_name
        AND bs.build_number = tf.build_number
     CROSS JOIN time_windows tw
     LEFT JOIN job_platforms jp
@@ -102,9 +102,9 @@ passes_in_last_3_days AS (
         ON bs.job_name = lf.job_name
     CROSS JOIN time_windows tw
     LEFT JOIN test_failures tf
-        ON tf.job_name     = bs.job_name
+        ON tf.job_name = bs.job_name
        AND tf.build_number = bs.build_number
-       AND tf.error_name   = lf.test_name
+       AND tf.error_name = lf.test_name
        AND tf.package_name = lf.package
     WHERE bs.build_datetime IS NOT NULL
       AND bs.build_datetime >= tw.window_3d
@@ -122,7 +122,7 @@ SELECT
 FROM latest_failure_per_job lf
 LEFT JOIN passes_in_last_3_days p
     ON p.test_name = lf.test_name
-   AND p.package   = lf.package
-   AND p.job_name  = lf.job_name
+   AND p.package = lf.package
+   AND p.job_name = lf.job_name
 WHERE p.test_name IS NULL
   AND lf.consecutive_failures >= 2;
