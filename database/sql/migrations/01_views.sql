@@ -52,7 +52,7 @@ failure_events AS (
     SELECT
         tf.error_name   AS test_name,
         tf.package_name AS package,
-        tf.job_name
+        tf.job_name,
         tf.build_number,
         bs.build_datetime,
         date(bs.build_datetime) AS build_date,
