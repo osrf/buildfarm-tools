@@ -1,557 +1,284 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Buildfarmer Dashboard</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-page:          #0f1117;
-      --bg-surface:       #1a1d27;
-      --bg-surface-2:     #22263a;
-      --bg-row-hover:     #1f2336;
-      --bg-history:       #141720;
-      --border:           #2a2d3e;
-      --text-primary:     #e2e8f0;
-      --text-secondary:   #94a3b8;
-      --text-muted:       #64748b;
-      --accent-green:     #22c55e;
-      --accent-red:       #ef4444;
-      --accent-amber:     #f59e0b;
-      --accent-blue:      #3b82f6;
-      --badge-os-linux:   #3b82f6;
-      --badge-os-windows: #8b5cf6;
-      --badge-os-macos:   #f97316;
-      --badge-os-unknown: #475569;
-      --font-mono: 'JetBrains Mono', 'Cascadia Code', 'Fira Mono', ui-monospace, monospace;
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buildfarmer Dashboard</title>
+<style>
+/* ── Reset ──────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: ui-monospace, 'Cascadia Code', 'Fira Code', monospace; font-size: 13px; line-height: 1.5; }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 14px; }
-    body {
-      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
-      background: var(--bg-page);
-      color: var(--text-primary);
-      min-height: 100vh;
-    }
-    a { color: var(--accent-blue); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+/* ── Tokens ─────────────────────────────────────────────────────────────── */
+:root {
+  --bg-page:    #0f1117;
+  --bg-surface: #1a1d27;
+  --bg-hover:   #1f2336;
+  --border:     #2a2d3e;
+  --text:       #e2e8f0;
+  --muted:      #64748b;
+  --green:      #22c55e;
+  --red:        #ef4444;
+  --amber:      #f59e0b;
+  --blue:       #3b82f6;
+  --purple:     #8b5cf6;
+  --orange:     #f97316;
+  --gray:       #475569;
+}
 
-    /* ── Header ─────────────────────────────────────────────────────────── */
-    .site-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 24px;
-      background: var(--bg-surface);
-      border-bottom: 1px solid var(--border);
-    }
-    .site-header h1 {
-      font-size: 1rem;
-      font-weight: 600;
-      flex: 1;
-    }
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent-green);
-      box-shadow: 0 0 6px var(--accent-green);
-      flex-shrink: 0;
-    }
-    .updated-at { font-size: 0.75rem; color: var(--text-muted); }
+/* ── Page ───────────────────────────────────────────────────────────────── */
+body        { background: var(--bg-page); color: var(--text); }
+a           { color: var(--blue); text-decoration: none; }
+a:hover     { text-decoration: underline; }
 
-    /* ── Tabs ────────────────────────────────────────────────────────────── */
-    .tab-nav {
-      display: flex;
-      padding: 0 24px;
-      background: var(--bg-surface);
-      border-bottom: 1px solid var(--border);
-    }
-    .tab-btn {
-      padding: 10px 16px;
-      background: none;
-      border: none;
-      border-bottom: 2px solid transparent;
-      color: var(--text-muted);
-      font-size: 0.875rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: color 0.12s, border-color 0.12s;
-    }
-    .tab-btn:hover { color: var(--text-primary); }
-    .tab-btn.active { color: var(--accent-blue); border-bottom-color: var(--accent-blue); }
+/* ── Header ─────────────────────────────────────────────────────────────── */
+header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-surface);
+}
+header h1   { font-size: 15px; font-weight: 600; letter-spacing: .04em; }
+.dot        { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+.updated    { margin-left: auto; color: var(--muted); font-size: 11px; }
 
-    /* ── Toolbar ─────────────────────────────────────────────────────────── */
-    .toolbar {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 24px;
-      background: var(--bg-surface);
-      border-bottom: 1px solid var(--border);
-    }
-    .toolbar input[type="search"] {
-      flex: 1;
-      padding: 7px 12px;
-      background: var(--bg-page);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      color: var(--text-primary);
-      font-size: 0.875rem;
-      outline: none;
-    }
-    .toolbar input[type="search"]::placeholder { color: var(--text-muted); }
-    .toolbar input[type="search"]:focus { border-color: var(--accent-blue); }
-    .filter-group { display: flex; align-items: center; gap: 5px; }
-    .filter-label {
-      font-size: 0.65rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      color: var(--text-muted);
-    }
-    .toolbar select {
-      padding: 6px 28px 6px 10px;
-      background: var(--bg-page);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      color: var(--text-primary);
-      font-size: 0.8rem;
-      cursor: pointer;
-      outline: none;
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%2364748b' d='M5 6L0 0h10z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 9px center;
-    }
-    .toolbar select:focus { border-color: var(--accent-blue); }
+/* ── Tabs ───────────────────────────────────────────────────────────────── */
+nav {
+  display: flex; gap: 2px;
+  padding: 10px 20px 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-surface);
+}
+.tab {
+  background: none; border: none; cursor: pointer;
+  color: var(--muted); font: inherit; font-size: 12px; font-weight: 500;
+  padding: 6px 14px 8px; letter-spacing: .05em;
+  border-bottom: 2px solid transparent; margin-bottom: -1px;
+}
+.tab:hover  { color: var(--text); }
+.tab.active { color: var(--text); border-bottom-color: var(--blue); }
 
-    /* ── Panels ──────────────────────────────────────────────────────────── */
-    .panel { display: none; }
-    .panel.active { display: block; }
+/* ── Toolbar ────────────────────────────────────────────────────────────── */
+.toolbar {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-surface);
+}
+.toolbar input, .toolbar select {
+  background: var(--bg-page); border: 1px solid var(--border);
+  color: var(--text); font: inherit; font-size: 12px;
+  padding: 5px 10px; border-radius: 4px;
+}
+.toolbar input         { min-width: 260px; }
+.toolbar input::placeholder { color: var(--muted); }
+.toolbar select        { cursor: pointer; }
+.counts                { margin-left: auto; color: var(--muted); font-size: 11px; }
 
-    /* ── Section headings ────────────────────────────────────────────────── */
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 18px 24px 10px;
-    }
-    .section-title {
-      font-size: 0.68rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-      color: var(--text-secondary);
-    }
-    .section-meta { font-size: 0.75rem; color: var(--text-muted); }
-    .count-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 20px;
-      height: 20px;
-      padding: 0 6px;
-      background: var(--bg-surface-2);
-      border-radius: 10px;
-      font-size: 0.68rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-    }
+/* ── Section headings ───────────────────────────────────────────────────── */
+.section-head {
+  display: flex; align-items: baseline; gap: 8px;
+  padding: 18px 20px 8px;
+}
+.section-head h2 { font-size: 11px; font-weight: 600; letter-spacing: .08em; color: var(--muted); }
+.badge-count {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--border); color: var(--text);
+  font-size: 10px; font-weight: 600;
+  min-width: 20px; height: 18px; padding: 0 5px; border-radius: 9px;
+}
+.window-note { font-size: 11px; color: var(--muted); margin-left: 4px; }
 
-    /* ── Tables ──────────────────────────────────────────────────────────── */
-    .data-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.8rem;
-    }
-    .data-table thead th {
-      padding: 6px 10px;
-      text-align: left;
-      font-size: 0.62rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      color: var(--text-muted);
-      border-bottom: 1px solid var(--border);
-      white-space: nowrap;
-    }
-    .data-table thead th:first-child { padding-left: 24px; }
-    .data-table thead th:last-child  { padding-right: 24px; }
-    .data-table tbody tr.data-row {
-      border-bottom: 1px solid var(--border);
-      transition: background 0.1s;
-    }
-    .data-table tbody tr.data-row:hover { background: var(--bg-row-hover); }
-    .data-table tbody td {
-      padding: 10px 10px;
-      vertical-align: middle;
-    }
-    .data-table tbody td:first-child { padding-left: 24px; }
-    .data-table tbody td:last-child  { padding-right: 24px; }
+/* ── Tables ─────────────────────────────────────────────────────────────── */
+.table-wrap { overflow-x: auto; padding: 0 20px 20px; }
+table       { width: 100%; border-collapse: collapse; }
+th {
+  text-align: left; font-size: 10px; font-weight: 600;
+  letter-spacing: .07em; color: var(--muted);
+  padding: 6px 10px; border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+td          { padding: 7px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: var(--bg-hover); }
 
-    /* ── Cell content ────────────────────────────────────────────────────── */
-    .test-name {
-      font-family: var(--font-mono);
-      font-size: 0.76rem;
-      color: var(--text-primary);
-      max-width: 260px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .package-name { font-size: 0.75rem; color: var(--text-secondary); }
+.test-name  { font-size: 12px; max-width: 320px; overflow-wrap: anywhere; }
+.pkg        { color: var(--muted); }
 
-    .platforms { display: flex; flex-wrap: wrap; gap: 4px; }
-    .platform-badge {
-      display: inline-block;
-      padding: 2px 7px;
-      border-radius: 4px;
-      font-size: 0.63rem;
-      font-weight: 600;
-      color: #fff;
-      white-space: nowrap;
-    }
-    .os-linux   { background: var(--badge-os-linux); }
-    .os-windows { background: var(--badge-os-windows); }
-    .os-macos   { background: var(--badge-os-macos); }
-    .os-unknown { background: var(--badge-os-unknown); }
+/* ── Platform badges ────────────────────────────────────────────────────── */
+.platforms  { display: flex; flex-wrap: wrap; gap: 4px; }
+.badge {
+  display: inline-block; padding: 1px 6px; border-radius: 3px;
+  font-size: 10px; font-weight: 600; white-space: nowrap;
+}
+.os-linux   { background: #1d3461; color: #93c5fd; }
+.os-windows { background: #2e1065; color: #c4b5fd; }
+.os-macos   { background: #431407; color: #fdba74; }
+.os-unknown { background: var(--border); color: var(--muted); }
 
-    .age { font-size: 0.8rem; font-weight: 600; }
-    .age.warning { color: var(--accent-red); }
-    .age.mild    { color: var(--accent-amber); }
-    .age.ok      { color: var(--text-muted); }
+/* ── Age ────────────────────────────────────────────────────────────────── */
+.age        { white-space: nowrap; }
+.age.old    { color: var(--red); font-weight: 600; }
 
-    .fail-rate { font-size: 0.8rem; font-weight: 600; }
-    .fail-rate.high   { color: var(--accent-red); }
-    .fail-rate.medium { color: var(--accent-amber); }
-    .fail-rate.low    { color: var(--text-muted); }
+/* ── Fail rate ──────────────────────────────────────────────────────────── */
+.fail-rate  { color: var(--amber); font-weight: 600; }
 
-    .issue-badge { display: inline-flex; align-items: center; gap: 5px; }
-    .issue-link  { font-family: var(--font-mono); font-size: 0.7rem; }
-    .status-pill {
-      display: inline-block;
-      padding: 1px 6px;
-      border-radius: 3px;
-      font-size: 0.6rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-    .status-pill.open         { background: rgba(34,197,94,0.15);  color: var(--accent-green); }
-    .status-pill.not-assigned { background: rgba(245,158,11,0.15); color: var(--accent-amber); }
-    .status-pill.other        { background: rgba(100,116,139,0.15); color: var(--text-muted); }
-    .no-issue { color: var(--text-muted); }
+/* ── Issue link ─────────────────────────────────────────────────────────── */
+.no-issue   { color: var(--muted); }
 
-    /* ── History button ──────────────────────────────────────────────────── */
-    .history-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 4px 10px;
-      background: var(--bg-surface-2);
-      border: 1px solid var(--border);
-      border-radius: 5px;
-      color: var(--text-secondary);
-      font-size: 0.7rem;
-      font-weight: 500;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: background 0.1s, color 0.1s, border-color 0.1s;
-    }
-    .history-btn:hover { background: var(--border); color: var(--text-primary); }
-    .history-btn.open  { border-color: var(--accent-blue); color: var(--accent-blue); }
+/* ── History chart ──────────────────────────────────────────────────────── */
+.history-chart { display: block; }
 
-    /* ── History expanded row ────────────────────────────────────────────── */
-    .history-row td {
-      padding: 0 !important;
-      background: var(--bg-history);
-      border-bottom: 1px solid var(--border);
-    }
-    .history-inner { padding: 12px 24px; overflow-x: auto; }
-    .history-legend {
-      display: flex;
-      gap: 12px;
-      margin-top: 8px;
-      font-size: 0.68rem;
-      color: var(--text-muted);
-    }
-    .legend-dot {
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      border-radius: 2px;
-      vertical-align: middle;
-      margin-right: 4px;
-    }
-    .history-no-data { color: var(--text-muted); font-size: 0.8rem; font-style: italic; }
+/* ── Suspect commits ────────────────────────────────────────────────────── */
+.suspect-btn {
+  background: var(--border); border: none; border-radius: 4px;
+  color: var(--text); cursor: pointer; font: inherit; font-size: 11px;
+  padding: 3px 8px; white-space: nowrap;
+}
+.suspect-btn:hover { background: var(--bg-hover); border-color: var(--blue); }
+.no-suspects { color: var(--muted); }
 
-    /* ── Suspect commits button ──────────────────────────────────────────── */
-    .suspect-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 4px 10px;
-      background: var(--bg-surface-2);
-      border: 1px solid var(--border);
-      border-radius: 5px;
-      color: var(--text-secondary);
-      font-size: 0.7rem;
-      font-weight: 500;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: background 0.1s, color 0.1s, border-color 0.1s;
-    }
-    .suspect-btn:hover { background: var(--border); color: var(--text-primary); }
-    .no-commits { color: var(--text-muted); }
+/* ── Stale ──────────────────────────────────────────────────────────────── */
+.stale-yes  { color: var(--amber); }
 
-    /* ── Suspect commits modal ───────────────────────────────────────────── */
-    #modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-    #modal-overlay[hidden] { display: none; }
-    #modal {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      width: 100%;
-      max-width: 700px;
-      max-height: 80vh;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 24px 64px rgba(0,0,0,0.55);
-    }
-    .modal-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 18px;
-      border-bottom: 1px solid var(--border);
-      flex-shrink: 0;
-    }
-    .modal-header h3 {
-      flex: 1;
-      font-size: 0.88rem;
-      font-weight: 600;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    #modal-close {
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      font-size: 1.3rem;
-      line-height: 1;
-      cursor: pointer;
-      padding: 2px 6px;
-      border-radius: 4px;
-      flex-shrink: 0;
-    }
-    #modal-close:hover { color: var(--text-primary); background: var(--border); }
-    #modal-body {
-      overflow-y: auto;
-      padding: 16px 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .modal-commit + .modal-commit {
-      border-top: 1px solid var(--border);
-      padding-top: 16px;
-    }
-    .modal-commit-meta {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 10px;
-    }
-    .sha-tag {
-      font-family: var(--font-mono);
-      font-size: 0.63rem;
-      color: var(--accent-blue);
-      background: rgba(59,130,246,0.12);
-      padding: 2px 6px;
-      border-radius: 3px;
-      flex-shrink: 0;
-    }
-    .commit-repo {
-      color: var(--text-secondary);
-      font-size: 0.72rem;
-      flex: 1;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .modal-compare-link {
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--accent-blue);
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .vcs-diff {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      line-height: 1.55;
-      background: var(--bg-history);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 12px 14px;
-      overflow-x: auto;
-      white-space: pre;
-      color: var(--text-secondary);
-      margin: 0;
-    }
+/* ── Empty state ────────────────────────────────────────────────────────── */
+.empty-cell { text-align: center; color: var(--muted); padding: 24px; }
 
-    /* ── Known Issues specifics ──────────────────────────────────────────── */
-    .ki-title a { font-family: var(--font-mono); font-size: 0.78rem; }
-    .priority-val { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-secondary); }
-    .stale-badge {
-      display: inline-block;
-      padding: 2px 7px;
-      border-radius: 3px;
-      font-size: 0.62rem;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-    .stale-badge.stale { background: rgba(239,68,68,0.15); color: var(--accent-red); }
-    .stale-badge.fresh { background: rgba(34,197,94,0.15);  color: var(--accent-green); }
-
-    /* ── Empty state ─────────────────────────────────────────────────────── */
-    .empty-state td {
-      padding: 32px 24px !important;
-      text-align: center;
-      color: var(--text-muted);
-      font-style: italic;
-    }
-
-    main { padding-bottom: 48px; }
-    .section-group { margin-bottom: 4px; }
-  </style>
+/* ── Modal ──────────────────────────────────────────────────────────────── */
+#modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.7);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 100; padding: 20px;
+}
+#modal-overlay[hidden] { display: none; }
+#modal {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  max-width: 680px; width: 100%;
+  max-height: 80vh;
+  display: flex; flex-direction: column;
+}
+.modal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+}
+.modal-header h3 { font-size: 13px; font-weight: 600; }
+#modal-close {
+  background: none; border: none; color: var(--muted);
+  cursor: pointer; font-size: 18px; line-height: 1; padding: 2px 4px;
+}
+#modal-close:hover { color: var(--text); }
+#modal-body { overflow-y: auto; padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+.commit-entry { border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; }
+.commit-repo  { font-weight: 600; font-size: 12px; margin-bottom: 6px; }
+.commit-shas  { color: var(--muted); font-size: 11px; margin-bottom: 6px; }
+.commit-link  { font-size: 12px; }
+</style>
 </head>
 <body>
 
-<header class="site-header">
-  <h1>Buildfarmer Dashboard</h1>
-  <span class="status-dot"></span>
-  <span class="updated-at" id="updated-at">Loading&hellip;</span>
+<header>
+  <div class="dot"></div>
+  <h1>BUILDFARMER DASHBOARD</h1>
+  <span class="updated" id="updated-at"></span>
 </header>
 
-<nav class="tab-nav">
-  <button class="tab-btn active" data-tab="regressions">&#9888; Regressions</button>
-  <button class="tab-btn" data-tab="known-issues">&#128279; Known Issues</button>
+<nav>
+  <button class="tab active" data-tab="regressions">REGRESSIONS</button>
+  <button class="tab"        data-tab="known-issues">KNOWN ISSUES</button>
 </nav>
 
-<main>
+<!-- ── Regressions panel ──────────────────────────────────────────────── -->
+<section id="panel-regressions">
+  <div class="toolbar">
+    <input type="search" id="search" placeholder="Search test name or package…">
+    <select id="filter-project">
+      <option value="">All projects</option>
+      <option value="ROS">ROS</option>
+      <option value="Gazebo">Gazebo</option>
+    </select>
+    <select id="filter-os">
+      <option value="">All platforms</option>
+    </select>
+    <select id="filter-type">
+      <option value="">Consistent + Flaky</option>
+      <option value="consistent">Consistent only</option>
+      <option value="flaky">Flaky only</option>
+    </select>
+    <span class="counts" id="reg-counts"></span>
+  </div>
 
-  <!-- ── Regressions panel ─────────────────────────────────────────────── -->
-  <section class="panel active" id="panel-regressions">
-
-    <div class="toolbar">
-      <input type="search" id="search-input"
-             placeholder="Search test name, package, or job&hellip;"
-             autocomplete="off" spellcheck="false">
-      <div class="filter-group">
-        <span class="filter-label">Project</span>
-        <select id="filter-project">
-          <option value="">All</option>
-          <option value="ROS">ROS</option>
-          <option value="Gazebo">Gazebo</option>
-        </select>
-      </div>
-      <div class="filter-group">
-        <span class="filter-label">Distro</span>
-        <select id="filter-distro">
-          <option value="">All</option>
-        </select>
-      </div>
-      <div class="filter-group">
-        <span class="filter-label">Type</span>
-        <select id="filter-type">
-          <option value="">All</option>
-          <option value="consistent">Consistent</option>
-          <option value="flaky">Flaky</option>
-        </select>
-      </div>
+  <div id="consistent-group">
+    <div class="section-head">
+      <h2>CONSISTENT FAILURES</h2>
+      <span class="badge-count" id="consistent-count">0</span>
     </div>
-
-    <div class="section-group" id="consistent-group">
-      <div class="section-header">
-        <span class="section-title">&#9888; Consistent Failures</span>
-        <span class="count-badge" id="consistent-count">0</span>
-      </div>
-      <table class="data-table">
+    <div class="table-wrap">
+      <table>
         <thead>
           <tr>
-            <th>Test Name</th>
-            <th>Package</th>
-            <th>Platforms</th>
-            <th>Age</th>
-            <th>Known Issue</th>
-            <th>History</th>
-            <th>Suspect Commits</th>
+            <th>TEST NAME</th>
+            <th>PACKAGE</th>
+            <th>PLATFORMS</th>
+            <th>AGE</th>
+            <th>KNOWN ISSUE</th>
+            <th>90D HISTORY</th>
+            <th>SUSPECT COMMITS</th>
           </tr>
         </thead>
         <tbody id="consistent-tbody"></tbody>
       </table>
     </div>
+  </div>
 
-    <div class="section-group" id="flaky-group">
-      <div class="section-header">
-        <span class="section-title">&#126; Flaky Tests</span>
-        <span class="section-meta" id="flaky-window"></span>
-        <span class="count-badge" id="flaky-count">0</span>
-      </div>
-      <table class="data-table">
+  <div id="flaky-group">
+    <div class="section-head">
+      <h2>FLAKY TESTS</h2>
+      <span class="badge-count" id="flaky-count">0</span>
+      <span class="window-note" id="flaky-window"></span>
+    </div>
+    <div class="table-wrap">
+      <table>
         <thead>
           <tr>
-            <th>Test Name</th>
-            <th>Package</th>
-            <th>Platforms</th>
-            <th>Fail Rate</th>
-            <th>Known Issue</th>
-            <th>History</th>
-            <th>Suspect Commits</th>
+            <th>TEST NAME</th>
+            <th>PACKAGE</th>
+            <th>PLATFORMS</th>
+            <th>FAIL RATE</th>
+            <th>KNOWN ISSUE</th>
+            <th>90D HISTORY</th>
+            <th>SUSPECT COMMITS</th>
           </tr>
         </thead>
         <tbody id="flaky-tbody"></tbody>
       </table>
     </div>
+  </div>
+</section>
 
-  </section>
-
-  <!-- ── Known Issues panel ────────────────────────────────────────────── -->
-  <section class="panel" id="panel-known-issues">
-    <table class="data-table">
+<!-- ── Known Issues panel ─────────────────────────────────────────────── -->
+<section id="panel-known-issues" hidden>
+  <div class="table-wrap" style="padding-top:16px">
+    <table>
       <thead>
         <tr>
-          <th>Issue</th>
-          <th>Status</th>
-          <th>Priority</th>
-          <th>Assignee</th>
-          <th>Last Activity</th>
-          <th>Last Seen in Build</th>
-          <th>Stale</th>
+          <th>ISSUE</th>
+          <th>STATUS</th>
+          <th>PRIORITY</th>
+          <th>ASSIGNEE</th>
+          <th>LAST ACTIVITY</th>
+          <th>LAST SEEN IN BUILD</th>
         </tr>
       </thead>
-      <tbody id="ki-tbody"></tbody>
+      <tbody id="known-issues-tbody"></tbody>
     </table>
-  </section>
+  </div>
+</section>
 
-</main>
-
+<!-- ── Suspect commits modal ──────────────────────────────────────────── -->
 <div id="modal-overlay" hidden>
   <div id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-header">
@@ -567,260 +294,108 @@
 (function () {
   'use strict';
 
-  // ── Helpers ───────────────────────────────────────────────────────────────
+  // ── Helpers ──────────────────────────────────────────────────────────────
 
   function esc(s) {
     return String(s == null ? '' : s)
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
   }
 
-  function fmtGeneratedAt(iso) {
-    if (!iso) return '';
-    try {
-      const d = new Date(iso);
-      const p = n => String(n).padStart(2, '0');
-      return 'Updated ' + d.getUTCFullYear() + '-' + p(d.getUTCMonth() + 1) + '-' + p(d.getUTCDate())
-           + ' ' + p(d.getUTCHours()) + ':' + p(d.getUTCMinutes()) + ' UTC';
-    } catch (_) { return String(iso); }
+  function isGazebo(row) {
+    var n = (row.test_name + ' ' + row.package).toLowerCase();
+    return n.indexOf('gz') !== -1 || n.indexOf('gazebo') !== -1 || n.indexOf('sdformat') !== -1;
   }
 
-  function computeAgeDays(firstSeenDate, generatedAt) {
-    try {
-      const diff = new Date(generatedAt).getTime() - new Date(firstSeenDate).getTime();
-      return Math.max(0, Math.round(diff / 86400000));
-    } catch (_) { return null; }
+  function formatIssueLabel(url) {
+    if (!url) return null;
+    var m = url.match(/github\.com\/([^/]+\/[^/]+)\/(issues|pull)\/(\d+)/);
+    return m ? m[1] + '#' + m[3] : url;
   }
 
-  function inferProject(testName, pkg) {
-    const s = ((testName || '') + ' ' + (pkg || '')).toLowerCase();
-    return /^gz[_\-]|gazebo|gazebosim/.test(s) ? 'Gazebo' : 'ROS';
+  function ageDays(firstSeenDate, refDate) {
+    var d0 = new Date(firstSeenDate);
+    var d1 = new Date(refDate);
+    return Math.max(0, Math.round((d1 - d0) / 86400000));
   }
 
-  function osBadgeClass(os) {
-    const s = (os || '').toLowerCase();
-    if (s.includes('linux')) return 'os-linux';
-    if (s.includes('win'))   return 'os-windows';
-    if (s.includes('mac'))   return 'os-macos';
-    return 'os-unknown';
-  }
-
-  // ── HTML builders ─────────────────────────────────────────────────────────
-
-  function platformBadges(platforms) {
-    if (!platforms || !platforms.length) return '<span class="no-issue">&mdash;</span>';
+  function platformBadgesHtml(platforms) {
+    if (!platforms || !platforms.length) return '<span class="no-issue">—</span>';
+    var seen = {};
     return platforms.map(function (p) {
-      var label = esc([p.os, p.arch].filter(Boolean).join(' '));
-      return '<span class="platform-badge ' + osBadgeClass(p.os) + '">' + label + '</span>';
+      var os = (p.os || 'unknown').toLowerCase();
+      var cls = os.indexOf('linux') !== -1  ? 'os-linux'
+              : os.indexOf('win')   !== -1  ? 'os-windows'
+              : os.indexOf('mac')   !== -1 || os.indexOf('brew') !== -1 ? 'os-macos'
+              :                               'os-unknown';
+      var label = os + '/' + (p.arch || '?');
+      if (seen[label]) return '';
+      seen[label] = true;
+      return '<span class="badge ' + cls + '">' + esc(label) + '</span>';
     }).join('');
   }
 
-  function ageHtml(days) {
-    if (days === null) return '<span class="age ok">&mdash;</span>';
-    var cls = days >= 14 ? 'warning' : days >= 7 ? 'mild' : 'ok';
-    return '<span class="age ' + cls + '">' + days + 'd</span>';
-  }
+  // ── History bar chart ────────────────────────────────────────────────────
 
-  function failRateHtml(pct) {
-    var cls = pct >= 50 ? 'high' : pct >= 25 ? 'medium' : 'low';
-    return '<span class="fail-rate ' + cls + '">' + (+pct).toFixed(0) + '%</span>';
-  }
-
-  function issueHtml(url) {
-    if (!url) return '<span class="no-issue">&mdash;</span>';
-    var m = url.match(/github\.com\/([^/]+\/[^/]+)\/(issues|pull)\/(\d+)/);
-    var label = m ? '#' + m[3] : esc(url);
-    return '<span class="issue-badge">'
-         + '<a class="issue-link" href="' + esc(url) + '" target="_blank" rel="noopener">' + label + '</a>'
-         + '<span class="status-pill open">open</span>'
-         + '</span>';
-  }
-
-  function suspectCommitsBtn(commits, testName) {
-    if (!commits || !commits.length) {
-      return '<span class="no-commits">&mdash;</span>';
-    }
-    return '<button class="suspect-btn" data-test="' + esc(testName) + '">'
-         + '&#9906; View (' + commits.length + ')</button>';
-  }
-
-  function historyBarsHtml(history, testName) {
+  function historyBarsHtml(testName) {
+    var history = (typeof DASHBOARD_DATA !== 'undefined' && DASHBOARD_DATA.test_history)
+                  ? DASHBOARD_DATA.test_history[testName] : null;
     if (!history || !history.length) {
-      return '<div class="history-no-data">No history data for <code>' + esc(testName) + '</code></div>';
+      return '<span class="no-issue">no data</span>';
     }
-    var BAR_W = 5, GAP = 1, H = 56, LABEL_H = 18;
+
+    var BAR_W = 4, GAP = 1, BAR_H = 32, LABEL_H = 14;
     var W = history.length * (BAR_W + GAP) - GAP;
-    var bars = '', labels = '';
+    var H = BAR_H + LABEL_H;
+
+    var bars = '';
+    var labels = '';
+    var prevMonth = null;
+
     history.forEach(function (pt, i) {
       var x    = i * (BAR_W + GAP);
-      var fill = pt.result === 1 ? '#22c55e' : pt.result === 0 ? '#ef4444' : '#2a2d3e';
-      var tip  = esc(pt.date + ': ' + (pt.result === 1 ? 'pass' : pt.result === 0 ? 'fail' : 'not run'));
-      bars += '<rect x="' + x + '" y="0" width="' + BAR_W + '" height="' + H + '" fill="' + fill + '" rx="1">'
-            + '<title>' + tip + '</title></rect>';
-      if (i % 30 === 0) {
-        labels += '<text x="' + (x + BAR_W / 2) + '" y="' + (H + LABEL_H - 3) + '" '
-                + 'text-anchor="middle" font-size="9" fill="#64748b">' + esc(pt.date.slice(0, 7)) + '</text>';
+      var fill = pt.result === 1 ? '#22c55e'
+               : pt.result === 0 ? '#ef4444'
+               :                   '#2a2d3e';
+      var tip  = pt.date + ': ' + (pt.result === 1 ? 'pass' : pt.result === 0 ? 'fail' : 'no run');
+      bars += '<rect x="' + x + '" y="0" width="' + BAR_W + '" height="' + BAR_H + '" fill="' + fill + '" rx="1"><title>' + esc(tip) + '</title></rect>';
+
+      var month = pt.date ? pt.date.slice(0, 7) : null;
+      if (month && month !== prevMonth) {
+        labels += '<text x="' + x + '" y="' + (BAR_H + LABEL_H - 2) + '" font-size="9" fill="#64748b">' + esc(month) + '</text>';
+        prevMonth = month;
       }
     });
-    var legend = '<div class="history-legend">'
-               + '<span><span class="legend-dot" style="background:#22c55e"></span>Pass</span>'
-               + '<span><span class="legend-dot" style="background:#ef4444"></span>Fail</span>'
-               + '<span><span class="legend-dot" style="background:#2a2d3e"></span>Not run</span>'
-               + '</div>';
-    return '<svg width="' + W + '" height="' + (H + LABEL_H) + '" xmlns="http://www.w3.org/2000/svg">'
-         + bars + labels + '</svg>' + legend;
+
+    return '<svg class="history-chart" width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '">'
+         + bars + labels + '</svg>';
   }
 
-  function emptyRow(cols, msg) {
-    return '<tr class="empty-state"><td colspan="' + cols + '">' + msg + '</td></tr>';
-  }
+  // ── Suspect commits ──────────────────────────────────────────────────────
 
-  // ── Row builders ──────────────────────────────────────────────────────────
-
-  function safeId(prefix, s) {
-    return prefix + '_' + s.replace(/[^a-z0-9]/gi, '_').slice(0, 80);
-  }
-
-  function consistentRow(row, generatedAt) {
-    var age  = computeAgeDays(row.first_seen_date, generatedAt);
-    var hid  = safeId('c', row.test_name);
-    return '<tr class="data-row">'
-         + '<td><div class="test-name" title="' + esc(row.test_name) + '">' + esc(row.test_name) + '</div></td>'
-         + '<td><span class="package-name">' + esc(row.package) + '</span></td>'
-         + '<td><div class="platforms">' + platformBadges(row.affected_platforms) + '</div></td>'
-         + '<td>' + ageHtml(age) + '</td>'
-         + '<td>' + issueHtml(row.linked_issue) + '</td>'
-         + '<td><button class="history-btn" data-hid="' + esc(hid) + '" data-test="' + esc(row.test_name) + '">&#9650; 90d</button></td>'
-         + '<td>' + suspectCommitsBtn(row.suspect_commits, row.test_name) + '</td>'
-         + '</tr>'
-         + '<tr class="history-row" id="hist-' + esc(hid) + '" style="display:none">'
-         + '<td colspan="7"><div class="history-inner" id="hist-inner-' + esc(hid) + '"></div></td>'
-         + '</tr>';
-  }
-
-  function flakyRow(row) {
-    var hid = safeId('f', row.test_name);
-    return '<tr class="data-row">'
-         + '<td><div class="test-name" title="' + esc(row.test_name) + '">' + esc(row.test_name) + '</div></td>'
-         + '<td><span class="package-name">' + esc(row.package) + '</span></td>'
-         + '<td><div class="platforms">' + platformBadges(row.affected_platforms) + '</div></td>'
-         + '<td>' + failRateHtml(row.fail_rate_pct) + '</td>'
-         + '<td>' + issueHtml(row.linked_issue) + '</td>'
-         + '<td><button class="history-btn" data-hid="' + esc(hid) + '" data-test="' + esc(row.test_name) + '">&#9650; 90d</button></td>'
-         + '<td>' + suspectCommitsBtn(row.suspect_commits, row.test_name) + '</td>'
-         + '</tr>'
-         + '<tr class="history-row" id="hist-' + esc(hid) + '" style="display:none">'
-         + '<td colspan="7"><div class="history-inner" id="hist-inner-' + esc(hid) + '"></div></td>'
-         + '</tr>';
-  }
-
-  function kiRow(row) {
-    var pillCls = row.status === 'OPEN' ? 'open'
-                : row.status === 'NOT ASSIGNED' ? 'not-assigned'
-                : 'other';
-    return '<tr class="data-row">'
-         + '<td class="ki-title"><a href="' + esc(row.issue_id) + '" target="_blank" rel="noopener">' + esc(row.title) + '</a></td>'
-         + '<td><span class="status-pill ' + pillCls + '">' + esc(row.status || '&mdash;') + '</span></td>'
-         + '<td class="priority-val">' + (row.priority != null ? (+row.priority).toFixed(2) : '&mdash;') + '</td>'
-         + '<td>' + (row.assignee ? esc(row.assignee) : '<span class="no-issue">Not Assigned</span>') + '</td>'
-         + '<td>' + (row.last_activity_date ? esc(row.last_activity_date.slice(0, 10)) : '&mdash;') + '</td>'
-         + '<td>' + (row.last_seen_in_build_date ? esc(row.last_seen_in_build_date.slice(0, 10)) : '&mdash;') + '</td>'
-         + '<td><span class="stale-badge ' + (row.stale ? 'stale' : 'fresh') + '">' + (row.stale ? 'Stale' : 'Active') + '</span></td>'
-         + '</tr>';
-  }
-
-  // ── Filtering ─────────────────────────────────────────────────────────────
-
-  function applyFilters(rows, f) {
-    var q = f.search.toLowerCase();
-    return rows.filter(function (row) {
-      if (q && !(row.test_name || '').toLowerCase().includes(q)
-            && !(row.package || '').toLowerCase().includes(q)) return false;
-      if (f.project && inferProject(row.test_name, row.package) !== f.project) return false;
-      if (f.distro) {
-        var plats = row.affected_platforms || [];
-        if (!plats.some(function (p) { return (p.os || '').toLowerCase().includes(f.distro.toLowerCase()); })) return false;
-      }
-      return true;
-    });
-  }
-
-  function populateDistroFilter(data) {
-    var seen = {};
-    var all  = (data.regressions.consistent || []).concat(data.regressions.flaky || []);
-    all.forEach(function (row) {
-      (row.affected_platforms || []).forEach(function (p) {
-        var os = (p.os || '').toLowerCase();
-        if (os && os !== 'unknown') seen[os] = true;
-      });
-    });
-    var sel = document.getElementById('filter-distro');
-    Object.keys(seen).sort().forEach(function (os) {
-      var opt = document.createElement('option');
-      opt.value = os;
-      opt.textContent = os;
-      sel.appendChild(opt);
-    });
-  }
-
-  // ── Render ────────────────────────────────────────────────────────────────
-
-  var _data;
-
-  function render(f) {
-    var data       = _data;
-    var consistent = applyFilters(data.regressions.consistent || [], f);
-    var flaky      = applyFilters(data.regressions.flaky      || [], f);
-    var showC      = !f.type || f.type === 'consistent';
-    var showF      = !f.type || f.type === 'flaky';
-
-    document.getElementById('consistent-group').style.display = showC ? '' : 'none';
-    document.getElementById('flaky-group').style.display      = showF ? '' : 'none';
-
-    var ctbody = document.getElementById('consistent-tbody');
-    ctbody.innerHTML = showC
-      ? (consistent.length ? consistent.map(function (r) { return consistentRow(r, data.generated_at); }).join('') : emptyRow(7, 'No consistent failures match the current filters.'))
-      : '';
-    document.getElementById('consistent-count').textContent = consistent.length;
-
-    var ftbody = document.getElementById('flaky-tbody');
-    ftbody.innerHTML = showF
-      ? (flaky.length ? flaky.map(flakyRow).join('') : emptyRow(7, 'No flaky tests match the current filters.'))
-      : '';
-    document.getElementById('flaky-count').textContent = flaky.length;
-
-    var totalOcc = (data.regressions.flaky || []).reduce(function (s, r) { return s + (r.failure_count || 0); }, 0);
-    document.getElementById('flaky-window').textContent = '(' + totalOcc + ' occurrences / 20d)';
-
-    var kibody = document.getElementById('ki-tbody');
-    var ki     = data.known_issues || [];
-    kibody.innerHTML = ki.length ? ki.map(kiRow).join('') : emptyRow(7, 'No known issues found.');
-  }
-
-  // ── Modal (suspect commits) ───────────────────────────────────────────────
-
-  function findSuspectCommits(testName) {
-    var all = (_data.regressions.consistent || []).concat(_data.regressions.flaky || []);
-    for (var i = 0; i < all.length; i++) {
-      if (all[i].test_name === testName) return all[i].suspect_commits;
+  function suspectBtnHtml(commits, testName) {
+    if (!commits || !commits.length) {
+      return '<span class="no-suspects">—</span>';
     }
-    return null;
+    return '<button class="suspect-btn" data-test="' + esc(testName) + '">'
+         + '&#x26AD; ' + commits.length + ' repo' + (commits.length !== 1 ? 's' : '')
+         + '</button>';
   }
 
-  function openModal(testName) {
-    var commits = findSuspectCommits(testName);
-    if (!commits || !commits.length) return;
+  function openModal(testName, commits) {
     document.getElementById('modal-title').textContent = 'Suspect commits — ' + testName;
-    document.getElementById('modal-body').innerHTML = commits.map(function (c) {
-      return '<div class="modal-commit">'
-           + '<div class="modal-commit-meta">'
-           + '<span class="sha-tag">' + esc(c.last_success_sha) + ' &rarr; ' + esc(c.first_failure_sha) + '</span>'
-           + '<span class="commit-repo">' + esc(c.repo) + '</span>'
-           + '<a class="modal-compare-link" href="' + esc(c.compare_url) + '" target="_blank" rel="noopener">&#8599; Compare on GitHub</a>'
-           + '</div>'
-           + (c.vcs_diff ? '<pre class="vcs-diff">' + esc(c.vcs_diff) + '</pre>' : '')
-           + '</div>';
-    }).join('');
+    var body = document.getElementById('modal-body');
+    if (!commits || !commits.length) {
+      body.innerHTML = '<p style="color:var(--muted)">No suspect commits found.</p>';
+    } else {
+      body.innerHTML = commits.map(function (c) {
+        return '<div class="commit-entry">'
+             + '<div class="commit-repo">' + esc(c.repo) + '</div>'
+             + '<div class="commit-shas">' + esc(c.last_success_sha) + ' &rarr; ' + esc(c.first_failure_sha) + '</div>'
+             + '<div class="commit-link"><a href="' + esc(c.compare_url) + '" target="_blank" rel="noopener">Compare on GitHub &rarr;</a></div>'
+             + '</div>';
+      }).join('');
+    }
     document.getElementById('modal-overlay').removeAttribute('hidden');
   }
 
@@ -828,83 +403,203 @@
     document.getElementById('modal-overlay').setAttribute('hidden', '');
   }
 
-  // ── History expand/collapse ───────────────────────────────────────────────
+  // ── Filtering ────────────────────────────────────────────────────────────
 
-  document.addEventListener('click', function (e) {
-    if (e.target.id === 'modal-close' || e.target.id === 'modal-overlay') {
-      closeModal(); return;
+  function rowMatchesFilters(row, q, project, os) {
+    if (q) {
+      var haystack = (row.test_name + ' ' + row.package).toLowerCase();
+      if (haystack.indexOf(q) === -1) return false;
     }
-    var sBtn = e.target.closest('.suspect-btn');
-    if (sBtn) { openModal(sBtn.dataset.test); return; }
-
-    var btn = e.target.closest('.history-btn');
-    if (!btn) return;
-    var hid       = btn.dataset.hid;
-    var testName  = btn.dataset.test;
-    var histRow   = document.getElementById('hist-' + hid);
-    var histInner = document.getElementById('hist-inner-' + hid);
-    if (!histRow) return;
-    var open = histRow.style.display !== 'none';
-    if (open) {
-      histRow.style.display = 'none';
-      btn.classList.remove('open');
-    } else {
-      var history = (_data.test_history || {})[testName];
-      histInner.innerHTML = historyBarsHtml(history, testName);
-      histRow.style.display = '';
-      btn.classList.add('open');
+    if (project) {
+      var g = isGazebo(row);
+      if (project === 'ROS' && g) return false;
+      if (project === 'Gazebo' && !g) return false;
     }
-  });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeModal();
-  });
-
-  // ── Tabs ──────────────────────────────────────────────────────────────────
-
-  document.querySelectorAll('.tab-btn').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      document.querySelectorAll('.tab-btn').forEach(function (b) { b.classList.remove('active'); });
-      document.querySelectorAll('.panel').forEach(function (p) { p.classList.remove('active'); });
-      btn.classList.add('active');
-      document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
-    });
-  });
-
-  // ── Boot ──────────────────────────────────────────────────────────────────
-
-  function boot(data) {
-    _data = data;
-    document.getElementById('updated-at').textContent = fmtGeneratedAt(data.generated_at);
-    populateDistroFilter(data);
-
-    var f = { search: '', project: '', distro: '', type: '' };
-    render(f);
-
-    document.getElementById('search-input').addEventListener('input', function (e) {
-      f.search = e.target.value; render(f);
-    });
-    document.getElementById('filter-project').addEventListener('change', function (e) {
-      f.project = e.target.value; render(f);
-    });
-    document.getElementById('filter-distro').addEventListener('change', function (e) {
-      f.distro = e.target.value; render(f);
-    });
-    document.getElementById('filter-type').addEventListener('change', function (e) {
-      f.type = e.target.value; render(f);
-    });
+    if (os) {
+      var plats = row.affected_platforms || [];
+      var found = plats.some(function (p) { return (p.os || '').toLowerCase() === os; });
+      if (!found) return false;
+    }
+    return true;
   }
 
+  // ── Render helpers ───────────────────────────────────────────────────────
+
+  function issueHtml(url) {
+    var label = formatIssueLabel(url);
+    return label ? '<a href="' + esc(url) + '" target="_blank" rel="noopener">' + esc(label) + '</a>'
+                 : '<span class="no-issue">—</span>';
+  }
+
+  function renderConsistent(rows, q, project, os, generatedAt) {
+    var filtered = rows.filter(function (r) { return rowMatchesFilters(r, q, project, os); });
+    document.getElementById('consistent-count').textContent = filtered.length;
+
+    if (!filtered.length) {
+      return '<tr><td colspan="7" class="empty-cell">No matching results</td></tr>';
+    }
+    return filtered.map(function (r) {
+      var days = ageDays(r.first_seen_date, generatedAt);
+      var ageClass = days > 7 ? ' old' : '';
+      return '<tr>'
+           + '<td class="test-name">' + esc(r.test_name) + '</td>'
+           + '<td class="pkg">' + esc(r.package) + '</td>'
+           + '<td><div class="platforms">' + platformBadgesHtml(r.affected_platforms) + '</div></td>'
+           + '<td class="age' + ageClass + '">' + days + 'd</td>'
+           + '<td>' + issueHtml(r.linked_issue) + '</td>'
+           + '<td>' + historyBarsHtml(r.test_name) + '</td>'
+           + '<td>' + suspectBtnHtml(r.suspect_commits, r.test_name) + '</td>'
+           + '</tr>';
+    }).join('');
+  }
+
+  function renderFlaky(rows, q, project, os) {
+    var filtered = rows.filter(function (r) { return rowMatchesFilters(r, q, project, os); });
+    document.getElementById('flaky-count').textContent = filtered.length;
+
+    if (!filtered.length) {
+      return '<tr><td colspan="7" class="empty-cell">No matching results</td></tr>';
+    }
+    return filtered.map(function (r) {
+      return '<tr>'
+           + '<td class="test-name">' + esc(r.test_name) + '</td>'
+           + '<td class="pkg">' + esc(r.package) + '</td>'
+           + '<td><div class="platforms">' + platformBadgesHtml(r.affected_platforms) + '</div></td>'
+           + '<td class="fail-rate">' + r.fail_rate_pct + '%<span style="color:var(--muted);font-weight:normal"> (' + r.failure_count + '/' + r.total_runs + ')</span></td>'
+           + '<td>' + issueHtml(r.linked_issue) + '</td>'
+           + '<td>' + historyBarsHtml(r.test_name) + '</td>'
+           + '<td><span class="no-suspects">—</span></td>'
+           + '</tr>';
+    }).join('');
+  }
+
+  function renderKnownIssues(rows) {
+    if (!rows.length) {
+      return '<tr><td colspan="6" class="empty-cell">No known issues</td></tr>';
+    }
+    return rows.map(function (r) {
+      var label = formatIssueLabel(r.issue_id) || r.issue_id;
+      var staleHtml = r.stale ? '<span class="stale-yes">stale</span>' : '';
+      return '<tr>'
+           + '<td><a href="' + esc(r.issue_id) + '" target="_blank" rel="noopener">' + esc(label) + '</a></td>'
+           + '<td>' + esc(r.status) + '</td>'
+           + '<td>' + (r.priority != null ? r.priority.toFixed(3) : '—') + '</td>'
+           + '<td>' + (r.assignee ? esc(r.assignee) : '<span class="no-issue">—</span>') + '</td>'
+           + '<td>' + esc(r.last_activity_date || '—') + '</td>'
+           + '<td>' + esc(r.last_seen_in_build_date || '—') + ' ' + staleHtml + '</td>'
+           + '</tr>';
+    }).join('');
+  }
+
+  // ── Boot ─────────────────────────────────────────────────────────────────
+
+  function boot(data) {
+    // Header timestamp
+    var d = new Date(data.generated_at);
+    document.getElementById('updated-at').textContent =
+      'Updated ' + d.toISOString().slice(0, 16).replace('T', ' ') + ' UTC';
+
+    // Populate OS filter from all platforms in both tables
+    var osSet = {};
+    (data.regressions.consistent || []).concat(data.regressions.flaky || []).forEach(function (r) {
+      (r.affected_platforms || []).forEach(function (p) { if (p.os) osSet[p.os] = true; });
+    });
+    var osSelect = document.getElementById('filter-os');
+    Object.keys(osSet).sort().forEach(function (os) {
+      var opt = document.createElement('option');
+      opt.value = os; opt.textContent = os;
+      osSelect.appendChild(opt);
+    });
+
+    // Flaky window note
+    document.getElementById('flaky-window').textContent = '(20-day window)';
+
+    // Build suspect commits index: test_name -> commits
+    var suspectIndex = {};
+    (data.regressions.consistent || []).forEach(function (r) {
+      if (r.suspect_commits) suspectIndex[r.test_name] = r.suspect_commits;
+    });
+
+    function rerender() {
+      var q       = document.getElementById('search').value.toLowerCase().trim();
+      var project = document.getElementById('filter-project').value;
+      var os      = document.getElementById('filter-os').value;
+      var type    = document.getElementById('filter-type').value;
+
+      var showConsistent = type !== 'flaky';
+      var showFlaky      = type !== 'consistent';
+
+      document.getElementById('consistent-group').style.display = showConsistent ? '' : 'none';
+      document.getElementById('flaky-group').style.display      = showFlaky      ? '' : 'none';
+
+      if (showConsistent) {
+        document.getElementById('consistent-tbody').innerHTML =
+          renderConsistent(data.regressions.consistent || [], q, project, os, data.generated_at);
+      }
+      if (showFlaky) {
+        document.getElementById('flaky-tbody').innerHTML =
+          renderFlaky(data.regressions.flaky || [], q, project, os);
+      }
+
+      // Update count summary
+      var cCount = parseInt(document.getElementById('consistent-count').textContent, 10) || 0;
+      var fCount = parseInt(document.getElementById('flaky-count').textContent, 10) || 0;
+      document.getElementById('reg-counts').textContent =
+        (showConsistent && showFlaky) ? cCount + ' consistent, ' + fCount + ' flaky'
+        : showConsistent ? cCount + ' results'
+        : fCount + ' results';
+    }
+
+    // Known issues (static — no filters on this panel)
+    document.getElementById('known-issues-tbody').innerHTML =
+      renderKnownIssues(data.known_issues || []);
+
+    // Tab switching
+    document.querySelectorAll('.tab').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.tab').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        document.getElementById('panel-regressions').hidden  = btn.dataset.tab !== 'regressions';
+        document.getElementById('panel-known-issues').hidden = btn.dataset.tab !== 'known-issues';
+      });
+    });
+
+    // Filter controls
+    ['search', 'filter-project', 'filter-os', 'filter-type'].forEach(function (id) {
+      document.getElementById(id).addEventListener('input', rerender);
+    });
+
+    // Click delegation: suspect commit buttons + modal close
+    document.body.addEventListener('click', function (e) {
+      var btn = e.target.closest('.suspect-btn');
+      if (btn) {
+        openModal(btn.dataset.test, suspectIndex[btn.dataset.test]);
+        return;
+      }
+      if (e.target === document.getElementById('modal-overlay') ||
+          e.target.id === 'modal-close') {
+        closeModal();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // Initial render
+    rerender();
+  }
+
+  // ── Entry ─────────────────────────────────────────────────────────────────
+
   if (typeof DASHBOARD_DATA === 'undefined' || !DASHBOARD_DATA) {
-    document.body.innerHTML = '<p style="padding:2rem;color:#ef4444;font-family:monospace">'
-      + 'dashboard_data.js not loaded. Run generate_dashboard.py to produce the output files, '
-      + 'then open index.html directly in a browser.</p>';
+    document.body.innerHTML =
+      '<p style="padding:40px;color:#ef4444">dashboard_data.js not loaded — '
+      + 'open this file via a local server or place dashboard_data.js in the same directory.</p>';
   } else {
     boot(DASHBOARD_DATA);
   }
-
 }());
 </script>
-
 </body>
 </html>
