@@ -1,51 +1,20 @@
 # Migrations
 
-This directory contains the ordered SQL scripts used to evolve the dashboard schema.
+SQL scripts that evolve the `buildfarmer.db` schema. Run them in order on any
+database that needs to be brought up to date.
 
-Run them in numerical order on a fresh database or on a copy of an existing `buildfarmer.db` snapshot:
+## Files
 
-1. `1_migrate_server_status_platforms.sql`
-2. `2_create_view-active_failures.sql`
+| # | File | What it does |
+|---|------|--------------|
+| 01 | `01_views.sql` | Creates all shared views in dependency order: `job_platforms` → `issue_links` → `active_failures`. Idempotent (uses `DROP VIEW IF EXISTS`); safe to re-run at any time to pick up the latest query logic. |
 
-## Purpose
+## View Dependency Order
 
-- `1_migrate_server_status_platforms.sql` backfills platform data for older snapshots.
-- `2_create_view-active_failures.sql` creates the reusable view consumed by the dashboard queries.
+```text
+server_status
+    └── job_platforms        (derives platform_os / platform_arch from os_name + job_name)
+            └── active_failures   (uses job_platforms for platform labels)
 
-## Pre-migration schema
-
-The schema below is the shape used before the platform normalization migration. It is included here so the migration history is explicit and easy to audit.
-
-```sql
-CREATE TABLE IF NOT EXISTS server_status(
-    job_name TEXT PRIMARY KEY NOT NULL,
-    server_status TEXT,
-    release TEXT,
-    os_name TEXT,
-    project TEXT,
-    domain TEXT
-);
-```
-
-## Target schema
-
-After the migration, `server_status` also stores normalized platform columns so downstream queries do not need to parse `job_name` repeatedly.
-
-```sql
-CREATE TABLE IF NOT EXISTS server_status(
-    job_name TEXT PRIMARY KEY NOT NULL,
-    server_status TEXT,
-    release TEXT,
-    os_name TEXT,
-    platform_os TEXT,
-    platform_arch TEXT,
-    project TEXT,
-    domain TEXT
-);
-```
-
-## Notes
-
-- Apply the scripts in order. The migration script expects the base table to exist before it runs.
-- Use the scripts in this folder for the migration path. The dashboard query files outside this folder consume the resulting schema and view.
-- When testing locally, run the scripts against a copy of the database first.
+test_fail_issues
+    └── issue_links          (best non-obliviated GitHub issue per test/package/job)
