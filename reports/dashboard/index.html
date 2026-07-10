@@ -354,6 +354,115 @@
       position: sticky;
       top: 0;
       z-index: 1;
+      overflow: visible;
+    }
+
+    th.th-with-tooltip:hover,
+    th.th-with-tooltip:focus-within {
+      z-index: 4;
+    }
+
+    .th-content {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .th-help {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      border: 1px solid #31527f;
+      background: rgba(51, 164, 255, 0.1);
+      color: #8fc7ff;
+      font-family: var(--sans);
+      font-size: 0.64rem;
+      font-weight: 700;
+      line-height: 1;
+      text-transform: none;
+      cursor: help;
+      outline: none;
+      z-index: 0;
+    }
+
+    .th-help:focus-visible {
+      box-shadow: 0 0 0 3px rgba(51, 164, 255, 0.16);
+    }
+
+    .th-help:hover,
+    .th-help:focus-visible {
+      z-index: 10;
+    }
+
+    .th-tooltip {
+      position: absolute;
+      left: 50%;
+      top: calc(100% + 10px);
+      transform: translateX(-50%);
+      width: min(280px, calc(100vw - 48px));
+      padding: 10px 12px;
+      border: 1px solid #2b4268;
+      border-radius: 8px;
+      background: #0b1425;
+      color: #cfe0ff;
+      font-family: var(--sans);
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: normal;
+      line-height: 1.45;
+      text-transform: none;
+      white-space: normal;
+      box-shadow: 0 16px 36px rgba(1, 8, 21, 0.42);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 140ms ease;
+      z-index: 5;
+    }
+
+    .th-tooltip.align-start {
+      left: -6px;
+      transform: none;
+    }
+
+    .th-tooltip.align-end {
+      left: auto;
+      right: -6px;
+      transform: none;
+    }
+
+    .th-tooltip::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: -5px;
+      width: 10px;
+      height: 10px;
+      background: #0b1425;
+      border-left: 1px solid #2b4268;
+      border-top: 1px solid #2b4268;
+      transform: translateX(-50%) rotate(45deg);
+    }
+
+    .th-tooltip.align-start::before {
+      left: 22px;
+      transform: rotate(45deg);
+    }
+
+    .th-tooltip.align-end::before {
+      left: auto;
+      right: 22px;
+      transform: rotate(45deg);
+    }
+
+    .th-help:hover .th-tooltip,
+    .th-help:focus-visible .th-tooltip {
+      opacity: 1;
+      visibility: visible;
     }
 
     tbody tr:hover {
@@ -588,7 +697,7 @@
     }
 
     .modal-card {
-      width: min(700px, 100%);
+      width: min(860px, 100%);
       border: 1px solid #2b4268;
       border-radius: 12px;
       background: linear-gradient(180deg, #121d32 0%, #0f1728 100%);
@@ -638,52 +747,104 @@
     }
 
     .modal-body {
-      padding: 14px 16px 16px;
+      padding: 18px 20px 20px;
     }
 
-    .chart-wrap {
-      border: 1px solid #2a3f63;
-      border-radius: 10px;
-      background: #0b1425;
-      padding: 10px;
+    .history-panel {
+      display: grid;
+      gap: 14px;
+    }
+
+    .history-kicker {
+      margin: 0;
+      color: #7f97bd;
+      font-size: 0.84rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .history-card {
+      border: 1px solid #24385c;
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(10, 17, 33, 0.98) 0%, rgba(8, 14, 28, 0.96) 100%);
+      padding: 18px 18px 16px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
       overflow-x: auto;
     }
 
-    .chart {
-      width: 100%;
-      height: 220px;
-      min-width: 560px;
-      display: block;
-    }
-
-    .chart path.track {
-      stroke: rgba(123, 166, 227, 0.3);
-      stroke-width: 2;
-      fill: none;
-    }
-
-    .chart path.link {
-      stroke: rgba(111, 144, 193, 0.35);
-      stroke-width: 1;
-      fill: none;
-    }
-
-    .chart circle.pass {
-      fill: #28cb6d;
-    }
-
-    .chart circle.fail {
-      fill: #ff5176;
-    }
-
-    .chart circle.missing {
-      fill: #6b82a9;
-    }
-
-    .chart text {
-      fill: #5f79a6;
+    .history-card-title {
+      margin: 0 0 14px;
+      color: #78a7e2;
       font-family: var(--mono);
-      font-size: 12px;
+      font-size: 0.96rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .history-strip-frame {
+      min-width: 620px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(121, 149, 190, 0.18);
+    }
+
+    .history-strip {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(4px, 1fr);
+      align-items: end;
+      gap: 2px;
+      min-height: 44px;
+    }
+
+    .history-day {
+      height: 40px;
+      border: 0;
+      border-radius: 1px;
+      background: #50627f;
+      padding: 0;
+      margin: 0;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+    }
+
+    .history-day.pass {
+      background: linear-gradient(180deg, #37da7e 0%, #20bc67 100%);
+    }
+
+    .history-day.fail {
+      background: linear-gradient(180deg, #ff688c 0%, #e64971 100%);
+    }
+
+    .history-day.missing {
+      background: linear-gradient(180deg, #607493 0%, #4b5d79 100%);
+    }
+
+    .history-axis {
+      position: relative;
+      height: 18px;
+      margin-top: 8px;
+      color: #6781ac;
+      font-family: var(--mono);
+      font-size: 0.76rem;
+    }
+
+    .history-axis-label {
+      position: absolute;
+      top: 0;
+      transform: translateX(-50%);
+      white-space: nowrap;
+    }
+
+    .history-axis-label:first-child {
+      transform: none;
+    }
+
+    .history-summary {
+      margin: 0;
+      color: #7f97bd;
+      font-family: var(--mono);
+      font-size: 0.78rem;
     }
 
     @keyframes fade-in {
@@ -724,6 +885,14 @@
       .tab-btn {
         padding-left: 8px;
         padding-right: 8px;
+      }
+
+      .modal-body {
+        padding: 16px;
+      }
+
+      .history-card {
+        padding: 14px;
       }
     }
   </style>
@@ -981,6 +1150,34 @@
       return issue.assignee || '-';
     }
 
+    const COLUMN_TOOLTIPS = {
+      testName: 'Name of the test that failed. Grouped rows can be expanded to inspect the individual tests.',
+      package: 'Package associated with the failing test or grouped regression.',
+      platforms: 'Operating system and architecture combinations where the regression was observed.',
+      age: 'Number of consecutive failing builds for this consistent regression.',
+      knownIssue: 'Issue already linked to this regression, when one is known.',
+      history: 'Opens the 90-day pass/fail history for the selected test.',
+      suspectCommits: 'VCS difference between the last passing and first failing build where this regression was seen. These commits may not contain the actual failure cause.',
+      failRate: 'Percentage of failing runs in the recent flaky-test sample window.',
+      issue: 'Tracked issue title or identifier.',
+      status: 'Current state of the tracked issue.',
+      priority: 'Numeric priority currently assigned to the issue.',
+      assignee: 'Current owner of the tracked issue, if one is assigned.',
+      lastActivity: 'Most recent activity date recorded on the issue.',
+      lastInBuild: 'Most recent build date where the linked issue was still observed in the dashboard data.',
+    };
+
+    function renderHeaderCell(label, tooltip, align) {
+      if (!tooltip) {
+        return '<th>' + escapeHtml(label) + '</th>';
+      }
+      const alignment = align || 'center';
+      return '<th class="th-with-tooltip"><span class="th-content">' +
+        '<span>' + escapeHtml(label) + '</span>' +
+        '<span class="th-help" tabindex="0" aria-label="About ' + escapeHtml(label) + '">i<span class="th-tooltip align-' + escapeHtml(alignment) + '" role="tooltip">' + escapeHtml(tooltip) + '</span></span>' +
+      '</span></th>';
+    }
+
     function renderHistoryButton(testName, historyMap) {
       const history = historyMap[testName] || [];
       if (!history.length) {
@@ -1114,13 +1311,13 @@
 
       return '<table>' +
         '<thead><tr>' +
-          '<th>Test Name</th>' +
-          '<th>Package</th>' +
-          '<th>Platforms</th>' +
-          '<th>Age</th>' +
-          '<th>Known Issue</th>' +
-          '<th>History</th>' +
-          '<th>Suspect Commits</th>' +
+          renderHeaderCell('Test Name', COLUMN_TOOLTIPS.testName, 'start') +
+          renderHeaderCell('Package', COLUMN_TOOLTIPS.package, 'start') +
+          renderHeaderCell('Platforms', COLUMN_TOOLTIPS.platforms) +
+          renderHeaderCell('Age', COLUMN_TOOLTIPS.age) +
+          renderHeaderCell('Known Issue', COLUMN_TOOLTIPS.knownIssue) +
+          renderHeaderCell('History', COLUMN_TOOLTIPS.history) +
+          renderHeaderCell('Suspect Commits', COLUMN_TOOLTIPS.suspectCommits, 'end') +
         '</tr></thead>' +
         '<tbody>' + body + '</tbody>' +
       '</table>';
@@ -1212,13 +1409,13 @@
 
       return '<table>' +
         '<thead><tr>' +
-          '<th>Test Name</th>' +
-          '<th>Package</th>' +
-          '<th>Platforms</th>' +
-          '<th>Fail Rate</th>' +
-          '<th>Known Issue</th>' +
-          '<th>History</th>' +
-          '<th>Suspect Commits</th>' +
+          renderHeaderCell('Test Name', COLUMN_TOOLTIPS.testName, 'start') +
+          renderHeaderCell('Package', COLUMN_TOOLTIPS.package, 'start') +
+          renderHeaderCell('Platforms', COLUMN_TOOLTIPS.platforms) +
+          renderHeaderCell('Fail Rate', COLUMN_TOOLTIPS.failRate) +
+          renderHeaderCell('Known Issue', COLUMN_TOOLTIPS.knownIssue) +
+          renderHeaderCell('History', COLUMN_TOOLTIPS.history) +
+          renderHeaderCell('Suspect Commits', COLUMN_TOOLTIPS.suspectCommits, 'end') +
         '</tr></thead>' +
         '<tbody>' + body + '</tbody>' +
       '</table>';
@@ -1246,12 +1443,12 @@
 
       return '<table>' +
         '<thead><tr>' +
-          '<th>Issue</th>' +
-          '<th>Status</th>' +
-          '<th>Priority</th>' +
-          '<th>Assignee</th>' +
-          '<th>Last Activity</th>' +
-          '<th>Last In Build</th>' +
+          renderHeaderCell('Issue', COLUMN_TOOLTIPS.issue, 'start') +
+          renderHeaderCell('Status', COLUMN_TOOLTIPS.status) +
+          renderHeaderCell('Priority', COLUMN_TOOLTIPS.priority) +
+          renderHeaderCell('Assignee', COLUMN_TOOLTIPS.assignee) +
+          renderHeaderCell('Last Activity', COLUMN_TOOLTIPS.lastActivity) +
+          renderHeaderCell('Last In Build', COLUMN_TOOLTIPS.lastInBuild, 'end') +
         '</tr></thead>' +
         '<tbody>' + body + '</tbody>' +
       '</table>';
@@ -1321,45 +1518,49 @@
         return '<div class="empty">No history available for this test.</div>';
       }
 
-      const width = Math.max(560, history.length * 12);
-      const height = 200;
-      const margin = { top: 22, right: 16, bottom: 32, left: 30 };
-      const plotWidth = width - margin.left - margin.right;
-      const plotHeight = height - margin.top - margin.bottom;
-      const points = history.map((item, index) => {
-        const x = margin.left + (plotWidth * (index / Math.max(history.length - 1, 1)));
+      const bars = history.map((item) => {
         const value = item.result;
-        const y = value === 1 ? margin.top + 16 : value === 0 ? margin.top + plotHeight - 16 : margin.top + (plotHeight / 2);
         const state = value === 1 ? 'pass' : value === 0 ? 'fail' : 'missing';
-        return { x: x, y: y, state: state, date: item.date || 'unknown' };
+        const label = (item.date || 'unknown') + ' ' + state;
+        return '<div class="history-day ' + state + '" title="' + escapeHtml(label) + '" aria-label="' + escapeHtml(label) + '"></div>';
+      }).join('');
+
+      const monthStarts = [];
+      history.forEach((item, index) => {
+        const parsed = parseDate(item.date);
+        if (!parsed) {
+          return;
+        }
+        const monthKey = String(parsed.getUTCFullYear()) + '-' + String(parsed.getUTCMonth());
+        if (!monthStarts.length || monthStarts[monthStarts.length - 1].key !== monthKey) {
+          monthStarts.push({
+            key: monthKey,
+            index: index,
+            label: parsed.toISOString().slice(0, 7),
+          });
+        }
       });
 
-      const basePath = points.map((point, index) => (index === 0 ? 'M ' : 'L ') + point.x.toFixed(2) + ' ' + point.y.toFixed(2)).join(' ');
-      const links = points.slice(1).map((point, index) => {
-        const prev = points[index];
-        return '<path class="link" d="M ' + prev.x.toFixed(2) + ' ' + prev.y.toFixed(2) + ' L ' + point.x.toFixed(2) + ' ' + point.y.toFixed(2) + '"></path>';
+      const axisLabels = monthStarts.map((item, index) => {
+        const left = history.length === 1 ? 0 : (item.index / (history.length - 1)) * 100;
+        const style = index === 0 ? 'left: 0%;' : 'left: ' + left.toFixed(2) + '%;';
+        return '<span class="history-axis-label" style="' + style + '">' + escapeHtml(item.label) + '</span>';
       }).join('');
 
-      const dots = points.map((point) => {
-        return '<circle class="' + point.state + '" cx="' + point.x.toFixed(2) + '" cy="' + point.y.toFixed(2) + '" r="3.3"><title>' + escapeHtml(point.date + ' ' + point.state) + '</title></circle>';
-      }).join('');
+      const passCount = history.filter((item) => item.result === 1).length;
+      const failCount = history.filter((item) => item.result === 0).length;
+      const missingCount = history.length - passCount - failCount;
 
-      const sampleLabels = history.filter((_, index) => index % Math.ceil(history.length / 6) === 0).slice(0, 6);
-      const xLabels = sampleLabels.map((item, idx) => {
-        const index = history.indexOf(item);
-        const x = margin.left + (plotWidth * (index / Math.max(history.length - 1, 1)));
-        return '<text x="' + x.toFixed(2) + '" y="' + (height - 10) + '" text-anchor="middle">' + escapeHtml(item.date || '') + '</text>';
-      }).join('');
-
-      return '<div class="chart-wrap">' +
-        '<svg class="chart" viewBox="0 0 ' + width + ' ' + height + '" preserveAspectRatio="none" aria-label="History chart for ' + escapeHtml(testName) + '">' +
-          '<text x="4" y="' + (margin.top + 6) + '">pass</text>' +
-          '<text x="4" y="' + (margin.top + plotHeight - 6) + '">fail</text>' +
-          '<path class="track" d="' + basePath + '"></path>' +
-          links +
-          dots +
-          xLabels +
-        '</svg>' +
+      return '<div class="history-panel">' +
+        '<p class="history-kicker">Details</p>' +
+        '<div class="history-card">' +
+          '<h4 class="history-card-title">90D History</h4>' +
+          '<div class="history-strip-frame" aria-label="History chart for ' + escapeHtml(testName) + '">' +
+            '<div class="history-strip">' + bars + '</div>' +
+            '<div class="history-axis">' + axisLabels + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<p class="history-summary">Pass: ' + escapeHtml(String(passCount)) + ' | Fail: ' + escapeHtml(String(failCount)) + ' | Missing: ' + escapeHtml(String(missingCount)) + '</p>' +
       '</div>';
     }
 
