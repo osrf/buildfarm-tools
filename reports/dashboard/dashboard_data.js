@@ -1,5 +1,5 @@
 window.DASHBOARD_DATA = {
-  "generated_at": "2026-07-10T16:16:04Z",
+  "generated_at": "2026-07-10T17:01:19Z",
   "known_issues": [
     {
       "assignee": null,
@@ -7,7 +7,6 @@ window.DASHBOARD_DATA = {
       "last_activity_date": "2026-06-26",
       "last_seen_in_build_date": "2026-06-26",
       "priority": 0.98,
-      "stale": 0,
       "status": "NOT ASSIGNED",
       "title": "gazebosim/gz-physics#1018"
     },
@@ -17,7 +16,6 @@ window.DASHBOARD_DATA = {
       "last_activity_date": "2026-06-26",
       "last_seen_in_build_date": "2026-07-10",
       "priority": 0.475,
-      "stale": 0,
       "status": "INVESTIGATING",
       "title": "ros2/rviz#1809"
     },
@@ -27,7 +25,6 @@ window.DASHBOARD_DATA = {
       "last_activity_date": "2026-06-23",
       "last_seen_in_build_date": "2026-07-10",
       "priority": 0.9,
-      "stale": 0,
       "status": "INVESTIGATING",
       "title": "ros2/rmw_connextdds#242"
     },
@@ -37,7 +34,6 @@ window.DASHBOARD_DATA = {
       "last_activity_date": "2026-05-19",
       "last_seen_in_build_date": "2026-07-10",
       "priority": 0.9,
-      "stale": 0,
       "status": "NOT ASSIGNED",
       "title": "ros2/ros2cli#1229"
     },
@@ -47,7 +43,6 @@ window.DASHBOARD_DATA = {
       "last_activity_date": "2026-05-13",
       "last_seen_in_build_date": "2026-07-10",
       "priority": 3.598,
-      "stale": 0,
       "status": "NOT ASSIGNED",
       "title": "ros2/rmw_cyclonedds#583"
     },
@@ -57,7 +52,6 @@ window.DASHBOARD_DATA = {
       "last_activity_date": "2026-05-11",
       "last_seen_in_build_date": "2026-07-10",
       "priority": 0.025,
-      "stale": 0,
       "status": "INVESTIGATING",
       "title": "ros2/ros2cli#1129"
     },
@@ -67,7 +61,6 @@ window.DASHBOARD_DATA = {
       "last_activity_date": "2026-04-29",
       "last_seen_in_build_date": "2026-06-27",
       "priority": 0.308,
-      "stale": 0,
       "status": "NOT ASSIGNED",
       "title": "ros2/rmw_zenoh#972"
     },
@@ -77,7 +70,6 @@ window.DASHBOARD_DATA = {
       "last_activity_date": "2026-04-06",
       "last_seen_in_build_date": "2026-07-10",
       "priority": 1.764,
-      "stale": 0,
       "status": "INVESTIGATING",
       "title": "ros2/demos#693"
     },
@@ -87,7 +79,6 @@ window.DASHBOARD_DATA = {
       "last_activity_date": "2026-04-06",
       "last_seen_in_build_date": "2026-07-06",
       "priority": 0.955,
-      "stale": 0,
       "status": "NOT ASSIGNED",
       "title": "ros2/rclpy#1480"
     },
@@ -97,7 +88,6 @@ window.DASHBOARD_DATA = {
       "last_activity_date": "2026-04-06",
       "last_seen_in_build_date": "2026-07-06",
       "priority": 0.05,
-      "stale": 0,
       "status": "INVESTIGATING",
       "title": "ros2/rmw_connextdds#136"
     },
@@ -107,7 +97,6 @@ window.DASHBOARD_DATA = {
       "last_activity_date": "2026-03-17",
       "last_seen_in_build_date": "2026-07-10",
       "priority": 1.427,
-      "stale": 0,
       "status": "INVESTIGATING",
       "title": "ros2/rmw_connextdds#220"
     },
@@ -117,7 +106,6 @@ window.DASHBOARD_DATA = {
       "last_activity_date": "2024-11-12",
       "last_seen_in_build_date": "2026-06-29",
       "priority": 0.218,
-      "stale": 0,
       "status": "INVESTIGATING",
       "title": "ros2/rcl#1162"
     },
@@ -127,7 +115,6 @@ window.DASHBOARD_DATA = {
       "last_activity_date": null,
       "last_seen_in_build_date": "2026-06-23",
       "priority": 0.211,
-      "stale": 0,
       "status": "NOT ASSIGNED",
       "title": "ros-perception/image_common#358"
     }
