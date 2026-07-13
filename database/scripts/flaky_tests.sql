@@ -98,10 +98,10 @@ LEFT JOIN (
 ) il
   ON il.test_name = fc.test_name
  AND il.package = fc.package
-LEFT JOIN (
-  SELECT DISTINCT test_name
-  FROM active_failures
-) atn
-  ON atn.test_name = fc.test_name
-WHERE atn.test_name IS NULL
+WHERE NOT EXISTS (
+  SELECT 1
+  FROM active_failures af
+  WHERE af.test_name = fc.test_name
+    AND af.package = fc.package
+)
 ORDER BY fc.failure_count DESC, fc.fail_rate_pct DESC, fc.test_name ASC;
