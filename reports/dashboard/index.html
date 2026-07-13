@@ -475,7 +475,8 @@
       font-size: 0.88rem;
       font-weight: 500;
       line-height: 1.4;
-      max-width: 380px;
+      min-width: 240px;
+      max-width: 520px;
       word-break: break-word;
     }
 
@@ -698,11 +699,14 @@
 
     .modal-card {
       width: min(860px, 100%);
+      max-height: calc(100vh - 40px);
       border: 1px solid #2b4268;
       border-radius: 12px;
       background: linear-gradient(180deg, #121d32 0%, #0f1728 100%);
       box-shadow: 0 24px 70px rgba(0, 0, 0, 0.48);
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
 
     .modal-head {
@@ -748,6 +752,8 @@
 
     .modal-body {
       padding: 18px 20px 20px;
+      overflow-y: auto;
+      flex: 1;
     }
 
     .history-panel {
@@ -1010,6 +1016,19 @@
     </article>
   </section>
 
+  <section class="modal" id="suspects-modal" aria-hidden="true">
+    <article class="modal-card" role="dialog" aria-modal="true" aria-labelledby="suspects-title">
+      <header class="modal-head">
+        <div>
+          <h3 class="modal-title" id="suspects-title">Suspect Commits</h3>
+          <p class="modal-subtitle" id="suspects-subtitle">Commits between last passing and first failing build</p>
+        </div>
+        <button class="close-btn" id="close-suspects" aria-label="Close">x</button>
+      </header>
+      <div class="modal-body" id="suspects-body"></div>
+    </article>
+  </section>
+
   <script src="dashboard_data.js"></script>
   <script>
     function escapeHtml(value) {
@@ -1194,20 +1213,9 @@
       if (!suspects.length) {
         return '<span class="muted">No suspect commits</span>';
       }
-
-      const first = suspects[0];
-      let html = '<div class="suspect-block">';
-      if (first.compare_url) {
-        html += '<a class="suspect-link" href="' + escapeHtml(first.compare_url) + '" target="_blank" rel="noreferrer">Compare on GitHub</a>';
-      }
-      html += suspects.slice(0, 4).map((suspect) => {
-        const shaA = String(suspect.last_success_sha || '').slice(0, 7);
-        const shaB = String(suspect.first_failure_sha || '').slice(0, 7);
-        const repo = suspect.repo || 'repo';
-        return '<div class="suspect-line">' + escapeHtml(repo + ' ' + shaA + '..' + shaB) + '</div>';
-      }).join('');
-      html += '</div>';
-      return html;
+      const testName = row.test_name || '';
+      const label = suspects.length + ' repo' + (suspects.length !== 1 ? 's' : '');
+      return '<button class="history-btn suspects-btn" data-test-name="' + escapeHtml(testName) + '" data-suspects="' + escapeHtml(JSON.stringify(suspects)) + '">' + escapeHtml(label) + '</button>';
     }
 
     function renderConsistentTable(rows, historyMap) {
@@ -1564,6 +1572,28 @@
       '</div>';
     }
 
+    function buildSuspectsModalContent(suspects) {
+      if (!suspects || !suspects.length) {
+        return '<div class="empty">No suspect commits available.</div>';
+      }
+      const items = suspects.map((suspect) => {
+        const repo = suspect.repo || 'unknown';
+        const shaA = String(suspect.last_success_sha || '').slice(0, 7);
+        const shaB = String(suspect.first_failure_sha || '').slice(0, 7);
+        const compareUrl = suspect.compare_url;
+        let html = '<div class="history-card">';
+        html += '<h4 class="history-card-title">' + escapeHtml(repo) + '</h4>';
+        html += '<div style="display:grid;gap:8px;">';
+        html += '<div class="suspect-line">' + escapeHtml(shaA + '..' + shaB) + '</div>';
+        if (compareUrl) {
+          html += '<a class="suspect-link" href="' + escapeHtml(compareUrl) + '" target="_blank" rel="noreferrer">View comparison on GitHub →</a>';
+        }
+        html += '</div></div>';
+        return html;
+      }).join('');
+      return '<div class="history-panel"><p class="history-kicker">Suspect Repositories</p>' + items + '</div>';
+    }
+
     function setupTabs() {
       const tabs = document.querySelectorAll('.tab-btn');
       const regressionView = document.getElementById('view-regressions');
@@ -1612,7 +1642,7 @@
       });
 
       document.body.addEventListener('click', (event) => {
-        const button = event.target.closest('.history-btn');
+        const button = event.target.closest('.history-btn:not(.suspects-btn)');
         if (!button) {
           return;
         }
@@ -1621,6 +1651,46 @@
         title.textContent = testName;
         subtitle.textContent = '90-day pass/fail history';
         body.innerHTML = buildHistoryModalChart(testName, history);
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+      });
+    }
+
+    function setupSuspectsModal() {
+      const modal = document.getElementById('suspects-modal');
+      const closeButton = document.getElementById('close-suspects');
+      const title = document.getElementById('suspects-title');
+      const subtitle = document.getElementById('suspects-subtitle');
+      const body = document.getElementById('suspects-body');
+
+      function close() {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+
+      closeButton.addEventListener('click', close);
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+          close();
+        }
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          close();
+        }
+      });
+
+      document.body.addEventListener('click', (event) => {
+        const button = event.target.closest('.suspects-btn');
+        if (!button) {
+          return;
+        }
+        const testName = button.dataset.testName;
+        const suspects = JSON.parse(button.dataset.suspects || '[]');
+        title.textContent = testName;
+        subtitle.textContent = 'Commits between last passing and first failing build';
+        body.innerHTML = buildSuspectsModalContent(suspects);
         modal.classList.add('open');
         modal.setAttribute('aria-hidden', 'false');
       });
@@ -1717,6 +1787,7 @@
 
       setupTabs();
       setupHistoryModal(historyMap);
+      setupSuspectsModal();
       renderRegressions();
       renderIssues();
     }
