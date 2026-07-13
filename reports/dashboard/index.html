@@ -1241,8 +1241,13 @@
         if (items.length === 1) {
           return escapeHtml(items[0].test_name);
         }
+        const groupLabel = row.job_names && row.job_names.length
+          ? (row.job_names.length === 1
+            ? row.job_names[0]
+            : row.job_names[0] + ' +' + String(row.job_names.length - 1) + ' jobs')
+          : (row.job_name || items[0].job_name || items[0].test_name);
         return renderDetails(
-          escapeHtml(row.job_name || items[0].job_name || items[0].test_name) + '<span class="group-badge">' + escapeHtml(String(items.length)) + ' tests</span>',
+          escapeHtml(groupLabel) + '<span class="group-badge">' + escapeHtml(String(items.length)) + ' tests</span>',
           items.map((item) => escapeHtml(item.test_name))
         );
       }

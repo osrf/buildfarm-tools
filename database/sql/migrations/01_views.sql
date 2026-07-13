@@ -75,6 +75,8 @@ failure_events AS (
         ON jp.job_name = tf.job_name
     WHERE bs.build_datetime IS NOT NULL
       AND bs.build_datetime >= tw.window_90d
+            AND bs.status IN ('SUCCESS', 'UNSTABLE')
+            AND (COALESCE(bs.passed, 0) + COALESCE(bs.failures, 0) + COALESCE(bs.skipped, 0)) > 0
 ),
 latest_failure_per_job AS (
     SELECT
@@ -125,42 +127,4 @@ LEFT JOIN passes_in_last_3_days p
    AND p.package = lf.package
    AND p.job_name = lf.job_name
 WHERE p.test_name IS NULL
-  AND lf.consecutive_failures >= 2
-
-UNION
-
-SELECT DISTINCT
-    hf.test_name,
-    hf.package,
-    hf.job_name,
-    hf.build_date,
-    hf.failure_count AS consecutive_failures,
-    jp.platform_os AS os,
-    jp.platform_arch AS arch
-FROM (
-    SELECT
-        tf.error_name AS test_name,
-        tf.package_name AS package,
-        tf.job_name,
-        date(MAX(bs.build_datetime)) AS build_date,
-        COUNT(DISTINCT tf.build_number) AS failure_count,
-        (
-            SELECT COUNT(DISTINCT bs2.build_number)
-            FROM build_status bs2
-            WHERE bs2.job_name = tf.job_name
-              AND bs2.build_datetime IS NOT NULL
-              AND datetime(bs2.build_datetime) >= datetime('now', '-20 days')
-              AND (COALESCE(bs2.passed, 0) + COALESCE(bs2.failures, 0) + COALESCE(bs2.skipped, 0)) > 0
-        ) AS total_runs
-    FROM test_failures tf
-    JOIN build_status bs
-        ON bs.job_name = tf.job_name
-       AND bs.build_number = tf.build_number
-    WHERE bs.build_datetime IS NOT NULL
-      AND datetime(bs.build_datetime) >= datetime('now', '-20 days')
-    GROUP BY tf.error_name, tf.package_name, tf.job_name
-    HAVING COUNT(DISTINCT tf.build_number) >= 3
-) hf
-LEFT JOIN job_platforms jp ON jp.job_name = hf.job_name
-WHERE hf.total_runs > 0
-  AND ROUND(100.0 * hf.failure_count / hf.total_runs, 2) >= 75.0;
+    AND lf.consecutive_failures >= 3;

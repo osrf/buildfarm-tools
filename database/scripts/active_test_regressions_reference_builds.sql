@@ -80,11 +80,12 @@ first_failure AS (
     lf.consecutive_failures
 ),
 first_failure_dates AS (
-  -- Resolve the calendar date of the first failing build for age display.
+  -- Resolve first failing build datetime for ordering and date display.
   SELECT
     ff.test_name,
     ff.package,
     ff.job_name,
+    bs.build_datetime AS first_failure_datetime,
     date(bs.build_datetime) AS first_failure_date
   FROM first_failure ff
   JOIN build_status bs
@@ -108,7 +109,7 @@ last_success AS (
    AND tf.package_name = ff.package
    AND tf.job_name = bs.job_name
    AND tf.build_number = bs.build_number
-  WHERE (COALESCE(bs.passed, 0) + COALESCE(bs.failures, 0) + COALESCE(bs.skipped, 0)) > 0
+  WHERE bs.status IN ('SUCCESS', 'FAILURE', 'UNSTABLE')
     AND tf.error_name IS NULL
   GROUP BY ff.test_name, ff.package, ff.job_name, ff.first_failure_build
 )
@@ -120,6 +121,8 @@ SELECT
   ff.first_failure_build,
   ls.last_success_build,
   ff.latest_failure_build,
+  ffd.first_failure_datetime,
+  lss.build_datetime AS last_success_datetime,
   date(ff.latest_failure_datetime)  AS last_failure_date,
   ffd.first_failure_date,
   json_array(
@@ -136,6 +139,9 @@ LEFT JOIN last_success ls
  AND ls.package = ff.package
  AND ls.job_name = ff.job_name
  AND ls.first_failure_build = ff.first_failure_build
+LEFT JOIN build_status lss
+  ON lss.job_name = ff.job_name
+ AND lss.build_number = ls.last_success_build
 LEFT JOIN job_platforms jp
   ON jp.job_name = ff.job_name
 LEFT JOIN issue_links il

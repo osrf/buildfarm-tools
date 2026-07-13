@@ -17,6 +17,7 @@ WITH failure_runs_20 AS (
     ON jp.job_name = tf.job_name
   WHERE bs.build_datetime IS NOT NULL
     AND datetime(bs.build_datetime) >= datetime('now', '-20 days')
+    AND bs.status IN ('SUCCESS', 'FAILURE', 'UNSTABLE')
 ),
 candidate_jobs AS (
   SELECT DISTINCT
@@ -37,7 +38,7 @@ runs_20 AS (
     ON bs.job_name = cj.job_name
   WHERE bs.build_datetime IS NOT NULL
     AND datetime(bs.build_datetime) >= datetime('now', '-20 days')
-    AND (COALESCE(bs.passed, 0) + COALESCE(bs.failures, 0) + COALESCE(bs.skipped, 0)) > 0
+    AND bs.status IN ('SUCCESS', 'FAILURE', 'UNSTABLE')
 ),
 counts AS (
   SELECT
