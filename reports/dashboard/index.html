@@ -1252,13 +1252,94 @@
       return '<button class="history-btn suspects-btn" data-test-name="' + escapeHtml(testName) + '" data-suspects="' + escapeHtml(JSON.stringify(suspects)) + '">' + escapeHtml(label) + '</button>';
     }
 
+    function groupedTestsFromRow(row) {
+      return row.grouped_tests && row.grouped_tests.length ? row.grouped_tests : [row];
+    }
+
+    function mergeAffectedPlatforms(items) {
+      const uniquePlatforms = new Map();
+      items.forEach((item) => {
+        const platforms = item.affected_platforms || [];
+        platforms.forEach((platform) => {
+          const os = platform && platform.os ? platform.os : 'unknown';
+          const arch = platform && platform.arch ? platform.arch : 'unknown';
+          const key = os + '::' + arch;
+          if (!uniquePlatforms.has(key)) {
+            uniquePlatforms.set(key, { os: os, arch: arch });
+          }
+        });
+      });
+      return [...uniquePlatforms.values()];
+    }
+
+    function groupConsistentRowsByKnownIssue(rows) {
+      const passthroughRows = [];
+      const groupedByIssue = new Map();
+
+      rows.forEach((row) => {
+        const items = groupedTestsFromRow(row);
+        const issueLinks = uniqSorted(items.map((item) => item.linked_issue).filter(Boolean));
+
+        if (issueLinks.length !== 1) {
+          passthroughRows.push(row);
+          return;
+        }
+
+        const issueLink = issueLinks[0];
+        if (!groupedByIssue.has(issueLink)) {
+          groupedByIssue.set(issueLink, []);
+        }
+        groupedByIssue.get(issueLink).push(row);
+      });
+
+      const collapsedRows = [];
+      groupedByIssue.forEach((issueRows, issueLink) => {
+        if (issueRows.length === 1) {
+          collapsedRows.push(issueRows[0]);
+          return;
+        }
+
+        const mergedItemsByKey = new Map();
+        issueRows.forEach((row) => {
+          groupedTestsFromRow(row).forEach((item) => {
+            const dedupeKey = [
+              item.test_name || '',
+              item.package || '',
+              item.job_name || '',
+              String(item.consecutive_failures || ''),
+              item.linked_issue || '',
+            ].join('::');
+            if (!mergedItemsByKey.has(dedupeKey)) {
+              mergedItemsByKey.set(dedupeKey, item);
+            }
+          });
+        });
+
+        const mergedItems = [...mergedItemsByKey.values()];
+        const representative = issueRows[0];
+        const maxConsecutiveFailures = mergedItems.reduce(
+          (acc, item) => Math.max(acc, Number(item.consecutive_failures || 0)),
+          0
+        );
+        const jobNames = uniqSorted(mergedItems.map((item) => item.job_name).filter(Boolean));
+
+        collapsedRows.push(Object.assign({}, representative, {
+          _known_issue_group: true,
+          linked_issue: issueLink,
+          grouped_tests: mergedItems,
+          group_size: mergedItems.length,
+          job_names: jobNames,
+          affected_platforms: mergeAffectedPlatforms(mergedItems),
+          consecutive_failures: maxConsecutiveFailures,
+        }));
+      });
+
+      return passthroughRows.concat(collapsedRows);
+    }
+
     function renderConsistentTable(rows, historyMap) {
       if (!rows.length) {
         return '<div class="empty">No consistent regressions match the current filters.</div>';
-      }
-
-      function groupItems(row) {
-        return row.grouped_tests && row.grouped_tests.length ? row.grouped_tests : [row];
       }
 
       function renderDetails(summary, items) {
@@ -1272,6 +1353,15 @@
       }
 
       function renderGroupedConsistentTestsCell(row, items) {
+        if (row._known_issue_group) {
+          const uniqueTestNames = uniqSorted(items.map((item) => item.test_name || 'unknown'));
+          const summary = String(uniqueTestNames.length) + ' test regression' + (uniqueTestNames.length === 1 ? '' : 's');
+          return renderDetails(
+            escapeHtml(summary),
+            uniqueTestNames.map((testName) => escapeHtml(testName))
+          );
+        }
+
         if (items.length === 1) {
           return escapeHtml(items[0].test_name);
         }
@@ -1361,7 +1451,7 @@
       }
 
       const body = rows.map((row) => {
-        const items = groupItems(row);
+        const items = groupedTestsFromRow(row);
         const age = Number(row.consecutive_failures || 0);
         const ageText = age ? String(age) : 'n/a';
         const ageClass = severityClassFromDays(age);
@@ -1775,7 +1865,9 @@
       const historyMap = data.test_history || {};
 
       const normalized = normalizeRegressions(consistentRaw, flakyRaw);
-      const consistentRows = normalized.consistentRows.slice().sort((a, b) => (b.consecutive_failures || 0) - (a.consecutive_failures || 0));
+      const consistentRows = groupConsistentRowsByKnownIssue(normalized.consistentRows)
+        .slice()
+        .sort((a, b) => (b.consecutive_failures || 0) - (a.consecutive_failures || 0));
       const flakyRows = normalized.flakyRows.slice().sort((a, b) => {
         const rateDiff = (b.fail_rate_pct || 0) - (a.fail_rate_pct || 0);
         return rateDiff !== 0 ? rateDiff : (b.failure_count || 0) - (a.failure_count || 0);
