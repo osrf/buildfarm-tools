@@ -939,7 +939,7 @@
             <select id="regression-project"></select>
           </div>
           <div class="field">
-            <label for="regression-distro">Distro</label>
+            <label for="regression-distro">OS Distro</label>
             <select id="regression-distro"></select>
           </div>
           <div class="field">
@@ -1169,6 +1169,40 @@
       return issue.assignee || '-';
     }
 
+    function normalizeProjectFilterParam(value) {
+      const normalized = String(value || '').trim().toLowerCase();
+      if (normalized === 'gazebo') {
+        return 'Gazebo';
+      }
+      if (normalized === 'ros') {
+        return 'ROS';
+      }
+      return null;
+    }
+
+    function readProjectFilterFromUrl() {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        return normalizeProjectFilterParam(params.get('project'));
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function updateProjectFilterInUrl(project) {
+      try {
+        const url = new URL(window.location.href);
+        if (!project || project === 'all') {
+          url.searchParams.delete('project');
+        } else {
+          url.searchParams.set('project', project.toLowerCase());
+        }
+        window.history.replaceState(null, '', url.toString());
+      } catch (error) {
+        // Ignore URL update failures (for example, unsupported environments).
+      }
+    }
+
     const COLUMN_TOOLTIPS = {
       testName: 'Name of the test that failed. Grouped rows can be expanded to inspect the individual tests.',
       package: 'Package associated with the failing test or grouped regression.',
@@ -1241,6 +1275,14 @@
         if (items.length === 1) {
           return escapeHtml(items[0].test_name);
         }
+        const uniqueTestNames = uniqSorted(items.map((item) => item.test_name || 'unknown'));
+        if (uniqueTestNames.length === 1) {
+          const jobNames = uniqSorted(items.map((item) => item.job_name || 'unknown'));
+          return renderDetails(
+            escapeHtml(uniqueTestNames[0]) + '<span class="group-badge">' + escapeHtml(String(jobNames.length)) + ' jobs</span>',
+            jobNames.map((jobName) => escapeHtml(jobName))
+          );
+        }
         const groupLabel = row.job_names && row.job_names.length
           ? (row.job_names.length === 1
             ? row.job_names[0]
@@ -1278,7 +1320,13 @@
       }
 
       function renderGroupedHistoryCell(items) {
-        const available = items.filter((item) => (historyMap[item.test_name] || []).length);
+        const byTestName = new Map();
+        items.forEach((item) => {
+          if (!byTestName.has(item.test_name)) {
+            byTestName.set(item.test_name, item);
+          }
+        });
+        const available = [...byTestName.values()].filter((item) => (historyMap[item.test_name] || []).length);
         if (!available.length) {
           return '<span class="muted">No history</span>';
         }
@@ -1292,7 +1340,14 @@
       }
 
       function renderGroupedSuspectsCell(items) {
-        const suspectItems = items.filter((item) => item.suspect_commits && item.suspect_commits.length);
+        const uniqueByTestAndSuspects = new Map();
+        items.forEach((item) => {
+          const key = [item.test_name || '', JSON.stringify(item.suspect_commits || [])].join('::');
+          if (!uniqueByTestAndSuspects.has(key)) {
+            uniqueByTestAndSuspects.set(key, item);
+          }
+        });
+        const suspectItems = [...uniqueByTestAndSuspects.values()].filter((item) => item.suspect_commits && item.suspect_commits.length);
         if (!suspectItems.length) {
           return '<span class="muted">No suspect commits</span>';
         }
@@ -1391,7 +1446,13 @@
       }
 
       function renderGroupedHistoryCell(items) {
-        const available = items.filter((item) => (historyMap[item.test_name] || []).length);
+        const byTestName = new Map();
+        items.forEach((item) => {
+          if (!byTestName.has(item.test_name)) {
+            byTestName.set(item.test_name, item);
+          }
+        });
+        const available = [...byTestName.values()].filter((item) => (historyMap[item.test_name] || []).length);
         if (!available.length) {
           return '<span class="muted">No history</span>';
         }
@@ -1734,6 +1795,10 @@
       const allDistros = uniqSorted(normalized.allRows.flatMap((row) => extractPlatforms(row.affected_platforms)));
       setSelectOptions(regressionProjectSelect, withAllOption(allProjects, 'All'));
       setSelectOptions(regressionDistroSelect, withAllOption(allDistros, 'All'));
+      const initialProjectFilter = readProjectFilterFromUrl();
+      if (initialProjectFilter && allProjects.includes(initialProjectFilter)) {
+        regressionProjectSelect.value = initialProjectFilter;
+      }
 
       const issueStatuses = uniqSorted(knownIssues.map((issue) => (issue.status || 'unknown').toLowerCase()));
   const issuePriorities = uniqSorted(knownIssues.map((issue) => formatIssuePriority(issue)));
@@ -1751,6 +1816,7 @@
           distro: regressionDistroSelect.value,
           type: regressionTypeSelect.value,
         };
+        updateProjectFilterInUrl(filters.project);
 
         const consistentFiltered = consistentRows.filter((row) => matchesRegressionFilters(row, filters));
         const flakyFiltered = flakyRows.filter((row) => matchesRegressionFilters(row, filters));
