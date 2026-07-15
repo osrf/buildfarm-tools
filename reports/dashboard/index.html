@@ -1231,12 +1231,17 @@
       '</span></th>';
     }
 
-    function renderHistoryButton(testName, historyMap) {
-      const history = historyMap[testName] || [];
+    function buildHistoryKey(testName, jobName) {
+      return String(testName || '') + '::' + String(jobName || '');
+    }
+
+    function renderHistoryButton(testName, historyMap, jobName) {
+      const historyKey = buildHistoryKey(testName, jobName);
+      const history = historyMap[historyKey] || [];
       if (!history.length) {
         return '<span class="muted">No history</span>';
       }
-      return '<button class="history-btn" data-test-name="' + escapeHtml(testName) + '">90d</button>';
+      return '<button class="history-btn" data-test-name="' + escapeHtml(testName) + '" data-history-key="' + escapeHtml(historyKey) + '">90d</button>';
     }
 
     function renderSuspectColumn(row, isFlaky) {
@@ -1417,15 +1422,19 @@
           }
         });
         const available = [...byTestName.values()].filter((item) => (historyMap[item.test_name] || []).length);
-        if (!available.length) {
+        const availableWithHistory = [...byTestName.values()].filter((item) => {
+          const historyKey = buildHistoryKey(item.test_name, item.job_name);
+          return (historyMap[historyKey] || []).length;
+        });
+        if (!availableWithHistory.length) {
           return '<span class="muted">No history</span>';
         }
-        if (available.length === 1) {
-          return renderHistoryButton(available[0].test_name, historyMap);
+        if (availableWithHistory.length === 1) {
+          return renderHistoryButton(availableWithHistory[0].test_name, historyMap, availableWithHistory[0].job_name);
         }
         return renderDetails(
-          escapeHtml(available[0].test_name) + '<span class="group-badge">+' + escapeHtml(String(available.length - 1)) + ' more</span>',
-          available.map((item) => escapeHtml(item.test_name) + ' ' + renderHistoryButton(item.test_name, historyMap))
+          escapeHtml(availableWithHistory[0].test_name) + '<span class="group-badge">+' + escapeHtml(String(availableWithHistory.length - 1)) + ' more</span>',
+          availableWithHistory.map((item) => escapeHtml(item.test_name) + ' ' + renderHistoryButton(item.test_name, historyMap, item.job_name))
         );
       }
 
@@ -1547,11 +1556,11 @@
           return '<span class="muted">No history</span>';
         }
         if (available.length === 1) {
-          return renderHistoryButton(available[0].test_name, historyMap);
+          return renderHistoryButton(available[0].test_name, historyMap, null);
         }
         return renderDetails(
           String(available.length) + ' histories',
-          available.map((item) => escapeHtml(item.test_name) + ' ' + renderHistoryButton(item.test_name, historyMap))
+          available.map((item) => escapeHtml(item.test_name) + ' ' + renderHistoryButton(item.test_name, historyMap, null))
         );
       }
 
@@ -1803,7 +1812,8 @@
           return;
         }
         const testName = button.dataset.testName;
-        const history = historyMap[testName] || [];
+        const historyKey = button.dataset.historyKey || buildHistoryKey(testName, null);
+        const history = historyMap[historyKey] || [];
         title.textContent = testName;
         subtitle.textContent = '90-day pass/fail history';
         body.innerHTML = buildHistoryModalChart(testName, history);
