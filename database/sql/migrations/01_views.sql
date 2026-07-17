@@ -75,6 +75,8 @@ failure_events AS (
         ON jp.job_name = tf.job_name
     WHERE bs.build_datetime IS NOT NULL
       AND bs.build_datetime >= tw.window_90d
+            AND bs.status IN ('SUCCESS', 'UNSTABLE')
+            AND (COALESCE(bs.passed, 0) + COALESCE(bs.failures, 0) + COALESCE(bs.skipped, 0)) > 0
 ),
 latest_failure_per_job AS (
     SELECT
@@ -125,4 +127,4 @@ LEFT JOIN passes_in_last_3_days p
    AND p.package = lf.package
    AND p.job_name = lf.job_name
 WHERE p.test_name IS NULL
-  AND lf.consecutive_failures >= 2;
+    AND lf.consecutive_failures >= 3;

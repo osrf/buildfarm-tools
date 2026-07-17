@@ -11,6 +11,7 @@ known_jobs AS (
         tf.package_name
     FROM test_failures tf
     WHERE tf.error_name = '@param1@'
+      AND ('@param2@' = '' OR tf.job_name = '@param2@')
 ),
 daily_runs AS (
     SELECT DISTINCT
@@ -19,6 +20,7 @@ daily_runs AS (
     INNER JOIN known_jobs kj
         ON kj.job_name = bs.job_name
     WHERE bs.build_datetime IS NOT NULL
+      AND (COALESCE(bs.passed, 0) + COALESCE(bs.failures, 0) + COALESCE(bs.skipped, 0)) > 0
       AND date(bs.build_datetime) BETWEEN date('now', '-89 days') AND date('now')
 ),
 daily_failures AS (

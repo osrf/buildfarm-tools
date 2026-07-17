@@ -1,0 +1,1974 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Buildfarmer Dashboard</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+    @font-face {
+      font-family: "Hack Nerd Font Web";
+      src:
+        local("Hack Nerd Font"),
+        local("HackNerdFont-Regular"),
+        url("https://cdn.jsdelivr.net/gh/ryanoasis/nerd-fonts@v3.4.0/patched-fonts/Hack/Regular/HackNerdFont-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      color-scheme: dark;
+      --bg: #060b16;
+      --bg-soft: #0a1121;
+      --surface: #0f182d;
+      --surface-2: #131f37;
+      --surface-3: #182540;
+      --line: #233251;
+      --line-soft: #1b2742;
+      --text: #dbe8ff;
+      --text-soft: #89a1c7;
+      --text-dim: #6781ac;
+      --accent: #33a4ff;
+      --ok: #22c26f;
+      --warn: #f39d3f;
+      --danger: #ff5176;
+      --radius: 10px;
+      --radius-lg: 14px;
+      --nerd: "Hack Nerd Font Web", "Hack Nerd Font", "Hack NF", "Symbols Nerd Font", "Symbols Nerd Font Mono", "Noto Sans Symbols 2", sans-serif;
+      --mono: "JetBrains Mono", Consolas, monospace;
+      --sans: "Sora", "Segoe UI", sans-serif;
+      --shadow: 0 20px 45px rgba(2, 8, 22, 0.46);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      background: linear-gradient(180deg, #060b16 0%, #081126 100%);
+      color: var(--text);
+      font-family: var(--sans);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at top right, rgba(64, 137, 255, 0.12), transparent 38%),
+        radial-gradient(ellipse at 10% 80%, rgba(29, 197, 153, 0.08), transparent 45%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      border-bottom: 1px solid var(--line);
+      background: rgba(8, 14, 28, 0.92);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 24px rgba(1, 6, 18, 0.34);
+    }
+
+    .topbar-inner {
+      width: min(1760px, calc(100vw - 32px));
+      margin: 0 auto;
+      min-height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      color: #f0f6ff;
+      font-size: 1.03rem;
+    }
+
+    .brand-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      border: 1px solid #274169;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #6ab8ff;
+      background: linear-gradient(180deg, #0e1b33 0%, #0b1427 100%);
+      font-family: var(--nerd);
+      font-size: 0.78rem;
+    }
+
+    .updated {
+      color: var(--text-dim);
+      font-family: var(--mono);
+      font-size: 0.79rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .updated::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 99px;
+      background: var(--ok);
+      box-shadow: 0 0 0 4px rgba(34, 194, 111, 0.12);
+    }
+
+    .tabs {
+      border-top: 1px solid rgba(255, 255, 255, 0.03);
+      border-bottom: 1px solid var(--line-soft);
+      background: rgba(10, 17, 33, 0.88);
+    }
+
+    .tabs-inner {
+      width: min(1760px, calc(100vw - 32px));
+      margin: 0 auto;
+      display: flex;
+      gap: 4px;
+    }
+
+    .tab-btn {
+      appearance: none;
+      border: 0;
+      border-bottom: 2px solid transparent;
+      background: transparent;
+      color: #6d87b4;
+      padding: 13px 14px 11px;
+      font-family: var(--sans);
+      font-size: 0.94rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 160ms ease, border-color 160ms ease;
+    }
+
+    .tab-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #5d749e;
+      font-family: var(--nerd);
+      font-size: 0.96rem;
+      line-height: 1;
+      transition: color 160ms ease;
+    }
+
+    .tab-btn:hover {
+      color: #94b7ee;
+    }
+
+    .tab-btn.active {
+      color: #66baff;
+      border-color: #2d97ff;
+    }
+
+    .tab-btn.active .tab-icon {
+      color: #66baff;
+    }
+
+    .shell {
+      width: min(1760px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 22px 0 36px;
+    }
+
+    .view {
+      display: none;
+      animation: fade-in 180ms ease-out;
+    }
+
+    .view.active {
+      display: block;
+    }
+
+    .toolbar {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #0d1528 0%, #0b1325 100%);
+      border-radius: var(--radius-lg);
+      padding: 14px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .search-wrap {
+      position: relative;
+      margin-bottom: 12px;
+    }
+
+    .search-wrap::before {
+      content: "search";
+      position: absolute;
+      left: 11px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--mono);
+      font-size: 0.67rem;
+      color: #4c6691;
+      pointer-events: none;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    input[type="search"],
+    select {
+      width: 100%;
+      color: var(--text);
+      background: var(--surface-2);
+      border: 1px solid #2b3f63;
+      border-radius: 8px;
+      min-height: 37px;
+      padding: 0 12px;
+      font-family: var(--sans);
+      font-size: 0.92rem;
+      outline: none;
+      transition: border-color 150ms ease, box-shadow 150ms ease;
+    }
+
+    input[type="search"] {
+      padding-left: 72px;
+    }
+
+    input[type="search"]::placeholder {
+      color: #5e78a3;
+    }
+
+    input[type="search"]:focus,
+    select:focus {
+      border-color: #2f97ff;
+      box-shadow: 0 0 0 3px rgba(51, 164, 255, 0.17);
+    }
+
+    .filter-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 220px));
+      gap: 14px;
+      max-width: 760px;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+    }
+
+    .field label {
+      color: #4f6893;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, #0a1224 0%, #08101f 100%);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .panel-head {
+      min-height: 44px;
+      padding: 0 14px;
+      border-bottom: 1px solid var(--line-soft);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+    }
+
+    .section-title {
+      margin: 0;
+      color: #7ea0cf;
+      font-family: var(--mono);
+      font-size: 0.93rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .count-pill {
+      min-width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      background: #3b1923;
+      color: #ff7a97;
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 6px;
+    }
+
+    .count-pill.info {
+      background: #14304b;
+      color: #7fc5ff;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 980px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      border-bottom: 1px solid var(--line-soft);
+      padding: 10px 12px;
+      vertical-align: top;
+      font-size: 0.9rem;
+    }
+
+    th {
+      color: #47608a;
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: #111c32;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      overflow: visible;
+    }
+
+    th.th-with-tooltip:hover,
+    th.th-with-tooltip:focus-within {
+      z-index: 4;
+    }
+
+    .th-content {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .th-help {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      border: 1px solid #31527f;
+      background: rgba(51, 164, 255, 0.1);
+      color: #8fc7ff;
+      font-family: var(--sans);
+      font-size: 0.64rem;
+      font-weight: 700;
+      line-height: 1;
+      text-transform: none;
+      cursor: help;
+      outline: none;
+      z-index: 0;
+    }
+
+    .th-help:focus-visible {
+      box-shadow: 0 0 0 3px rgba(51, 164, 255, 0.16);
+    }
+
+    .th-help:hover,
+    .th-help:focus-visible {
+      z-index: 10;
+    }
+
+    .th-tooltip {
+      position: absolute;
+      left: 50%;
+      top: calc(100% + 10px);
+      transform: translateX(-50%);
+      width: min(280px, calc(100vw - 48px));
+      padding: 10px 12px;
+      border: 1px solid #2b4268;
+      border-radius: 8px;
+      background: #0b1425;
+      color: #cfe0ff;
+      font-family: var(--sans);
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: normal;
+      line-height: 1.45;
+      text-transform: none;
+      white-space: normal;
+      box-shadow: 0 16px 36px rgba(1, 8, 21, 0.42);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 140ms ease;
+      z-index: 5;
+    }
+
+    .th-tooltip.align-start {
+      left: -6px;
+      transform: none;
+    }
+
+    .th-tooltip.align-end {
+      left: auto;
+      right: -6px;
+      transform: none;
+    }
+
+    .th-tooltip::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: -5px;
+      width: 10px;
+      height: 10px;
+      background: #0b1425;
+      border-left: 1px solid #2b4268;
+      border-top: 1px solid #2b4268;
+      transform: translateX(-50%) rotate(45deg);
+    }
+
+    .th-tooltip.align-start::before {
+      left: 22px;
+      transform: rotate(45deg);
+    }
+
+    .th-tooltip.align-end::before {
+      left: auto;
+      right: 22px;
+      transform: rotate(45deg);
+    }
+
+    .th-help:hover .th-tooltip,
+    .th-help:focus-visible .th-tooltip {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    tbody tr:hover {
+      background: rgba(35, 53, 83, 0.2);
+    }
+
+    .test-cell {
+      color: #e5f0ff;
+      font-family: var(--mono);
+      font-size: 0.88rem;
+      font-weight: 500;
+      line-height: 1.4;
+      min-width: 240px;
+      max-width: 520px;
+      word-break: break-word;
+    }
+
+    .pkg-pill,
+    .platform-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 22px;
+      border-radius: 999px;
+      padding: 0 10px;
+      border: 1px solid #2a3c5d;
+      background: #0f1a2f;
+      color: #7ca5dd;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      white-space: nowrap;
+      margin-right: 6px;
+      margin-bottom: 4px;
+    }
+
+    .platform-pill {
+      padding: 0 8px;
+      color: #9ec0ec;
+    }
+
+    .age-pill,
+    .rate-pill,
+    .status-pill,
+    .type-pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 6px;
+      min-height: 22px;
+      padding: 0 8px;
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .age-pill.ok {
+      background: rgba(34, 194, 111, 0.14);
+      color: #48d686;
+    }
+
+    .age-pill.warn,
+    .rate-pill.warn,
+    .status-pill.open {
+      background: rgba(243, 157, 63, 0.14);
+      color: #ffba65;
+    }
+
+    .age-pill.danger,
+    .rate-pill.danger,
+    .type-pill.regression {
+      background: rgba(255, 81, 118, 0.14);
+      color: #ff7999;
+    }
+
+    .status-pill.closed {
+      background: rgba(34, 194, 111, 0.14);
+      color: #48d686;
+    }
+
+    .type-pill {
+      background: rgba(60, 119, 255, 0.16);
+      color: #8fb8ff;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .type-pill.flaky {
+      background: rgba(243, 157, 63, 0.14);
+      color: #ffba65;
+    }
+
+    .known-issue-link,
+    .issue-link,
+    .suspect-link {
+      color: #4caeff;
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 0.82rem;
+    }
+
+    .known-issue-link:hover,
+    .issue-link:hover,
+    .suspect-link:hover {
+      text-decoration: underline;
+    }
+
+    .suspect-block {
+      display: grid;
+      gap: 4px;
+      min-width: 280px;
+    }
+
+    .suspect-line {
+      color: #7296c8;
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 420px;
+    }
+
+    .muted {
+      color: var(--text-dim);
+      font-family: var(--mono);
+      font-size: 0.8rem;
+    }
+
+    .group-details {
+      display: block;
+    }
+
+    .group-details summary {
+      cursor: pointer;
+      color: #9fc6ff;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      list-style: none;
+    }
+
+    .group-details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .group-details summary::before {
+      content: "+ ";
+      color: #5c82bc;
+    }
+
+    .group-details[open] summary::before {
+      content: "- ";
+    }
+
+    .group-list {
+      margin: 8px 0 0;
+      padding-left: 18px;
+      color: #cfe0ff;
+      display: grid;
+      gap: 6px;
+    }
+
+    .group-item {
+      line-height: 1.4;
+    }
+
+    .history-btn {
+      appearance: none;
+      border: 1px solid #2b4268;
+      border-radius: 7px;
+      background: #0f1b31;
+      color: #8bb3eb;
+      min-height: 24px;
+      padding: 0 9px;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 140ms ease, color 140ms ease;
+    }
+
+    .history-btn:hover {
+      color: #b4d4ff;
+      border-color: #3a78c4;
+    }
+
+    .empty {
+      border: 1px dashed #2a3f62;
+      border-radius: 10px;
+      padding: 18px;
+      color: #6f88b1;
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      margin: 14px;
+      background: rgba(15, 25, 45, 0.72);
+    }
+
+    .legend {
+      margin-top: 2px;
+      margin-bottom: 12px;
+      color: #536b95;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+    }
+
+    .group-badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 20px;
+      margin-left: 8px;
+      padding: 0 7px;
+      border-radius: 999px;
+      border: 1px solid #2c5a8b;
+      background: rgba(51, 164, 255, 0.12);
+      color: #8ec8ff;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      vertical-align: middle;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(2, 7, 16, 0.72);
+      backdrop-filter: blur(2px);
+    }
+
+    .modal.open {
+      display: flex;
+    }
+
+    .modal-card {
+      width: min(860px, 100%);
+      max-height: calc(100vh - 40px);
+      border: 1px solid #2b4268;
+      border-radius: 12px;
+      background: linear-gradient(180deg, #121d32 0%, #0f1728 100%);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.48);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-head {
+      min-height: 52px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      border-bottom: 1px solid #24385c;
+    }
+
+    .modal-title {
+      margin: 0;
+      font-size: 1rem;
+      color: #dbe8ff;
+      font-family: var(--mono);
+      line-height: 1.35;
+      word-break: break-word;
+    }
+
+    .modal-subtitle {
+      margin: 5px 0 0;
+      color: #6f88b1;
+      font-size: 0.82rem;
+      font-family: var(--mono);
+    }
+
+    .close-btn {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: #809bc3;
+      cursor: pointer;
+      font-size: 1.4rem;
+      line-height: 1;
+      padding: 0;
+    }
+
+    .close-btn:hover {
+      color: #bbd6ff;
+    }
+
+    .modal-body {
+      padding: 18px 20px 20px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .history-panel {
+      display: grid;
+      gap: 14px;
+    }
+
+    .history-kicker {
+      margin: 0;
+      color: #7f97bd;
+      font-size: 0.84rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .history-card {
+      border: 1px solid #24385c;
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(10, 17, 33, 0.98) 0%, rgba(8, 14, 28, 0.96) 100%);
+      padding: 18px 18px 16px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+      overflow-x: auto;
+    }
+
+    .history-card-title {
+      margin: 0 0 14px;
+      color: #78a7e2;
+      font-family: var(--mono);
+      font-size: 0.96rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .history-strip-frame {
+      min-width: 620px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(121, 149, 190, 0.18);
+    }
+
+    .history-strip {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(4px, 1fr);
+      align-items: end;
+      gap: 2px;
+      min-height: 44px;
+    }
+
+    .history-day {
+      height: 40px;
+      border: 0;
+      border-radius: 1px;
+      background: #50627f;
+      padding: 0;
+      margin: 0;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+    }
+
+    .history-day.pass {
+      background: linear-gradient(180deg, #37da7e 0%, #20bc67 100%);
+    }
+
+    .history-day.fail {
+      background: linear-gradient(180deg, #ff688c 0%, #e64971 100%);
+    }
+
+    .history-day.missing {
+      background: linear-gradient(180deg, #607493 0%, #4b5d79 100%);
+    }
+
+    .history-axis {
+      position: relative;
+      height: 18px;
+      margin-top: 8px;
+      color: #6781ac;
+      font-family: var(--mono);
+      font-size: 0.76rem;
+    }
+
+    .history-axis-label {
+      position: absolute;
+      top: 0;
+      transform: translateX(-50%);
+      white-space: nowrap;
+    }
+
+    .history-axis-label:first-child {
+      transform: none;
+    }
+
+    .history-summary {
+      margin: 0;
+      color: #7f97bd;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+    }
+
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 1040px) {
+      .filter-grid {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+      }
+
+      .topbar-inner,
+      .tabs-inner,
+      .shell {
+        width: min(1760px, calc(100vw - 20px));
+      }
+    }
+
+    @media (max-width: 680px) {
+      .brand {
+        font-size: 0.95rem;
+      }
+
+      .updated {
+        font-size: 0.72rem;
+      }
+
+      .toolbar {
+        padding: 12px;
+      }
+
+      .tab-btn {
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+
+      .modal-body {
+        padding: 16px;
+      }
+
+      .history-card {
+        padding: 14px;
+      }
+    }
+  </style>
+  <link rel="icon" type="image/x-icon" href="favicon.jpg">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="brand-icon"></span>
+        <span>Buildfarmer Dashboard</span>
+      </div>
+      <div class="updated" id="generated-at">Updated: waiting for data</div>
+    </div>
+    <nav class="tabs">
+      <div class="tabs-inner">
+        <button class="tab-btn active" data-tab="regressions">
+          <span class="tab-icon" aria-hidden="true"></span>
+          Regressions
+        </button>
+        <button class="tab-btn" data-tab="known-issues">
+          <span class="tab-icon" aria-hidden="true"></span>
+          Known Issues
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <section class="view active" id="view-regressions">
+      <section class="toolbar">
+        <div class="search-wrap">
+          <input id="regression-search" type="search" placeholder="Search test name, package, or issue...">
+        </div>
+        <div class="filter-grid">
+          <div class="field">
+            <label for="regression-project">Project</label>
+            <select id="regression-project"></select>
+          </div>
+          <div class="field">
+            <label for="regression-distro">OS Distro</label>
+            <select id="regression-distro"></select>
+          </div>
+          <div class="field">
+            <label for="regression-type">Type</label>
+            <select id="regression-type">
+              <option value="all">All</option>
+              <option value="consistent">Consistent</option>
+              <option value="flaky">Flaky</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2 class="section-title">Consistent Failures</h2>
+          <span class="count-pill" id="consistent-count">0</span>
+        </div>
+        <div class="table-wrap" id="consistent-table"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2 class="section-title">Flaky Tests</h2>
+          <span class="count-pill" id="flaky-count">0</span>
+        </div>
+        <p class="legend" id="flaky-legend">(>=3 occurrences / 20) based on current export</p>
+        <div class="table-wrap" id="flaky-table"></div>
+      </section>
+    </section>
+
+    <section class="view" id="view-known-issues">
+      <section class="toolbar">
+        <div class="filter-grid">
+          <div class="field">
+            <label for="issues-status">Status</label>
+            <select id="issues-status"></select>
+          </div>
+          <div class="field">
+            <label for="issues-priority">Priority</label>
+            <select id="issues-priority"></select>
+          </div>
+          <div class="field">
+            <label for="issues-project">Project</label>
+            <select id="issues-project"></select>
+          </div>
+          <div class="field">
+            <label for="issues-assignee">Assignee</label>
+            <select id="issues-assignee"></select>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2 class="section-title">Known Issues</h2>
+          <span class="count-pill" id="issues-count">0</span>
+        </div>
+        <div class="table-wrap" id="issues-table"></div>
+      </section>
+    </section>
+  </main>
+
+  <section class="modal" id="history-modal" aria-hidden="true">
+    <article class="modal-card" role="dialog" aria-modal="true" aria-labelledby="history-title">
+      <header class="modal-head">
+        <div>
+          <h3 class="modal-title" id="history-title">History</h3>
+          <p class="modal-subtitle" id="history-subtitle">Recent pass/fail timeline</p>
+        </div>
+        <button class="close-btn" id="close-history" aria-label="Close">x</button>
+      </header>
+      <div class="modal-body" id="history-body"></div>
+    </article>
+  </section>
+
+  <section class="modal" id="suspects-modal" aria-hidden="true">
+    <article class="modal-card" role="dialog" aria-modal="true" aria-labelledby="suspects-title">
+      <header class="modal-head">
+        <div>
+          <h3 class="modal-title" id="suspects-title">Suspect Commits</h3>
+          <p class="modal-subtitle" id="suspects-subtitle">Commits between last passing and first failing build</p>
+        </div>
+        <button class="close-btn" id="close-suspects" aria-label="Close">x</button>
+      </header>
+      <div class="modal-body" id="suspects-body"></div>
+    </article>
+  </section>
+
+  <script src="dashboard_data.js"></script>
+  <script>
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function formatDateTime(value) {
+      if (!value) {
+        return 'Unknown';
+      }
+      const parsed = new Date(value);
+      return Number.isNaN(parsed.getTime()) ? value : parsed.toISOString().replace('T', ' ').replace('.000Z', ' UTC');
+    }
+
+    function parseDate(value) {
+      if (!value) {
+        return null;
+      }
+      const parsed = new Date(value);
+      return Number.isNaN(parsed.getTime()) ? null : parsed;
+    }
+
+    function severityClassFromDays(days) {
+      if (days === null) {
+        return 'warn';
+      }
+      if (days >= 15) {
+        return 'danger';
+      }
+      if (days >= 7) {
+        return 'warn';
+      }
+      return 'ok';
+    }
+
+    function severityClassFromRate(rate) {
+      if (rate >= 30) {
+        return 'danger';
+      }
+      if (rate >= 15) {
+        return 'warn';
+      }
+      return 'ok';
+    }
+
+    function issueShortLabel(issueUrl) {
+      if (!issueUrl) {
+        return 'none';
+      }
+      try {
+        const parts = issueUrl.replace(/\/$/, '').split('/');
+        if (parts.length >= 7) {
+          return '#' + parts[6];
+        }
+      } catch (error) {
+        return issueUrl;
+      }
+      return issueUrl;
+    }
+
+    function uniqSorted(values) {
+      return [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b));
+    }
+
+    function withAllOption(values, label) {
+      return [{ value: 'all', label: label }].concat(values.map((value) => ({ value: value, label: value })));
+    }
+
+    function setSelectOptions(select, options) {
+      const current = select.value || 'all';
+      select.innerHTML = options
+        .map((option) => '<option value="' + escapeHtml(option.value) + '">' + escapeHtml(option.label) + '</option>')
+        .join('');
+      select.value = options.some((option) => option.value === current) ? current : 'all';
+    }
+
+    function extractPlatforms(platforms) {
+      if (!platforms || !platforms.length) {
+        return ['unknown'];
+      }
+      return uniqSorted(platforms.map((item) => item.os || 'unknown'));
+    }
+
+    function extractPlatformTags(platforms) {
+      if (!platforms || !platforms.length) {
+        return '<span class="platform-pill">unknown</span>';
+      }
+      return platforms.map((item) => {
+        const os = item.os || 'unknown';
+        const arch = item.arch || 'unknown';
+        return '<span class="platform-pill">' + escapeHtml(os) + ' ' + escapeHtml(arch) + '</span>';
+      }).join('');
+    }
+
+    function inferProjectLabel(value) {
+      const text = String(value || '').toLowerCase();
+      if (
+        text.includes('gazebo') ||
+        text.includes('gazebosim') ||
+        text.includes('gz-') ||
+        text.includes('gz_') ||
+        text.includes('ign-') ||
+        text.includes('ign_') ||
+        text.includes('ignition') ||
+        text.includes('sdformat') ||
+        text.includes('libgz')
+      ) {
+        return 'Gazebo';
+      }
+      return 'ROS';
+    }
+
+    function inferRegressionProject(row) {
+      return inferProjectLabel([
+        row.package || '',
+        row.test_name || '',
+        row.linked_issue || '',
+      ].join(' '));
+    }
+
+    function inferIssueProject(issue) {
+      return inferProjectLabel([
+        issue.issue_id || '',
+        issue.title || '',
+      ].join(' '));
+    }
+
+    function formatIssuePriority(issue) {
+      if (issue.priority === null || issue.priority === undefined) {
+        return '-';
+      }
+      return Number(issue.priority).toFixed(1);
+    }
+
+    function normalizeIssueAssignee(issue) {
+      return issue.assignee || '-';
+    }
+
+    function normalizeProjectFilterParam(value) {
+      const normalized = String(value || '').trim().toLowerCase();
+      if (normalized === 'gazebo') {
+        return 'Gazebo';
+      }
+      if (normalized === 'ros') {
+        return 'ROS';
+      }
+      return null;
+    }
+
+    function readProjectFilterFromUrl() {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        return normalizeProjectFilterParam(params.get('project'));
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function updateProjectFilterInUrl(project) {
+      try {
+        const url = new URL(window.location.href);
+        if (!project || project === 'all') {
+          url.searchParams.delete('project');
+        } else {
+          url.searchParams.set('project', project.toLowerCase());
+        }
+        window.history.replaceState(null, '', url.toString());
+      } catch (error) {
+        // Ignore URL update failures (for example, unsupported environments).
+      }
+    }
+
+    const COLUMN_TOOLTIPS = {
+      testName: 'Name of the test that failed. Grouped rows can be expanded to inspect the individual tests.',
+      package: 'Package associated with the failing test or grouped regression.',
+      platforms: 'Operating system and architecture combinations where the regression was observed.',
+      age: 'Number of consecutive failing builds for this consistent regression.',
+      knownIssue: 'Issue already linked to this regression, when one is known.',
+      history: 'Opens the 90-day pass/fail history for the selected test.',
+      suspectCommits: 'VCS difference between the last passing and first failing build where this regression was seen. These commits may not contain the actual failure cause.',
+      failRate: 'Percentage of failing runs in the recent flaky-test sample window.',
+      issue: 'Tracked issue title or identifier.',
+      status: 'Current state of the tracked issue.',
+      priority: 'Numeric priority currently assigned to the issue.',
+      assignee: 'Current owner of the tracked issue, if one is assigned.',
+      lastActivity: 'Most recent activity date recorded on the issue.',
+      lastInBuild: 'Most recent build date where the linked issue was still observed in the dashboard data.',
+    };
+
+    function renderHeaderCell(label, tooltip, align) {
+      if (!tooltip) {
+        return '<th>' + escapeHtml(label) + '</th>';
+      }
+      const alignment = align || 'center';
+      return '<th class="th-with-tooltip"><span class="th-content">' +
+        '<span>' + escapeHtml(label) + '</span>' +
+        '<span class="th-help" tabindex="0" aria-label="About ' + escapeHtml(label) + '">i<span class="th-tooltip align-' + escapeHtml(alignment) + '" role="tooltip">' + escapeHtml(tooltip) + '</span></span>' +
+      '</span></th>';
+    }
+
+    function buildHistoryKey(testName, jobName) {
+      return String(testName || '') + '::' + String(jobName || '');
+    }
+
+    function renderHistoryButton(testName, historyMap, jobName) {
+      const historyKey = buildHistoryKey(testName, jobName);
+      const history = historyMap[historyKey] || [];
+      if (!history.length) {
+        return '<span class="muted">No history</span>';
+      }
+      return '<button class="history-btn" data-test-name="' + escapeHtml(testName) + '" data-history-key="' + escapeHtml(historyKey) + '">90d</button>';
+    }
+
+    function renderSuspectColumn(row, isFlaky) {
+      if (isFlaky) {
+        return '<span class="muted">Flaky - no clear first-fail build</span>';
+      }
+      const suspects = row.suspect_commits || [];
+      if (!suspects.length) {
+        return '<span class="muted">No suspect commits</span>';
+      }
+      const testName = row.test_name || '';
+      const label = suspects.length + ' repo' + (suspects.length !== 1 ? 's' : '');
+      return '<button class="history-btn suspects-btn" data-test-name="' + escapeHtml(testName) + '" data-suspects="' + escapeHtml(JSON.stringify(suspects)) + '">' + escapeHtml(label) + '</button>';
+    }
+
+    function groupedTestsFromRow(row) {
+      return row.grouped_tests && row.grouped_tests.length ? row.grouped_tests : [row];
+    }
+
+    function mergeAffectedPlatforms(items) {
+      const uniquePlatforms = new Map();
+      items.forEach((item) => {
+        const platforms = item.affected_platforms || [];
+        platforms.forEach((platform) => {
+          const os = platform && platform.os ? platform.os : 'unknown';
+          const arch = platform && platform.arch ? platform.arch : 'unknown';
+          const key = os + '::' + arch;
+          if (!uniquePlatforms.has(key)) {
+            uniquePlatforms.set(key, { os: os, arch: arch });
+          }
+        });
+      });
+      return [...uniquePlatforms.values()];
+    }
+
+    function groupConsistentRowsByKnownIssue(rows) {
+      const passthroughRows = [];
+      const groupedByIssue = new Map();
+
+      rows.forEach((row) => {
+        const items = groupedTestsFromRow(row);
+        const issueLinks = uniqSorted(items.map((item) => item.linked_issue).filter(Boolean));
+
+        if (issueLinks.length !== 1) {
+          passthroughRows.push(row);
+          return;
+        }
+
+        const issueLink = issueLinks[0];
+        if (!groupedByIssue.has(issueLink)) {
+          groupedByIssue.set(issueLink, []);
+        }
+        groupedByIssue.get(issueLink).push(row);
+      });
+
+      const collapsedRows = [];
+      groupedByIssue.forEach((issueRows, issueLink) => {
+        if (issueRows.length === 1) {
+          collapsedRows.push(issueRows[0]);
+          return;
+        }
+
+        const mergedItemsByKey = new Map();
+        issueRows.forEach((row) => {
+          groupedTestsFromRow(row).forEach((item) => {
+            const dedupeKey = [
+              item.test_name || '',
+              item.package || '',
+              item.job_name || '',
+              String(item.consecutive_failures || ''),
+              item.linked_issue || '',
+            ].join('::');
+            if (!mergedItemsByKey.has(dedupeKey)) {
+              mergedItemsByKey.set(dedupeKey, item);
+            }
+          });
+        });
+
+        const mergedItems = [...mergedItemsByKey.values()];
+        const representative = issueRows[0];
+        const maxConsecutiveFailures = mergedItems.reduce(
+          (acc, item) => Math.max(acc, Number(item.consecutive_failures || 0)),
+          0
+        );
+        const jobNames = uniqSorted(mergedItems.map((item) => item.job_name).filter(Boolean));
+
+        collapsedRows.push(Object.assign({}, representative, {
+          _known_issue_group: true,
+          linked_issue: issueLink,
+          grouped_tests: mergedItems,
+          group_size: mergedItems.length,
+          job_names: jobNames,
+          affected_platforms: mergeAffectedPlatforms(mergedItems),
+          consecutive_failures: maxConsecutiveFailures,
+        }));
+      });
+
+      return passthroughRows.concat(collapsedRows);
+    }
+
+    function renderConsistentTable(rows, historyMap) {
+      if (!rows.length) {
+        return '<div class="empty">No consistent regressions match the current filters.</div>';
+      }
+
+      function renderDetails(summary, items) {
+        if (!items.length) {
+          return '<span class="muted">-</span>';
+        }
+        if (items.length === 1) {
+          return items[0];
+        }
+        return '<details class="group-details"><summary>' + summary + '</summary><ul class="group-list">' + items.map((item) => '<li class="group-item">' + item + '</li>').join('') + '</ul></details>';
+      }
+
+      function renderGroupedConsistentTestsCell(row, items) {
+        if (row._known_issue_group) {
+          const uniqueTestNames = uniqSorted(items.map((item) => item.test_name || 'unknown'));
+          const summary = String(uniqueTestNames.length) + ' test regression' + (uniqueTestNames.length === 1 ? '' : 's');
+          return renderDetails(
+            escapeHtml(summary),
+            uniqueTestNames.map((testName) => escapeHtml(testName))
+          );
+        }
+
+        if (items.length === 1) {
+          return escapeHtml(items[0].test_name);
+        }
+        const uniqueTestNames = uniqSorted(items.map((item) => item.test_name || 'unknown'));
+        if (uniqueTestNames.length === 1) {
+          const jobNames = uniqSorted(items.map((item) => item.job_name || 'unknown'));
+          return renderDetails(
+            escapeHtml(uniqueTestNames[0]) + '<span class="group-badge">' + escapeHtml(String(jobNames.length)) + ' jobs</span>',
+            jobNames.map((jobName) => escapeHtml(jobName))
+          );
+        }
+        const groupLabel = row.job_names && row.job_names.length
+          ? (row.job_names.length === 1
+            ? row.job_names[0]
+            : row.job_names[0] + ' +' + String(row.job_names.length - 1) + ' jobs')
+          : (row.job_name || items[0].job_name || items[0].test_name);
+        return renderDetails(
+          escapeHtml(groupLabel) + '<span class="group-badge">' + escapeHtml(String(items.length)) + ' tests</span>',
+          items.map((item) => escapeHtml(item.test_name))
+        );
+      }
+
+      function renderGroupedPackagesCell(items) {
+        const packages = uniqSorted(items.map((item) => item.package || 'unknown'));
+        if (packages.length === 1) {
+          return '<span class="pkg-pill">' + escapeHtml(packages[0]) + '</span>';
+        }
+        return renderDetails(
+          escapeHtml(packages[0]) + '<span class="group-badge">+' + escapeHtml(String(packages.length - 1)) + ' more</span>',
+          packages.map((pkg) => '<span class="pkg-pill">' + escapeHtml(pkg) + '</span>')
+        );
+      }
+
+      function renderGroupedKnownIssuesCell(items) {
+        const links = uniqSorted(items.map((item) => item.linked_issue).filter(Boolean));
+        if (!links.length) {
+          return '<span class="muted">-</span>';
+        }
+        if (links.length === 1) {
+          return '<a class="known-issue-link" href="' + escapeHtml(links[0]) + '" target="_blank" rel="noreferrer">' + escapeHtml(issueShortLabel(links[0])) + '</a>';
+        }
+        return renderDetails(
+          escapeHtml(issueShortLabel(links[0])) + '<span class="group-badge">+' + escapeHtml(String(links.length - 1)) + ' more</span>',
+          links.map((link) => '<a class="known-issue-link" href="' + escapeHtml(link) + '" target="_blank" rel="noreferrer">' + escapeHtml(issueShortLabel(link)) + '</a>')
+        );
+      }
+
+      function renderGroupedHistoryCell(items) {
+        const byTestName = new Map();
+        items.forEach((item) => {
+          if (!byTestName.has(item.test_name)) {
+            byTestName.set(item.test_name, item);
+          }
+        });
+        const available = [...byTestName.values()].filter((item) => (historyMap[item.test_name] || []).length);
+        const availableWithHistory = [...byTestName.values()].filter((item) => {
+          const historyKey = buildHistoryKey(item.test_name, item.job_name);
+          return (historyMap[historyKey] || []).length;
+        });
+        if (!availableWithHistory.length) {
+          return '<span class="muted">No history</span>';
+        }
+        if (availableWithHistory.length === 1) {
+          return renderHistoryButton(availableWithHistory[0].test_name, historyMap, availableWithHistory[0].job_name);
+        }
+        return renderDetails(
+          escapeHtml(availableWithHistory[0].test_name) + '<span class="group-badge">+' + escapeHtml(String(availableWithHistory.length - 1)) + ' more</span>',
+          availableWithHistory.map((item) => escapeHtml(item.test_name) + ' ' + renderHistoryButton(item.test_name, historyMap, item.job_name))
+        );
+      }
+
+      function renderGroupedSuspectsCell(items) {
+        const uniqueByTestAndSuspects = new Map();
+        items.forEach((item) => {
+          const key = [item.test_name || '', JSON.stringify(item.suspect_commits || [])].join('::');
+          if (!uniqueByTestAndSuspects.has(key)) {
+            uniqueByTestAndSuspects.set(key, item);
+          }
+        });
+        const suspectItems = [...uniqueByTestAndSuspects.values()].filter((item) => item.suspect_commits && item.suspect_commits.length);
+        if (!suspectItems.length) {
+          return '<span class="muted">No suspect commits</span>';
+        }
+        if (suspectItems.length === 1) {
+          return renderSuspectColumn(suspectItems[0], false);
+        }
+        return renderDetails(
+          escapeHtml(suspectItems[0].test_name) + '<span class="group-badge">+' + escapeHtml(String(suspectItems.length - 1)) + ' more</span>',
+          suspectItems.map((item) => escapeHtml(item.test_name) + '<div class="suspect-block">' + renderSuspectColumn(item, false) + '</div>')
+        );
+      }
+
+      const body = rows.map((row) => {
+        const items = groupedTestsFromRow(row);
+        const age = Number(row.consecutive_failures || 0);
+        const ageText = age ? String(age) : 'n/a';
+        const ageClass = severityClassFromDays(age);
+
+        return '<tr>' +
+          '<td class="test-cell">' + renderGroupedConsistentTestsCell(row, items) + '</td>' +
+          '<td>' + renderGroupedPackagesCell(items) + '</td>' +
+          '<td>' + extractPlatformTags(row.affected_platforms) + '</td>' +
+          '<td><span class="age-pill ' + ageClass + '">' + escapeHtml(ageText) + '</span></td>' +
+          '<td>' + renderGroupedKnownIssuesCell(items) + '</td>' +
+          '<td>' + renderGroupedHistoryCell(items) + '</td>' +
+          '<td>' + renderGroupedSuspectsCell(items) + '</td>' +
+        '</tr>';
+      }).join('');
+
+      return '<table>' +
+        '<thead><tr>' +
+          renderHeaderCell('Test Name', COLUMN_TOOLTIPS.testName, 'start') +
+          renderHeaderCell('Package', COLUMN_TOOLTIPS.package, 'start') +
+          renderHeaderCell('Platforms', COLUMN_TOOLTIPS.platforms) +
+          renderHeaderCell('Age', COLUMN_TOOLTIPS.age) +
+          renderHeaderCell('Known Issue', COLUMN_TOOLTIPS.knownIssue) +
+          renderHeaderCell('History', COLUMN_TOOLTIPS.history) +
+          renderHeaderCell('Suspect Commits', COLUMN_TOOLTIPS.suspectCommits, 'end') +
+        '</tr></thead>' +
+        '<tbody>' + body + '</tbody>' +
+      '</table>';
+    }
+
+    function renderFlakyTable(rows, historyMap) {
+      if (!rows.length) {
+        return '<div class="empty">No flaky tests match the current filters.</div>';
+      }
+
+      function groupItems(row) {
+        return row.grouped_tests && row.grouped_tests.length ? row.grouped_tests : [row];
+      }
+
+      function renderDetails(summary, items) {
+        if (!items.length) {
+          return '<span class="muted">-</span>';
+        }
+        if (items.length === 1) {
+          return items[0];
+        }
+        return '<details class="group-details"><summary>' + summary + '</summary><ul class="group-list">' + items.map((item) => '<li class="group-item">' + item + '</li>').join('') + '</ul></details>';
+      }
+
+      function renderGroupedTestsCell(items) {
+        if (items.length === 1) {
+          return escapeHtml(items[0].test_name);
+        }
+        return renderDetails(
+          escapeHtml(items[0].test_name) + '<span class="group-badge">+' + escapeHtml(String(items.length - 1)) + ' more</span>',
+          items.map((item) => escapeHtml(item.test_name))
+        );
+      }
+
+      function renderGroupedPackagesCell(items) {
+        const packages = uniqSorted(items.map((item) => item.package || 'unknown'));
+        if (packages.length === 1) {
+          return '<span class="pkg-pill">' + escapeHtml(packages[0]) + '</span>';
+        }
+        return renderDetails(
+          escapeHtml(packages[0]) + '<span class="group-badge">+' + escapeHtml(String(packages.length - 1)) + ' more</span>',
+          packages.map((pkg) => '<span class="pkg-pill">' + escapeHtml(pkg) + '</span>')
+        );
+      }
+
+      function renderGroupedKnownIssuesCell(items) {
+        const links = uniqSorted(items.map((item) => item.linked_issue).filter(Boolean));
+        if (!links.length) {
+          return '<span class="muted">-</span>';
+        }
+        if (links.length === 1) {
+          return '<a class="known-issue-link" href="' + escapeHtml(links[0]) + '" target="_blank" rel="noreferrer">' + escapeHtml(issueShortLabel(links[0])) + '</a>';
+        }
+        return renderDetails(
+          String(links.length) + ' issues',
+          links.map((link) => '<a class="known-issue-link" href="' + escapeHtml(link) + '" target="_blank" rel="noreferrer">' + escapeHtml(issueShortLabel(link)) + '</a>')
+        );
+      }
+
+      function renderGroupedHistoryCell(items) {
+        const byTestName = new Map();
+        items.forEach((item) => {
+          if (!byTestName.has(item.test_name)) {
+            byTestName.set(item.test_name, item);
+          }
+        });
+        const available = [...byTestName.values()].filter((item) => (historyMap[item.test_name] || []).length);
+        if (!available.length) {
+          return '<span class="muted">No history</span>';
+        }
+        if (available.length === 1) {
+          return renderHistoryButton(available[0].test_name, historyMap, null);
+        }
+        return renderDetails(
+          String(available.length) + ' histories',
+          available.map((item) => escapeHtml(item.test_name) + ' ' + renderHistoryButton(item.test_name, historyMap, null))
+        );
+      }
+
+      const body = rows.map((row) => {
+        const items = groupItems(row);
+        const rate = Number(row.fail_rate_pct || 0);
+        const rateClass = severityClassFromRate(rate);
+
+        return '<tr>' +
+          '<td class="test-cell">' + renderGroupedTestsCell(items) + '</td>' +
+          '<td>' + renderGroupedPackagesCell(items) + '</td>' +
+          '<td>' + extractPlatformTags(row.affected_platforms) + '</td>' +
+          '<td><span class="rate-pill ' + rateClass + '">' + escapeHtml(rate.toFixed(1)) + '%</span></td>' +
+          '<td>' + renderGroupedKnownIssuesCell(items) + '</td>' +
+          '<td>' + renderGroupedHistoryCell(items) + '</td>' +
+          '<td>' + renderSuspectColumn(row, true) + '</td>' +
+        '</tr>';
+      }).join('');
+
+      return '<table>' +
+        '<thead><tr>' +
+          renderHeaderCell('Test Name', COLUMN_TOOLTIPS.testName, 'start') +
+          renderHeaderCell('Package', COLUMN_TOOLTIPS.package, 'start') +
+          renderHeaderCell('Platforms', COLUMN_TOOLTIPS.platforms) +
+          renderHeaderCell('Fail Rate', COLUMN_TOOLTIPS.failRate) +
+          renderHeaderCell('Known Issue', COLUMN_TOOLTIPS.knownIssue) +
+          renderHeaderCell('History', COLUMN_TOOLTIPS.history) +
+          renderHeaderCell('Suspect Commits', COLUMN_TOOLTIPS.suspectCommits, 'end') +
+        '</tr></thead>' +
+        '<tbody>' + body + '</tbody>' +
+      '</table>';
+    }
+
+    function renderIssuesTable(rows) {
+      if (!rows.length) {
+        return '<div class="empty">No known issues match the current filters.</div>';
+      }
+
+      const body = rows.map((issue) => {
+        const status = (issue.status || 'unknown').toLowerCase();
+        const assignee = normalizeIssueAssignee(issue);
+        const priority = formatIssuePriority(issue);
+
+        return '<tr>' +
+          '<td class="test-cell"><a class="issue-link" href="' + escapeHtml(issue.issue_id) + '" target="_blank" rel="noreferrer">' + escapeHtml(issue.title || issue.issue_id) + '</a></td>' +
+          '<td><span class="status-pill ' + escapeHtml(status) + '">' + escapeHtml(status) + '</span></td>' +
+          '<td>' + escapeHtml(priority) + '</td>' +
+          '<td>' + escapeHtml(assignee) + '</td>' +
+          '<td>' + escapeHtml(issue.last_activity_date || '-') + '</td>' +
+          '<td>' + escapeHtml(issue.last_seen_in_build_date || '-') + '</td>' +
+        '</tr>';
+      }).join('');
+
+      return '<table>' +
+        '<thead><tr>' +
+          renderHeaderCell('Issue', COLUMN_TOOLTIPS.issue, 'start') +
+          renderHeaderCell('Status', COLUMN_TOOLTIPS.status) +
+          renderHeaderCell('Priority', COLUMN_TOOLTIPS.priority) +
+          renderHeaderCell('Assignee', COLUMN_TOOLTIPS.assignee) +
+          renderHeaderCell('Last Activity', COLUMN_TOOLTIPS.lastActivity) +
+          renderHeaderCell('Last In Build', COLUMN_TOOLTIPS.lastInBuild, 'end') +
+        '</tr></thead>' +
+        '<tbody>' + body + '</tbody>' +
+      '</table>';
+    }
+
+    function normalizeRegressions(consistent, flaky) {
+      const consistentRows = consistent.map((row) => Object.assign({ _kind: 'consistent' }, row));
+      const flakyRows = flaky.map((row) => Object.assign({ _kind: 'flaky' }, row));
+      return { consistentRows: consistentRows, flakyRows: flakyRows, allRows: consistentRows.concat(flakyRows) };
+    }
+
+    function matchesRegressionFilters(row, filters) {
+      if (filters.type !== 'all' && row._kind !== filters.type) {
+        return false;
+      }
+
+      const sourceRows = row.grouped_tests && row.grouped_tests.length
+        ? row.grouped_tests
+        : [row];
+
+      const matchesProject = filters.project === 'all' || sourceRows.some((item) => inferRegressionProject(item) === filters.project);
+      if (!matchesProject) {
+        return false;
+      }
+
+      const matchesDistro = filters.distro === 'all' || sourceRows.some((item) => extractPlatforms(item.affected_platforms).includes(filters.distro));
+      if (!matchesDistro) {
+        return false;
+      }
+
+      const haystack = sourceRows.map((item) => [
+        item.test_name || '',
+        item.package || '',
+        item.linked_issue || '',
+      ].join(' ')).join(' ').toLowerCase();
+
+      if (filters.search && !haystack.includes(filters.search)) {
+        return false;
+      }
+
+      return true;
+    }
+
+    function matchesIssueFilters(issue, filters) {
+      const status = (issue.status || 'unknown').toLowerCase();
+      const project = inferIssueProject(issue);
+      const assignee = normalizeIssueAssignee(issue);
+      const priority = formatIssuePriority(issue);
+
+      if (filters.status !== 'all' && status !== filters.status) {
+        return false;
+      }
+      if (filters.priority !== 'all' && priority !== filters.priority) {
+        return false;
+      }
+      if (filters.project !== 'all' && project !== filters.project) {
+        return false;
+      }
+      if (filters.assignee !== 'all' && assignee !== filters.assignee) {
+        return false;
+      }
+      return true;
+    }
+
+    function buildHistoryModalChart(testName, history) {
+      if (!history.length) {
+        return '<div class="empty">No history available for this test.</div>';
+      }
+
+      const bars = history.map((item) => {
+        const value = item.result;
+        const state = value === 1 ? 'pass' : value === 0 ? 'fail' : 'missing';
+        const label = (item.date || 'unknown') + ' ' + state;
+        return '<div class="history-day ' + state + '" title="' + escapeHtml(label) + '" aria-label="' + escapeHtml(label) + '"></div>';
+      }).join('');
+
+      const monthStarts = [];
+      history.forEach((item, index) => {
+        const parsed = parseDate(item.date);
+        if (!parsed) {
+          return;
+        }
+        const monthKey = String(parsed.getUTCFullYear()) + '-' + String(parsed.getUTCMonth());
+        if (!monthStarts.length || monthStarts[monthStarts.length - 1].key !== monthKey) {
+          monthStarts.push({
+            key: monthKey,
+            index: index,
+            label: parsed.toISOString().slice(0, 7),
+          });
+        }
+      });
+
+      const axisLabels = monthStarts.map((item, index) => {
+        const left = history.length === 1 ? 0 : (item.index / (history.length - 1)) * 100;
+        const style = index === 0 ? 'left: 0%;' : 'left: ' + left.toFixed(2) + '%;';
+        return '<span class="history-axis-label" style="' + style + '">' + escapeHtml(item.label) + '</span>';
+      }).join('');
+
+      const passCount = history.filter((item) => item.result === 1).length;
+      const failCount = history.filter((item) => item.result === 0).length;
+      const missingCount = history.length - passCount - failCount;
+
+      return '<div class="history-panel">' +
+        '<p class="history-kicker">Details</p>' +
+        '<div class="history-card">' +
+          '<h4 class="history-card-title">90D History</h4>' +
+          '<div class="history-strip-frame" aria-label="History chart for ' + escapeHtml(testName) + '">' +
+            '<div class="history-strip">' + bars + '</div>' +
+            '<div class="history-axis">' + axisLabels + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<p class="history-summary">Pass: ' + escapeHtml(String(passCount)) + ' | Fail: ' + escapeHtml(String(failCount)) + ' | Missing: ' + escapeHtml(String(missingCount)) + '</p>' +
+      '</div>';
+    }
+
+    function buildSuspectsModalContent(suspects) {
+      if (!suspects || !suspects.length) {
+        return '<div class="empty">No suspect commits available.</div>';
+      }
+      const items = suspects.map((suspect) => {
+        const repo = suspect.repo || 'unknown';
+        const shaA = String(suspect.last_success_sha || '').slice(0, 7);
+        const shaB = String(suspect.first_failure_sha || '').slice(0, 7);
+        const compareUrl = suspect.compare_url;
+        let html = '<div class="history-card">';
+        html += '<h4 class="history-card-title">' + escapeHtml(repo) + '</h4>';
+        html += '<div style="display:grid;gap:8px;">';
+        html += '<div class="suspect-line">' + escapeHtml(shaA + '..' + shaB) + '</div>';
+        if (compareUrl) {
+          html += '<a class="suspect-link" href="' + escapeHtml(compareUrl) + '" target="_blank" rel="noreferrer">View comparison on GitHub →</a>';
+        }
+        html += '</div></div>';
+        return html;
+      }).join('');
+      return '<div class="history-panel"><p class="history-kicker">Suspect Repositories</p>' + items + '</div>';
+    }
+
+    function setupTabs() {
+      const tabs = document.querySelectorAll('.tab-btn');
+      const regressionView = document.getElementById('view-regressions');
+      const issuesView = document.getElementById('view-known-issues');
+
+      tabs.forEach((button) => {
+        button.addEventListener('click', () => {
+          const tab = button.dataset.tab;
+          tabs.forEach((item) => item.classList.remove('active'));
+          button.classList.add('active');
+
+          if (tab === 'known-issues') {
+            regressionView.classList.remove('active');
+            issuesView.classList.add('active');
+          } else {
+            issuesView.classList.remove('active');
+            regressionView.classList.add('active');
+          }
+        });
+      });
+    }
+
+    function setupHistoryModal(historyMap) {
+      const modal = document.getElementById('history-modal');
+      const closeButton = document.getElementById('close-history');
+      const title = document.getElementById('history-title');
+      const subtitle = document.getElementById('history-subtitle');
+      const body = document.getElementById('history-body');
+
+      function close() {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+
+      closeButton.addEventListener('click', close);
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+          close();
+        }
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          close();
+        }
+      });
+
+      document.body.addEventListener('click', (event) => {
+        const button = event.target.closest('.history-btn:not(.suspects-btn)');
+        if (!button) {
+          return;
+        }
+        const testName = button.dataset.testName;
+        const historyKey = button.dataset.historyKey || buildHistoryKey(testName, null);
+        const history = historyMap[historyKey] || [];
+        title.textContent = testName;
+        subtitle.textContent = '90-day pass/fail history';
+        body.innerHTML = buildHistoryModalChart(testName, history);
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+      });
+    }
+
+    function setupSuspectsModal() {
+      const modal = document.getElementById('suspects-modal');
+      const closeButton = document.getElementById('close-suspects');
+      const title = document.getElementById('suspects-title');
+      const subtitle = document.getElementById('suspects-subtitle');
+      const body = document.getElementById('suspects-body');
+
+      function close() {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+
+      closeButton.addEventListener('click', close);
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+          close();
+        }
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          close();
+        }
+      });
+
+      document.body.addEventListener('click', (event) => {
+        const button = event.target.closest('.suspects-btn');
+        if (!button) {
+          return;
+        }
+        const testName = button.dataset.testName;
+        const suspects = JSON.parse(button.dataset.suspects || '[]');
+        title.textContent = testName;
+        subtitle.textContent = 'Commits between last passing and first failing build';
+        body.innerHTML = buildSuspectsModalContent(suspects);
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+      });
+    }
+
+    function main() {
+      const data = window.DASHBOARD_DATA;
+      if (!data) {
+        document.body.insertAdjacentHTML('beforeend', '<div class="empty">dashboard_data.js did not define window.DASHBOARD_DATA.</div>');
+        return;
+      }
+
+      const consistentRaw = data.regressions && data.regressions.consistent ? data.regressions.consistent : [];
+      const flakyRaw = data.regressions && data.regressions.flaky ? data.regressions.flaky : [];
+      const knownIssues = data.known_issues || [];
+      const historyMap = data.test_history || {};
+
+      const normalized = normalizeRegressions(consistentRaw, flakyRaw);
+      const consistentRows = groupConsistentRowsByKnownIssue(normalized.consistentRows)
+        .slice()
+        .sort((a, b) => (b.consecutive_failures || 0) - (a.consecutive_failures || 0));
+      const flakyRows = normalized.flakyRows.slice().sort((a, b) => {
+        const rateDiff = (b.fail_rate_pct || 0) - (a.fail_rate_pct || 0);
+        return rateDiff !== 0 ? rateDiff : (b.failure_count || 0) - (a.failure_count || 0);
+      });
+
+      const regressionProjectSelect = document.getElementById('regression-project');
+      const regressionDistroSelect = document.getElementById('regression-distro');
+      const regressionTypeSelect = document.getElementById('regression-type');
+      const regressionSearchInput = document.getElementById('regression-search');
+
+      const issuesStatusSelect = document.getElementById('issues-status');
+      const issuesPrioritySelect = document.getElementById('issues-priority');
+      const issuesProjectSelect = document.getElementById('issues-project');
+      const issuesAssigneeSelect = document.getElementById('issues-assignee');
+
+      const allProjects = uniqSorted(normalized.allRows.map((row) => inferRegressionProject(row)));
+      const allDistros = uniqSorted(normalized.allRows.flatMap((row) => extractPlatforms(row.affected_platforms)));
+      setSelectOptions(regressionProjectSelect, withAllOption(allProjects, 'All'));
+      setSelectOptions(regressionDistroSelect, withAllOption(allDistros, 'All'));
+      const initialProjectFilter = readProjectFilterFromUrl();
+      if (initialProjectFilter && allProjects.includes(initialProjectFilter)) {
+        regressionProjectSelect.value = initialProjectFilter;
+      }
+
+      const issueStatuses = uniqSorted(knownIssues.map((issue) => (issue.status || 'unknown').toLowerCase()));
+  const issuePriorities = uniqSorted(knownIssues.map((issue) => formatIssuePriority(issue)));
+      const issueProjects = uniqSorted(knownIssues.map((issue) => inferIssueProject(issue)));
+  const issueAssignees = uniqSorted(knownIssues.map((issue) => normalizeIssueAssignee(issue)));
+      setSelectOptions(issuesStatusSelect, withAllOption(issueStatuses, 'All'));
+  setSelectOptions(issuesPrioritySelect, withAllOption(issuePriorities, 'All'));
+      setSelectOptions(issuesProjectSelect, withAllOption(issueProjects, 'All'));
+      setSelectOptions(issuesAssigneeSelect, withAllOption(issueAssignees, 'All'));
+
+      function renderRegressions() {
+        const filters = {
+          search: regressionSearchInput.value.trim().toLowerCase(),
+          project: regressionProjectSelect.value,
+          distro: regressionDistroSelect.value,
+          type: regressionTypeSelect.value,
+        };
+        updateProjectFilterInUrl(filters.project);
+
+        const consistentFiltered = consistentRows.filter((row) => matchesRegressionFilters(row, filters));
+        const flakyFiltered = flakyRows.filter((row) => matchesRegressionFilters(row, filters));
+        const flakyVisibleTests = flakyFiltered.reduce((total, row) => {
+          const items = row.grouped_tests && row.grouped_tests.length ? row.grouped_tests : [row];
+          return total + items.length;
+        }, 0);
+
+        document.getElementById('consistent-count').textContent = String(consistentFiltered.length);
+        document.getElementById('flaky-count').textContent = String(flakyFiltered.length);
+        document.getElementById('flaky-legend').textContent = '(>=3 occurrences / 20) showing ' + String(flakyFiltered.length) + ' groups for ' + String(flakyVisibleTests) + ' flaky tests';
+        document.getElementById('consistent-table').innerHTML = renderConsistentTable(consistentFiltered, historyMap);
+        document.getElementById('flaky-table').innerHTML = renderFlakyTable(flakyFiltered, historyMap);
+      }
+
+      function renderIssues() {
+        const filters = {
+          status: issuesStatusSelect.value,
+          priority: issuesPrioritySelect.value,
+          project: issuesProjectSelect.value,
+          assignee: issuesAssigneeSelect.value,
+        };
+        const filtered = knownIssues.filter((issue) => matchesIssueFilters(issue, filters));
+        document.getElementById('issues-count').textContent = String(filtered.length);
+        document.getElementById('issues-table').innerHTML = renderIssuesTable(filtered);
+      }
+
+      regressionSearchInput.addEventListener('input', renderRegressions);
+      regressionProjectSelect.addEventListener('change', renderRegressions);
+      regressionDistroSelect.addEventListener('change', renderRegressions);
+      regressionTypeSelect.addEventListener('change', renderRegressions);
+
+      issuesStatusSelect.addEventListener('change', renderIssues);
+  issuesPrioritySelect.addEventListener('change', renderIssues);
+      issuesProjectSelect.addEventListener('change', renderIssues);
+      issuesAssigneeSelect.addEventListener('change', renderIssues);
+
+      document.getElementById('generated-at').textContent = 'Updated ' + formatDateTime(data.generated_at);
+
+      setupTabs();
+      setupHistoryModal(historyMap);
+      setupSuspectsModal();
+      renderRegressions();
+      renderIssues();
+    }
+
+    main();
+  </script>
+</body>
+</html>

@@ -183,13 +183,12 @@ Returns one row per GitHub issue tracked in `test_fail_issues`, including all op
 | `assignee` | `TEXT` or `NULL` | Issue assignee. |
 | `last_activity_date` | `TEXT` (`YYYY-MM-DD`) or `NULL` | Last recorded activity date. |
 | `last_seen_in_build_date` | `TEXT` (`YYYY-MM-DD`) or `NULL` | Latest build date where the issue was observed. |
-| `stale` | `INTEGER` | `1` when `last_seen_in_build_date` is `NULL` or older than 20 days, otherwise `0`. |
 
 Sample row:
 
-| issue_id | title | status | priority | assignee | last_activity_date | last_seen_in_build_date | stale |
-| --- | --- | --- | ---: | --- | --- | --- | ---: |
-| `https://github.com/gazebosim/gz-plugin/issues/210` | `gazebosim/gz-plugin#210` | `NOT ASSIGNED` | `0.175` | `Not Assigned` | `NULL` | `2026-05-17` | `0` |
+| issue_id | title | status | priority | assignee | last_activity_date | last_seen_in_build_date |
+| --- | --- | --- | ---: | --- | --- | --- |
+| `https://github.com/gazebosim/gz-plugin/issues/210` | `gazebosim/gz-plugin#210` | `NOT ASSIGNED` | `0.175` | `Not Assigned` | `NULL` | `2026-05-17` |
 
 Example run
 
@@ -203,8 +202,8 @@ cd database/scripts
 Sample output (first row):
 
 ```
-issue_id                                           title                      status         priority  assignee       last_activity_date  last_seen_in_build_date  stale
-https://github.com/gazebosim/gz-plugin/issues/210  gazebosim/gz-plugin#210   NOT ASSIGNED    0.175     Not Assigned   NULL                2026-05-17               0
+issue_id                                           title                      status         priority  assignee       last_activity_date  last_seen_in_build_date
+https://github.com/gazebosim/gz-plugin/issues/210  gazebosim/gz-plugin#210   NOT ASSIGNED    0.175     Not Assigned   NULL                2026-05-17
 ```
 
 ## Notes

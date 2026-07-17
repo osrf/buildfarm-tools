@@ -17,6 +17,7 @@ WITH failure_runs_20 AS (
     ON jp.job_name = tf.job_name
   WHERE bs.build_datetime IS NOT NULL
     AND datetime(bs.build_datetime) >= datetime('now', '-20 days')
+    AND bs.status IN ('SUCCESS', 'FAILURE', 'UNSTABLE')
 ),
 candidate_jobs AS (
   SELECT DISTINCT
@@ -37,7 +38,7 @@ runs_20 AS (
     ON bs.job_name = cj.job_name
   WHERE bs.build_datetime IS NOT NULL
     AND datetime(bs.build_datetime) >= datetime('now', '-20 days')
-    AND (COALESCE(bs.passed, 0) + COALESCE(bs.failures, 0) + COALESCE(bs.skipped, 0)) > 0
+    AND bs.status IN ('SUCCESS', 'FAILURE', 'UNSTABLE')
 ),
 counts AS (
   SELECT
@@ -98,10 +99,10 @@ LEFT JOIN (
 ) il
   ON il.test_name = fc.test_name
  AND il.package = fc.package
-LEFT JOIN (
-  SELECT DISTINCT test_name
-  FROM active_failures
-) atn
-  ON atn.test_name = fc.test_name
-WHERE atn.test_name IS NULL
+WHERE NOT EXISTS (
+  SELECT 1
+  FROM active_failures af
+  WHERE af.test_name = fc.test_name
+    AND af.package = fc.package
+)
 ORDER BY fc.failure_count DESC, fc.fail_rate_pct DESC, fc.test_name ASC;
