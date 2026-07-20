@@ -1,4 +1,4 @@
-name: Deploy greenness reports to GitHub pages
+name: Deploy reports site to GitHub pages
 
 on:
   push:
@@ -6,6 +6,7 @@ on:
       - 'main'
     paths:
       - 'reports/greenness_reports/**/*'
+      - 'reports/dashboard/**/*'
   workflow_dispatch:
 
 permissions:
@@ -21,10 +22,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Generate directory index using tree
+      - name: Build pages artifact directory
         run: |
-          # Tree is installed by default on gh runners
-          cd reports/greenness_reports/
+          mkdir -p .pages/dashboard
+
+          # Preserve existing greenness URLs: /<year>/<report>.html
+          cp -r reports/greenness_reports/. .pages/
+
+          # Expose dashboard under /dashboard
+          cp -r reports/dashboard/. .pages/dashboard/
+
+      - name: Generate greenness directory index using tree
+        run: |
+          # Tree is installed by default on gh runners.
+          cd .pages
           tree -H '.' \
             --noreport \
             --dirsfirst \
@@ -34,7 +45,7 @@ jobs:
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: 'reports/greenness_reports/'
+          path: '.pages/'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
