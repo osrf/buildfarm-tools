@@ -27,9 +27,9 @@ else
 
     # sql = "insert into test_fail_issues values ('error_name', 'package_name', 'job_name', 'github_issue')"
     if [ -n "$priority_value" ]; then
-        SQL_COMMAND="insert into test_fail_issues (error_name, package_name, job_name, github_issue, status, priority) values ('$error_name', '$package_name', '$3', '$4', 'OPEN', '$priority_value')"
+        SQL_COMMAND="insert into test_fail_issues (error_name, package_name, job_name, github_issue, status, priority) values ('$error_name', '$package_name', '$3', '$4', 'NOT ASSIGNED', '$priority_value')"
     else
-        SQL_COMMAND="insert into test_fail_issues (error_name, package_name, job_name, github_issue, status) values ('$error_name', '$package_name', '$3', '$4', 'OPEN')"
+        SQL_COMMAND="insert into test_fail_issues (error_name, package_name, job_name, github_issue, status) values ('$error_name', '$package_name', '$3', '$4', 'NOT ASSIGNED')"
     fi
     echo "Running: $SQL_COMMAND"
     sqlite3 ../buildfarmer.db "$SQL_COMMAND"
