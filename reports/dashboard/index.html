@@ -958,6 +958,7 @@
               <option value="all">All</option>
               <option value="consistent">Consistent</option>
               <option value="flaky">Flaky</option>
+              <option value="warning">Warning</option>
             </select>
           </div>
         </div>
@@ -1402,7 +1403,7 @@
     const COLUMN_TOOLTIPS = {
       testName: 'Name of the test that failed. Grouped rows can be expanded to inspect the individual tests.',
       package: 'Package associated with the failing test or grouped regression.',
-      platforms: 'Operating system and architecture combinations where the regression was observed.',
+      platforms: 'Operating system and architecture combinations where the regression was observed. Click a platform to see failed jobs and their latest failure.',
       age: 'Number of consecutive failing builds for this consistent regression.',
       knownIssue: 'Issue already linked to this regression, when one is known.',
       history: 'Opens the 90-day pass/fail history for the selected test.',
@@ -1811,23 +1812,6 @@
         return '<details class="group-details"><summary>' + summary + '</summary><ul class="group-list">' + items.map((item) => '<li class="group-item">' + item + '</li>').join('') + '</ul></details>';
       }
 
-      function warningTypeCell(row) {
-        if (row._kind === 'consistent') {
-          return '<span class="type-pill regression">consistent</span>';
-        }
-        return '<span class="type-pill flaky">flaky</span>';
-      }
-
-      function warningMetricCell(row) {
-        if (row._kind === 'consistent') {
-          const age = Number(row.consecutive_failures || 0);
-          const ageText = age ? String(age) : 'n/a';
-          return '<span class="age-pill ' + severityClassFromDays(age) + '">' + escapeHtml(ageText) + '</span>';
-        }
-        const rate = Number(row.fail_rate_pct || 0);
-        return '<span class="rate-pill ' + severityClassFromRate(rate) + '">' + escapeHtml(rate.toFixed(1)) + '%</span>';
-      }
-
       const body = rows.map((row) => {
         const items = sourceItems(row);
         const testNames = uniqSorted(items.map((item) => item.test_name || 'unknown'));
@@ -1879,8 +1863,6 @@
           '<td class="test-cell">' + testsCell + '</td>' +
           '<td>' + packagesCell + '</td>' +
           '<td>' + renderRegressionPlatformTags(row, jobDomainMap) + '</td>' +
-          '<td>' + warningTypeCell(row) + '</td>' +
-          '<td>' + warningMetricCell(row) + '</td>' +
           '<td>' + issuesCell + '</td>' +
           '<td>' + historyCell + '</td>' +
           '<td>' + renderSuspectColumn(row, row._kind === 'flaky') + '</td>' +
@@ -1892,8 +1874,6 @@
           renderHeaderCell('Test Name', COLUMN_TOOLTIPS.testName, 'start') +
           renderHeaderCell('Package', COLUMN_TOOLTIPS.package, 'start') +
           renderHeaderCell('Platforms', COLUMN_TOOLTIPS.platforms) +
-          '<th>Type</th>' +
-          '<th>Metric</th>' +
           renderHeaderCell('Known Issue', COLUMN_TOOLTIPS.knownIssue) +
           renderHeaderCell('History', COLUMN_TOOLTIPS.history) +
           renderHeaderCell('Suspect Commits', COLUMN_TOOLTIPS.suspectCommits, 'end') +
@@ -1942,7 +1922,11 @@
     }
 
     function matchesRegressionFilters(row, filters) {
-      if (filters.type !== 'all' && row._kind !== filters.type) {
+      if (filters.type === 'warning') {
+        if (!rowContainsWarningRegression(row)) {
+          return false;
+        }
+      } else if (filters.type !== 'all' && row._kind !== filters.type) {
         return false;
       }
 
