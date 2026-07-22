@@ -502,6 +502,16 @@
       color: #9ec0ec;
     }
 
+    .platform-btn {
+      appearance: none;
+      cursor: pointer;
+    }
+
+    .platform-btn:hover {
+      border-color: #3a78c4;
+      color: #c0dcff;
+    }
+
     .age-pill,
     .rate-pill,
     .status-pill,
@@ -948,6 +958,7 @@
               <option value="all">All</option>
               <option value="consistent">Consistent</option>
               <option value="flaky">Flaky</option>
+              <option value="warning">Warning</option>
             </select>
           </div>
         </div>
@@ -959,6 +970,14 @@
           <span class="count-pill" id="consistent-count">0</span>
         </div>
         <div class="table-wrap" id="consistent-table"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2 class="section-title">Warnings</h2>
+          <span class="count-pill info" id="warning-regressions-count">0</span>
+        </div>
+        <div class="table-wrap" id="warning-regressions-table"></div>
       </section>
 
       <section class="panel">
@@ -1026,6 +1045,19 @@
         <button class="close-btn" id="close-suspects" aria-label="Close">x</button>
       </header>
       <div class="modal-body" id="suspects-body"></div>
+    </article>
+  </section>
+
+  <section class="modal" id="platform-modal" aria-hidden="true">
+    <article class="modal-card" role="dialog" aria-modal="true" aria-labelledby="platform-title">
+      <header class="modal-head">
+        <div>
+          <h3 class="modal-title" id="platform-title">Failed Jobs</h3>
+          <p class="modal-subtitle" id="platform-subtitle">Jobs where this regression was observed</p>
+        </div>
+        <button class="close-btn" id="close-platform" aria-label="Close">x</button>
+      </header>
+      <div class="modal-body" id="platform-body"></div>
     </article>
   </section>
 
@@ -1128,6 +1160,130 @@
       }).join('');
     }
 
+    function normalizeDomain(domain) {
+      const text = String(domain || '').trim();
+      if (!text) {
+        return null;
+      }
+      return text.replace(/\/$/, '');
+    }
+
+    function buildJobUrl(domain, jobName) {
+      const normalizedDomain = normalizeDomain(domain);
+      const normalizedJobName = String(jobName || '').trim();
+      if (!normalizedDomain || !normalizedJobName) {
+        return null;
+      }
+      return normalizedDomain + '/job/' + encodeURIComponent(normalizedJobName) + '/';
+    }
+
+    function buildLastFailedBuildUrl(domain, jobName) {
+      const baseJobUrl = buildJobUrl(domain, jobName);
+      if (!baseJobUrl) {
+        return null;
+      }
+      return baseJobUrl + 'lastFailedBuild/';
+    }
+
+    function buildJobDomainMap(flakyRows) {
+      const jobDomainMap = {};
+      flakyRows.forEach((row) => {
+        const report = row.flakiness_report || [];
+        report.forEach((item) => {
+          if (!item || !item.job_name || !item.domain) {
+            return;
+          }
+          jobDomainMap[item.job_name] = normalizeDomain(item.domain);
+        });
+      });
+      return jobDomainMap;
+    }
+
+    function fallbackDomainForJob(jobName) {
+      const project = inferProjectLabel(jobName);
+      if (project === 'Gazebo') {
+        return 'https://build.osrfoundation.org';
+      }
+      return 'https://ci.ros2.org';
+    }
+
+    function collectRegressionJobsByPlatform(row, platform, jobDomainMap) {
+      const platformOs = platform && platform.os ? platform.os : 'unknown';
+      const platformArch = platform && platform.arch ? platform.arch : 'unknown';
+      const groupedRows = row.grouped_tests && row.grouped_tests.length ? row.grouped_tests : [row];
+      const jobsByKey = new Map();
+
+      groupedRows.forEach((item) => {
+        const itemPlatforms = item.affected_platforms && item.affected_platforms.length
+          ? item.affected_platforms
+          : row.affected_platforms || [];
+        const matchesPlatform = itemPlatforms.some((entry) => {
+          const os = entry && entry.os ? entry.os : 'unknown';
+          const arch = entry && entry.arch ? entry.arch : 'unknown';
+          return os === platformOs && arch === platformArch;
+        });
+
+        if (!matchesPlatform) {
+          return;
+        }
+
+        const itemJobName = String(item.job_name || row.job_name || '').trim();
+        if (itemJobName) {
+          const domain = jobDomainMap[itemJobName] || fallbackDomainForJob(itemJobName);
+          const key = itemJobName + '::' + domain;
+          if (!jobsByKey.has(key)) {
+            jobsByKey.set(key, {
+              job_name: itemJobName,
+              domain: domain,
+              url: buildJobUrl(domain, itemJobName),
+              last_failed_url: buildLastFailedBuildUrl(domain, itemJobName),
+              last_fail: null,
+            });
+          }
+        }
+      });
+
+      const report = row.flakiness_report || [];
+      report.forEach((item) => {
+        const reportJobName = String((item && item.job_name) || '').trim();
+        if (!reportJobName) {
+          return;
+        }
+        const domain = normalizeDomain(item.domain) || jobDomainMap[reportJobName] || fallbackDomainForJob(reportJobName);
+        const key = reportJobName + '::' + domain;
+        if (!jobsByKey.has(key)) {
+          jobsByKey.set(key, {
+            job_name: reportJobName,
+            domain: domain,
+            url: buildJobUrl(domain, reportJobName),
+            last_failed_url: buildLastFailedBuildUrl(domain, reportJobName),
+            last_fail: item.last_fail || null,
+          });
+        } else if (item.last_fail) {
+          const existing = jobsByKey.get(key);
+          if (!existing.last_fail || String(item.last_fail) > String(existing.last_fail)) {
+            existing.last_fail = item.last_fail;
+          }
+        }
+      });
+
+      return [...jobsByKey.values()].sort((left, right) => left.job_name.localeCompare(right.job_name));
+    }
+
+    function renderRegressionPlatformTags(row, jobDomainMap) {
+      const platforms = row.affected_platforms && row.affected_platforms.length
+        ? row.affected_platforms
+        : [{ os: 'unknown', arch: 'unknown' }];
+
+      return platforms.map((platform) => {
+        const os = platform && platform.os ? platform.os : 'unknown';
+        const arch = platform && platform.arch ? platform.arch : 'unknown';
+        const label = os + ' ' + arch;
+        const jobs = collectRegressionJobsByPlatform(row, { os: os, arch: arch }, jobDomainMap);
+        return '<button class="platform-pill platform-btn" data-test-name="' + escapeHtml(row.test_name || '-') + '" data-platform-label="' + escapeHtml(label) + '" data-jobs="' + escapeHtml(JSON.stringify(jobs)) + '">' + escapeHtml(label) + '</button>';
+      }).join('');
+    }
+
     function inferProjectLabel(value) {
       const text = String(value || '').toLowerCase();
       if (
@@ -1172,6 +1328,44 @@
       return issue.assignee || '-';
     }
 
+    function issuePriorityNumber(issue) {
+      if (issue.priority === null || issue.priority === undefined) {
+        return null;
+      }
+      const parsed = Number(issue.priority);
+      return Number.isNaN(parsed) ? null : parsed;
+    }
+
+    function compareIssuesByPriorityDesc(left, right) {
+      const leftPriority = issuePriorityNumber(left);
+      const rightPriority = issuePriorityNumber(right);
+
+      if (leftPriority === null && rightPriority === null) {
+        return String(left.issue_id || '').localeCompare(String(right.issue_id || ''));
+      }
+      if (leftPriority === null) {
+        return 1;
+      }
+      if (rightPriority === null) {
+        return -1;
+      }
+      if (leftPriority !== rightPriority) {
+        return rightPriority - leftPriority;
+      }
+      return String(left.issue_id || '').localeCompare(String(right.issue_id || ''));
+    }
+
+    function isWarningTestName(value) {
+      return /\bwarnings?\b/i.test(String(value || ''));
+    }
+
+    function rowContainsWarningRegression(row) {
+      const sourceRows = row.grouped_tests && row.grouped_tests.length
+        ? row.grouped_tests
+        : [row];
+      return sourceRows.some((item) => isWarningTestName(item.test_name));
+    }
+
     function normalizeProjectFilterParam(value) {
       const normalized = String(value || '').trim().toLowerCase();
       if (normalized === 'gazebo') {
@@ -1209,7 +1403,7 @@
     const COLUMN_TOOLTIPS = {
       testName: 'Name of the test that failed. Grouped rows can be expanded to inspect the individual tests.',
       package: 'Package associated with the failing test or grouped regression.',
-      platforms: 'Operating system and architecture combinations where the regression was observed.',
+      platforms: 'Operating system and architecture combinations where the regression was observed. Click a platform to see failed jobs and their latest failure.',
       age: 'Number of consecutive failing builds for this consistent regression.',
       knownIssue: 'Issue already linked to this regression, when one is known.',
       history: 'Opens the 90-day pass/fail history for the selected test.',
@@ -1345,7 +1539,7 @@
       return passthroughRows.concat(collapsedRows);
     }
 
-    function renderConsistentTable(rows, historyMap) {
+    function renderConsistentTable(rows, historyMap, jobDomainMap) {
       if (!rows.length) {
         return '<div class="empty">No consistent regressions match the current filters.</div>';
       }
@@ -1471,7 +1665,7 @@
         return '<tr>' +
           '<td class="test-cell">' + renderGroupedConsistentTestsCell(row, items) + '</td>' +
           '<td>' + renderGroupedPackagesCell(items) + '</td>' +
-          '<td>' + extractPlatformTags(row.affected_platforms) + '</td>' +
+          '<td>' + renderRegressionPlatformTags(row, jobDomainMap) + '</td>' +
           '<td><span class="age-pill ' + ageClass + '">' + escapeHtml(ageText) + '</span></td>' +
           '<td>' + renderGroupedKnownIssuesCell(items) + '</td>' +
           '<td>' + renderGroupedHistoryCell(items) + '</td>' +
@@ -1493,7 +1687,7 @@
       '</table>';
     }
 
-    function renderFlakyTable(rows, historyMap) {
+    function renderFlakyTable(rows, historyMap, jobDomainMap) {
       if (!rows.length) {
         return '<div class="empty">No flaky tests match the current filters.</div>';
       }
@@ -1575,7 +1769,7 @@
         return '<tr>' +
           '<td class="test-cell">' + renderGroupedTestsCell(items) + '</td>' +
           '<td>' + renderGroupedPackagesCell(items) + '</td>' +
-          '<td>' + extractPlatformTags(row.affected_platforms) + '</td>' +
+          '<td>' + renderRegressionPlatformTags(row, jobDomainMap) + '</td>' +
           '<td><span class="rate-pill ' + rateClass + '">' + escapeHtml(rate.toFixed(1)) + '%</span></td>' +
           '<td>' + renderGroupedKnownIssuesCell(items) + '</td>' +
           '<td>' + renderGroupedHistoryCell(items) + '</td>' +
@@ -1589,6 +1783,97 @@
           renderHeaderCell('Package', COLUMN_TOOLTIPS.package, 'start') +
           renderHeaderCell('Platforms', COLUMN_TOOLTIPS.platforms) +
           renderHeaderCell('Fail Rate', COLUMN_TOOLTIPS.failRate) +
+          renderHeaderCell('Known Issue', COLUMN_TOOLTIPS.knownIssue) +
+          renderHeaderCell('History', COLUMN_TOOLTIPS.history) +
+          renderHeaderCell('Suspect Commits', COLUMN_TOOLTIPS.suspectCommits, 'end') +
+        '</tr></thead>' +
+        '<tbody>' + body + '</tbody>' +
+      '</table>';
+    }
+
+    function renderWarningRegressionsTable(rows, historyMap, jobDomainMap) {
+      if (!rows.length) {
+        return '<div class="empty">No warning regressions match the current filters.</div>';
+      }
+
+      function sourceItems(row) {
+        const grouped = row.grouped_tests && row.grouped_tests.length ? row.grouped_tests : [row];
+        const warnings = grouped.filter((item) => isWarningTestName(item.test_name));
+        return warnings.length ? warnings : grouped;
+      }
+
+      function details(summary, items) {
+        if (!items.length) {
+          return '<span class="muted">-</span>';
+        }
+        if (items.length === 1) {
+          return items[0];
+        }
+        return '<details class="group-details"><summary>' + summary + '</summary><ul class="group-list">' + items.map((item) => '<li class="group-item">' + item + '</li>').join('') + '</ul></details>';
+      }
+
+      const body = rows.map((row) => {
+        const items = sourceItems(row);
+        const testNames = uniqSorted(items.map((item) => item.test_name || 'unknown'));
+        const packages = uniqSorted(items.map((item) => item.package || 'unknown'));
+        const knownIssues = uniqSorted(items.map((item) => item.linked_issue).filter(Boolean));
+        const historyItems = items.filter((item) => {
+          const historyKey = buildHistoryKey(item.test_name, row._kind === 'consistent' ? item.job_name : null);
+          return (historyMap[historyKey] || []).length;
+        });
+
+        const testsCell = testNames.length === 1
+          ? escapeHtml(testNames[0])
+          : details(
+            escapeHtml(testNames[0]) + '<span class="group-badge">+' + escapeHtml(String(testNames.length - 1)) + ' more</span>',
+            testNames.map((testName) => escapeHtml(testName))
+          );
+
+        const packagesCell = packages.length === 1
+          ? '<span class="pkg-pill">' + escapeHtml(packages[0]) + '</span>'
+          : details(
+            escapeHtml(packages[0]) + '<span class="group-badge">+' + escapeHtml(String(packages.length - 1)) + ' more</span>',
+            packages.map((pkg) => '<span class="pkg-pill">' + escapeHtml(pkg) + '</span>')
+          );
+
+        const issuesCell = !knownIssues.length
+          ? '<span class="muted">-</span>'
+          : (knownIssues.length === 1
+            ? '<a class="known-issue-link" href="' + escapeHtml(knownIssues[0]) + '" target="_blank" rel="noreferrer">' + escapeHtml(issueShortLabel(knownIssues[0])) + '</a>'
+            : details(
+              escapeHtml(issueShortLabel(knownIssues[0])) + '<span class="group-badge">+' + escapeHtml(String(knownIssues.length - 1)) + ' more</span>',
+              knownIssues.map((issueLink) => '<a class="known-issue-link" href="' + escapeHtml(issueLink) + '" target="_blank" rel="noreferrer">' + escapeHtml(issueShortLabel(issueLink)) + '</a>')
+            )
+          );
+
+        const historyCell = !historyItems.length
+          ? '<span class="muted">No history</span>'
+          : (historyItems.length === 1
+            ? renderHistoryButton(historyItems[0].test_name, historyMap, row._kind === 'consistent' ? historyItems[0].job_name : null)
+            : details(
+              escapeHtml(historyItems[0].test_name) + '<span class="group-badge">+' + escapeHtml(String(historyItems.length - 1)) + ' more</span>',
+              historyItems.map((item) => {
+                const jobName = row._kind === 'consistent' ? item.job_name : null;
+                return escapeHtml(item.test_name) + ' ' + renderHistoryButton(item.test_name, historyMap, jobName);
+              })
+            )
+          );
+
+        return '<tr>' +
+          '<td class="test-cell">' + testsCell + '</td>' +
+          '<td>' + packagesCell + '</td>' +
+          '<td>' + renderRegressionPlatformTags(row, jobDomainMap) + '</td>' +
+          '<td>' + issuesCell + '</td>' +
+          '<td>' + historyCell + '</td>' +
+          '<td>' + renderSuspectColumn(row, row._kind === 'flaky') + '</td>' +
+        '</tr>';
+      }).join('');
+
+      return '<table>' +
+        '<thead><tr>' +
+          renderHeaderCell('Test Name', COLUMN_TOOLTIPS.testName, 'start') +
+          renderHeaderCell('Package', COLUMN_TOOLTIPS.package, 'start') +
+          renderHeaderCell('Platforms', COLUMN_TOOLTIPS.platforms) +
           renderHeaderCell('Known Issue', COLUMN_TOOLTIPS.knownIssue) +
           renderHeaderCell('History', COLUMN_TOOLTIPS.history) +
           renderHeaderCell('Suspect Commits', COLUMN_TOOLTIPS.suspectCommits, 'end') +
@@ -1637,7 +1922,11 @@
     }
 
     function matchesRegressionFilters(row, filters) {
-      if (filters.type !== 'all' && row._kind !== filters.type) {
+      if (filters.type === 'warning') {
+        if (!rowContainsWarningRegression(row)) {
+          return false;
+        }
+      } else if (filters.type !== 'all' && row._kind !== filters.type) {
         return false;
       }
 
@@ -1762,6 +2051,35 @@
       return '<div class="history-panel"><p class="history-kicker">Suspect Repositories</p>' + items + '</div>';
     }
 
+    function buildPlatformJobsModalContent(jobs) {
+      if (!jobs || !jobs.length) {
+        return '<div class="empty">No failed jobs available for this platform.</div>';
+      }
+
+      const items = jobs.map((job) => {
+        const name = job.job_name || 'unknown job';
+        const domain = job.domain || '-';
+        const url = job.url;
+        const lastFailedUrl = job.last_failed_url;
+        const lastFailDate = job.last_fail || '-';
+        let html = '<div class="history-card">';
+        html += '<h4 class="history-card-title">' + escapeHtml(name) + '</h4>';
+        html += '<div style="display:grid;gap:8px;">';
+        html += '<div class="suspect-line">' + escapeHtml(domain) + '</div>';
+        html += '<div class="suspect-line">Last fail date: ' + escapeHtml(lastFailDate) + '</div>';
+        if (lastFailedUrl) {
+          html += '<a class="suspect-link" href="' + escapeHtml(lastFailedUrl) + '" target="_blank" rel="noreferrer">Open last failed build index →</a>';
+        }
+        if (url) {
+          html += '<a class="suspect-link" href="' + escapeHtml(url) + '" target="_blank" rel="noreferrer">Open job in Jenkins →</a>';
+        }
+        html += '</div></div>';
+        return html;
+      }).join('');
+
+      return '<div class="history-panel"><p class="history-kicker">Failed Jobs</p>' + items + '</div>';
+    }
+
     function setupTabs() {
       const tabs = document.querySelectorAll('.tab-btn');
       const regressionView = document.getElementById('view-regressions');
@@ -1865,6 +2183,49 @@
       });
     }
 
+    function setupPlatformModal() {
+      const modal = document.getElementById('platform-modal');
+      const closeButton = document.getElementById('close-platform');
+      const title = document.getElementById('platform-title');
+      const subtitle = document.getElementById('platform-subtitle');
+      const body = document.getElementById('platform-body');
+
+      function close() {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+
+      closeButton.addEventListener('click', close);
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+          close();
+        }
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          close();
+        }
+      });
+
+      document.body.addEventListener('click', (event) => {
+        const button = event.target.closest('.platform-btn');
+        if (!button) {
+          return;
+        }
+
+        const testName = button.dataset.testName || 'Regression';
+        const platformLabel = button.dataset.platformLabel || 'unknown platform';
+        const jobs = JSON.parse(button.dataset.jobs || '[]');
+
+        title.textContent = testName;
+        subtitle.textContent = 'Failed jobs for ' + platformLabel;
+        body.innerHTML = buildPlatformJobsModalContent(jobs);
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+      });
+    }
+
     function main() {
       const data = window.DASHBOARD_DATA;
       if (!data) {
@@ -1876,6 +2237,8 @@
       const flakyRaw = data.regressions && data.regressions.flaky ? data.regressions.flaky : [];
       const knownIssues = data.known_issues || [];
       const historyMap = data.test_history || {};
+      const sortedKnownIssues = knownIssues.slice().sort(compareIssuesByPriorityDesc);
+      const jobDomainMap = buildJobDomainMap(flakyRaw);
 
       const normalized = normalizeRegressions(consistentRaw, flakyRaw);
       const consistentRows = groupConsistentRowsByKnownIssue(normalized.consistentRows)
@@ -1905,12 +2268,12 @@
         regressionProjectSelect.value = initialProjectFilter;
       }
 
-      const issueStatuses = uniqSorted(knownIssues.map((issue) => (issue.status || 'unknown').toLowerCase()));
-  const issuePriorities = uniqSorted(knownIssues.map((issue) => formatIssuePriority(issue)));
-      const issueProjects = uniqSorted(knownIssues.map((issue) => inferIssueProject(issue)));
-  const issueAssignees = uniqSorted(knownIssues.map((issue) => normalizeIssueAssignee(issue)));
+        const issueStatuses = uniqSorted(sortedKnownIssues.map((issue) => (issue.status || 'unknown').toLowerCase()));
+        const issuePriorities = uniqSorted(sortedKnownIssues.map((issue) => formatIssuePriority(issue)));
+        const issueProjects = uniqSorted(sortedKnownIssues.map((issue) => inferIssueProject(issue)));
+        const issueAssignees = uniqSorted(sortedKnownIssues.map((issue) => normalizeIssueAssignee(issue)));
       setSelectOptions(issuesStatusSelect, withAllOption(issueStatuses, 'All'));
-  setSelectOptions(issuesPrioritySelect, withAllOption(issuePriorities, 'All'));
+        setSelectOptions(issuesPrioritySelect, withAllOption(issuePriorities, 'All'));
       setSelectOptions(issuesProjectSelect, withAllOption(issueProjects, 'All'));
       setSelectOptions(issuesAssigneeSelect, withAllOption(issueAssignees, 'All'));
 
@@ -1925,16 +2288,23 @@
 
         const consistentFiltered = consistentRows.filter((row) => matchesRegressionFilters(row, filters));
         const flakyFiltered = flakyRows.filter((row) => matchesRegressionFilters(row, filters));
-        const flakyVisibleTests = flakyFiltered.reduce((total, row) => {
+        const warningConsistent = consistentFiltered.filter((row) => rowContainsWarningRegression(row));
+        const warningFlaky = flakyFiltered.filter((row) => rowContainsWarningRegression(row));
+        const regularConsistent = consistentFiltered.filter((row) => !rowContainsWarningRegression(row));
+        const regularFlaky = flakyFiltered.filter((row) => !rowContainsWarningRegression(row));
+        const warningRows = warningConsistent.concat(warningFlaky);
+        const flakyVisibleTests = regularFlaky.reduce((total, row) => {
           const items = row.grouped_tests && row.grouped_tests.length ? row.grouped_tests : [row];
           return total + items.length;
         }, 0);
 
-        document.getElementById('consistent-count').textContent = String(consistentFiltered.length);
-        document.getElementById('flaky-count').textContent = String(flakyFiltered.length);
-        document.getElementById('flaky-legend').textContent = '(>=3 occurrences / 20) showing ' + String(flakyFiltered.length) + ' groups for ' + String(flakyVisibleTests) + ' flaky tests';
-        document.getElementById('consistent-table').innerHTML = renderConsistentTable(consistentFiltered, historyMap);
-        document.getElementById('flaky-table').innerHTML = renderFlakyTable(flakyFiltered, historyMap);
+        document.getElementById('consistent-count').textContent = String(regularConsistent.length);
+        document.getElementById('warning-regressions-count').textContent = String(warningRows.length);
+        document.getElementById('flaky-count').textContent = String(regularFlaky.length);
+        document.getElementById('flaky-legend').textContent = '(>=3 occurrences / 20) showing ' + String(regularFlaky.length) + ' groups for ' + String(flakyVisibleTests) + ' flaky tests';
+        document.getElementById('consistent-table').innerHTML = renderConsistentTable(regularConsistent, historyMap, jobDomainMap);
+        document.getElementById('warning-regressions-table').innerHTML = renderWarningRegressionsTable(warningRows, historyMap, jobDomainMap);
+        document.getElementById('flaky-table').innerHTML = renderFlakyTable(regularFlaky, historyMap, jobDomainMap);
       }
 
       function renderIssues() {
@@ -1944,7 +2314,7 @@
           project: issuesProjectSelect.value,
           assignee: issuesAssigneeSelect.value,
         };
-        const filtered = knownIssues.filter((issue) => matchesIssueFilters(issue, filters));
+        const filtered = sortedKnownIssues.filter((issue) => matchesIssueFilters(issue, filters));
         document.getElementById('issues-count').textContent = String(filtered.length);
         document.getElementById('issues-table').innerHTML = renderIssuesTable(filtered);
       }
@@ -1955,7 +2325,7 @@
       regressionTypeSelect.addEventListener('change', renderRegressions);
 
       issuesStatusSelect.addEventListener('change', renderIssues);
-  issuesPrioritySelect.addEventListener('change', renderIssues);
+      issuesPrioritySelect.addEventListener('change', renderIssues);
       issuesProjectSelect.addEventListener('change', renderIssues);
       issuesAssigneeSelect.addEventListener('change', renderIssues);
 
@@ -1964,6 +2334,7 @@
       setupTabs();
       setupHistoryModal(historyMap);
       setupSuspectsModal();
+      setupPlatformModal();
       renderRegressions();
       renderIssues();
     }

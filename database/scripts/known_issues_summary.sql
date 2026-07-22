@@ -1,6 +1,7 @@
 WITH issue_rows AS (
   SELECT
     tfi.github_issue AS issue_id,
+    tfi.error_name,
     tfi.status,
     tfi.priority,
     NULLIF(tfi.assignee, 'Not Assigned') AS assignee,
@@ -47,6 +48,8 @@ LEFT JOIN last_seen ls
 WHERE ir.rn = 1
   -- Core business logic: All open issues OR closed ones seen recently
   AND (
+    ir.error_name = 'build_regression'
+    OR
     ir.status = 'OPEN'
     OR (
       ir.status != 'OPEN'
