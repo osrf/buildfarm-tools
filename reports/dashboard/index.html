@@ -565,7 +565,8 @@
 
     .known-issue-link,
     .issue-link,
-    .suspect-link {
+    .suspect-link,
+    .test-link {
       color: #4caeff;
       text-decoration: none;
       font-family: var(--mono);
@@ -574,8 +575,21 @@
 
     .known-issue-link:hover,
     .issue-link:hover,
-    .suspect-link:hover {
+    .suspect-link:hover,
+    .test-link:hover {
       text-decoration: underline;
+    }
+
+    .test-link {
+      color: inherit;
+      border-bottom: 1px dashed rgba(76, 174, 255, 0.55);
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    .test-link:hover {
+      color: #4caeff;
+      border-bottom-color: #4caeff;
     }
 
     .suspect-block {
@@ -1185,6 +1199,71 @@
       return baseJobUrl + 'lastFailedBuild/';
     }
 
+    function sanitizeTestReportSegment(value) {
+      // Mirrors Jenkins' TestObject#getSafeName: '\', '/', ':', '[', ']', '<', '>'
+      // are not safe in a testReport URL segment and get collapsed to '_'.
+      return String(value || '').replace(/[\\/:<>\[\]]/g, '_');
+    }
+
+    function testReportKindSegment(domain) {
+      // ci.ros2.org jobs publish results through the JUnit plugin, whose
+      // testReport URLs are nested under an extra "junit/" segment.
+      // build.osrfoundation.org (Gazebo/CTest) jobs are not.
+      return String(domain || '').indexOf('ci.ros2.org') !== -1 ? 'junit/' : '';
+    }
+
+    function buildTestReportSegments(testName) {
+      const parts = String(testName || '').split('.').filter((part) => part.length);
+      if (parts.length < 2) {
+        return null;
+      }
+      const method = parts[parts.length - 1];
+      const className = parts[parts.length - 2];
+      const pkg = parts.length > 2 ? parts.slice(0, -2).join('.') : '(root)';
+      return {
+        pkg: sanitizeTestReportSegment(pkg),
+        className: sanitizeTestReportSegment(className),
+        method: sanitizeTestReportSegment(method),
+      };
+    }
+
+    function buildTestReportUrl(domain, jobName, testName, buildRef) {
+      const baseJobUrl = buildJobUrl(domain, jobName);
+      const segments = buildTestReportSegments(testName);
+      if (!baseJobUrl || !segments) {
+        return null;
+      }
+      const ref = buildRef || 'lastFailedBuild';
+      return baseJobUrl + ref + '/testReport/' + testReportKindSegment(domain) +
+        encodeURIComponent(segments.pkg) + '/' +
+        encodeURIComponent(segments.className) + '/' +
+        encodeURIComponent(segments.method) + '/';
+    }
+
+    function renderTestNameLink(testName, jobName, domain) {
+      const label = escapeHtml(testName || 'unknown');
+      if (!testName || !jobName || !domain) {
+        return label;
+      }
+      const url = buildTestReportUrl(domain, jobName, testName);
+      if (!url) {
+        return label;
+      }
+      return '<a class="test-link" href="' + escapeHtml(url) + '" target="_blank" rel="noreferrer" title="Ver último fallo en Jenkins">' + label + '</a>';
+    }
+
+    function flakyRowDomainAndJob(row) {
+      const report = row && row.flakiness_report;
+      if (!report || !report.length) {
+        return { jobName: null, domain: null };
+      }
+      const top = report[0];
+      return {
+        jobName: top.job_name || null,
+        domain: normalizeDomain(top.domain) || (top.job_name ? fallbackDomainForJob(top.job_name) : null),
+      };
+    }
+
     function buildJobDomainMap(flakyRows) {
       const jobDomainMap = {};
       flakyRows.forEach((row) => {
@@ -1554,24 +1633,36 @@
         return '<details class="group-details"><summary>' + summary + '</summary><ul class="group-list">' + items.map((item) => '<li class="group-item">' + item + '</li>').join('') + '</ul></details>';
       }
 
+      function testLinkForItem(item) {
+        const jobName = item && item.job_name;
+        const domain = jobName ? (jobDomainMap[jobName] || fallbackDomainForJob(jobName)) : null;
+        return renderTestNameLink(item && item.test_name, jobName, domain);
+      }
+
       function renderGroupedConsistentTestsCell(row, items) {
         if (row._known_issue_group) {
-          const uniqueTestNames = uniqSorted(items.map((item) => item.test_name || 'unknown'));
-          const summary = String(uniqueTestNames.length) + ' test regression' + (uniqueTestNames.length === 1 ? '' : 's');
+          const byTestName = new Map();
+          items.forEach((item) => {
+            if (!byTestName.has(item.test_name)) {
+              byTestName.set(item.test_name, item);
+            }
+          });
+          const uniqueItems = [...byTestName.values()];
+          const summary = String(uniqueItems.length) + ' test regression' + (uniqueItems.length === 1 ? '' : 's');
           return renderDetails(
             escapeHtml(summary),
-            uniqueTestNames.map((testName) => escapeHtml(testName))
+            uniqueItems.map((item) => testLinkForItem(item))
           );
         }
 
         if (items.length === 1) {
-          return escapeHtml(items[0].test_name);
+          return testLinkForItem(items[0]);
         }
         const uniqueTestNames = uniqSorted(items.map((item) => item.test_name || 'unknown'));
         if (uniqueTestNames.length === 1) {
           const jobNames = uniqSorted(items.map((item) => item.job_name || 'unknown'));
           return renderDetails(
-            escapeHtml(uniqueTestNames[0]) + '<span class="group-badge">' + escapeHtml(String(jobNames.length)) + ' jobs</span>',
+            testLinkForItem(items[0]) + '<span class="group-badge">' + escapeHtml(String(jobNames.length)) + ' jobs</span>',
             jobNames.map((jobName) => escapeHtml(jobName))
           );
         }
@@ -1582,7 +1673,7 @@
           : (row.job_name || items[0].job_name || items[0].test_name);
         return renderDetails(
           escapeHtml(groupLabel) + '<span class="group-badge">' + escapeHtml(String(items.length)) + ' tests</span>',
-          items.map((item) => escapeHtml(item.test_name))
+          items.map((item) => testLinkForItem(item))
         );
       }
 
@@ -1706,13 +1797,15 @@
         return '<details class="group-details"><summary>' + summary + '</summary><ul class="group-list">' + items.map((item) => '<li class="group-item">' + item + '</li>').join('') + '</ul></details>';
       }
 
-      function renderGroupedTestsCell(items) {
+      function renderGroupedTestsCell(items, row) {
+        const linkInfo = flakyRowDomainAndJob(row);
+        const linkFor = (item) => renderTestNameLink(item.test_name, linkInfo.jobName, linkInfo.domain);
         if (items.length === 1) {
-          return escapeHtml(items[0].test_name);
+          return linkFor(items[0]);
         }
         return renderDetails(
-          escapeHtml(items[0].test_name) + '<span class="group-badge">+' + escapeHtml(String(items.length - 1)) + ' more</span>',
-          items.map((item) => escapeHtml(item.test_name))
+          linkFor(items[0]) + '<span class="group-badge">+' + escapeHtml(String(items.length - 1)) + ' more</span>',
+          items.map((item) => linkFor(item))
         );
       }
 
@@ -1767,7 +1860,7 @@
         const rateClass = severityClassFromRate(rate);
 
         return '<tr>' +
-          '<td class="test-cell">' + renderGroupedTestsCell(items) + '</td>' +
+          '<td class="test-cell">' + renderGroupedTestsCell(items, row) + '</td>' +
           '<td>' + renderGroupedPackagesCell(items) + '</td>' +
           '<td>' + renderRegressionPlatformTags(row, jobDomainMap) + '</td>' +
           '<td><span class="rate-pill ' + rateClass + '">' + escapeHtml(rate.toFixed(1)) + '%</span></td>' +
@@ -1814,7 +1907,23 @@
 
       const body = rows.map((row) => {
         const items = sourceItems(row);
-        const testNames = uniqSorted(items.map((item) => item.test_name || 'unknown'));
+        const flakyLinkInfo = row._kind === 'flaky' ? flakyRowDomainAndJob(row) : null;
+        const linkForTestItem = (item) => {
+          if (row._kind === 'consistent') {
+            const jobName = item.job_name;
+            const domain = jobName ? (jobDomainMap[jobName] || fallbackDomainForJob(jobName)) : null;
+            return renderTestNameLink(item.test_name, jobName, domain);
+          }
+          return renderTestNameLink(item.test_name, flakyLinkInfo && flakyLinkInfo.jobName, flakyLinkInfo && flakyLinkInfo.domain);
+        };
+        const byUniqueTestName = new Map();
+        items.forEach((item) => {
+          const name = item.test_name || 'unknown';
+          if (!byUniqueTestName.has(name)) {
+            byUniqueTestName.set(name, item);
+          }
+        });
+        const uniqueTestItems = [...byUniqueTestName.values()];
         const packages = uniqSorted(items.map((item) => item.package || 'unknown'));
         const knownIssues = uniqSorted(items.map((item) => item.linked_issue).filter(Boolean));
         const historyItems = items.filter((item) => {
@@ -1822,11 +1931,11 @@
           return (historyMap[historyKey] || []).length;
         });
 
-        const testsCell = testNames.length === 1
-          ? escapeHtml(testNames[0])
+        const testsCell = uniqueTestItems.length === 1
+          ? linkForTestItem(uniqueTestItems[0])
           : details(
-            escapeHtml(testNames[0]) + '<span class="group-badge">+' + escapeHtml(String(testNames.length - 1)) + ' more</span>',
-            testNames.map((testName) => escapeHtml(testName))
+            linkForTestItem(uniqueTestItems[0]) + '<span class="group-badge">+' + escapeHtml(String(uniqueTestItems.length - 1)) + ' more</span>',
+            uniqueTestItems.map((item) => linkForTestItem(item))
           );
 
         const packagesCell = packages.length === 1
