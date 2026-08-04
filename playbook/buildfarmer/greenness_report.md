@@ -43,7 +43,7 @@ When updating Google Sheets, the script:
 
 ## Automation workflow
 
-The monthly workflow is defined in [`.github/workflows/monthlyGreennessReport.yml`](../../../.github/workflows/monthlyGreennessReport.yml):
+The monthly workflow is defined in [`generate-greenness-report.yml`](https://github.com/osrf/buildfarm-tools-private/blob/main/.github/workflows/generate-greenness-report.yml) (in `buildfarm-tools-private`):
 
 1. Runs monthly on day 1 (`0 12 1 * *`) and can also be triggered manually.
 2. Installs dependencies and clones the public repository.
@@ -56,7 +56,7 @@ python3 greenness_report.py -f "$from_date" -u "$until_date"
 4. Moves the generated report to `buildfarm-tools/reports/greenness_reports/<year>/`.
 5. Pushes to `osrf/buildfarm-tools` when scheduled or when manually requested.
 
-Then [`buildfarm-tools/.github/workflows/greenness-reports-deploy.yml`](../../.github/workflows/greenness-reports-deploy.yml) deploys report pages to GitHub Pages.
+Then [`buildfarm-tools/.github/workflows/deploy-reports-site.yml`](../../.github/workflows/deploy-reports-site.yml) deploys report pages to GitHub Pages.
 
 ## Run locally
 
