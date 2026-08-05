@@ -10,7 +10,7 @@ The buildfarmer automation uses job priorities to rank issues and focus on the m
 
 ## Automatic workflow
 
-Job priorities are generated automatically by [Database Fetcher workflow](../../../.github/workflows/databaseFetcher.yml):
+Job priorities are generated automatically by the [Generate Core Data workflow](https://github.com/osrf/buildfarm-tools-private/blob/main/.github/workflows/generate-core-data.yml) (in `buildfarm-tools-private`):
 
 1. Runs `python3 generate_priorities.py` in this private repository.
 2. Produces a local `job_priorities.csv` file.

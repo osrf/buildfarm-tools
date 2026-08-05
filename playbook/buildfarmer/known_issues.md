@@ -52,7 +52,7 @@ To untrack a known issue, you may follow the steps below:
 
 # Refresh Known Issues in the Database
 
-All the known issues are added manually to the database. Their status is now refreshed automatically by the Daily Workflow. If an issue is closed in GitHub, it is also closed automatically in the database.
+All the known issues are added manually to the database. Their status is now refreshed automatically by the Generate Core Data workflow (`buildfarm-tools-private`). If an issue is closed in GitHub, it is also closed automatically in the database.
 
 # Check statistics of current known issues
 
