@@ -1,13 +1,13 @@
 window.DASHBOARD_DATA = {
   "buildfarm_statistics": {
     "consistent_failures": 438,
-    "flaky_issues": 48,
+    "flaky_issues": 47,
     "known_issues": 15,
     "reported_regressions": 237,
-    "reported_regressions_pct": 48.8,
-    "total_regressions": 486
+    "reported_regressions_pct": 48.9,
+    "total_regressions": 485
   },
-  "generated_at": "2026-08-05T12:03:43Z",
+  "generated_at": "2026-08-05T14:29:52Z",
   "known_issues": [
     {
       "assignee": "christophebedard",
@@ -1414,8 +1414,8 @@ window.DASHBOARD_DATA = {
             "os": "linux"
           }
         ],
-        "consecutive_failures": 74,
-        "first_seen_date": "2026-08-04",
+        "consecutive_failures": 75,
+        "first_seen_date": "2026-08-05",
         "group_size": 1,
         "grouped_tests": [
           {
@@ -1425,8 +1425,8 @@ window.DASHBOARD_DATA = {
                 "os": "linux"
               }
             ],
-            "consecutive_failures": 74,
-            "first_seen_date": "2026-08-04",
+            "consecutive_failures": 75,
+            "first_seen_date": "2026-08-05",
             "job_name": "Rci__nightly-zenoh_ubuntu_resolute_amd64",
             "linked_issue": null,
             "package": "test_launch_ros",
@@ -4402,8 +4402,8 @@ window.DASHBOARD_DATA = {
             "os": "linux"
           }
         ],
-        "consecutive_failures": 52,
-        "first_seen_date": "2026-08-04",
+        "consecutive_failures": 53,
+        "first_seen_date": "2026-08-05",
         "group_size": 1,
         "grouped_tests": [
           {
@@ -4413,12 +4413,18 @@ window.DASHBOARD_DATA = {
                 "os": "linux"
               }
             ],
-            "consecutive_failures": 52,
-            "first_seen_date": "2026-08-04",
+            "consecutive_failures": 53,
+            "first_seen_date": "2026-08-05",
             "job_name": "Rci__benchmark_ubuntu_resolute_amd64",
             "linked_issue": null,
             "package": "projectroot",
             "suspect_commits": [
+              {
+                "compare_url": "https://github.com/eProsima/Fast-DDS/compare/3d6a44a...dee4a04",
+                "first_failure_sha": "dee4a04",
+                "last_success_sha": "3d6a44a",
+                "repo": "eProsima/Fast-DDS"
+              },
               {
                 "compare_url": "https://github.com/ros2/rclcpp/compare/1ee87c5...2053606",
                 "first_failure_sha": "2053606",
@@ -4443,6 +4449,12 @@ window.DASHBOARD_DATA = {
         "package": "projectroot",
         "suspect_commits": [
           {
+            "compare_url": "https://github.com/eProsima/Fast-DDS/compare/3d6a44a...dee4a04",
+            "first_failure_sha": "dee4a04",
+            "last_success_sha": "3d6a44a",
+            "repo": "eProsima/Fast-DDS"
+          },
+          {
             "compare_url": "https://github.com/ros2/rclcpp/compare/1ee87c5...2053606",
             "first_failure_sha": "2053606",
             "last_success_sha": "1ee87c5",
@@ -4464,8 +4476,8 @@ window.DASHBOARD_DATA = {
             "os": "linux"
           }
         ],
-        "consecutive_failures": 52,
-        "first_seen_date": "2026-08-04",
+        "consecutive_failures": 53,
+        "first_seen_date": "2026-08-05",
         "group_size": 1,
         "grouped_tests": [
           {
@@ -4475,12 +4487,18 @@ window.DASHBOARD_DATA = {
                 "os": "linux"
               }
             ],
-            "consecutive_failures": 52,
-            "first_seen_date": "2026-08-04",
+            "consecutive_failures": 53,
+            "first_seen_date": "2026-08-05",
             "job_name": "Rci__benchmark_ubuntu_resolute_amd64",
             "linked_issue": null,
             "package": "projectroot",
             "suspect_commits": [
+              {
+                "compare_url": "https://github.com/eProsima/Fast-DDS/compare/3d6a44a...dee4a04",
+                "first_failure_sha": "dee4a04",
+                "last_success_sha": "3d6a44a",
+                "repo": "eProsima/Fast-DDS"
+              },
               {
                 "compare_url": "https://github.com/ros2/rclcpp/compare/1ee87c5...2053606",
                 "first_failure_sha": "2053606",
@@ -4504,6 +4522,12 @@ window.DASHBOARD_DATA = {
         "linked_issue": null,
         "package": "projectroot",
         "suspect_commits": [
+          {
+            "compare_url": "https://github.com/eProsima/Fast-DDS/compare/3d6a44a...dee4a04",
+            "first_failure_sha": "dee4a04",
+            "last_success_sha": "3d6a44a",
+            "repo": "eProsima/Fast-DDS"
+          },
           {
             "compare_url": "https://github.com/ros2/rclcpp/compare/1ee87c5...2053606",
             "first_failure_sha": "2053606",
@@ -19029,86 +19053,6 @@ window.DASHBOARD_DATA = {
       {
         "affected_platforms": [
           {
-            "arch": "amd64",
-            "os": "linux"
-          },
-          {
-            "arch": "aarch64",
-            "os": "macos"
-          },
-          {
-            "arch": "amd64",
-            "os": "macos"
-          }
-        ],
-        "fail_rate_pct": 9.68,
-        "failure_count": 3,
-        "flakiness_report": [
-          {
-            "build_count": 1,
-            "domain": "http://build.ros2.org",
-            "failure_count": 1,
-            "failure_percentage": 100.0,
-            "first_fail": "2026-08-05",
-            "job_name": "Rci__nightly-cyclonedds_ubuntu_resolute_amd64",
-            "last_fail": "2026-08-05",
-            "project": "ROS"
-          },
-          {
-            "build_count": 5,
-            "domain": "https://build.osrfoundation.org",
-            "failure_count": 1,
-            "failure_percentage": 20.0,
-            "first_fail": "2026-07-17",
-            "job_name": "gz_cmake-ci-gz-cmake3-homebrew-arm64",
-            "last_fail": "2026-07-17",
-            "project": "GAZEBO"
-          },
-          {
-            "build_count": 6,
-            "domain": "https://build.osrfoundation.org",
-            "failure_count": 1,
-            "failure_percentage": 16.67,
-            "first_fail": "2026-07-16",
-            "job_name": "gz_cmake-ci-gz-cmake3-homebrew-amd64",
-            "last_fail": "2026-07-16",
-            "project": "GAZEBO"
-          }
-        ],
-        "group_size": 1,
-        "grouped_tests": [
-          {
-            "affected_platforms": [
-              {
-                "arch": "amd64",
-                "os": "linux"
-              },
-              {
-                "arch": "aarch64",
-                "os": "macos"
-              },
-              {
-                "arch": "amd64",
-                "os": "macos"
-              }
-            ],
-            "fail_rate_pct": 9.68,
-            "failure_count": 3,
-            "linked_issue": null,
-            "package": "cmake",
-            "test_name": "1 cmake warnings",
-            "total_runs": 31
-          }
-        ],
-        "linked_issue": null,
-        "package": "cmake",
-        "suspect_commits": null,
-        "test_name": "1 cmake warnings",
-        "total_runs": 31
-      },
-      {
-        "affected_platforms": [
-          {
             "arch": "aarch64",
             "os": "linux"
           },
@@ -20031,368 +19975,6 @@ window.DASHBOARD_DATA = {
     ]
   },
   "test_history": {
-    "1 cmake warnings::": [
-      {
-        "date": "2026-05-08",
-        "result": 1
-      },
-      {
-        "date": "2026-05-09",
-        "result": 0
-      },
-      {
-        "date": "2026-05-10",
-        "result": 1
-      },
-      {
-        "date": "2026-05-11",
-        "result": 0
-      },
-      {
-        "date": "2026-05-12",
-        "result": 0
-      },
-      {
-        "date": "2026-05-13",
-        "result": 0
-      },
-      {
-        "date": "2026-05-14",
-        "result": 0
-      },
-      {
-        "date": "2026-05-15",
-        "result": 0
-      },
-      {
-        "date": "2026-05-16",
-        "result": 0
-      },
-      {
-        "date": "2026-05-17",
-        "result": 0
-      },
-      {
-        "date": "2026-05-18",
-        "result": 0
-      },
-      {
-        "date": "2026-05-19",
-        "result": 0
-      },
-      {
-        "date": "2026-05-20",
-        "result": 0
-      },
-      {
-        "date": "2026-05-21",
-        "result": 0
-      },
-      {
-        "date": "2026-05-22",
-        "result": 0
-      },
-      {
-        "date": "2026-05-23",
-        "result": 0
-      },
-      {
-        "date": "2026-05-24",
-        "result": 0
-      },
-      {
-        "date": "2026-05-25",
-        "result": 0
-      },
-      {
-        "date": "2026-05-26",
-        "result": 0
-      },
-      {
-        "date": "2026-05-27",
-        "result": 0
-      },
-      {
-        "date": "2026-05-28",
-        "result": 0
-      },
-      {
-        "date": "2026-05-29",
-        "result": 0
-      },
-      {
-        "date": "2026-05-30",
-        "result": 0
-      },
-      {
-        "date": "2026-05-31",
-        "result": 0
-      },
-      {
-        "date": "2026-06-01",
-        "result": 0
-      },
-      {
-        "date": "2026-06-02",
-        "result": 0
-      },
-      {
-        "date": "2026-06-03",
-        "result": 0
-      },
-      {
-        "date": "2026-06-04",
-        "result": 0
-      },
-      {
-        "date": "2026-06-05",
-        "result": 0
-      },
-      {
-        "date": "2026-06-06",
-        "result": 0
-      },
-      {
-        "date": "2026-06-07",
-        "result": 0
-      },
-      {
-        "date": "2026-06-08",
-        "result": 0
-      },
-      {
-        "date": "2026-06-09",
-        "result": 0
-      },
-      {
-        "date": "2026-06-10",
-        "result": 0
-      },
-      {
-        "date": "2026-06-11",
-        "result": 0
-      },
-      {
-        "date": "2026-06-12",
-        "result": 1
-      },
-      {
-        "date": "2026-06-13",
-        "result": 0
-      },
-      {
-        "date": "2026-06-14",
-        "result": 0
-      },
-      {
-        "date": "2026-06-15",
-        "result": 0
-      },
-      {
-        "date": "2026-06-16",
-        "result": 0
-      },
-      {
-        "date": "2026-06-17",
-        "result": 1
-      },
-      {
-        "date": "2026-06-18",
-        "result": 0
-      },
-      {
-        "date": "2026-06-19",
-        "result": 0
-      },
-      {
-        "date": "2026-06-20",
-        "result": 0
-      },
-      {
-        "date": "2026-06-21",
-        "result": 0
-      },
-      {
-        "date": "2026-06-22",
-        "result": 0
-      },
-      {
-        "date": "2026-06-23",
-        "result": 0
-      },
-      {
-        "date": "2026-06-24",
-        "result": 0
-      },
-      {
-        "date": "2026-06-25",
-        "result": 0
-      },
-      {
-        "date": "2026-06-26",
-        "result": 0
-      },
-      {
-        "date": "2026-06-27",
-        "result": 0
-      },
-      {
-        "date": "2026-06-28",
-        "result": 0
-      },
-      {
-        "date": "2026-06-29",
-        "result": 0
-      },
-      {
-        "date": "2026-06-30",
-        "result": 0
-      },
-      {
-        "date": "2026-07-01",
-        "result": 1
-      },
-      {
-        "date": "2026-07-02",
-        "result": 0
-      },
-      {
-        "date": "2026-07-03",
-        "result": 0
-      },
-      {
-        "date": "2026-07-04",
-        "result": 0
-      },
-      {
-        "date": "2026-07-05",
-        "result": 0
-      },
-      {
-        "date": "2026-07-06",
-        "result": 0
-      },
-      {
-        "date": "2026-07-07",
-        "result": 1
-      },
-      {
-        "date": "2026-07-08",
-        "result": 0
-      },
-      {
-        "date": "2026-07-09",
-        "result": 1
-      },
-      {
-        "date": "2026-07-10",
-        "result": 0
-      },
-      {
-        "date": "2026-07-11",
-        "result": 0
-      },
-      {
-        "date": "2026-07-12",
-        "result": 0
-      },
-      {
-        "date": "2026-07-13",
-        "result": 0
-      },
-      {
-        "date": "2026-07-14",
-        "result": 0
-      },
-      {
-        "date": "2026-07-15",
-        "result": 1
-      },
-      {
-        "date": "2026-07-16",
-        "result": 0
-      },
-      {
-        "date": "2026-07-17",
-        "result": 0
-      },
-      {
-        "date": "2026-07-18",
-        "result": 1
-      },
-      {
-        "date": "2026-07-19",
-        "result": 1
-      },
-      {
-        "date": "2026-07-20",
-        "result": 1
-      },
-      {
-        "date": "2026-07-21",
-        "result": 1
-      },
-      {
-        "date": "2026-07-22",
-        "result": 1
-      },
-      {
-        "date": "2026-07-23",
-        "result": 1
-      },
-      {
-        "date": "2026-07-24",
-        "result": 1
-      },
-      {
-        "date": "2026-07-25",
-        "result": 1
-      },
-      {
-        "date": "2026-07-26",
-        "result": 1
-      },
-      {
-        "date": "2026-07-27",
-        "result": 1
-      },
-      {
-        "date": "2026-07-28",
-        "result": 1
-      },
-      {
-        "date": "2026-07-29",
-        "result": 1
-      },
-      {
-        "date": "2026-07-30",
-        "result": 1
-      },
-      {
-        "date": "2026-07-31",
-        "result": 1
-      },
-      {
-        "date": "2026-08-01",
-        "result": 1
-      },
-      {
-        "date": "2026-08-02",
-        "result": 1
-      },
-      {
-        "date": "2026-08-03",
-        "result": 1
-      },
-      {
-        "date": "2026-08-04",
-        "result": 1
-      },
-      {
-        "date": "2026-08-05",
-        "result": 0
-      }
-    ],
     "11 msbuild warnings::": [
       {
         "date": "2026-05-08",
@@ -40300,7 +39882,7 @@ window.DASHBOARD_DATA = {
       },
       {
         "date": "2026-08-05",
-        "result": null
+        "result": 0
       }
     ],
     "projectroot.test.benchmark.benchmark_init_shutdown::Rci__benchmark_ubuntu_resolute_amd64": [
@@ -40662,7 +40244,7 @@ window.DASHBOARD_DATA = {
       },
       {
         "date": "2026-08-05",
-        "result": null
+        "result": 0
       }
     ],
     "projectroot.test.rclcpp.test_add_callback_groups_to_executor__rmw_connextdds::nightly_win_rel": [
@@ -196684,7 +196266,7 @@ window.DASHBOARD_DATA = {
       },
       {
         "date": "2026-08-05",
-        "result": null
+        "result": 0
       }
     ],
     "test_launch_ros.pytest.missing_result::nightly_linux_repeated": [
