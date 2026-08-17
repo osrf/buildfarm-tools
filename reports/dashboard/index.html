@@ -1199,10 +1199,22 @@
       return baseJobUrl + 'lastFailedBuild/';
     }
 
-    function sanitizeTestReportSegment(value) {
-      // Mirrors Jenkins' TestObject#getSafeName: '\', '/', ':', '[', ']', '<', '>'
-      // are not safe in a testReport URL segment and get collapsed to '_'.
-      return String(value || '').replace(/[\\/:<>\[\]]/g, '_');
+    function sanitizeTestReportPathSegment(value) {
+      // Mirrors PackageResult#getSafeName() / ClassResult#getSafeName(), which
+      // both delegate to TestObject#safe(): only '\', '/', ':', '?', '#', '%',
+      // '<' and '>' are unsafe in a package/class testReport URL segment.
+      // Dots are NOT touched here, since package names legitimately contain them
+      // (e.g. "ros2cli.ros2cli.test").
+      return String(value || '').replace(/[\\/:?#%<>]/g, '_');
+    }
+
+    function sanitizeTestReportMethodSegment(value) {
+      // Mirrors CaseResult#getSafeName(), which uses a different rule than the
+      // package/class segments: every character that is NOT a valid Java
+      // identifier character (letters, digits, '_', '$') is collapsed to '_'.
+      // This is why bracketed parameterized names like "test[1-3]" become
+      // "test_1_3_" (the '-' is also replaced, unlike in the path segments).
+      return String(value || '').replace(/[^A-Za-z0-9_$]/g, '_');
     }
 
     function testReportKindSegment(domain) {
@@ -1212,8 +1224,40 @@
       return String(domain || '').indexOf('ci.ros2.org') !== -1 ? 'junit/' : '';
     }
 
-    function buildTestReportSegments(testName) {
-      const parts = String(testName || '').split('.').filter((part) => part.length);
+    function buildTestReportSegments(testName, packageName) {
+      const rawName = String(testName || '');
+
+      // CTest pseudo-tests emitted by ament_cmake when a test produces no
+      // result file: "<pkg>.<test>.gtest.missing_result",
+      // "<pkg>.<test>.xunit.missing_result", "<pkg>.pytest.missing_result".
+      // Their JUnit classname is the bare package name (no dots), so Jenkins
+      // publishes them as (root)/<pkg>/<rest-with-dots-collapsed>/ and the
+      // whole remainder is ONE method segment. These reports also resolve
+      // without the "junit/" prefix on ci.ros2.org.
+      if (/\.(gtest|xunit|pytest)\.missing_result$/.test(rawName)) {
+        const pkgName = String(packageName || '').trim();
+        let className;
+        let method;
+        if (pkgName && rawName.indexOf(pkgName + '.') === 0) {
+          className = pkgName;
+          method = rawName.slice(pkgName.length + 1);
+        } else {
+          const dotIndex = rawName.indexOf('.');
+          if (dotIndex <= 0) {
+            return null;
+          }
+          className = rawName.slice(0, dotIndex);
+          method = rawName.slice(dotIndex + 1);
+        }
+        return {
+          pkg: '(root)',
+          className: sanitizeTestReportPathSegment(className),
+          method: sanitizeTestReportMethodSegment(method),
+          skipJunitSegment: true,
+        };
+      }
+
+      const parts = rawName.split('.').filter((part) => part.length);
       if (parts.length < 2) {
         return null;
       }
@@ -1221,31 +1265,33 @@
       const className = parts[parts.length - 2];
       const pkg = parts.length > 2 ? parts.slice(0, -2).join('.') : '(root)';
       return {
-        pkg: sanitizeTestReportSegment(pkg),
-        className: sanitizeTestReportSegment(className),
-        method: sanitizeTestReportSegment(method),
+        pkg: sanitizeTestReportPathSegment(pkg),
+        className: sanitizeTestReportPathSegment(className),
+        method: sanitizeTestReportMethodSegment(method),
+        skipJunitSegment: false,
       };
     }
 
-    function buildTestReportUrl(domain, jobName, testName, buildRef) {
+    function buildTestReportUrl(domain, jobName, testName, packageName, buildRef) {
       const baseJobUrl = buildJobUrl(domain, jobName);
-      const segments = buildTestReportSegments(testName);
+      const segments = buildTestReportSegments(testName, packageName);
       if (!baseJobUrl || !segments) {
         return null;
       }
       const ref = buildRef || 'lastFailedBuild';
-      return baseJobUrl + ref + '/testReport/' + testReportKindSegment(domain) +
+      const kindSegment = segments.skipJunitSegment ? '' : testReportKindSegment(domain);
+      return baseJobUrl + ref + '/testReport/' + kindSegment +
         encodeURIComponent(segments.pkg) + '/' +
         encodeURIComponent(segments.className) + '/' +
         encodeURIComponent(segments.method) + '/';
     }
 
-    function renderTestNameLink(testName, jobName, domain) {
+    function renderTestNameLink(testName, jobName, domain, packageName) {
       const label = escapeHtml(testName || 'unknown');
       if (!testName || !jobName || !domain) {
         return label;
       }
-      const url = buildTestReportUrl(domain, jobName, testName);
+      const url = buildTestReportUrl(domain, jobName, testName, packageName);
       if (!url) {
         return label;
       }
@@ -1636,7 +1682,7 @@
       function testLinkForItem(item) {
         const jobName = item && item.job_name;
         const domain = jobName ? (jobDomainMap[jobName] || fallbackDomainForJob(jobName)) : null;
-        return renderTestNameLink(item && item.test_name, jobName, domain);
+        return renderTestNameLink(item && item.test_name, jobName, domain, item && item.package);
       }
 
       function renderGroupedConsistentTestsCell(row, items) {
@@ -1799,7 +1845,7 @@
 
       function renderGroupedTestsCell(items, row) {
         const linkInfo = flakyRowDomainAndJob(row);
-        const linkFor = (item) => renderTestNameLink(item.test_name, linkInfo.jobName, linkInfo.domain);
+        const linkFor = (item) => renderTestNameLink(item.test_name, linkInfo.jobName, linkInfo.domain, item.package);
         if (items.length === 1) {
           return linkFor(items[0]);
         }
@@ -1912,9 +1958,9 @@
           if (row._kind === 'consistent') {
             const jobName = item.job_name;
             const domain = jobName ? (jobDomainMap[jobName] || fallbackDomainForJob(jobName)) : null;
-            return renderTestNameLink(item.test_name, jobName, domain);
+            return renderTestNameLink(item.test_name, jobName, domain, item.package);
           }
-          return renderTestNameLink(item.test_name, flakyLinkInfo && flakyLinkInfo.jobName, flakyLinkInfo && flakyLinkInfo.domain);
+          return renderTestNameLink(item.test_name, flakyLinkInfo && flakyLinkInfo.jobName, flakyLinkInfo && flakyLinkInfo.domain, item.package);
         };
         const byUniqueTestName = new Map();
         items.forEach((item) => {
