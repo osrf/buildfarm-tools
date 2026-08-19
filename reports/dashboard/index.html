@@ -1707,10 +1707,10 @@
         }
         const uniqueTestNames = uniqSorted(items.map((item) => item.test_name || 'unknown'));
         if (uniqueTestNames.length === 1) {
-          const jobNames = uniqSorted(items.map((item) => item.job_name || 'unknown'));
+          const itemsByJob = [...items].sort((left, right) => String(left.job_name || '').localeCompare(String(right.job_name || '')));
           return renderDetails(
-            testLinkForItem(items[0]) + '<span class="group-badge">' + escapeHtml(String(jobNames.length)) + ' jobs</span>',
-            jobNames.map((jobName) => escapeHtml(jobName))
+            testLinkForItem(itemsByJob[0]) + '<span class="group-badge">' + escapeHtml(String(itemsByJob.length)) + ' jobs</span>',
+            itemsByJob.map((item) => testLinkForItem(item) + ' <span class="muted">(' + escapeHtml(item.job_name || 'unknown job') + ')</span>')
           );
         }
         const groupLabel = row.job_names && row.job_names.length
