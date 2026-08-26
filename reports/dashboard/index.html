@@ -1888,7 +1888,10 @@
             byTestName.set(item.test_name, item);
           }
         });
-        const available = [...byTestName.values()].filter((item) => (historyMap[item.test_name] || []).length);
+        const available = [...byTestName.values()].filter((item) => {
+          const historyKey = buildHistoryKey(item.test_name, null);
+          return (historyMap[historyKey] || []).length;
+        });
         if (!available.length) {
           return '<span class="muted">No history</span>';
         }
