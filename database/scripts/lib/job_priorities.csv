@@ -68,7 +68,7 @@ gz_cmake-ci-gz-cmake4-homebrew-arm64,0.8
 gz_cmake-ci-gz-cmake4-noble-amd64,0.9
 gz_cmake-ci-gz-cmake5-homebrew-amd64,0.85
 gz_cmake-ci-gz-cmake5-homebrew-arm64,0.85
-gz_cmake-ci-gz-cmake5-noble-amd64,0.95
+gz_cmake-ci-gz-cmake5-resolute-amd64,0.95
 gz_cmake-ci-ign-cmake2-homebrew-amd64,0.7
 gz_cmake-ci-ign-cmake2-homebrew-arm64,0.7
 gz_cmake-ci-ign-cmake2-jammy-amd64,0.8
@@ -90,7 +90,7 @@ gz_common-ci-gz-common6-homebrew-arm64,0.8
 gz_common-ci-gz-common6-noble-amd64,0.9
 gz_common-ci-gz-common7-homebrew-amd64,0.85
 gz_common-ci-gz-common7-homebrew-arm64,0.85
-gz_common-ci-gz-common7-noble-amd64,0.95
+gz_common-ci-gz-common7-resolute-amd64,0.95
 gz_common-ci-ign-common4-homebrew-amd64,0.7
 gz_common-ci-ign-common4-homebrew-arm64,0.7
 gz_common-ci-ign-common4-jammy-amd64,0.8
@@ -108,7 +108,7 @@ gz_fuel_tools-ci-gz-fuel-tools10-homebrew-arm64,0.8
 gz_fuel_tools-ci-gz-fuel-tools10-noble-amd64,0.9
 gz_fuel_tools-ci-gz-fuel-tools11-homebrew-amd64,0.85
 gz_fuel_tools-ci-gz-fuel-tools11-homebrew-arm64,0.85
-gz_fuel_tools-ci-gz-fuel-tools11-noble-amd64,0.95
+gz_fuel_tools-ci-gz-fuel-tools11-resolute-amd64,0.95
 gz_fuel_tools-ci-gz-fuel-tools9-homebrew-amd64,0.75
 gz_fuel_tools-ci-gz-fuel-tools9-homebrew-arm64,0.75
 gz_fuel_tools-ci-gz-fuel-tools9-jammy-amd64,0.85
@@ -127,7 +127,7 @@ gz_gui-8-clowin,0.75
 gz_gui-9-clowin,0.8
 gz_gui-ci-gz-gui10-homebrew-amd64,0.85
 gz_gui-ci-gz-gui10-homebrew-arm64,0.85
-gz_gui-ci-gz-gui10-noble-amd64,0.95
+gz_gui-ci-gz-gui10-resolute-amd64,0.95
 gz_gui-ci-gz-gui8-homebrew-amd64,0.75
 gz_gui-ci-gz-gui8-homebrew-arm64,0.75
 gz_gui-ci-gz-gui8-jammy-amd64,0.85
@@ -156,7 +156,7 @@ gz_launch-ci-gz-launch8-homebrew-arm64,0.8
 gz_launch-ci-gz-launch8-noble-amd64,0.9
 gz_launch-ci-gz-launch9-homebrew-amd64,0.85
 gz_launch-ci-gz-launch9-homebrew-arm64,0.85
-gz_launch-ci-gz-launch9-noble-amd64,0.95
+gz_launch-ci-gz-launch9-resolute-amd64,0.95
 gz_launch-ci-ign-launch5-homebrew-amd64,0.7
 gz_launch-ci-ign-launch5-homebrew-arm64,0.7
 gz_launch-ci-ign-launch5-jammy-amd64,0.8
@@ -173,7 +173,7 @@ gz_math-ci-gz-math8-homebrew-arm64,0.8
 gz_math-ci-gz-math8-noble-amd64,0.9
 gz_math-ci-gz-math9-homebrew-amd64,0.85
 gz_math-ci-gz-math9-homebrew-arm64,0.85
-gz_math-ci-gz-math9-noble-amd64,0.95
+gz_math-ci-gz-math9-resolute-amd64,0.95
 gz_math-ci-ign-math6-homebrew-amd64,0.7
 gz_math-ci-ign-math6-homebrew-arm64,0.7
 gz_math-ci-ign-math6-jammy-amd64,0.8
@@ -195,7 +195,7 @@ gz_msgs-ci-gz-msgs11-homebrew-arm64,0.8
 gz_msgs-ci-gz-msgs11-noble-amd64,0.9
 gz_msgs-ci-gz-msgs12-homebrew-amd64,0.85
 gz_msgs-ci-gz-msgs12-homebrew-arm64,0.85
-gz_msgs-ci-gz-msgs12-noble-amd64,0.95
+gz_msgs-ci-gz-msgs12-resolute-amd64,0.95
 gz_msgs-ci-ign-msgs8-homebrew-amd64,0.7
 gz_msgs-ci-ign-msgs8-homebrew-arm64,0.7
 gz_msgs-ci-ign-msgs8-jammy-amd64,0.8
@@ -217,7 +217,7 @@ gz_physics-ci-gz-physics8-homebrew-arm64,0.8
 gz_physics-ci-gz-physics8-noble-amd64,0.9
 gz_physics-ci-gz-physics9-homebrew-amd64,0.85
 gz_physics-ci-gz-physics9-homebrew-arm64,0.85
-gz_physics-ci-gz-physics9-noble-amd64,0.95
+gz_physics-ci-gz-physics9-resolute-amd64,0.95
 gz_physics-ci-ign-physics5-homebrew-amd64,0.7
 gz_physics-ci-ign-physics5-homebrew-arm64,0.7
 gz_physics-ci-ign-physics5-jammy-amd64,0.8
@@ -239,7 +239,7 @@ gz_plugin-ci-gz-plugin3-homebrew-arm64,0.8
 gz_plugin-ci-gz-plugin3-noble-amd64,0.9
 gz_plugin-ci-gz-plugin4-homebrew-amd64,0.85
 gz_plugin-ci-gz-plugin4-homebrew-arm64,0.85
-gz_plugin-ci-gz-plugin4-noble-amd64,0.95
+gz_plugin-ci-gz-plugin4-resolute-amd64,0.95
 gz_plugin-ci-ign-plugin1-homebrew-amd64,0.7
 gz_plugin-ci-ign-plugin1-homebrew-arm64,0.7
 gz_plugin-ci-ign-plugin1-jammy-amd64,0.8
@@ -254,7 +254,7 @@ gz_rendering-8-clowin,0.75
 gz_rendering-9-clowin,0.8
 gz_rendering-ci-gz-rendering10-homebrew-amd64,0.85
 gz_rendering-ci-gz-rendering10-homebrew-arm64,0.85
-gz_rendering-ci-gz-rendering10-noble-amd64,0.95
+gz_rendering-ci-gz-rendering10-resolute-amd64,0.95
 gz_rendering-ci-gz-rendering8-homebrew-amd64,0.75
 gz_rendering-ci-gz-rendering8-homebrew-arm64,0.75
 gz_rendering-ci-gz-rendering8-jammy-amd64,0.85
@@ -276,7 +276,7 @@ gz_sensors-8-clowin,0.75
 gz_sensors-9-clowin,0.8
 gz_sensors-ci-gz-sensors10-homebrew-amd64,0.85
 gz_sensors-ci-gz-sensors10-homebrew-arm64,0.85
-gz_sensors-ci-gz-sensors10-noble-amd64,0.95
+gz_sensors-ci-gz-sensors10-resolute-amd64,0.95
 gz_sensors-ci-gz-sensors8-homebrew-amd64,0.75
 gz_sensors-ci-gz-sensors8-homebrew-arm64,0.75
 gz_sensors-ci-gz-sensors8-jammy-amd64,0.85
@@ -298,7 +298,7 @@ gz_sim-8-clowin,0.75
 gz_sim-9-clowin,0.8
 gz_sim-ci-gz-sim10-homebrew-amd64,0.85
 gz_sim-ci-gz-sim10-homebrew-arm64,0.85
-gz_sim-ci-gz-sim10-noble-amd64,0.95
+gz_sim-ci-gz-sim10-resolute-amd64,0.95
 gz_sim-ci-gz-sim8-homebrew-amd64,0.75
 gz_sim-ci-gz-sim8-homebrew-arm64,0.75
 gz_sim-ci-gz-sim8-jammy-amd64,0.85
@@ -321,6 +321,7 @@ gz_tools-ci-gz-tools2-homebrew-amd64,0.75
 gz_tools-ci-gz-tools2-homebrew-arm64,0.75
 gz_tools-ci-gz-tools2-jammy-amd64,0.85
 gz_tools-ci-gz-tools2-noble-amd64,0.85
+gz_tools-ci-gz-tools2-resolute-amd64,0.95
 gz_tools-ci-ign-tools1-homebrew-amd64,0.7
 gz_tools-ci-ign-tools1-homebrew-arm64,0.7
 gz_tools-ci-ign-tools1-jammy-amd64,0.8
@@ -342,7 +343,7 @@ gz_transport-ci-gz-transport14-homebrew-arm64,0.8
 gz_transport-ci-gz-transport14-noble-amd64,0.9
 gz_transport-ci-gz-transport15-homebrew-amd64,0.85
 gz_transport-ci-gz-transport15-homebrew-arm64,0.85
-gz_transport-ci-gz-transport15-noble-amd64,0.95
+gz_transport-ci-gz-transport15-resolute-amd64,0.95
 gz_transport-ci-ign-transport11-homebrew-amd64,0.7
 gz_transport-ci-ign-transport11-homebrew-arm64,0.7
 gz_transport-ci-ign-transport11-jammy-amd64,0.8
@@ -364,7 +365,7 @@ gz_utils-ci-gz-utils3-homebrew-arm64,0.8
 gz_utils-ci-gz-utils3-noble-amd64,0.9
 gz_utils-ci-gz-utils4-homebrew-amd64,0.85
 gz_utils-ci-gz-utils4-homebrew-arm64,0.85
-gz_utils-ci-gz-utils4-noble-amd64,0.95
+gz_utils-ci-gz-utils4-resolute-amd64,0.95
 gz_utils-ci-ign-utils1-homebrew-amd64,0.7
 gz_utils-ci-ign-utils1-homebrew-arm64,0.7
 gz_utils-ci-ign-utils1-jammy-amd64,0.8
@@ -407,7 +408,7 @@ sdformat-ci-sdf15-homebrew-arm64,0.8
 sdformat-ci-sdf15-noble-amd64,0.9
 sdformat-ci-sdf16-homebrew-amd64,0.85
 sdformat-ci-sdf16-homebrew-arm64,0.85
-sdformat-ci-sdf16-noble-amd64,0.95
+sdformat-ci-sdf16-resolute-amd64,0.95
 sdformat-main-cnlwin,0.9
 sdformat-sdf12-clwin,0.7
 sdformat-sdf14-clowin,0.75

@@ -356,8 +356,8 @@
 [sim-10-repo]: https://github.com/gazebosim/gz-sim
 [sim-10-gh-actions]: https://github.com/gazebosim/gz-sim/actions/workflows/ci.yml?query=branch%3Agz-sim10
 [sim-10-gh-actions-badge]: https://github.com/gazebosim/gz-sim/actions/workflows/ci.yml/badge.svg?branch=gz-sim10
-[sim-10-Linux]: https://build.osrfoundation.org/job/gz_sim-ci-gz-sim10-noble-amd64
-[sim-10-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sim-ci-gz-sim10-noble-amd64
+[sim-10-Linux]: https://build.osrfoundation.org/job/gz_sim-ci-gz-sim10-resolute-amd64
+[sim-10-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sim-ci-gz-sim10-resolute-amd64
 [sim-10-Windows]: https://build.osrfoundation.org/job/gz_sim-10-cnlwin
 [sim-10-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sim-10-cnlwin
 [sim-10-Brew Amd64]: https://build.osrfoundation.org/job/gz_sim-ci-gz-sim10-homebrew-amd64
@@ -367,8 +367,8 @@
 [gui-10-repo]: https://github.com/gazebosim/gz-gui
 [gui-10-gh-actions]: https://github.com/gazebosim/gz-gui/actions/workflows/ci.yml?query=branch%3Agz-gui10
 [gui-10-gh-actions-badge]: https://github.com/gazebosim/gz-gui/actions/workflows/ci.yml/badge.svg?branch=gz-gui10
-[gui-10-Linux]: https://build.osrfoundation.org/job/gz_gui-ci-gz-gui10-noble-amd64
-[gui-10-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_gui-ci-gz-gui10-noble-amd64
+[gui-10-Linux]: https://build.osrfoundation.org/job/gz_gui-ci-gz-gui10-resolute-amd64
+[gui-10-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_gui-ci-gz-gui10-resolute-amd64
 [gui-10-Windows]: https://build.osrfoundation.org/job/gz_gui-10-cnlwin
 [gui-10-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_gui-10-cnlwin
 [gui-10-Brew Amd64]: https://build.osrfoundation.org/job/gz_gui-ci-gz-gui10-homebrew-amd64
@@ -378,8 +378,8 @@
 [launch-9-repo]: https://github.com/gazebosim/gz-launch
 [launch-9-gh-actions]: https://github.com/gazebosim/gz-launch/actions/workflows/ci.yml?query=branch%3Agz-launch9
 [launch-9-gh-actions-badge]: https://github.com/gazebosim/gz-launch/actions/workflows/ci.yml/badge.svg?branch=gz-launch9
-[launch-9-Linux]: https://build.osrfoundation.org/job/gz_launch-ci-gz-launch9-noble-amd64
-[launch-9-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_launch-ci-gz-launch9-noble-amd64
+[launch-9-Linux]: https://build.osrfoundation.org/job/gz_launch-ci-gz-launch9-resolute-amd64
+[launch-9-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_launch-ci-gz-launch9-resolute-amd64
 [launch-9-Windows]: https://build.osrfoundation.org/job/gz_launch-9-cnlwin
 [launch-9-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_launch-9-cnlwin
 [launch-9-Brew Amd64]: https://build.osrfoundation.org/job/gz_launch-ci-gz-launch9-homebrew-amd64
@@ -389,8 +389,8 @@
 [rendering-10-repo]: https://github.com/gazebosim/gz-rendering
 [rendering-10-gh-actions]: https://github.com/gazebosim/gz-rendering/actions/workflows/ci.yml?query=branch%3Agz-rendering10
 [rendering-10-gh-actions-badge]: https://github.com/gazebosim/gz-rendering/actions/workflows/ci.yml/badge.svg?branch=gz-rendering10
-[rendering-10-Linux]: https://build.osrfoundation.org/job/gz_rendering-ci-gz-rendering10-noble-amd64
-[rendering-10-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_rendering-ci-gz-rendering10-noble-amd64
+[rendering-10-Linux]: https://build.osrfoundation.org/job/gz_rendering-ci-gz-rendering10-resolute-amd64
+[rendering-10-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_rendering-ci-gz-rendering10-resolute-amd64
 [rendering-10-Windows]: https://build.osrfoundation.org/job/gz_rendering-10-cnlwin
 [rendering-10-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_rendering-10-cnlwin
 [rendering-10-Brew Amd64]: https://build.osrfoundation.org/job/gz_rendering-ci-gz-rendering10-homebrew-amd64
@@ -400,8 +400,8 @@
 [sensors-10-repo]: https://github.com/gazebosim/gz-sensors
 [sensors-10-gh-actions]: https://github.com/gazebosim/gz-sensors/actions/workflows/ci.yml?query=branch%3Agz-sensors10
 [sensors-10-gh-actions-badge]: https://github.com/gazebosim/gz-sensors/actions/workflows/ci.yml/badge.svg?branch=gz-sensors10
-[sensors-10-Linux]: https://build.osrfoundation.org/job/gz_sensors-ci-gz-sensors10-noble-amd64
-[sensors-10-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sensors-ci-gz-sensors10-noble-amd64
+[sensors-10-Linux]: https://build.osrfoundation.org/job/gz_sensors-ci-gz-sensors10-resolute-amd64
+[sensors-10-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sensors-ci-gz-sensors10-resolute-amd64
 [sensors-10-Windows]: https://build.osrfoundation.org/job/gz_sensors-10-cnlwin
 [sensors-10-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sensors-10-cnlwin
 [sensors-10-Brew Amd64]: https://build.osrfoundation.org/job/gz_sensors-ci-gz-sensors10-homebrew-amd64
@@ -411,8 +411,8 @@
 [physics-9-repo]: https://github.com/gazebosim/gz-physics
 [physics-9-gh-actions]: https://github.com/gazebosim/gz-physics/actions/workflows/ci.yml?query=branch%3Agz-physics9
 [physics-9-gh-actions-badge]: https://github.com/gazebosim/gz-physics/actions/workflows/ci.yml/badge.svg?branch=gz-physics9
-[physics-9-Linux]: https://build.osrfoundation.org/job/gz_physics-ci-gz-physics9-noble-amd64
-[physics-9-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_physics-ci-gz-physics9-noble-amd64
+[physics-9-Linux]: https://build.osrfoundation.org/job/gz_physics-ci-gz-physics9-resolute-amd64
+[physics-9-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_physics-ci-gz-physics9-resolute-amd64
 [physics-9-Windows]: https://build.osrfoundation.org/job/gz_physics-9-cnlwin
 [physics-9-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_physics-9-cnlwin
 [physics-9-Brew Amd64]: https://build.osrfoundation.org/job/gz_physics-ci-gz-physics9-homebrew-amd64
@@ -422,8 +422,8 @@
 [fuel-tools-11-repo]: https://github.com/gazebosim/gz-fuel-tools
 [fuel-tools-11-gh-actions]: https://github.com/gazebosim/gz-fuel-tools/actions/workflows/ci.yml?query=branch%3Agz-fuel-tools11
 [fuel-tools-11-gh-actions-badge]: https://github.com/gazebosim/gz-fuel-tools/actions/workflows/ci.yml/badge.svg?branch=gz-fuel-tools11
-[fuel-tools-11-Linux]: https://build.osrfoundation.org/job/gz_fuel_tools-ci-gz-fuel-tools11-noble-amd64
-[fuel-tools-11-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_fuel_tools-ci-gz-fuel-tools11-noble-amd64
+[fuel-tools-11-Linux]: https://build.osrfoundation.org/job/gz_fuel_tools-ci-gz-fuel-tools11-resolute-amd64
+[fuel-tools-11-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_fuel_tools-ci-gz-fuel-tools11-resolute-amd64
 [fuel-tools-11-Windows]: https://build.osrfoundation.org/job/gz_fuel_tools-11-cnlwin
 [fuel-tools-11-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_fuel_tools-11-cnlwin
 [fuel-tools-11-Brew Amd64]: https://build.osrfoundation.org/job/gz_fuel_tools-ci-gz-fuel-tools11-homebrew-amd64
@@ -433,8 +433,8 @@
 [math-9-repo]: https://github.com/gazebosim/gz-math
 [math-9-gh-actions]: https://github.com/gazebosim/gz-math/actions/workflows/ci.yml?query=branch%3Agz-math9
 [math-9-gh-actions-badge]: https://github.com/gazebosim/gz-math/actions/workflows/ci.yml/badge.svg?branch=gz-math9
-[math-9-Linux]: https://build.osrfoundation.org/job/gz_math-ci-gz-math9-noble-amd64
-[math-9-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_math-ci-gz-math9-noble-amd64
+[math-9-Linux]: https://build.osrfoundation.org/job/gz_math-ci-gz-math9-resolute-amd64
+[math-9-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_math-ci-gz-math9-resolute-amd64
 [math-9-Windows]: https://build.osrfoundation.org/job/gz_math-9-cnlwin
 [math-9-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_math-9-cnlwin
 [math-9-Brew Amd64]: https://build.osrfoundation.org/job/gz_math-ci-gz-math9-homebrew-amd64
@@ -444,8 +444,8 @@
 [plugin-4-repo]: https://github.com/gazebosim/gz-plugin
 [plugin-4-gh-actions]: https://github.com/gazebosim/gz-plugin/actions/workflows/ci.yml?query=branch%3Agz-plugin4
 [plugin-4-gh-actions-badge]: https://github.com/gazebosim/gz-plugin/actions/workflows/ci.yml/badge.svg?branch=gz-plugin4
-[plugin-4-Linux]: https://build.osrfoundation.org/job/gz_plugin-ci-gz-plugin4-noble-amd64
-[plugin-4-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_plugin-ci-gz-plugin4-noble-amd64
+[plugin-4-Linux]: https://build.osrfoundation.org/job/gz_plugin-ci-gz-plugin4-resolute-amd64
+[plugin-4-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_plugin-ci-gz-plugin4-resolute-amd64
 [plugin-4-Windows]: https://build.osrfoundation.org/job/gz_plugin-4-cnlwin
 [plugin-4-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_plugin-4-cnlwin
 [plugin-4-Brew Amd64]: https://build.osrfoundation.org/job/gz_plugin-ci-gz-plugin4-homebrew-amd64
@@ -455,8 +455,8 @@
 [msgs-12-repo]: https://github.com/gazebosim/gz-msgs
 [msgs-12-gh-actions]: https://github.com/gazebosim/gz-msgs/actions/workflows/ci.yml?query=branch%3Agz-msgs12
 [msgs-12-gh-actions-badge]: https://github.com/gazebosim/gz-msgs/actions/workflows/ci.yml/badge.svg?branch=gz-msgs12
-[msgs-12-Linux]: https://build.osrfoundation.org/job/gz_msgs-ci-gz-msgs12-noble-amd64
-[msgs-12-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_msgs-ci-gz-msgs12-noble-amd64
+[msgs-12-Linux]: https://build.osrfoundation.org/job/gz_msgs-ci-gz-msgs12-resolute-amd64
+[msgs-12-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_msgs-ci-gz-msgs12-resolute-amd64
 [msgs-12-Windows]: https://build.osrfoundation.org/job/gz_msgs-12-cnlwin
 [msgs-12-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_msgs-12-cnlwin
 [msgs-12-Brew Amd64]: https://build.osrfoundation.org/job/gz_msgs-ci-gz-msgs12-homebrew-amd64
@@ -466,8 +466,8 @@
 [transport-15-repo]: https://github.com/gazebosim/gz-transport
 [transport-15-gh-actions]: https://github.com/gazebosim/gz-transport/actions/workflows/ci.yml?query=branch%3Agz-transport15
 [transport-15-gh-actions-badge]: https://github.com/gazebosim/gz-transport/actions/workflows/ci.yml/badge.svg?branch=gz-transport15
-[transport-15-Linux]: https://build.osrfoundation.org/job/gz_transport-ci-gz-transport15-noble-amd64
-[transport-15-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_transport-ci-gz-transport15-noble-amd64
+[transport-15-Linux]: https://build.osrfoundation.org/job/gz_transport-ci-gz-transport15-resolute-amd64
+[transport-15-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_transport-ci-gz-transport15-resolute-amd64
 [transport-15-Windows]: https://build.osrfoundation.org/job/gz_transport-15-cnlwin
 [transport-15-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_transport-15-cnlwin
 [transport-15-Brew Amd64]: https://build.osrfoundation.org/job/gz_transport-ci-gz-transport15-homebrew-amd64
@@ -477,8 +477,8 @@
 [common-7-repo]: https://github.com/gazebosim/gz-common
 [common-7-gh-actions]: https://github.com/gazebosim/gz-common/actions/workflows/ci.yml?query=branch%3Agz-common7
 [common-7-gh-actions-badge]: https://github.com/gazebosim/gz-common/actions/workflows/ci.yml/badge.svg?branch=gz-common7
-[common-7-Linux]: https://build.osrfoundation.org/job/gz_common-ci-gz-common7-noble-amd64
-[common-7-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_common-ci-gz-common7-noble-amd64
+[common-7-Linux]: https://build.osrfoundation.org/job/gz_common-ci-gz-common7-resolute-amd64
+[common-7-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_common-ci-gz-common7-resolute-amd64
 [common-7-Windows]: https://build.osrfoundation.org/job/gz_common-7-cnlwin
 [common-7-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_common-7-cnlwin
 [common-7-Brew Amd64]: https://build.osrfoundation.org/job/gz_common-ci-gz-common7-homebrew-amd64
@@ -488,8 +488,8 @@
 [cmake-5-repo]: https://github.com/gazebosim/gz-cmake
 [cmake-5-gh-actions]: https://github.com/gazebosim/gz-cmake/actions/workflows/ci.yml?query=branch%3Agz-cmake5
 [cmake-5-gh-actions-badge]: https://github.com/gazebosim/gz-cmake/actions/workflows/ci.yml/badge.svg?branch=gz-cmake5
-[cmake-5-Linux]: https://build.osrfoundation.org/job/gz_cmake-ci-gz-cmake5-noble-amd64
-[cmake-5-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_cmake-ci-gz-cmake5-noble-amd64
+[cmake-5-Linux]: https://build.osrfoundation.org/job/gz_cmake-ci-gz-cmake5-resolute-amd64
+[cmake-5-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_cmake-ci-gz-cmake5-resolute-amd64
 [cmake-5-Windows]: https://build.osrfoundation.org/job/gz_cmake-5-cnlwin
 [cmake-5-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_cmake-5-cnlwin
 [cmake-5-Brew Amd64]: https://build.osrfoundation.org/job/gz_cmake-ci-gz-cmake5-homebrew-amd64
@@ -499,8 +499,8 @@
 [tools-2-repo]: https://github.com/gazebosim/gz-tools
 [tools-2-gh-actions]: https://github.com/gazebosim/gz-tools/actions/workflows/ci.yml?query=branch%3Agz-tools2
 [tools-2-gh-actions-badge]: https://github.com/gazebosim/gz-tools/actions/workflows/ci.yml/badge.svg?branch=gz-tools2
-[tools-2-Linux]: https://build.osrfoundation.org/job/gz_tools-ci-gz-tools2-noble-amd64
-[tools-2-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_tools-ci-gz-tools2-noble-amd64
+[tools-2-Linux]: https://build.osrfoundation.org/job/gz_tools-ci-gz-tools2-resolute-amd64
+[tools-2-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_tools-ci-gz-tools2-resolute-amd64
 [tools-2-Windows]: https://build.osrfoundation.org/job/gz_tools-2-cnlwin
 [tools-2-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_tools-2-cnlwin
 [tools-2-Brew Amd64]: https://build.osrfoundation.org/job/gz_tools-ci-gz-tools2-homebrew-amd64
@@ -510,8 +510,8 @@
 [utils-4-repo]: https://github.com/gazebosim/gz-utils
 [utils-4-gh-actions]: https://github.com/gazebosim/gz-utils/actions/workflows/ci.yml?query=branch%3Agz-utils4
 [utils-4-gh-actions-badge]: https://github.com/gazebosim/gz-utils/actions/workflows/ci.yml/badge.svg?branch=gz-utils4
-[utils-4-Linux]: https://build.osrfoundation.org/job/gz_utils-ci-gz-utils4-noble-amd64
-[utils-4-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_utils-ci-gz-utils4-noble-amd64
+[utils-4-Linux]: https://build.osrfoundation.org/job/gz_utils-ci-gz-utils4-resolute-amd64
+[utils-4-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_utils-ci-gz-utils4-resolute-amd64
 [utils-4-Windows]: https://build.osrfoundation.org/job/gz_utils-4-cnlwin
 [utils-4-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_utils-4-cnlwin
 [utils-4-Brew Amd64]: https://build.osrfoundation.org/job/gz_utils-ci-gz-utils4-homebrew-amd64
@@ -521,8 +521,8 @@
 [sdformat-16-repo]: https://github.com/gazebosim/sdformat
 [sdformat-16-gh-actions]: https://github.com/gazebosim/sdformat/actions/workflows/ci.yml?query=branch%3Asdf16
 [sdformat-16-gh-actions-badge]: https://github.com/gazebosim/sdformat/actions/workflows/ci.yml/badge.svg?branch=sdf16
-[sdformat-16-Linux]: https://build.osrfoundation.org/job/sdformat-ci-sdf16-noble-amd64
-[sdformat-16-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat-ci-sdf16-noble-amd64
+[sdformat-16-Linux]: https://build.osrfoundation.org/job/sdformat-ci-sdf16-resolute-amd64
+[sdformat-16-Linux-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat-ci-sdf16-resolute-amd64
 [sdformat-16-Windows]: https://build.osrfoundation.org/job/sdformat-sdf16-cnlwin
 [sdformat-16-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat-sdf16-cnlwin
 [sdformat-16-Brew Amd64]: https://build.osrfoundation.org/job/sdformat-ci-sdf16-homebrew-amd64
