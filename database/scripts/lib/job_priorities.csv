@@ -326,14 +326,12 @@ nightly_linux-rhel_repeated,0.5
 nightly_linux_debug,1.0
 nightly_linux_release,1.0
 nightly_linux_repeated,1.0
-nightly_win_deb,0.6
 nightly_win_rel,0.6
 nightly_win_rep,0.6
 packaging_linux,1.0
 packaging_linux-aarch64,1.0
 packaging_linux-rhel,0.5
 packaging_windows,1.0
-packaging_windows_debug,1.0
 sdformat-ci-main-homebrew-arm64,0.9
 sdformat-ci-main-noble-amd64,1.0
 sdformat-ci-main-resolute-amd64,1.0
