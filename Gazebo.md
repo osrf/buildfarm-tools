@@ -1,6 +1,6 @@
 ## gz-rotary
-| | Linux GH | Linux Noble | Linux | Windows | Brew Arm64 | Nightlies noble | Nightlies resolute |
-|-|-|-|-|-|-|-|-|
+| | Linux GH | Linux | Windows | Brew Arm64 | Nightlies noble | Nightlies resolute |
+|-|-|-|-|-|-|-|
 | [sim-main][sim-main-repo] | [![Ubuntu CI][sim-main-gh-actions-badge]][sim-main-gh-actions] | [![Build Status][sim-main-Linux-badge]][sim-main-Linux] | [![Build Status][sim-main-Windows-badge]][sim-main-Windows] | [![Build Status][sim-main-Brew Arm64-badge]][sim-main-Brew Arm64] | [![Build Status][gz-rotary-sim-Nightlies noble-badge]][gz-rotary-sim-Nightlies noble] | [![Build Status][gz-rotary-sim-Nightlies resolute-badge]][gz-rotary-sim-Nightlies resolute] |
 | [gui-main][gui-main-repo] | [![Ubuntu CI][gui-main-gh-actions-badge]][gui-main-gh-actions] | [![Build Status][gui-main-Linux-badge]][gui-main-Linux] | [![Build Status][gui-main-Windows-badge]][gui-main-Windows] | [![Build Status][gui-main-Brew Arm64-badge]][gui-main-Brew Arm64] | [![Build Status][gz-rotary-gui-Nightlies noble-badge]][gz-rotary-gui-Nightlies noble] | [![Build Status][gz-rotary-gui-Nightlies resolute-badge]][gz-rotary-gui-Nightlies resolute] |
 | [rendering-main][rendering-main-repo] | [![Ubuntu CI][rendering-main-gh-actions-badge]][rendering-main-gh-actions] | [![Build Status][rendering-main-Linux-badge]][rendering-main-Linux] | [![Build Status][rendering-main-Windows-badge]][rendering-main-Windows] | [![Build Status][rendering-main-Brew Arm64-badge]][rendering-main-Brew Arm64] | [![Build Status][gz-rotary-rendering-Nightlies noble-badge]][gz-rotary-rendering-Nightlies noble] | [![Build Status][gz-rotary-rendering-Nightlies resolute-badge]][gz-rotary-rendering-Nightlies resolute] |
