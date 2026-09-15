@@ -1,21 +1,21 @@
 ## gz-rotary
-| | Linux GH | Linux | Windows | Brew Arm64 | Nightlies noble | Nightlies resolute |
-|-|-|-|-|-|-|-|
-| [sim-main][sim-main-repo] | [![Ubuntu CI][sim-main-gh-actions-badge]][sim-main-gh-actions] | [![Build Status][sim-main-Linux-badge]][sim-main-Linux] | [![Build Status][sim-main-Windows-badge]][sim-main-Windows] | [![Build Status][sim-main-Brew Arm64-badge]][sim-main-Brew Arm64] | [![Build Status][gz-rotary-sim-Nightlies noble-badge]][gz-rotary-sim-Nightlies noble] | [![Build Status][gz-rotary-sim-Nightlies resolute-badge]][gz-rotary-sim-Nightlies resolute] |
-| [gui-main][gui-main-repo] | [![Ubuntu CI][gui-main-gh-actions-badge]][gui-main-gh-actions] | [![Build Status][gui-main-Linux-badge]][gui-main-Linux] | [![Build Status][gui-main-Windows-badge]][gui-main-Windows] | [![Build Status][gui-main-Brew Arm64-badge]][gui-main-Brew Arm64] | [![Build Status][gz-rotary-gui-Nightlies noble-badge]][gz-rotary-gui-Nightlies noble] | [![Build Status][gz-rotary-gui-Nightlies resolute-badge]][gz-rotary-gui-Nightlies resolute] |
-| [rendering-main][rendering-main-repo] | [![Ubuntu CI][rendering-main-gh-actions-badge]][rendering-main-gh-actions] | [![Build Status][rendering-main-Linux-badge]][rendering-main-Linux] | [![Build Status][rendering-main-Windows-badge]][rendering-main-Windows] | [![Build Status][rendering-main-Brew Arm64-badge]][rendering-main-Brew Arm64] | [![Build Status][gz-rotary-rendering-Nightlies noble-badge]][gz-rotary-rendering-Nightlies noble] | [![Build Status][gz-rotary-rendering-Nightlies resolute-badge]][gz-rotary-rendering-Nightlies resolute] |
-| [sensors-main][sensors-main-repo] | [![Ubuntu CI][sensors-main-gh-actions-badge]][sensors-main-gh-actions] | [![Build Status][sensors-main-Linux-badge]][sensors-main-Linux] | [![Build Status][sensors-main-Windows-badge]][sensors-main-Windows] | [![Build Status][sensors-main-Brew Arm64-badge]][sensors-main-Brew Arm64] | [![Build Status][gz-rotary-sensors-Nightlies noble-badge]][gz-rotary-sensors-Nightlies noble] | [![Build Status][gz-rotary-sensors-Nightlies resolute-badge]][gz-rotary-sensors-Nightlies resolute] |
-| [physics-main][physics-main-repo] | [![Ubuntu CI][physics-main-gh-actions-badge]][physics-main-gh-actions] | [![Build Status][physics-main-Linux-badge]][physics-main-Linux] | [![Build Status][physics-main-Windows-badge]][physics-main-Windows] | [![Build Status][physics-main-Brew Arm64-badge]][physics-main-Brew Arm64] | [![Build Status][gz-rotary-physics-Nightlies noble-badge]][gz-rotary-physics-Nightlies noble] | [![Build Status][gz-rotary-physics-Nightlies resolute-badge]][gz-rotary-physics-Nightlies resolute] |
-| [fuel-tools-main][fuel-tools-main-repo] | [![Ubuntu CI][fuel-tools-main-gh-actions-badge]][fuel-tools-main-gh-actions] | [![Build Status][fuel-tools-main-Linux-badge]][fuel-tools-main-Linux] | [![Build Status][fuel-tools-main-Windows-badge]][fuel-tools-main-Windows] | [![Build Status][fuel-tools-main-Brew Arm64-badge]][fuel-tools-main-Brew Arm64] | [![Build Status][gz-rotary-fuel-tools-Nightlies noble-badge]][gz-rotary-fuel-tools-Nightlies noble] | [![Build Status][gz-rotary-fuel-tools-Nightlies resolute-badge]][gz-rotary-fuel-tools-Nightlies resolute] |
-| [math-main][math-main-repo] | [![Ubuntu CI][math-main-gh-actions-badge]][math-main-gh-actions] | [![Build Status][math-main-Linux-badge]][math-main-Linux] | [![Build Status][math-main-Windows-badge]][math-main-Windows] | [![Build Status][math-main-Brew Arm64-badge]][math-main-Brew Arm64] | [![Build Status][gz-rotary-math-Nightlies noble-badge]][gz-rotary-math-Nightlies noble] | [![Build Status][gz-rotary-math-Nightlies resolute-badge]][gz-rotary-math-Nightlies resolute] |
-| [plugin-main][plugin-main-repo] | [![Ubuntu CI][plugin-main-gh-actions-badge]][plugin-main-gh-actions] | [![Build Status][plugin-main-Linux-badge]][plugin-main-Linux] | [![Build Status][plugin-main-Windows-badge]][plugin-main-Windows] | [![Build Status][plugin-main-Brew Arm64-badge]][plugin-main-Brew Arm64] | [![Build Status][gz-rotary-plugin-Nightlies noble-badge]][gz-rotary-plugin-Nightlies noble] | [![Build Status][gz-rotary-plugin-Nightlies resolute-badge]][gz-rotary-plugin-Nightlies resolute] |
-| [msgs-main][msgs-main-repo] | [![Ubuntu CI][msgs-main-gh-actions-badge]][msgs-main-gh-actions] | [![Build Status][msgs-main-Linux-badge]][msgs-main-Linux] | [![Build Status][msgs-main-Windows-badge]][msgs-main-Windows] | [![Build Status][msgs-main-Brew Arm64-badge]][msgs-main-Brew Arm64] | [![Build Status][gz-rotary-msgs-Nightlies noble-badge]][gz-rotary-msgs-Nightlies noble] | [![Build Status][gz-rotary-msgs-Nightlies resolute-badge]][gz-rotary-msgs-Nightlies resolute] |
-| [transport-main][transport-main-repo] | [![Ubuntu CI][transport-main-gh-actions-badge]][transport-main-gh-actions] | [![Build Status][transport-main-Linux-badge]][transport-main-Linux] | [![Build Status][transport-main-Windows-badge]][transport-main-Windows] | [![Build Status][transport-main-Brew Arm64-badge]][transport-main-Brew Arm64] | [![Build Status][gz-rotary-transport-Nightlies noble-badge]][gz-rotary-transport-Nightlies noble] | [![Build Status][gz-rotary-transport-Nightlies resolute-badge]][gz-rotary-transport-Nightlies resolute] |
-| [common-main][common-main-repo] | [![Ubuntu CI][common-main-gh-actions-badge]][common-main-gh-actions] | [![Build Status][common-main-Linux-badge]][common-main-Linux] | [![Build Status][common-main-Windows-badge]][common-main-Windows] | [![Build Status][common-main-Brew Arm64-badge]][common-main-Brew Arm64] | [![Build Status][gz-rotary-common-Nightlies noble-badge]][gz-rotary-common-Nightlies noble] | [![Build Status][gz-rotary-common-Nightlies resolute-badge]][gz-rotary-common-Nightlies resolute] |
-| [cmake-main][cmake-main-repo] | [![Ubuntu CI][cmake-main-gh-actions-badge]][cmake-main-gh-actions] | [![Build Status][cmake-main-Linux-badge]][cmake-main-Linux] | [![Build Status][cmake-main-Windows-badge]][cmake-main-Windows] | [![Build Status][cmake-main-Brew Arm64-badge]][cmake-main-Brew Arm64] | [![Build Status][gz-rotary-cmake-Nightlies noble-badge]][gz-rotary-cmake-Nightlies noble] | [![Build Status][gz-rotary-cmake-Nightlies resolute-badge]][gz-rotary-cmake-Nightlies resolute] |
-| [tools-main][tools-main-repo] | [![Ubuntu CI][tools-main-gh-actions-badge]][tools-main-gh-actions] | [![Build Status][tools-main-Linux-badge]][tools-main-Linux] | [![Build Status][tools-main-Windows-badge]][tools-main-Windows] | [![Build Status][tools-main-Brew Arm64-badge]][tools-main-Brew Arm64] | [![Build Status][gz-rotary-tools-Nightlies noble-badge]][gz-rotary-tools-Nightlies noble] | [![Build Status][gz-rotary-tools-Nightlies resolute-badge]][gz-rotary-tools-Nightlies resolute] |
-| [utils-main][utils-main-repo] | [![Ubuntu CI][utils-main-gh-actions-badge]][utils-main-gh-actions] | [![Build Status][utils-main-Linux-badge]][utils-main-Linux] | [![Build Status][utils-main-Windows-badge]][utils-main-Windows] | [![Build Status][utils-main-Brew Arm64-badge]][utils-main-Brew Arm64] | [![Build Status][gz-rotary-utils-Nightlies noble-badge]][gz-rotary-utils-Nightlies noble] | [![Build Status][gz-rotary-utils-Nightlies resolute-badge]][gz-rotary-utils-Nightlies resolute] |
-| [sdformat-main][sdformat-main-repo] | [![Ubuntu CI][sdformat-main-gh-actions-badge]][sdformat-main-gh-actions] | [![Build Status][sdformat-main-Linux-badge]][sdformat-main-Linux] | [![Build Status][sdformat-main-Windows-badge]][sdformat-main-Windows] | [![Build Status][sdformat-main-Brew Arm64-badge]][sdformat-main-Brew Arm64] | [![Build Status][gz-rotary-sdformat-Nightlies noble-badge]][gz-rotary-sdformat-Nightlies noble] | [![Build Status][gz-rotary-sdformat-Nightlies resolute-badge]][gz-rotary-sdformat-Nightlies resolute] |
+| | Linux GH | Linux | Windows | Brew Arm64 | Nightlies resolute |
+|-|-|-|-|-|-|
+| [sim-main][sim-main-repo] | [![Ubuntu CI][sim-main-gh-actions-badge]][sim-main-gh-actions] | [![Build Status][sim-main-Linux-badge]][sim-main-Linux] | [![Build Status][sim-main-Windows-badge]][sim-main-Windows] | [![Build Status][sim-main-Brew Arm64-badge]][sim-main-Brew Arm64] | [![Build Status][gz-rotary-sim-Nightlies resolute-badge]][gz-rotary-sim-Nightlies resolute] |
+| [gui-main][gui-main-repo] | [![Ubuntu CI][gui-main-gh-actions-badge]][gui-main-gh-actions] | [![Build Status][gui-main-Linux-badge]][gui-main-Linux] | [![Build Status][gui-main-Windows-badge]][gui-main-Windows] | [![Build Status][gui-main-Brew Arm64-badge]][gui-main-Brew Arm64] | [![Build Status][gz-rotary-gui-Nightlies resolute-badge]][gz-rotary-gui-Nightlies resolute] |
+| [rendering-main][rendering-main-repo] | [![Ubuntu CI][rendering-main-gh-actions-badge]][rendering-main-gh-actions] | [![Build Status][rendering-main-Linux-badge]][rendering-main-Linux] | [![Build Status][rendering-main-Windows-badge]][rendering-main-Windows] | [![Build Status][rendering-main-Brew Arm64-badge]][rendering-main-Brew Arm64] | [![Build Status][gz-rotary-rendering-Nightlies resolute-badge]][gz-rotary-rendering-Nightlies resolute] |
+| [sensors-main][sensors-main-repo] | [![Ubuntu CI][sensors-main-gh-actions-badge]][sensors-main-gh-actions] | [![Build Status][sensors-main-Linux-badge]][sensors-main-Linux] | [![Build Status][sensors-main-Windows-badge]][sensors-main-Windows] | [![Build Status][sensors-main-Brew Arm64-badge]][sensors-main-Brew Arm64] | [![Build Status][gz-rotary-sensors-Nightlies resolute-badge]][gz-rotary-sensors-Nightlies resolute] |
+| [physics-main][physics-main-repo] | [![Ubuntu CI][physics-main-gh-actions-badge]][physics-main-gh-actions] | [![Build Status][physics-main-Linux-badge]][physics-main-Linux] | [![Build Status][physics-main-Windows-badge]][physics-main-Windows] | [![Build Status][physics-main-Brew Arm64-badge]][physics-main-Brew Arm64] | [![Build Status][gz-rotary-physics-Nightlies resolute-badge]][gz-rotary-physics-Nightlies resolute] |
+| [fuel-tools-main][fuel-tools-main-repo] | [![Ubuntu CI][fuel-tools-main-gh-actions-badge]][fuel-tools-main-gh-actions] | [![Build Status][fuel-tools-main-Linux-badge]][fuel-tools-main-Linux] | [![Build Status][fuel-tools-main-Windows-badge]][fuel-tools-main-Windows] | [![Build Status][fuel-tools-main-Brew Arm64-badge]][fuel-tools-main-Brew Arm64] | [![Build Status][gz-rotary-fuel-tools-Nightlies resolute-badge]][gz-rotary-fuel-tools-Nightlies resolute] |
+| [math-main][math-main-repo] | [![Ubuntu CI][math-main-gh-actions-badge]][math-main-gh-actions] | [![Build Status][math-main-Linux-badge]][math-main-Linux] | [![Build Status][math-main-Windows-badge]][math-main-Windows] | [![Build Status][math-main-Brew Arm64-badge]][math-main-Brew Arm64] | [![Build Status][gz-rotary-math-Nightlies resolute-badge]][gz-rotary-math-Nightlies resolute] |
+| [plugin-main][plugin-main-repo] | [![Ubuntu CI][plugin-main-gh-actions-badge]][plugin-main-gh-actions] | [![Build Status][plugin-main-Linux-badge]][plugin-main-Linux] | [![Build Status][plugin-main-Windows-badge]][plugin-main-Windows] | [![Build Status][plugin-main-Brew Arm64-badge]][plugin-main-Brew Arm64] | [![Build Status][gz-rotary-plugin-Nightlies resolute-badge]][gz-rotary-plugin-Nightlies resolute] |
+| [msgs-main][msgs-main-repo] | [![Ubuntu CI][msgs-main-gh-actions-badge]][msgs-main-gh-actions] | [![Build Status][msgs-main-Linux-badge]][msgs-main-Linux] | [![Build Status][msgs-main-Windows-badge]][msgs-main-Windows] | [![Build Status][msgs-main-Brew Arm64-badge]][msgs-main-Brew Arm64] | [![Build Status][gz-rotary-msgs-Nightlies resolute-badge]][gz-rotary-msgs-Nightlies resolute] |
+| [transport-main][transport-main-repo] | [![Ubuntu CI][transport-main-gh-actions-badge]][transport-main-gh-actions] | [![Build Status][transport-main-Linux-badge]][transport-main-Linux] | [![Build Status][transport-main-Windows-badge]][transport-main-Windows] | [![Build Status][transport-main-Brew Arm64-badge]][transport-main-Brew Arm64] | [![Build Status][gz-rotary-transport-Nightlies resolute-badge]][gz-rotary-transport-Nightlies resolute] |
+| [common-main][common-main-repo] | [![Ubuntu CI][common-main-gh-actions-badge]][common-main-gh-actions] | [![Build Status][common-main-Linux-badge]][common-main-Linux] | [![Build Status][common-main-Windows-badge]][common-main-Windows] | [![Build Status][common-main-Brew Arm64-badge]][common-main-Brew Arm64] | [![Build Status][gz-rotary-common-Nightlies resolute-badge]][gz-rotary-common-Nightlies resolute] |
+| [cmake-main][cmake-main-repo] | [![Ubuntu CI][cmake-main-gh-actions-badge]][cmake-main-gh-actions] | [![Build Status][cmake-main-Linux-badge]][cmake-main-Linux] | [![Build Status][cmake-main-Windows-badge]][cmake-main-Windows] | [![Build Status][cmake-main-Brew Arm64-badge]][cmake-main-Brew Arm64] | [![Build Status][gz-rotary-cmake-Nightlies resolute-badge]][gz-rotary-cmake-Nightlies resolute] |
+| [tools-main][tools-main-repo] | [![Ubuntu CI][tools-main-gh-actions-badge]][tools-main-gh-actions] | [![Build Status][tools-main-Linux-badge]][tools-main-Linux] | [![Build Status][tools-main-Windows-badge]][tools-main-Windows] | [![Build Status][tools-main-Brew Arm64-badge]][tools-main-Brew Arm64] | [![Build Status][gz-rotary-tools-Nightlies resolute-badge]][gz-rotary-tools-Nightlies resolute] |
+| [utils-main][utils-main-repo] | [![Ubuntu CI][utils-main-gh-actions-badge]][utils-main-gh-actions] | [![Build Status][utils-main-Linux-badge]][utils-main-Linux] | [![Build Status][utils-main-Windows-badge]][utils-main-Windows] | [![Build Status][utils-main-Brew Arm64-badge]][utils-main-Brew Arm64] | [![Build Status][gz-rotary-utils-Nightlies resolute-badge]][gz-rotary-utils-Nightlies resolute] |
+| [sdformat-main][sdformat-main-repo] | [![Ubuntu CI][sdformat-main-gh-actions-badge]][sdformat-main-gh-actions] | [![Build Status][sdformat-main-Linux-badge]][sdformat-main-Linux] | [![Build Status][sdformat-main-Windows-badge]][sdformat-main-Windows] | [![Build Status][sdformat-main-Brew Arm64-badge]][sdformat-main-Brew Arm64] | [![Build Status][gz-rotary-sdformat-Nightlies resolute-badge]][gz-rotary-sdformat-Nightlies resolute] |
 
 ## gz-jetty
 | | Linux GH | Linux Noble | Linux | Windows | Brew Arm64 |
@@ -107,8 +107,6 @@
 [sim-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sim-main-cnlwin
 [sim-main-Brew Arm64]: https://build.osrfoundation.org/job/gz_sim-ci-main-homebrew-arm64
 [sim-main-Brew Arm64-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sim-ci-main-homebrew-arm64
-[gz-rotary-sim-Nightlies noble]: https://build.osrfoundation.org/job/gz-rotary-sim-debbuilder
-[gz-rotary-sim-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-sim-debbuilder&build=last:${params.DISTRO=noble}
 [gz-rotary-sim-Nightlies resolute]: https://build.osrfoundation.org/job/gz-rotary-sim-debbuilder
 [gz-rotary-sim-Nightlies resolute-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-sim-debbuilder&build=last:${params.DISTRO=resolute}
 [gui-main-repo]: https://github.com/gazebosim/gz-gui
@@ -120,8 +118,6 @@
 [gui-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_gui-main-cnlwin
 [gui-main-Brew Arm64]: https://build.osrfoundation.org/job/gz_gui-ci-main-homebrew-arm64
 [gui-main-Brew Arm64-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_gui-ci-main-homebrew-arm64
-[gz-rotary-gui-Nightlies noble]: https://build.osrfoundation.org/job/gz-rotary-gui-debbuilder
-[gz-rotary-gui-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-gui-debbuilder&build=last:${params.DISTRO=noble}
 [gz-rotary-gui-Nightlies resolute]: https://build.osrfoundation.org/job/gz-rotary-gui-debbuilder
 [gz-rotary-gui-Nightlies resolute-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-gui-debbuilder&build=last:${params.DISTRO=resolute}
 [rendering-main-repo]: https://github.com/gazebosim/gz-rendering
@@ -133,8 +129,6 @@
 [rendering-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_rendering-main-cnlwin
 [rendering-main-Brew Arm64]: https://build.osrfoundation.org/job/gz_rendering-ci-main-homebrew-arm64
 [rendering-main-Brew Arm64-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_rendering-ci-main-homebrew-arm64
-[gz-rotary-rendering-Nightlies noble]: https://build.osrfoundation.org/job/gz-rotary-rendering-debbuilder
-[gz-rotary-rendering-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-rendering-debbuilder&build=last:${params.DISTRO=noble}
 [gz-rotary-rendering-Nightlies resolute]: https://build.osrfoundation.org/job/gz-rotary-rendering-debbuilder
 [gz-rotary-rendering-Nightlies resolute-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-rendering-debbuilder&build=last:${params.DISTRO=resolute}
 [sensors-main-repo]: https://github.com/gazebosim/gz-sensors
@@ -146,8 +140,6 @@
 [sensors-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sensors-main-cnlwin
 [sensors-main-Brew Arm64]: https://build.osrfoundation.org/job/gz_sensors-ci-main-homebrew-arm64
 [sensors-main-Brew Arm64-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_sensors-ci-main-homebrew-arm64
-[gz-rotary-sensors-Nightlies noble]: https://build.osrfoundation.org/job/gz-rotary-sensors-debbuilder
-[gz-rotary-sensors-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-sensors-debbuilder&build=last:${params.DISTRO=noble}
 [gz-rotary-sensors-Nightlies resolute]: https://build.osrfoundation.org/job/gz-rotary-sensors-debbuilder
 [gz-rotary-sensors-Nightlies resolute-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-sensors-debbuilder&build=last:${params.DISTRO=resolute}
 [physics-main-repo]: https://github.com/gazebosim/gz-physics
@@ -159,8 +151,6 @@
 [physics-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_physics-main-cnlwin
 [physics-main-Brew Arm64]: https://build.osrfoundation.org/job/gz_physics-ci-main-homebrew-arm64
 [physics-main-Brew Arm64-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_physics-ci-main-homebrew-arm64
-[gz-rotary-physics-Nightlies noble]: https://build.osrfoundation.org/job/gz-rotary-physics-debbuilder
-[gz-rotary-physics-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-physics-debbuilder&build=last:${params.DISTRO=noble}
 [gz-rotary-physics-Nightlies resolute]: https://build.osrfoundation.org/job/gz-rotary-physics-debbuilder
 [gz-rotary-physics-Nightlies resolute-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-physics-debbuilder&build=last:${params.DISTRO=resolute}
 [fuel-tools-main-repo]: https://github.com/gazebosim/gz-fuel-tools
@@ -172,8 +162,6 @@
 [fuel-tools-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_fuel_tools-main-cnlwin
 [fuel-tools-main-Brew Arm64]: https://build.osrfoundation.org/job/gz_fuel_tools-ci-main-homebrew-arm64
 [fuel-tools-main-Brew Arm64-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_fuel_tools-ci-main-homebrew-arm64
-[gz-rotary-fuel-tools-Nightlies noble]: https://build.osrfoundation.org/job/gz-rotary-fuel-tools-debbuilder
-[gz-rotary-fuel-tools-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-fuel-tools-debbuilder&build=last:${params.DISTRO=noble}
 [gz-rotary-fuel-tools-Nightlies resolute]: https://build.osrfoundation.org/job/gz-rotary-fuel-tools-debbuilder
 [gz-rotary-fuel-tools-Nightlies resolute-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-fuel-tools-debbuilder&build=last:${params.DISTRO=resolute}
 [math-main-repo]: https://github.com/gazebosim/gz-math
@@ -185,8 +173,6 @@
 [math-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_math-main-cnlwin
 [math-main-Brew Arm64]: https://build.osrfoundation.org/job/gz_math-ci-main-homebrew-arm64
 [math-main-Brew Arm64-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_math-ci-main-homebrew-arm64
-[gz-rotary-math-Nightlies noble]: https://build.osrfoundation.org/job/gz-rotary-math-debbuilder
-[gz-rotary-math-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-math-debbuilder&build=last:${params.DISTRO=noble}
 [gz-rotary-math-Nightlies resolute]: https://build.osrfoundation.org/job/gz-rotary-math-debbuilder
 [gz-rotary-math-Nightlies resolute-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-math-debbuilder&build=last:${params.DISTRO=resolute}
 [plugin-main-repo]: https://github.com/gazebosim/gz-plugin
@@ -198,8 +184,6 @@
 [plugin-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_plugin-main-cnlwin
 [plugin-main-Brew Arm64]: https://build.osrfoundation.org/job/gz_plugin-ci-main-homebrew-arm64
 [plugin-main-Brew Arm64-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_plugin-ci-main-homebrew-arm64
-[gz-rotary-plugin-Nightlies noble]: https://build.osrfoundation.org/job/gz-rotary-plugin-debbuilder
-[gz-rotary-plugin-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-plugin-debbuilder&build=last:${params.DISTRO=noble}
 [gz-rotary-plugin-Nightlies resolute]: https://build.osrfoundation.org/job/gz-rotary-plugin-debbuilder
 [gz-rotary-plugin-Nightlies resolute-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-plugin-debbuilder&build=last:${params.DISTRO=resolute}
 [msgs-main-repo]: https://github.com/gazebosim/gz-msgs
@@ -211,8 +195,6 @@
 [msgs-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_msgs-main-cnlwin
 [msgs-main-Brew Arm64]: https://build.osrfoundation.org/job/gz_msgs-ci-main-homebrew-arm64
 [msgs-main-Brew Arm64-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_msgs-ci-main-homebrew-arm64
-[gz-rotary-msgs-Nightlies noble]: https://build.osrfoundation.org/job/gz-rotary-msgs-debbuilder
-[gz-rotary-msgs-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-msgs-debbuilder&build=last:${params.DISTRO=noble}
 [gz-rotary-msgs-Nightlies resolute]: https://build.osrfoundation.org/job/gz-rotary-msgs-debbuilder
 [gz-rotary-msgs-Nightlies resolute-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-msgs-debbuilder&build=last:${params.DISTRO=resolute}
 [transport-main-repo]: https://github.com/gazebosim/gz-transport
@@ -224,8 +206,6 @@
 [transport-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_transport-main-cnlwin
 [transport-main-Brew Arm64]: https://build.osrfoundation.org/job/gz_transport-ci-main-homebrew-arm64
 [transport-main-Brew Arm64-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_transport-ci-main-homebrew-arm64
-[gz-rotary-transport-Nightlies noble]: https://build.osrfoundation.org/job/gz-rotary-transport-debbuilder
-[gz-rotary-transport-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-transport-debbuilder&build=last:${params.DISTRO=noble}
 [gz-rotary-transport-Nightlies resolute]: https://build.osrfoundation.org/job/gz-rotary-transport-debbuilder
 [gz-rotary-transport-Nightlies resolute-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-transport-debbuilder&build=last:${params.DISTRO=resolute}
 [common-main-repo]: https://github.com/gazebosim/gz-common
@@ -237,8 +217,6 @@
 [common-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_common-main-cnlwin
 [common-main-Brew Arm64]: https://build.osrfoundation.org/job/gz_common-ci-main-homebrew-arm64
 [common-main-Brew Arm64-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_common-ci-main-homebrew-arm64
-[gz-rotary-common-Nightlies noble]: https://build.osrfoundation.org/job/gz-rotary-common-debbuilder
-[gz-rotary-common-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-common-debbuilder&build=last:${params.DISTRO=noble}
 [gz-rotary-common-Nightlies resolute]: https://build.osrfoundation.org/job/gz-rotary-common-debbuilder
 [gz-rotary-common-Nightlies resolute-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-common-debbuilder&build=last:${params.DISTRO=resolute}
 [cmake-main-repo]: https://github.com/gazebosim/gz-cmake
@@ -250,8 +228,6 @@
 [cmake-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_cmake-main-cnlwin
 [cmake-main-Brew Arm64]: https://build.osrfoundation.org/job/gz_cmake-ci-main-homebrew-arm64
 [cmake-main-Brew Arm64-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_cmake-ci-main-homebrew-arm64
-[gz-rotary-cmake-Nightlies noble]: https://build.osrfoundation.org/job/gz-rotary-cmake-debbuilder
-[gz-rotary-cmake-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-cmake-debbuilder&build=last:${params.DISTRO=noble}
 [gz-rotary-cmake-Nightlies resolute]: https://build.osrfoundation.org/job/gz-rotary-cmake-debbuilder
 [gz-rotary-cmake-Nightlies resolute-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-cmake-debbuilder&build=last:${params.DISTRO=resolute}
 [tools-main-repo]: https://github.com/gazebosim/gz-tools
@@ -263,8 +239,6 @@
 [tools-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_tools-main-cnlwin
 [tools-main-Brew Arm64]: https://build.osrfoundation.org/job/gz_tools-ci-main-homebrew-arm64
 [tools-main-Brew Arm64-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_tools-ci-main-homebrew-arm64
-[gz-rotary-tools-Nightlies noble]: https://build.osrfoundation.org/job/gz-rotary-tools-debbuilder
-[gz-rotary-tools-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-tools-debbuilder&build=last:${params.DISTRO=noble}
 [gz-rotary-tools-Nightlies resolute]: https://build.osrfoundation.org/job/gz-rotary-tools-debbuilder
 [gz-rotary-tools-Nightlies resolute-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-tools-debbuilder&build=last:${params.DISTRO=resolute}
 [utils-main-repo]: https://github.com/gazebosim/gz-utils
@@ -276,8 +250,6 @@
 [utils-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_utils-main-cnlwin
 [utils-main-Brew Arm64]: https://build.osrfoundation.org/job/gz_utils-ci-main-homebrew-arm64
 [utils-main-Brew Arm64-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz_utils-ci-main-homebrew-arm64
-[gz-rotary-utils-Nightlies noble]: https://build.osrfoundation.org/job/gz-rotary-utils-debbuilder
-[gz-rotary-utils-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-utils-debbuilder&build=last:${params.DISTRO=noble}
 [gz-rotary-utils-Nightlies resolute]: https://build.osrfoundation.org/job/gz-rotary-utils-debbuilder
 [gz-rotary-utils-Nightlies resolute-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-utils-debbuilder&build=last:${params.DISTRO=resolute}
 [sdformat-main-repo]: https://github.com/gazebosim/sdformat
@@ -289,8 +261,6 @@
 [sdformat-main-Windows-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat-main-cnlwin
 [sdformat-main-Brew Arm64]: https://build.osrfoundation.org/job/sdformat-ci-main-homebrew-arm64
 [sdformat-main-Brew Arm64-badge]: https://build.osrfoundation.org/buildStatus/icon?job=sdformat-ci-main-homebrew-arm64
-[gz-rotary-sdformat-Nightlies noble]: https://build.osrfoundation.org/job/gz-rotary-sdformat-debbuilder
-[gz-rotary-sdformat-Nightlies noble-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-sdformat-debbuilder&build=last:${params.DISTRO=noble}
 [gz-rotary-sdformat-Nightlies resolute]: https://build.osrfoundation.org/job/gz-rotary-sdformat-debbuilder
 [gz-rotary-sdformat-Nightlies resolute-badge]: https://build.osrfoundation.org/buildStatus/icon?job=gz-rotary-sdformat-debbuilder&build=last:${params.DISTRO=resolute}
 [sim-10-repo]: https://github.com/gazebosim/gz-sim
