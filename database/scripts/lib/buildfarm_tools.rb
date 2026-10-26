@@ -160,43 +160,68 @@ module BuildfarmToolsLib
   end
 
   def self.calculate_issue_priority(issue_link)
-    sql_out = run_command('./sql_run.sh get_known_issue_by_url.sql', args: [issue_link])
-    errors = sql_out.map {|e| e['error_name']}.uniq
-    jobs = sql_out.map {|e| e['job_name']}.uniq
+    issue_entries = run_command('./sql_run.sh get_known_issue_by_url.sql', args: [issue_link])
+    calculate_issue_priority_from_entries(issue_entries)
+  end
 
-    error_score_jobs = {}
-
-    errors.each do |e|
-      jobs.each do |job|
-        flaky_result = run_command('./sql_run.sh calculate_flakiness_jobs.sql', args: [e, FLAKY_BUILDS_DEFAULT_RANGE, job])
-        next if flaky_result.empty?
-        # This is not guaranteed to be 'not consistent', we need to re-check if the last 3 builds were failing because of this
-        flaky_ratio = flaky_result.first['failure_percentage'].to_f/100.0
-
-        job_priority = JOB_PRIORITIES[job]
-        if job_priority.nil?
-          puts "WARNING: No job priority for job #{job}. Defaulting to 1"
-          job_priority = 1
-        end
-        job_priority = job_priority*1.5 if flaky_ratio == 1
-        
-        error_score_jobs[job] = [] if error_score_jobs[job].nil?
-        error_score_jobs[job] << (job_priority*flaky_ratio)
-      end
+  def self.flakiness_results_by_error(errors)
+    errors.uniq.each_with_object({}) do |error_name, results_by_error|
+      rows = run_command(
+        './sql_run.sh calculate_flakiness_jobs.sql',
+        args: [error_name, FLAKY_BUILDS_DEFAULT_RANGE, '']
+      )
+      results_by_error[error_name] = rows.to_h { |row| [row['job_name'], row] }
     end
-    
-    # Get only maximum score for each job
-    error_score_jobs.each_value.map {|e| e.max}.sum.round(3)
+  end
+
+  def self.calculate_issue_priority_from_entries(issue_entries, flakiness_by_error: nil)
+    issue_entries = issue_entries.uniq { |entry| [entry['error_name'], entry['job_name']] }
+    errors = issue_entries.map { |entry| entry['error_name'] }.uniq
+    flakiness_by_error ||= flakiness_results_by_error(errors)
+
+    error_score_jobs = Hash.new { |scores, job_name| scores[job_name] = [] }
+
+    issue_entries.each do |entry|
+      error_name = entry['error_name']
+      job_name = entry['job_name']
+      flaky_result = flakiness_by_error.dig(error_name, job_name)
+      next if flaky_result.nil?
+
+      # Re-check whether the last three builds failed, even for apparently consistent failures.
+      flaky_ratio = flaky_result['failure_percentage'].to_f / 100.0
+      job_priority = JOB_PRIORITIES[job_name]
+      if job_priority.nil?
+        puts "WARNING: No job priority for job #{job_name}. Defaulting to 1"
+        job_priority = 1
+      end
+      job_priority *= 1.5 if flaky_ratio == 1
+
+      error_score_jobs[job_name] << (job_priority * flaky_ratio)
+    end
+
+    error_score_jobs.values.sum { |scores| scores.max }.round(3)
   end
 
   def self.update_issues_priority
-    issues_list = known_issues.group_by { |e| e["github_issue"] }.to_a.map {|e| e[0]}
-    issues_list.each do |i| 
-      issue_entries = run_command('./sql_run.sh get_known_issue_by_url.sql', args: [i])
+    issues = known_issues(status: 'open')
+             .reject { |entry| entry['github_issue'].nil? }
+             .group_by { |entry| entry['github_issue'] }
+
+    errors_to_score = issues.values
+                            .reject { |entries| entries.any? { |entry| entry['error_name'] == BUILD_REGRESSION_ERROR_NAME } }
+                            .flat_map { |entries| entries.map { |entry| entry['error_name'] } }
+                            .uniq
+    flakiness_by_error = flakiness_results_by_error(errors_to_score)
+
+    issues.each do |issue_link, issue_entries|
       is_build_regression_issue = issue_entries.any? { |entry| entry['error_name'] == BUILD_REGRESSION_ERROR_NAME }
-      priority = is_build_regression_issue ? BUILD_REGRESSION_STATIC_PRIORITY : calculate_issue_priority(i)
-      run_command('./sql_run.sh issue_update_priority.sql', args: [i, priority])
-      puts "Updated Priority of: #{i} -> #{priority}"
+      priority = if is_build_regression_issue
+                   BUILD_REGRESSION_STATIC_PRIORITY
+                 else
+                   calculate_issue_priority_from_entries(issue_entries, flakiness_by_error: flakiness_by_error)
+                 end
+      run_command('./sql_run.sh issue_update_priority.sql', args: [issue_link, priority])
+      puts "Updated Priority of: #{issue_link} -> #{priority}"
     end
   end
 
