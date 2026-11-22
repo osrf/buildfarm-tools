@@ -225,11 +225,38 @@ module BuildfarmToolsLib
     end
   end
 
-  def self.add_known_issue(error_name, job_name, github_issue)
-    command = "./issue_save_new.sh '#{error_name}' '#{error_name.split('.').first}' '#{job_name}' '#{github_issue}'"
-    Open3.popen3(command) do |_, _, _, t|
-      t.value.exitstatus
+  DB_PATH = File.expand_path('../../buildfarmer.db', __dir__)
+
+  # Quote a value as an SQL string literal (single quotes doubled).
+  def self.sql_quote(value)
+    "'#{value.to_s.gsub("'", "''")}'"
+  end
+
+  # Build the insert statement used to save a new known issue.
+  # build_regression issues get a fixed package name and priority.
+  def self.known_issue_insert_sql(error_name, package_name, job_name, github_issue)
+    columns = %w[error_name package_name job_name github_issue status]
+    values = [error_name, package_name, job_name, github_issue, 'NOT ASSIGNED']
+
+    if error_name == BUILD_REGRESSION_ERROR_NAME
+      values[1] = BUILD_REGRESSION_ERROR_NAME
+      columns << 'priority'
+      values << BUILD_REGRESSION_STATIC_PRIORITY
     end
+
+    quoted = values.map { |v| sql_quote(v) }
+    "insert into test_fail_issues (#{columns.join(', ')}) values (#{quoted.join(', ')})"
+  end
+
+  # Save a new known issue in the buildfarmer database.
+  # Returns the exit status of sqlite3 (0 on success).
+  def self.add_known_issue(error_name, job_name, github_issue, package_name: nil)
+    package_name ||= error_name.split('.').first
+    sql = known_issue_insert_sql(error_name, package_name, job_name, github_issue)
+    puts "Running: #{sql}"
+    _, err, status = Open3.capture3('sqlite3', DB_PATH, sql)
+    warn err unless err.empty?
+    status.exitstatus
   rescue StandardError => e
     raise BuildfarmToolsError, e
   end
