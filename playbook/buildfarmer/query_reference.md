@@ -5,7 +5,7 @@ Each query is a standalone contract: its output columns, inferred SQLite types, 
 
 ## Shared view: `active_failures`
 
-Source: `database/sql/create_view-active_failures.sql`
+Source: `database/sql/migrations/01_views.sql`
 
 Reusable stored query that identifies persistently broken test/job pairs across the buildfarms.
 

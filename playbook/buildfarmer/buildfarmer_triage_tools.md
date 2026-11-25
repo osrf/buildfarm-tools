@@ -18,8 +18,8 @@ The testdb scripts provide a way to check more information on builds by download
 
 * [testdb/fetch.rb](../../testdb/fetch.rb): This script downloads the log of a specified number of builds and saves them in a local database (_~/osrf/testdb_). You need to run this script before using the next ones.
 * [testdb/comparebuildrepos.rb](../../testdb/comparebuildrepos.rb): This script compares the build logs of two builds and shows the version differences between them. It is useful to check if the build is failing because of a change in the version of a repository. *Disclaimer: This script currently supports only ROS2 logs.*
-* [testdb/comparepip.py](./testdb/comparepip.py): This script compares the pip packages installed in two builds. It is useful to check if the build is failing because of a change in the dependencies. *Disclaimer: This script currently supports only ROS2 logs.*
-* [testdb/grep.rb](./testdb/grep.rb): This script greps the log of a build for a specified string. It returns the statistics of how many times this string appeared in the last _n_ builds. This script is useful to check if the build is failing because of a specific error and check the percentage of builds that are failing because of this error.
+* [testdb/comparepip.py](../../testdb/comparepip.py): This script compares the pip packages installed in two builds. It is useful to check if the build is failing because of a change in the dependencies. *Disclaimer: This script currently supports only ROS2 logs.*
+* [testdb/grep.rb](../../testdb/grep.rb): This script greps the log of a build for a specified string. It returns the statistics of how many times this string appeared in the last _n_ builds. This script is useful to check if the build is failing because of a specific error and check the percentage of builds that are failing because of this error.
 
 Check the [testdb usage](#testdb-usage) section for more information on how to use these scripts.
 
@@ -31,9 +31,7 @@ The buildfarmer repository stores a local database with information from test re
 
 * [check_buildfarm.rb](../../database/scripts/check_buildfarm.rb): This script checks the status of the buildfarm and shows potential new issues that need to be reported, as well as other useful information for each job.
 * [statistical_check.rb](../../database/scripts/statistical_check.rb): This script shows the list of all open, closed and new issues and the test regressions associated with them, as well as how many times they happened in the last X days.
-* [create_view-active_failures.sql](../../database/sql/create_view-active_failures.sql): This view stores the reusable definition of persistently broken tests across the buildfarms.
-* [refresh_known_open_issues.sh](../../database/scripts/refresh_known_open_issues.sh): This script updates the list of known open issues based on issue status in github. It requires [Github CLI](https://cli.github.com/) to be installed and configured.
-* [close_old_known_issues.sh](../../database/scripts/close_old_known_issues.sh): This script closes issues that haven't happened in the last 30 days.
+* [01_views.sql](../../database/sql/migrations/01_views.sql): This view stores the reusable definition of persistently broken tests across the buildfarms.
 * [sql_run.sh](../../database/scripts/sql_run.sh): This script receives an SQL query file as an argument and returns the results after running it in the database. For running almost any of the other scripts, you will need to use this script.
 * [query_reference.md](./query_reference.md): This document describes the output contract for the dashboard SQL queries and includes sample rows for each one.
 * [errors_check_today.sql](../../database/scripts/errors_check_today.sql) or [errors_check_last_build.sql](../../database/scripts/errors_check_last_build.sql): These scripts return the test regressions that happened today or in the last build of all jobs respectively. They are useful to check if any test regressions need to be reported.
@@ -47,8 +45,6 @@ The buildfarmer repository stores a local database with information from test re
 * [is_known_issue.sql](../../database/scripts/is_known_issue.sql): This script returns the known issue that matches the test regression. It is useful to check if a test regression is already known.
 * [issue_save_new.sh](../../database/scripts/issue_save_new.sh): This script saves a new known issue in the database.
 * [issue_close.sql](../../database/scripts/issue_close.sql): This script closes a known issue in the database.
-* [refresh_known_open_issues.sh](../../database/scripts/refresh_known_open_issues.sh): This script updates the list of known open issues based on issue status in github. It requires [Github CLI](https://cli.github.com/) to be installed and configured.
-* [close_old_known_issues.sh](../../database/scripts/close_old_known_issues.sh): This script closes issues that haven't happened in the last 30 days.
 
 Check the [database scripts usage](#database-scripts-usage) section for more information on how to use these scripts.
 
@@ -165,26 +161,6 @@ Remember to set the *domain and job variables* before running this script ([how 
 * `"error"` is the string to grep.
 
 ## Database scripts usage
-
-### refresh_known_open_issues.sh
-
-This script requires having [Github CLI](https://cli.github.com/) installed and configured (authenticated).
-
-```bash
-./refresh_known_open_issues.sh
-```
-
-> Will update the list of known open issues based on issue status in github.
-> Requires github CLI to be installed and configured.
-
-### close_old_known_issues.sh
-
-```bash
-./close_old_known_issues.sh
-```
-
-> Will close issues that haven't happened in the last 30 days.
-
 
 ### check_buildfarm.rb
 
