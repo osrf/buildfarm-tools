@@ -23,7 +23,7 @@ For each of the projects, you can compare the production number of agents that s
 
 If an agent is offline, you may follow [revive_agent.md](https://github.com/osrf/infrastructure-private/blob/main/playbook/infra/revive_agent.md) (private repository) play to put it back online.
 
-### 3. Pull changes from buildfarm repository and refresh known issues
+### 3. Pull changes from buildfarm repository
 > Details in [Scripted buildfarm day: Tool setup](./scripted_buildfarm_day.md#1-tool-setup)
 
 Pull changes:
@@ -31,14 +31,6 @@ Pull changes:
 ```bash
 cd ~/buildfarm-tools
 git pull
-```
-
-Refresh known issues:
-
-```bash
-cd ~/buildfarm-tools/database/scripts
-./refresh_known_open_issues.sh
-./close_old_known_issues.sh
 ```
 
 ### 4. Check automation tools

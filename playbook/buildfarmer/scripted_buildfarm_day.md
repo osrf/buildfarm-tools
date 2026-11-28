@@ -9,13 +9,7 @@ This document describes the process for being a buildfarmer for a day.
     git checkout main
     git pull origin main
     ```
-2. Update Known issues information so you work with the latest information:
-
-    ```bash
-    cd ~/buildfarm-tools/database/scripts
-    ./refresh_known_open_issues.sh
-    ./close_old_known_issues.sh
-    ```
+2. Known issues are refreshed automatically by the Daily Workflow (an issue closed in GitHub is also closed in the database), so no manual refresh is needed. See [known issues](./known_issues.md).
 
 ## 2. Check the buildfarm status
 
